@@ -6,14 +6,14 @@ const Op = db.Sequelize.Op;
 exports.create = (req, res) => {
     // Validate request
     if (!req.body.articleId || 
-        !req.body.deliveryId) {
+        !req.body.purchaseId) {
         return console.log('Missing data');
     }
 
     // Create a Carry
     const carry = {
         articleId: req.body.articleId,
-        deliveryId: req.body.deliveryId
+        purchaseId: req.body.purchaseId
     };
 
     // Save Carry

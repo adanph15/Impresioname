@@ -1,77 +1,80 @@
 const db = require("../models");
-const Delivery = db.delivery;
+const purchase = db.purchase;
 const Op = db.Sequelize.Op;
 
-// Create Delivery
+// Create purchase
 exports.create = (req, res) => {
     // Validate request
-    if (!req.body.date || !req.body.total || !req.body.status || !req.body.user_id) {
+    if (!req.body.date || 
+        !req.body.total || 
+        !req.body.status || 
+        !req.body.user_id) {
         return console.log('Missing data');
     }
 
-    // Create a Delivery
-    const delivery = {
+    // Create a purchase
+    const purchase = {
         date: req.body.date,
         total: req.body.total,
         status: req.body.status,
         user_id: req.body.user_id
     };
 
-    // Save Delivery
-    Delivery.create(delivery)
+    // Save purchase
+    Purchase.create(purchase)
         .then(data => {
             res.send(data);
         })
-        .catch(console.log('Error saving delivery'));
+        .catch(console.log('Error saving purchase'));
 };
 
 // Find All Deliveries
 exports.findAll = (req, res) => {
-    Delivery.findAll()
+    Purchase.findAll()
         .then(data => {
             res.send(data);
         })
         .catch(console.log('Error finding deliveries'));
 };
 
-// Find One Delivery
+// Find One Purchase
 exports.findOne = (req, res) => {
     const id = req.params.id;
-    Delivery.findByPk(id)
+    Purchase.findByPk(id)
         .then(data => {
             if (!data) {
-                console.log('Delivery not found');
+                console.log('Purchase not found');
             } else {
                 res.send(data);
             }
         })
-        .catch(console.log('Error finding delivery'));
+        .catch(console.log('Error finding purchase'));
 };
 
-// Update One Delivery with ID
+// Update One Purchase with ID
 exports.update = (req, res) => {
     const id = req.params.id;
-    Delivery.update(req.body, {
+    Purchase.update(req.body, {
         where: { id: id }
     }).then(num => {
         if (num == 1) {
-            console.log('Delivery updated')
+            console.log('Purchase updated')
         } else {
-            console.log('Delivery cannot be deleted')
+            console.log('Purchase cannot be deleted')
         }
-    }).catch(console.log('Error updating the delivery'));
+    }).catch(console.log('Error updating the purchase'));
 };
 
-// Delete One Delivery with ID
+// Delete One Purchase with ID
 exports.delete = (req, res) => {
     const id = req.params.id;
-    Delivery.destroy({
+    Purchase.destroy({
         where: { id: id }
     }).then(num => {
         if (num == 1) {
-            console.log('Delivery deleted')
+            console.log('Purchase deleted')
         } else {
-            console.log('Delivery cannot be deleted')
+            console.log('Purchase cannot be deleted')
         }
-    }).catch(console.log('Error deleting the delivery'));
+    }).catch(console.log('Error deleting the purchase'));
 };              

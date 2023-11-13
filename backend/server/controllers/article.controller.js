@@ -5,11 +5,7 @@ const Op = db.Sequelize.Op;
 // Create Article
 exports.create = (req, res) => {
     // Validate request
-    if (!req.body.name || 
-        !req.body.description || 
-        !req.body.price || 
-        !req.body.category || 
-        !req.body.stock) {
+    if (!req.body.name || !req.body.description || !req.body.price || !req.body.category || !req.body.stock) {
         return console.log('Missing data');
     }
 

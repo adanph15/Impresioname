@@ -1,6 +1,5 @@
 const express = require("express");
 const app = express();
-const bodyParser = require("body-parser");
 const cors = require("cors");
 
 var corsOptions = {
@@ -12,11 +11,6 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
-// parse requests of content-type - application/json
-//app.use(bodyParser.json());
-
-// parse requests of content-type - application/x-www-form-urlencoded
-//app.use(bodyParser.urlencoded({ extended: true }));
 
 // database
 const db = require("./server/models");
@@ -29,7 +23,6 @@ db.sequelize.sync();
    initial();
 });
 
-// simple route
 app.get("/", (req, res) => {
   res.json("Welcome to Impresioname!" );
 });

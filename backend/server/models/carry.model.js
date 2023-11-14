@@ -9,6 +9,5 @@ module.exports = (sequelize, Sequelize) => {
             primaryKey: true
         }
     }, { timestamps: false });
-
     return carry;
 };

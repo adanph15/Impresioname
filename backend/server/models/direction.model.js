@@ -16,6 +16,5 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.INTEGER
         }
     }, { timestamps: false });
-
     return direction;
 };

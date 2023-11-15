@@ -5,6 +5,10 @@ const purchaseController = require("../controllers/purchase.controller");
 const carryController = require("../controllers/carry.controller");
 const directionController = require("../controllers/direction.controller");
 
+var upload = require('../multer/upload');
+
+var router = require("express").Router();
+
 module.exports = function (app) {
   // app.use(function (req, res, next) {
   //   res.header(
@@ -14,32 +18,34 @@ module.exports = function (app) {
   //   next();
   // });
 
-//   app.post(
-//     "/api/auth/signup",
-//     [
-//       verifySignUp.checkDuplicateUsernameOrEmail,
-//       verifySignUp.checkRolesExisted
-//     ],
-//     controller.signup
-//   );
+  //   app.post(
+  //     "/api/auth/signup",
+  //     [
+  //       verifySignUp.checkDuplicateUsernameOrEmail,
+  //       verifySignUp.checkRolesExisted
+  //     ],
+  //     controller.signup
+  //   );
 
-//   app.post("/api/auth/signin", controller.signin);
+  //   app.post("/api/auth/signin", controller.signin);
 
-//   app.get("/api/auth/:id", controller.findOne);
+  //   app.get("/api/auth/:id", controller.findOne);
 
-//   app.put("/api/auth/:id", controller.update);
+  //   app.put("/api/auth/:id", controller.update);
 
 
   // Articles
-  app.post("/api/article", articleController.create);
+  // app.post("/api/article", upload.single('file'), articleController.create);
 
-  app.get("/api/article", articleController.findAll);
+  // app.get("/api/article", articleController.findAll);
 
-  app.get("/api/article/:id", articleController.findOne);
+  // app.get("/api/article/:category", articleController.findAllCondition);
 
-  app.put("/api/article/:id", articleController.update);
+  // app.get("/api/article/:id", articleController.findOne);
 
-  app.delete("/api/article/:id", articleController.delete);
+  // app.put("/api/article/:id", upload.single('file'), articleController.update);
+
+  // app.delete("/api/article/:id", articleController.delete);
 
   // Purchases
   app.post("/api/purchase", purchaseController.create);
@@ -72,6 +78,6 @@ module.exports = function (app) {
 
   app.delete("/api/direction/:id", directionController.delete);
 
-  
+
 
 }

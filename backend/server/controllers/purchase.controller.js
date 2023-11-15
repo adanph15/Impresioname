@@ -1,5 +1,5 @@
 const db = require("../models");
-const purchase = db.purchase;
+const Purchase = db.purchase;
 const Op = db.Sequelize.Op;
 
 // Create purchase

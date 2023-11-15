@@ -14,6 +14,9 @@ module.exports = (sequelize, Sequelize) => {
         },
         stock: {
             type: Sequelize.BOOLEAN
+        },
+        filename: {
+            type: Sequelize.STRING
         }
     }, { timestamps: false });
     return article;

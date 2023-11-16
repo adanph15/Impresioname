@@ -8,6 +8,7 @@ export default function Home() {
     <>
       <body>
         <Header />
+       
         <div className="home-container">
           <h2>newest</h2>
           <div className="home-container-newest">
@@ -29,7 +30,6 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <a href="/shop-men"><button>hola</button></a>
         <Footer />
       </body>
     </>

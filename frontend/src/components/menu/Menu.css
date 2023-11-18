@@ -1,34 +1,51 @@
-.slide-menu {
+.sidenav {
+  height: 100%;
+  width: 0;
   position: fixed;
+  z-index: 1;
   top: 0;
   left: 0;
-  width: 150px;
-  height: 100%;
-  background-color: #333;
-  color: #fff;
-  transform: translateX(-100%);
-  transition: transform 0.3s ease-in-out;
+  background-color: #333333;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
   text-decoration: none;
+  font-size: 25px;
+  color: white;
+  display: block;
+  transition: 0.3s;
 }
 
-.slide-menu ul {
-  list-style-type: none;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
+/* .sidenav a:hover {
+  color: black;
+} */
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
 }
 
-.slide-menu li {
-  margin-bottom: 15px;
-  cursor: pointer;
+.sidenav.open {
+  width: 250px;
 }
 
-.slide-menu a {
-  text-decoration: none; /* Elimina el subrayado de los enlaces */
-  color: #fff; /* Color blanco para los enlaces */
+#main {
+  transition: margin-left 0.5s;
+  padding: 16px;
 }
 
-.slide-menu.show {
-  transform: translateX(0);
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px;
+  }
+  .sidenav a {
+    font-size: 18px;
+  }
 }
-

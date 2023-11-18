@@ -3,11 +3,11 @@ import "./Footer.css";
 export default function Footer() {
     return (
         <>
-            <body>
+            <footer>
                 <div className="footer-container">
-                    <p className="footer-text">Footer will be soon</p>
+                    <p>Footer will be here soon</p>
                 </div>
-            </body>
+            </footer>
         </>
     );
 }

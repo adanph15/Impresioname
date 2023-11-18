@@ -1,9 +1,8 @@
-import "./Shop.css";
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
-
+import "./Shop.css";
 
 export default function ShopMen() {
 

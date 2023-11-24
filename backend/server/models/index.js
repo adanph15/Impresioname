@@ -59,7 +59,7 @@ db.article.hasOne(db.carry, {
 
 db.user.hasOne(db.purchase, {
     through: 'purchase',
-    foreignKey: 'id_user'
+    foreignKey: 'user_id'
 });
 
 db.ROLES = ["user", "admin"];

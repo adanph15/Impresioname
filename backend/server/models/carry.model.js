@@ -4,7 +4,7 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.INTEGER,
             primaryKey: true
         },
-        delivery_id: {
+        purchase_id: {
             type: Sequelize.INTEGER,
             primaryKey: true
         }

@@ -1,3 +1,37 @@
+.scroll-card {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 10px 30px;
+    color: white;
+    text-align: center;
+    margin-left: 0;
+}
+
+.scroll-card-item {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    background-color: #333333;
+    border-radius: 6px;
+}
+
+.scroll-card-item-photo {
+    width: 180px;
+    margin-top: 0;
+    margin-bottom: 1vh;
+    border-radius: 6px 6px 0 0;
+    border: 1px solid #333333;
+}
+
+.scroll-card-item-title {
+    margin-bottom: 0.7vh;
+}
+
+.scroll-card-item-text{
+    margin-bottom: 0.7vh;
+}
+
 .scroller {
     width: 85vw;
 }
@@ -26,7 +60,7 @@
 }
 
 .scroller[data-speed="slow"] {
-    --_animation-duration: 100s;
+    --_animation-duration: 90s;
 }
 
 @keyframes scroll {

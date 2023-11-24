@@ -15,9 +15,10 @@ exports.create = (req, res) => {
 
     // Create a Direction
     const direction = {
-        date: req.body.date,
-        total: req.body.total,
-        status: req.body.status,
+        direction: req.body.direction,
+        post_code: req.body.post_code,
+        location: req.body.location,
+        province: req.body.province,
         user_id: req.body.user_id
     };
 

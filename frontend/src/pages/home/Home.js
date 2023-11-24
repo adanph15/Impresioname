@@ -16,18 +16,24 @@ export default function Home() {
           </div>
           <h2>category</h2>
           <div className="home-container-category">
-            <div className="home-container-category-item" >
-              <img src={jasonCategories[0]} alt="men" className="home-container-category-item-img" />
-              <h3>men</h3>
-            </div>
-            <div className="home-container-category-item" >
-              <img src={jasonCategories[1]} alt="women" className="home-container-category-item-img" />
-              <h3>women</h3>
-            </div>
-            <div className="home-container-category-item" >
-              <img src={jasonCategories[2]} alt="kids" className="home-container-category-item-img" />
-              <h3>kids</h3>
-            </div>
+            <a href="/shop-men">
+              <div className="home-container-category-item" >
+                <img src={jasonCategories[0]} alt="men" className="home-container-category-item-img" />
+                <h3>men</h3>
+              </div>
+            </a>
+            <a href="/shop-women">
+              <div className="home-container-category-item" >
+                <img src={jasonCategories[1]} alt="women" className="home-container-category-item-img" />
+                <h3>women</h3>
+              </div>
+            </a>
+            <a href="/shop-kids">
+              <div className="home-container-category-item" >
+                <img src={jasonCategories[2]} alt="kids" className="home-container-category-item-img" />
+                <h3>kids</h3>
+              </div>
+            </a>
           </div>
         </div>
         <Footer />

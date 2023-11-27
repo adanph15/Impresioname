@@ -1,3 +1,3 @@
 module.exports = {
-    secret: "ecommerce-secret-key"
+    secret: "impresioname-secret-key"
   };

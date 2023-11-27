@@ -2,7 +2,6 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
-import "./Shop.css";
 import { useParams } from 'react-router-dom';
 
 
@@ -36,7 +35,7 @@ export default function GlassesPage() {
                     <div className='glasses-item'>
                         <div className='glasses-item-info'>
                             <img src={`http://localhost:8000/images/${article.filename}`} className="glasses-item-img" />
-                            <div className='c'>
+                            <div className='glasses-info'>
                                 <h2>{article.price}€</h2>
                                 <p>{article.name} - {article.description}</p>
                                 <p>{article.stock ? 'in stock' : 'out of stock'}</p>

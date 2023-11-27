@@ -49,7 +49,7 @@
 }
 
 .shop-card-item:hover {
-    transform: scale(1.1); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+    transform: scale(1.1);
 }
 
 .glasses-container {
@@ -80,7 +80,7 @@
     margin-bottom: 5vh;
 }
 
-.c{
+.glasses-info {
     width: 100%;
     margin-top: -2vh;
 }

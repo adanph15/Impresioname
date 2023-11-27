@@ -15,3 +15,5 @@ module.exports = (sequelize, Sequelize) => {
     }, { timestamps: false });
     return user;
 };
+
+// ADD USERNAME

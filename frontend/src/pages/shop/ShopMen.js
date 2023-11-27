@@ -2,7 +2,6 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
-import "./Shop.css";
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 
@@ -31,10 +30,7 @@ export default function ShopMen() {
                         <div className="shop-card-item">
                             <img src={`http://localhost:8000/images/${article.filename}`} className="shop-card-item-photo" />
                             <strong>{article.name}</strong>
-                            <p>{article.description}</p>
-                            <p>Price: {article.price}€</p>
-                            <p>Category: {article.category}</p>
-                            <p>{article.stock ? 'In Stock' : 'Out of Stock'}</p>
+                            <p>{article.price}€</p>
                             <button className="shop-card-item-button">
                                 try me 
                             </button>

@@ -3,49 +3,41 @@ import Header from "../../components/header/Header";
 import "./SingIn.css";
 import React, { useState } from 'react';
 import axios from 'axios';
+import AuthService from "../../services/AuthService";
 
 
 export default function SingIn() {
-    const [mail, setMail] = useState('');
-    const [password, setPassword] = useState('');
-    const [token, setToken] = useState(null);
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
-    const handleSignin = async () => {
-        try {
-            const response = await axios.post('http://localhost:8000/api/user/signin', {
-                mail: mail,
-                password,
-            });
+  const handleLogin = async () => {
+    try {
+      const response = await  AuthService.login(username, password);
+      localStorage.setItem("userInfo", JSON.stringify(response.user));
+      // window.location.href = '/home';
+    } catch (error) {
+      console.error('Login failed', error);
+    }
+  };
 
-            console.log('User signed in successfully:', response.data);
-            setToken(response.data.access_token);
-
-            // Puedes redirigir al usuario a la página principal u otra página después de iniciar sesión.
-        } catch (error) {
-            console.error('Error signing in:', error.response.data.message);
-        }
-    };
-    return (
-        <>
-            <body>
-                <Header />
-                <div className="home-container">
-                    <form className="singin-form-container">
-                        <div className="singin-form-item">
-                            <h4>mail</h4>
-                            <input type="email" value={mail} onChange={(e) => setMail(e.target.value)} />
-                        </div>
-                        <div className="singin-form-item">
-                            <h4>password</h4>
-                            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                        </div>
-                        <div className="singin-form-item">
-                        <button onClick={handleSignin}>Signin</button>
-                        </div>
-                    </form>
-                </div>
-                <Footer />
-            </body>
-        </>
-)}
-
+  return (
+    <div>
+      <h2>Login</h2>
+      <form>
+        <label>
+          Username:
+          <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+        </label>
+        <br />
+        <label>
+          Password:
+          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+        </label>
+        <br />
+        <button type="button" onClick={handleLogin}>
+          Login
+        </button>
+      </form>
+    </div>
+  );
+};

@@ -2,6 +2,9 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const path = require('path');
+
+require('dotenv').config();
+const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 
 
@@ -44,9 +47,9 @@ app.use(function (req, res, next) {
     // verify auth basic credentials
     const base64Credentials =  req.headers.authorization.split(' ')[1];
     const credentials = Buffer.from(base64Credentials, 'base64').toString('ascii');
-    const [mail, password] = credentials.split(':');
+    const [username, password] = credentials.split(':');
 
-    req.body.mail = mail;
+    req.body.username = username;
     req.body.password = password;
 
     return next();
@@ -54,7 +57,7 @@ app.use(function (req, res, next) {
 
   token = token.replace('Bearer ', '');
   // .env should contain a line like JWT_SECRET=V3RY#1MP0RT@NT$3CR3T#
-  jwt.verify(token, process.env.JWT_SECRET, function (err, user) {
+  jwt.verify(token, "V3RY#1MP0RT@NT$3CR3T#", function (err, user) {
     if (err) {
       return res.status(401).json({
         error: true,
@@ -72,7 +75,7 @@ app.use(function (req, res, next) {
 // routes
 require("./server/routes/all.routes")(app);
 require("./server/routes/article.routes")(app);
-require("./server/routes/auth.routes")(app);
+// require("./server/routes/auth.routes")(app);
 require("./server/routes/user.routes")(app);
 // require('./server/routes/user.routes')(app);
 
@@ -93,103 +96,103 @@ function initial() {
     name: "admin"
   });
 
-  Article.create({
-    id: 1,
-    name: "gafa1",
-    description: "rojo",
-    price: 100,
-    category: "men",
-    stock: 1,
-    filename: "./server/public/images/glasses.png"
-  });
+//   Article.create({
+//     id: 1,
+//     name: "gafa1",
+//     description: "rojo",
+//     price: 100,
+//     category: "men",
+//     stock: 1,
+//     filename: "./server/public/images/glasses.png"
+//   });
 
-  Article.create({
-    id: 2,
-    name: "gafa2",
-    description: "rojo",
-    price: 100,
-    category: "men",
-    stock: 1,
-    filename: "./server/public/images/glasses.png"
-  });
+//   Article.create({
+//     id: 2,
+//     name: "gafa2",
+//     description: "rojo",
+//     price: 100,
+//     category: "men",
+//     stock: 1,
+//     filename: "./server/public/images/glasses.png"
+//   });
 
-  Article.create({
-    id: 3,
-    name: "gafa3",
-    description: "rojo",
-    price: 100,
-    category: "men",
-    stock: 1,
-    filename: "./server/public/images/glasses.png"
-  });
+//   Article.create({
+//     id: 3,
+//     name: "gafa3",
+//     description: "rojo",
+//     price: 100,
+//     category: "men",
+//     stock: 1,
+//     filename: "./server/public/images/glasses.png"
+//   });
 
-  Article.create({
-    id: 4,
-    name: "gafa4",
-    description: "rojo",
-    price: 100,
-    category: "men",
-    stock: 1,
-    filename: "./server/public/images/glasses.png"
-  });
+//   Article.create({
+//     id: 4,
+//     name: "gafa4",
+//     description: "rojo",
+//     price: 100,
+//     category: "men",
+//     stock: 1,
+//     filename: "./server/public/images/glasses.png"
+//   });
 
-  Article.create({
-    id: 5,
-    name: "gafa5",
-    description: "rojo",
-    price: 100,
-    category: "men",
-    stock: 1,
-    filename: "./server/public/images/glasses.png"
-  });
+//   Article.create({
+//     id: 5,
+//     name: "gafa5",
+//     description: "rojo",
+//     price: 100,
+//     category: "men",
+//     stock: 1,
+//     filename: "./server/public/images/glasses.png"
+//   });
 
-  Article.create({
-    id: 6,
-    name: "gafa6",
-    description: "rojo",
-    price: 100,
-    category: "men",
-    stock: 1,
-    filename: "./server/public/images/glasses.png"
-  });
+//   Article.create({
+//     id: 6,
+//     name: "gafa6",
+//     description: "rojo",
+//     price: 100,
+//     category: "men",
+//     stock: 1,
+//     filename: "./server/public/images/glasses.png"
+//   });
   
-  Article.create({
-    id: 7,
-    name: "gafa7",
-    description: "rojo",
-    price: 100,
-    category: "men",
-    stock: 1,
-    filename: "./server/public/images/glasses.png"
-  });
+//   Article.create({
+//     id: 7,
+//     name: "gafa7",
+//     description: "rojo",
+//     price: 100,
+//     category: "men",
+//     stock: 1,
+//     filename: "./server/public/images/glasses.png"
+//   });
 
-  Article.create({
-    id: 8,
-    name: "gafa8",
-    description: "rojo",
-    price: 100,
-    category: "men",
-    stock: 1,
-    filename: "./server/public/images/glasses.png"
-  });
+//   Article.create({
+//     id: 8,
+//     name: "gafa8",
+//     description: "rojo",
+//     price: 100,
+//     category: "men",
+//     stock: 1,
+//     filename: "./server/public/images/glasses.png"
+//   });
 
-  Article.create({
-    id: 9,
-    name: "gafa9",
-    description: "rojo",
-    price: 100,
-    category: "men",
-    stock: 1,
-    filename: "./server/public/images/glasses.png"
-  });
+//   Article.create({
+//     id: 9,
+//     name: "gafa9",
+//     description: "rojo",
+//     price: 100,
+//     category: "men",
+//     stock: 1,
+//     filename: "./server/public/images/glasses.png"
+//   });
 
-  Article.create({
-    id: 10,
-    name: "gafa10",
-    description: "rojo",
-    price: 100,
-    category: "men",
-    stock: 1,
-    filename: "./server/public/images/glasses.png"
-  });
+//   Article.create({
+//     id: 10,
+//     name: "gafa10",
+//     description: "rojo",
+//     price: 100,
+//     category: "men",
+//     stock: 1,
+//     filename: "./server/public/images/glasses.png"
+//   });
 }

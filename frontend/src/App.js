@@ -9,8 +9,11 @@ import ShopKids from "./pages/shop/ShopKids";
 import AdminArticle from "./pages/admin/Article.crud";
 import GlassesPage from "./pages/shop/GlassPage";
 import SingUp from "./pages/user/SingUp";
+import UserPage from "./pages/user/UserPage";
+
 
 function App() {
+
   document.title = "IMPRESIÓNAME";
   return (
     <>
@@ -25,8 +28,7 @@ function App() {
           <Route path="/shop-kids" element={<ShopKids />} />
           <Route path="/admin-article" element={<AdminArticle />} />
           <Route path="/glasses/:id" element={<GlassesPage />} />
-
-
+          <Route path="/profile" element={<UserPage />} />
         </Routes>
       </BrowserRouter>
     </>

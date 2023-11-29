@@ -12,3 +12,11 @@
 .singin-form-item {
     padding-top: 2vh;
 }
+
+.user-form-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: center;
+}

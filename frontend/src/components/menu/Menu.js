@@ -11,6 +11,8 @@ export default function Menu({ isOpen, closeNav }) {
       <a href="/shop-men">men</a>
       <a href="/shop-women">women</a>
       <a href="/shop-kids">kids</a>
+      <a href="/sing-in">sing-in</a>
+      <a href="/sing-up">sing-up</a>
     </div>
   );
 }

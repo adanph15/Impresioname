@@ -10,13 +10,12 @@ function generateToken(user) {
   var u = {
     id: user.id,
     name: user.name,
-    last_name: user.last_name,
-    mail: user.mail,
+    username: user.username,
     password: user.password
   };
  
   // .env should contain a line like JWT_SECRET=V3RY#1MP0RT@NT$3CR3T#
-  return jwt.sign(u, "impresionameSecretToken", {
+  return jwt.sign(u, "V3RY#1MP0RT@NT$3CR3T#", {
     expiresIn: 60 * 60 * 24 // expires in 24 hours
   });
 }
@@ -28,8 +27,7 @@ function getCleanUser(user) {
   return {
     id: user.id,
     name: user.name,
-    last_name: user.last_name,
-    mail: user.mail,
+    username: user.username,
     password: user.password
   };
 }

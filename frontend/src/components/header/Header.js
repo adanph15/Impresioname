@@ -23,10 +23,10 @@ export default function Header() {
                     <FontAwesomeIcon icon={faBars} size="xl" />
                 </a>
                 <h1>IMPRESIÓNAME</h1>
-                <a>
+                <a href='/profile'>
                     <FontAwesomeIcon icon={faUser} size="xl" />
                 </a>
-                <a>
+                <a >
                     <FontAwesomeIcon icon={faCartShopping} size="xl" />
                 </a>
             </div>

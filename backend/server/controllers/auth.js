@@ -4,24 +4,25 @@ const bcrypt = require('bcryptjs');
 
 const db = require("../models");
 const User = db.user;
-const Role = db.role;
 
 exports.signin = (req, res) => {
-  const user = req.body.mail;
+  const user = req.body.username;
   const pwd = req.body.password;
 
-  // return 400 status if mail/password is not exist
+  // return 400 status if username/password is not exist
   if (!user || !pwd) {
     return res.status(400).json({
       error: true,
-      message: "Mail or Password required."
+      message: "Username or Password required."
     });
   }
 
-  User.findOne({ where: { mail: user } })
+  // return 401 status if the credential is not match.
+  User.findOne({ where: { username: user } })
     .then(data => {
       const result = bcrypt.compareSync(pwd, data.password);
       if(!result) return  res.status(401).send('Password not valid!');
+
       // generate token
       const token = utils.generateToken(data);
       // get basic user details
@@ -49,7 +50,7 @@ exports.isAuthenticated = (req, res, next) => {
   }
   // check token that was passed by decoding token using secret
   // .env should contain a line like JWT_SECRET=V3RY#1MP0RT@NT$3CR3T#
-  jwt.verify(token, process.env.JWT_SECRET, function (err, user) {
+  jwt.verify(token, "V3RY#1MP0RT@NT$3CR3T#", function (err, user) {
     if (err) return res.status(401).json({
       error: true,
       message: "Invalid token."

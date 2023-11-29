@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 export default function SingUp() {
+    const [username, setUserName] = useState('');
     const [name, setName] = useState('');
     const [lastName, setLastName] = useState('');
     const [mail, setMail] = useState('');
@@ -12,7 +13,8 @@ export default function SingUp() {
 
     const handleSignup = async () => {
         try {
-            const response = await axios.post('http://localhost:8000/api/user', {
+            const response = await axios.post('http://localhost:8000/api/users', {
+                username,
                 name,
                 last_name: lastName,
                 mail,
@@ -33,6 +35,10 @@ export default function SingUp() {
                 <Header />
                 <div>
                     <h2>Signup</h2>
+                    <label>username:</label>
+                    <input type="text" value={username} onChange={(e) => setUserName(e.target.value)} />
+                    <br />
+
                     <label>Name:</label>
                     <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
                     <br />

@@ -4,7 +4,6 @@ const userController = require("../controllers/user.controller.js");
 const purchaseController = require("../controllers/purchase.controller");
 const carryController = require("../controllers/carry.controller");
 const directionController = require("../controllers/direction.controller");
-const auth = require("../controllers/auth.controller.js");
 
 module.exports = function (app) {
 

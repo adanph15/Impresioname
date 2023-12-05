@@ -1,22 +1,23 @@
-# IMPRESIÓNAME
+# IMPRESIÓNAME 👓
 
-This application consists of 
+This application consists in a shop page were a user can buy and see a catalogue of glasses and in a future customize glasses by her own.
 
-## BUILD IN
+<br><br>
+
+
+## BUILD IN 🔨 
 
 Build in React `[JS]` , NodeJS `[Express - Sequelize]` & MysQL.
 
 <br><br>
 
-## MODEL AND DIAGRAMS INFO
+## MODEL AND DIAGRAMS INFO 📊
 
 Database structure and its respective diagrams.
 
 
-### Entities 
-* User: The user has an id, a username, name, last name, mail and password.
-
-* Rol: It has an id and a name.
+### ENTITIES 📝
+* User: The user has an id, a username, name, last name, mail, password and role.
 
 * Direction: It has an id, a direction, post-code, location, province.
 
@@ -25,14 +26,12 @@ Database structure and its respective diagrams.
 * Article: It has an id, a name, description, price, category and stock.
 
 
-### RELATIONSHIPS 
+### RELATIONSHIPS 🔌
 * A user can have one or more direction, but one direction must be for one user.
 
-* A user can have one or more roles, and rol can be in one or more users.
+* A user may not do a purcharse or may do many purcharses, but one purcharse must be just for one user.
 
-* A user may not do a delivery or may do many deliveries, but one delivery must be just for one user.
-
-* A delivery can carry one or more models, but a model can not belong to a delivery or can be in many deliveries.
+* A purcharse can carry one or more articles, but one article can not belong to a purcharse or can be in many purcharses.
 
 <br><br>
 
@@ -43,7 +42,7 @@ Database structure and its respective diagrams.
 </p>
 
 
-### CASE DIAGRAM
+### CLASS DIAGRAM
 
 <p align="center">
     <img src="img/ClassDiagram.png" alt="caseDiagram" >
@@ -65,23 +64,17 @@ Database structure and its respective diagrams.
 </p>
 
 ### RELATIONAL MODEL
-* Producto (Id_Producto, Nombre, Precio, Stock)
 
-* Clientes (Id_Clientes, D N I, Nombre, Apellido1, Apellido2, Dirección)
+* User (**id**, username, name, last_name, mail, password, role)
 
-* Distribuidores(Id_Distribuidor, Empresa, Dirección)
+* Direction (**id**, direction, post_code, location, province, user_id*)
 
-* Distribuyen (Id_Distribuidor*, Id_Producto*, Precio)
+* Purcharse (**id**, date, total, status)
 
-* Vehículos(Matrícula, Kilometraje, Motor, Marca, Modelo, Id_Clientes*)
+* Article (**id**, name, description, price, category, stock)
 
-Talleres(Id_Taller, Dirección, Teléfono)
+* Carry (**id_purcharse***, **id_article***)
 
-Mecánico(Id_Mecanico, Nombre, Apellido1, Apellido2, Especialidad Id_Taller*)
 
-Repara (Id_Mecanico*, Matrícula*)
 
-Factura (Id_Factura, IGIC, Total, Fecha, Id_Clientes*)
-
-Factura_detalles (Cod_Linea, Id_Factura*, Cantidad, Descuento, Id_Producto*)
 

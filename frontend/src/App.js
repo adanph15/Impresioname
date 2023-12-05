@@ -31,8 +31,8 @@ function App() {
           <Route path="/admin-article" element={<AdminArticle />} />
           <Route path="/glasses/:id" element={<GlassesPage />} />
           <Route path="/profile" element={<UserPage />} />
-          <Route path= "/direction" element={<UserAddressesPage />} />
-          <Route path= "/direction-update/:id" element={<UserAddressesUpdate />} />
+          <Route path="/direction" element={<UserAddressesPage />} />
+          <Route path="/direction-update/:id" element={<UserAddressesUpdate />} />
         </Routes>
       </BrowserRouter>
     </>

@@ -55,7 +55,6 @@ const UserAddressesPage = () => {
     const handleDelete = async (id) => {
         try {
             await axios.delete(`http://localhost:8000/api/direction/${id}`);
-            window.location.reload(true);
         } catch (error) {
             console.error('Error deleting address:', error);
         }
@@ -66,32 +65,32 @@ const UserAddressesPage = () => {
             <body>
                 <Header />
                 <div className='singin-form-container'>
-                        <h2>directions info</h2>
+                    <h2>directions info</h2>
 
-                        {addresses.map((address) => (
-                            <div className="direction-container">
-                                <div className="direction-item">
-                                    <h5>direction: </h5>
-                                    <p>{address.direction}</p>
-                                </div>
-                                <div className="direction-item">
-                                    <h5>post code</h5>
-                                    <p>{address.post_code}</p>
-                                </div>
-                                <div className="direction-item">
-                                    <h5>location</h5>
-                                    <p>{address.location}</p>
-                                </div>
-                                <div className="direction-item">
-                                    <h5>province</h5>
-                                    <p>{address.province}</p>
-                                </div>
-                                <div className="direction-item">
-                                    <button className="direction-button" onClick={() => handleUpdate(address.id)}>Update Address</button>
-                                    <button className="direction-button" onClick={() => handleDelete(address.id)}>Delete Address</button>
-                                </div>
+                    {addresses.map((address) => (
+                        <div className="direction-container">
+                            <div className="direction-item">
+                                <h5>direction: </h5>
+                                <p>{address.direction}</p>
                             </div>
-                        ))}
+                            <div className="direction-item">
+                                <h5>post code</h5>
+                                <p>{address.post_code}</p>
+                            </div>
+                            <div className="direction-item">
+                                <h5>location</h5>
+                                <p>{address.location}</p>
+                            </div>
+                            <div className="direction-item">
+                                <h5>province</h5>
+                                <p>{address.province}</p>
+                            </div>
+                            <div className="direction-item">
+                                <button className="direction-button" onClick={() => handleUpdate(address.id)}>Update Address</button>
+                                <button className="direction-button" onClick={() => handleDelete(address.id)}>Delete Address</button>
+                            </div>
+                        </div>
+                    ))}
 
                     <div>
                         <h2>add new address</h2>
@@ -117,7 +116,7 @@ const UserAddressesPage = () => {
                     </div>
                 </div>
                 <Footer />
-            </body>
+            </body >
         </>
     );
 };

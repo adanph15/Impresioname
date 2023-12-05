@@ -21,7 +21,9 @@ export default function Header() {
                 <a onClick={openNav}>
                     <FontAwesomeIcon icon={faBars} size="xl" />
                 </a>
-                <h1>IMPRESIÓNAME</h1>
+                <a href='/home'>
+                    <h1>IMPRESIÓNAME</h1>
+                </a>
                 <a href='/profile'>
                     <FontAwesomeIcon icon={faUser} size="xl" />
                 </a>

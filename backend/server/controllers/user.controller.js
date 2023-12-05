@@ -22,6 +22,7 @@ exports.create = (req, res) => {
     username: req.body.username,
     last_name: req.body.last_name,
     mail: req.body.mail,
+    role: "user",
   };
 
   User.findOne({ where: { username: user.username } })
@@ -51,6 +52,66 @@ exports.create = (req, res) => {
           res.status(500).send({
             message:
               err.message || "Some error occurred while creating the User."
+          });
+        });
+
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "User not found."
+      });
+    });
+
+};
+
+// Create and Save a new User
+exports.createAdmin = (req, res) => {
+  //Validate request
+  if (!req.body.password || !req.body.username) {
+    res.status(400).send({
+      message: "Content can not be empty!"
+    });
+    return;
+  }
+
+  // Create a User
+  let user = {
+    password: req.body.password,
+    name: req.body.name,
+    username: req.body.username,
+    last_name: req.body.last_name,
+    mail: req.body.mail,
+    role: "admin",
+  };
+
+  User.findOne({ where: { username: user.username } })
+    .then(data => {
+      if (data) {
+        const result = bcrypt.compareSync(user.password, data.password);
+        if (!result) return res.status(401).send('Password not valid!');
+        const token = utils.generateToken(data);
+        // get basic user details
+        const userObj = utils.getCleanUser(data);
+        // return the token along with user details
+        return res.json({ user: userObj, access_token: token });
+      }
+
+      user.password = bcrypt.hashSync(req.body.password);
+
+      // User not found. Save new User in the database
+      User.create(user)
+        .then(data => {
+          const token = utils.generateToken(data);
+          // get basic user details
+          const userObj = utils.getCleanUser(data);
+          // return the token along with user details
+          return res.json({ user: userObj, access_token: token });
+        })
+        .catch(err => {
+          res.status(500).send({
+            message:
+              err.message || "Some error occurred while creating the Admin."
           });
         });
 
@@ -193,7 +254,6 @@ exports.getUserDirections = (req, res) => {
       res.send(directions);
   })
   .catch(error => {
-      console.error('Error getting user directions', error);
       res.status(500).send('Internal Server Error');
   });
 };

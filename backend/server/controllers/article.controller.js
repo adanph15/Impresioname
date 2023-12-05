@@ -72,12 +72,29 @@ exports.findOne = (req, res) => {
                 res.send(data);
             }
         })
-        .catch(console.log('Error finding article'));
+        .catch(error => {
+            console.log('Error finding Article', error);
+            res.status(500).send({ message: 'Error finding Article' });
+        });
 };
 
 // Update One Article with ID
 exports.update = (req, res) => {
     const id = req.params.id;
+    Article.findByPk(id)
+    .then(article => {
+        if (article.filename) {
+            const imagePath = path.join(__dirname, '../public/images/', article.filename);
+            fs.unlink(imagePath, (err) => {
+                if (err) console.error('Error deleting img');
+                else { console.log('image deleted') };
+            })
+        }
+    }).catch(error => {
+        res.status(500).send({ message: 'Error finding article' });
+    });
+
+
     Article.update(req.body, {
         where: { id: id }
     }).then(num => {
@@ -86,7 +103,9 @@ exports.update = (req, res) => {
         } else {
             console.log('Article cannot be updated');
         }
-    }).catch(console.log('Error updating the article'));
+    }).catch(error => {
+        res.status(500).send({ message: 'Error updating article' });
+    });
 };
 
 // Delete One Article with ID
@@ -101,7 +120,9 @@ exports.delete = (req, res) => {
                     else { console.log('image deleted') };
                 })
             }
-        }).catch(console.log('Error deleting the article'));
+        }).catch(error => {
+            res.status(500).send({ message: 'Error finding article' });
+        });
 
     Article.destroy({
         where: { id: id }
@@ -111,5 +132,7 @@ exports.delete = (req, res) => {
         } else {
             console.log('Article cannot be deleted');
         }
-    }).catch(console.log('Error deleting the article 2'));
+    }).catch(error => {
+        res.status(500).send({ message: 'Error deleting Article' });
+    });
 }; 

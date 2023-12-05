@@ -1,7 +1,6 @@
 import Footer from "../../components/footer/Footer";
 import Header from "../../components/header/Header";
 import React, { useState } from 'react';
-import axios from 'axios';
 import AuthService from "../../services/AuthService";
 
 
@@ -36,9 +35,11 @@ export default function SingIn() {
               <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
             </div>
             <div className="singin-form-item">
+            <a href="home" className='link'>
               <button type="button" onClick={handleLogin}>
                 Login
               </button>
+            </a>
             </div>
           </form>
         </div>

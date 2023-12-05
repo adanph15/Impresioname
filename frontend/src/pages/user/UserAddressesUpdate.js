@@ -3,6 +3,7 @@ import Header from "../../components/header/Header";
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const UserAddressesUpdate = () => {
   const navigate = useNavigate();
@@ -38,16 +39,11 @@ const UserAddressesUpdate = () => {
     }));
   };
 
-  const goToDirection = () => {
-    window.location.href = '/direction';
-  };
-
   const handleUpdateAddress = async () => {
     try {
       await axios.put(`http://localhost:8000/api/direction/${id}`, address);
       console.log('Address updated successfully.');
       navigate('/direction');
-      // Puedes redirigir al usuario a la página principal u otra página después de la actualización.
     } catch (error) {
       console.error('Error updating address:', error);
     }
@@ -76,7 +72,9 @@ const UserAddressesUpdate = () => {
             <input type="text" name="province" value={address.province} onChange={handleInputChange} />
           </div>
           <div className="singin-form-item">
-            <button onClick={handleUpdateAddress}>Update Address</button>
+            <Link to={`/direction`} className='link'>
+              <button onClick={handleUpdateAddress}>Update Address</button>
+            </Link>
           </div>
         </div>
         <Footer />

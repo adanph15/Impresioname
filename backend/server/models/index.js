@@ -25,28 +25,13 @@ db.direction = require("./direction.model")(sequelize, Sequelize);
 db.article = require("./article.model")(sequelize, Sequelize);
 db.purchase = require("./purchase.model")(sequelize, Sequelize);
 db.carry = require("./carry.model")(sequelize, Sequelize);
-db.role = require("./role.model")(sequelize, Sequelize);
 db.user = require("./user.model")(sequelize, Sequelize);
 
 ///Associations///
-
-db.user.belongsToMany(db.role, {
-    through: "role",
-    foreignKey: "user_id",
-    otherKey: "role_id"
-});
-
-db.role.belongsToMany(db.user, {
-    through: "role",
-    foreignKey: "role_id",
-    otherKey: "user_id"
-});
-
 db.user.hasOne(db.direction, {
     through: "direction",
     foreignKey: 'user_id'
 });
-
 
 db.purchase.hasOne(db.carry, {
     through: 'carry',
@@ -62,7 +47,5 @@ db.user.hasOne(db.purchase, {
     through: 'purchase',
     foreignKey: 'user_id'
 });
-
-db.ROLES = ["user", "admin"];
 
 module.exports = db;

@@ -5,9 +5,9 @@ const Op = db.Sequelize.Op;
 // Create purchase
 exports.create = (req, res) => {
     // Validate request
-    if (!req.body.date || 
-        !req.body.total || 
-        !req.body.status || 
+    if (!req.body.date ||
+        !req.body.total ||
+        !req.body.status ||
         !req.body.user_id) {
         return console.log('Missing data');
     }
@@ -25,16 +25,26 @@ exports.create = (req, res) => {
         .then(data => {
             res.send(data);
         })
-        .catch(console.log('Error saving purchase'));
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Error saving purchase."
+            });
+        });
 };
 
-// Find All Deliveries
+// Find All Purcharses
 exports.findAll = (req, res) => {
     Purchase.findAll()
         .then(data => {
             res.send(data);
         })
-        .catch(console.log('Error finding deliveries'));
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Error finding purchases."
+            });
+        });
 };
 
 // Find One Purchase
@@ -48,7 +58,12 @@ exports.findOne = (req, res) => {
                 res.send(data);
             }
         })
-        .catch(console.log('Error finding purchase'));
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Error finding purchase."
+            });
+        });
 };
 
 // Update One Purchase with ID
@@ -62,7 +77,13 @@ exports.update = (req, res) => {
         } else {
             console.log('Purchase cannot be deleted')
         }
-    }).catch(console.log('Error updating the purchase'));
+    })
+    .catch(err => {
+        res.status(500).send({
+            message:
+                err.message || "Error updating the purchase."
+        });
+    });
 };
 
 // Delete One Purchase with ID
@@ -76,5 +97,11 @@ exports.delete = (req, res) => {
         } else {
             console.log('Purchase cannot be deleted')
         }
-    }).catch(console.log('Error deleting the purchase'));
+    })
+    .catch(err => {
+        res.status(500).send({
+            message:
+                err.message || "Error deleting the purchase."
+        });
+    });
 };              

@@ -27,7 +27,12 @@ exports.create = (req, res) => {
         .then(data => {
             res.send(data);
         })
-        .catch(console.log('Error saving direction'));
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Error saving direction."
+            });
+        });
 };
 
 // Find All directions
@@ -36,7 +41,12 @@ exports.findAll = (req, res) => {
         .then(data => {
             res.send(data);
         })
-        .catch(console.log('Error finding directions'));
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Error finding directions."
+            });
+        });
 };
 
 // Find One Direction
@@ -50,7 +60,12 @@ exports.findOne = (req, res) => {
                 res.send(data);
             }
         })
-        .catch(console.log('Error finding direction'));
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Error finding direction."
+            });
+        });
 };
 
 exports.findByUser = (req, res) => {
@@ -62,9 +77,11 @@ exports.findByUser = (req, res) => {
         .then(data => {
             res.send(data);
         })
-        .catch(error => {
-            console.log('Error finding Direction:', error);
-            res.status(500).send({ message: 'Error finding Direction' });
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Error user not found."
+            });
         });
 };
 
@@ -80,7 +97,13 @@ exports.update = (req, res) => {
         } else {
             console.log('Direction cannot be deleted')
         }
-    }).catch(console.log('Error updating the direction'));
+    })
+    .catch(err => {
+        res.status(500).send({
+            message:
+                err.message || "Error updating the direction."
+        });
+    });
 };
 
 // Delete One Direction with ID
@@ -94,5 +117,11 @@ exports.delete = (req, res) => {
         } else {
             console.log('Direction cannot be deleted')
         }
-    }).catch(console.log('Error deleting the direction'));
+    })
+    .catch(err => {
+        res.status(500).send({
+            message:
+                err.message || "Error deleting direction."
+        });
+    });
 };              

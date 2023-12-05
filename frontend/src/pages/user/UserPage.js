@@ -31,18 +31,7 @@ export default function UserPage() {
     fetchData();
   }, []);
 
-
-
-  const goToSingIn = () => {
-    window.location.href = '/sing-in';
-  };
-
-  const goToDirection = () =>{
-    window.location.href = '/direction';
-  };
-
-
-/// HACER TODOS LOS PTOS ENLACES CON LINK
+  /// HACER TODOS LOS PTOS ENLACES CON LINK
 
 
   return (
@@ -71,7 +60,9 @@ export default function UserPage() {
                 <input name="mail" type="text" value={user.mail} ></input>
               </div>
               <div className="singin-form-item">
-                <button onClick={goToDirection}>View Addresses</button>
+                <Link to={`/direction`} className='link'>
+                  <button>View Addresses</button>
+                </Link>
               </div>
               <div className="singin-form-item">
                 <button>log-out</button>
@@ -81,7 +72,9 @@ export default function UserPage() {
           ) : (
             <>
               <p>you must sing in</p>
-              <button onClick={goToSingIn}>sing-in</button>
+              <Link to={`/sing-in`} className='link'>
+              <button>sing-in</button>
+              </Link>
             </>
           )}
         </div>

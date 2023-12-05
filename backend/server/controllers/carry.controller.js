@@ -21,7 +21,12 @@ exports.create = (req, res) => {
         .then(data => {
             res.send(data);
         })
-        .catch(console.log('Error saving carry'));
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Error saving carry."
+            });
+        });
 };
 
 // Find All Deliveries
@@ -30,7 +35,12 @@ exports.findAll = (req, res) => {
         .then(data => {
             res.send(data);
         })
-        .catch(console.log('Error finding carries'));
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Error finding carries."
+            });
+        });
 };
 
 // Find One Carry
@@ -44,7 +54,12 @@ exports.findOne = (req, res) => {
                 res.send(data);
             }
         })
-        .catch(console.log('Error finding carry'));
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Error finding carry."
+            });
+        });
 };
 
 // Update One Carry with ID
@@ -58,7 +73,13 @@ exports.update = (req, res) => {
         } else {
             console.log('Carry cannot be deleted')
         }
-    }).catch(console.log('Error updating the carry'));
+    })
+    .catch(err => {
+        res.status(500).send({
+            message:
+                err.message || "Error updating the carry."
+        });
+    });
 };
 
 // Delete One Carry with ID
@@ -72,5 +93,11 @@ exports.delete = (req, res) => {
         } else {
             console.log('Carry cannot be deleted')
         }
-    }).catch(console.log('Error deleting the carry'));
+    })
+    .catch(err => {
+        res.status(500).send({
+            message:
+                err.message || "Error deleting the carry."
+        });
+    });
 };              

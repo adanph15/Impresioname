@@ -21,8 +21,6 @@ export default function SingUp() {
             });
 
             console.log('User created successfully:', response.data);
-
-            // Puedes redirigir al usuario a la página de inicio de sesión u otra página después de crear el usuario.
         } catch (error) {
             console.error('Error creating user:', error.response.data.message);
         }
@@ -56,7 +54,9 @@ export default function SingUp() {
                             <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                         </div>
                         <div className="singin-form-item">
-                        <button onClick={handleSignup}>sign-up</button>
+                            <a href="home" className='link'>
+                                <button onClick={handleSignup}>sign-up</button>
+                            </a>
                         </div>
                     </form>
                 </div>

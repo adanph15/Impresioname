@@ -7,6 +7,9 @@ module.exports = app => {
   // Create a new User
   router.post("/", users.create);
 
+  // Create a new Admin
+  router.post("/admin", users.createAdmin);
+
   // Retrieve all User
   router.get("/", users.findAll);
 
@@ -16,7 +19,7 @@ module.exports = app => {
   // Update a User with id
   router.put("/:id", users.update);
   // router.put("/:id", auth.isAuthenticated, users.update);
-  
+
   // Sign in
   router.post("/signin", auth.signin);
 

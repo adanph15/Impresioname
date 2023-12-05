@@ -8,22 +8,19 @@ module.exports = app => {
   router.post("/", users.create);
 
   // Retrieve all User
-  router.get("/", auth.isAuthenticated, users.findAll);
-  
+  router.get("/", users.findAll);
+
   // Retrieve a single User with id
   router.get("/:id", auth.isAuthenticated, users.findOne);
 
   // Update a User with id
-  router.put("/:id", auth.isAuthenticated, users.update);
-
+  router.put("/:id", users.update);
+  // router.put("/:id", auth.isAuthenticated, users.update);
+  
   // Sign in
   router.post("/signin", auth.signin);
 
-  // // Delete a User with id
-  // router.delete("/:id", users.delete);
-
-  // // Create a new User
-  // router.delete("/", users.deleteAll);
+  router.delete("/:id", users.delete);
 
   app.use('/api/users', router);
 };

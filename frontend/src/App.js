@@ -10,6 +10,8 @@ import AdminArticle from "./pages/admin/Article.crud";
 import GlassesPage from "./pages/shop/GlassPage";
 import SingUp from "./pages/user/SingUp";
 import UserPage from "./pages/user/UserPage";
+import UserAddressesPage from "./pages/user/UserAddressesPage";
+import UserAddressesUpdate from "./pages/user/UserAddressesUpdate";
 
 
 function App() {
@@ -29,6 +31,8 @@ function App() {
           <Route path="/admin-article" element={<AdminArticle />} />
           <Route path="/glasses/:id" element={<GlassesPage />} />
           <Route path="/profile" element={<UserPage />} />
+          <Route path= "/direction" element={<UserAddressesPage />} />
+          <Route path= "/direction-update/:id" element={<UserAddressesUpdate />} />
         </Routes>
       </BrowserRouter>
     </>

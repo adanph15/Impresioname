@@ -1,6 +1,7 @@
 // src/services/AuthService.js
 import axios from 'axios';
 
+const API_URL = "http://localhost:8000/api/users/";
 
 const AuthService = {
   getToken() {
@@ -25,11 +26,11 @@ const AuthService = {
     return response.data;
   },
 
-  logout: async () => {
-    localStorage.setItem('token', "");
-    localStorage.setItem('userInfo', "");
-    window.location.href = '/home';
-  }
+  // logout: async () => {
+  //   localStorage.setItem('token', "");
+  //   localStorage.setItem('userInfo', "");
+  //   window.location.href = '/home';
+  // }
   
 };
 

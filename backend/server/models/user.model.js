@@ -14,9 +14,10 @@ module.exports = (sequelize, Sequelize) => {
         },
         password: {
             type: Sequelize.STRING
-        }
+        },
+        role: {
+            type: Sequelize.STRING
+        },
     }, { timestamps: false });
     return user;
 };
-
-// ADD USERNAME

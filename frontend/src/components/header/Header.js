@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { faUser, faBars, faCartShopping, faX } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Menu from "../menu/Menu";
-import "./Header.css";
 
 export default function Header() {
     const [isSidebarOpen, setSidebarOpen] = useState(false);

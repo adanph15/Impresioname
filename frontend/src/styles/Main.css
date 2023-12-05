@@ -1,3 +1,46 @@
+
+/* --------------------------------- */
+/* HEADER STYLES */
+
+.header-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 3vw;
+    border-bottom: 2px solid black;
+    margin-top: 0;
+}
+
+.header-container>a {
+    color: black;
+    text-decoration: none;
+}
+
+.icon {
+    width: 50px;
+}
+
+
+/* --------------------------------- */
+/* FOOTER STYLES */
+
+.footer-container {
+    background-color: black;
+    height: 100px;
+    width: 100%;
+    position: relative;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+
+/* --------------------------------- */
+/* SHOP STYLES */
+
 .shop-container {
     display: flex;
     flex-direction: column;
@@ -98,4 +141,46 @@
 .link{
     text-decoration: none;
     color: white;
+}
+
+
+/* --------------------------------- */
+/* SING-IN SING-UP USER-PAGE DIRECTION STYLES */
+
+.singin-form-container{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 14vh;
+    margin-top: 2vh;
+}
+
+.singin-form-item {
+    padding-top: 2vh;
+}
+
+.direction-container {
+    color: black;
+    width: 40vw; 
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    text-transform: lowercase;
+    padding-bottom: 4vh;
+}
+
+.direction-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.direction-button {
+    width: 15vw;
 }

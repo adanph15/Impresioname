@@ -47,6 +47,7 @@ db.user.hasOne(db.direction, {
     foreignKey: 'user_id'
 });
 
+
 db.purchase.hasOne(db.carry, {
     through: 'carry',
     foreignKey: 'purchase_id'

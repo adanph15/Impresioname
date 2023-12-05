@@ -1,6 +1,5 @@
 import Footer from "../../components/footer/Footer";
 import Header from "../../components/header/Header";
-import "./SingIn.css";
 import React, { useState } from 'react';
 import axios from 'axios';
 
@@ -33,29 +32,33 @@ export default function SingUp() {
         <>
             <body>
                 <Header />
-                <div>
-                    <h2>Signup</h2>
-                    <label>username:</label>
-                    <input type="text" value={username} onChange={(e) => setUserName(e.target.value)} />
-                    <br />
-
-                    <label>Name:</label>
-                    <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
-                    <br />
-
-                    <label>Last Name:</label>
-                    <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} />
-                    <br />
-
-                    <label>Email:</label>
-                    <input type="email" value={mail} onChange={(e) => setMail(e.target.value)} />
-                    <br />
-
-                    <label>Password:</label>
-                    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                    <br />
-
-                    <button onClick={handleSignup}>Signup</button>
+                <div className="singin-form-container">
+                    <h2>sing-up</h2>
+                    <form className='singin-form-container'>
+                        <div className="singin-form-item">
+                            <h4>username</h4>
+                            <input type="text" value={username} onChange={(e) => setUserName(e.target.value)} />
+                        </div>
+                        <div className="singin-form-item">
+                            <h4>name</h4>
+                            <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+                        </div>
+                        <div className="singin-form-item">
+                            <h4>last name</h4>
+                            <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} />
+                        </div>
+                        <div className="singin-form-item">
+                            <h4>mail</h4>
+                            <input type="email" value={mail} onChange={(e) => setMail(e.target.value)} />
+                        </div>
+                        <div className="singin-form-item">
+                            <h4>password</h4>
+                            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                        </div>
+                        <div className="singin-form-item">
+                        <button onClick={handleSignup}>sign-up</button>
+                        </div>
+                    </form>
                 </div>
                 <Footer />
             </body>

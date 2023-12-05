@@ -53,6 +53,22 @@ exports.findOne = (req, res) => {
         .catch(console.log('Error finding direction'));
 };
 
+exports.findByUser = (req, res) => {
+    const userId = req.params.userId;
+
+    let condition = userId ? { user_id: userId } : null;
+
+    Direction.findAll({ where: condition })
+        .then(data => {
+            res.send(data);
+        })
+        .catch(error => {
+            console.log('Error finding Direction:', error);
+            res.status(500).send({ message: 'Error finding Direction' });
+        });
+};
+
+
 // Update One Direction with ID
 exports.update = (req, res) => {
     const id = req.params.id;

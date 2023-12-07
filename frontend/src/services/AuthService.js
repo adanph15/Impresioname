@@ -26,12 +26,12 @@ const AuthService = {
     return response.data;
   },
 
-  // logout: async () => {
-  //   localStorage.setItem('token', "");
-  //   localStorage.setItem('userInfo', "");
-  //   window.location.href = '/home';
-  // }
-  
+  logout: () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('userInfo');
+    window.location.href = '/home';
+  },
+
 };
 
 export default AuthService;

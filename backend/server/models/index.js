@@ -28,10 +28,11 @@ db.carry = require("./carry.model")(sequelize, Sequelize);
 db.user = require("./user.model")(sequelize, Sequelize);
 
 ///Associations///
-db.user.hasOne(db.direction, {
-    through: "direction",
-    foreignKey: 'user_id'
-});
+
+db.user.hasMany(db.direction, {foreignKey: 'user_id'});
+ 
+db.direction.belongsTo(db.user, {foreignKey: 'user_id'});
+
 
 db.purchase.hasOne(db.carry, {
     through: 'carry',

@@ -1,3 +1,20 @@
+input { 
+    width: 40vw; 
+  }
+
+select { 
+    width: 40vw; 
+    background-color: 
+    #333333; color: 
+    white; 
+    border-radius: 6px;
+}
+
+a {
+    text-decoration: none;
+}
+
+
 
 /* --------------------------------- */
 /* HEADER STYLES */
@@ -135,7 +152,7 @@
 
 .glasses-item-img {
     border-radius: 6px;
-    width: 50vw;
+    width: 30vw;
 }
 
 .link{
@@ -147,14 +164,30 @@
 /* --------------------------------- */
 /* SING-IN SING-UP USER-PAGE DIRECTION STYLES */
 
+.singin-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 20vh;
+    margin-top: 2vh;
+}
+
 .singin-form-container{
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
     justify-content: space-around;
     align-items: center;
-    margin-bottom: 14vh;
+
+}
+
+.singin-form-title {
     margin-top: 2vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
 }
 
 .singin-form-item {

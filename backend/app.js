@@ -4,7 +4,6 @@ const cors = require("cors");
 const path = require('path');
 
 require('dotenv').config();
-const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 
 

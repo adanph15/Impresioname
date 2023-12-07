@@ -13,16 +13,16 @@ module.exports = function (app) {
 
   app.delete("/api/purchase/:id", purchaseController.delete);
 
-  // Carry
+  // Carry 
   app.post("/api/carry", carryController.create);
 
   app.get("/api/carry", carryController.findAll);
 
-  app.get("/api/carry/:id", carryController.findOne);
+  app.get("/api/carry/:article_id/:purchase_id", carryController.findOne);
 
-  app.put("/api/carry/:id", carryController.update);
+  app.put("/api/carry/:article_id/:purchase_id", carryController.update);
 
-  app.delete("/api/carry/:id", carryController.delete);
+  app.delete("/api/carry/:article_id/:purchase_id", carryController.delete);
 
   // Directions
   app.post("/api/direction", directionController.create);

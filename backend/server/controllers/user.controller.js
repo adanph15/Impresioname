@@ -205,24 +205,6 @@ exports.delete = (req, res) => {
     });
 };
 
-// // Delete all Users from the database.
-// exports.deleteAll = (req, res) => {
-//   User.destroy({
-//     where: {},
-//     truncate: false
-//   })
-//     .then(nums => {
-//       res.send({ message: `${nums} Tutorials were deleted successfully!` });
-//     })
-//     .catch(err => {
-//       res.status(500).send({
-//         message:
-//           err.message || "Some error occurred while removing all tutorials."
-//       });
-//     });
-// };
-
-
 // Find user by username and password
 exports.findUserByUsernameAndPassword = (req, res) => {
   const user = req.body.username;
@@ -240,10 +222,6 @@ exports.findUserByUsernameAndPassword = (req, res) => {
     });
 };
 
-
-// En el archivo user.controller.js
-
-// Obtener todas las direcciones de un usuario
 exports.getUserDirections = (req, res) => {
   const userId = req.params.id;
 

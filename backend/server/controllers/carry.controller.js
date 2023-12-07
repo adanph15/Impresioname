@@ -49,7 +49,9 @@ exports.findOne = (req, res) => {
     Carry.findByPk(id)
         .then(data => {
             if (!data) {
-                console.log('Carry not found');
+                res.send({
+                    message: "Carry not found."
+                });
             } else {
                 res.send(data);
             }
@@ -64,14 +66,23 @@ exports.findOne = (req, res) => {
 
 // Update One Carry with ID
 exports.update = (req, res) => {
-    const id = req.params.id;
+    const article_id = req.params.article_id;
+    const purchase_id = req.params.purchase_id;
+
     Carry.update(req.body, {
-        where: { id: id }
+        where: {
+            article_id: article_id,
+            purchase_id: purchase_id
+        }
     }).then(num => {
         if (num == 1) {
-            console.log('Carry updated')
+            res.send({
+                message: "Carry updated."
+            });
         } else {
-            console.log('Carry cannot be deleted')
+            res.send({
+                message: "Carry cannot be updated."
+            });
         }
     })
     .catch(err => {
@@ -84,20 +95,29 @@ exports.update = (req, res) => {
 
 // Delete One Carry with ID
 exports.delete = (req, res) => {
-    const id = req.params.id;
+    const article_id = req.params.article_id;
+    const purchase_id = req.params.purchase_id;
+
     Carry.destroy({
-        where: { id: id }
-    }).then(num => {
-        if (num == 1) {
-            console.log('Carry deleted')
+        where: {
+            article_id: article_id,
+            purchase_id: purchase_id
+        }
+    })
+    .then(num => {
+        if (num > 0) {
+            res.send({
+                message: "Carries deleted."
+            });
         } else {
-            console.log('Carry cannot be deleted')
+            res.send({
+                message: "Carries cannot be deleted."
+            });
         }
     })
     .catch(err => {
         res.status(500).send({
-            message:
-                err.message || "Error deleting the carry."
+            message: err.message || "Error deleting the carries."
         });
     });
-};              
+};

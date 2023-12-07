@@ -54,7 +54,7 @@ export default function SingUp() {
                             <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                         </div>
                         <div className="singin-form-item">
-                            <a href="home" className='link'>
+                            <a href="/home" className='link'>
                                 <button onClick={handleSignup}>sign-up</button>
                             </a>
                         </div>

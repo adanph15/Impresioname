@@ -27,7 +27,7 @@ export default function Header() {
                 <a href='/profile'>
                     <FontAwesomeIcon icon={faUser} size="xl" />
                 </a>
-                <a >
+                <a href='/cart'>
                     <FontAwesomeIcon icon={faCartShopping} size="xl" />
                 </a>
             </div>

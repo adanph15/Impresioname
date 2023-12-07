@@ -31,8 +31,9 @@ export default function UserPage() {
     fetchData();
   }, []);
 
-  /// HACER TODOS LOS PTOS ENLACES CON LINK
-
+  const handleLogout = () => {
+    AuthService.logout();
+  };
 
   return (
     <>
@@ -65,7 +66,7 @@ export default function UserPage() {
                 </Link>
               </div>
               <div className="singin-form-item">
-                <button>log-out</button>
+                <button onClick={handleLogout}>log-out</button>
               </div>
 
             </form>

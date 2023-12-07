@@ -55,6 +55,9 @@ exports.findOne = (req, res) => {
     Direction.findByPk(id)
         .then(data => {
             if (!data) {
+                res.send({
+                    message: "Direction not found."
+                });
                 console.log('Direction not found');
             } else {
                 res.send(data);
@@ -93,9 +96,13 @@ exports.update = (req, res) => {
         where: { id: id }
     }).then(num => {
         if (num == 1) {
-            console.log('Direction updated')
+            res.send({
+                message: "Direction updated."
+            });
         } else {
-            console.log('Direction cannot be deleted')
+            res.send({
+                message: "Direction cannot be updated."
+            });
         }
     })
     .catch(err => {
@@ -113,9 +120,13 @@ exports.delete = (req, res) => {
         where: { id: id }
     }).then(num => {
         if (num == 1) {
-            console.log('Direction deleted')
+            res.send({
+                message: "Direction deleted."
+            });
         } else {
-            console.log('Direction cannot be deleted')
+            res.send({
+                message: "Direction cannot be deleted."
+            });
         }
     })
     .catch(err => {

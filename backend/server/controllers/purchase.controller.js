@@ -53,7 +53,9 @@ exports.findOne = (req, res) => {
     Purchase.findByPk(id)
         .then(data => {
             if (!data) {
-                console.log('Purchase not found');
+                res.send({
+                    message: "Purcharse not found."
+                });
             } else {
                 res.send(data);
             }
@@ -73,15 +75,17 @@ exports.update = (req, res) => {
         where: { id: id }
     }).then(num => {
         if (num == 1) {
-            console.log('Purchase updated')
+            res.send({
+                message: "Purchase updated successfully."
+            });
         } else {
-            console.log('Purchase cannot be deleted')
+            res.send({
+                message: `Cannot update Purchase with id=${id}.`
+            });
         }
-    })
-    .catch(err => {
+    }).catch(err => {
         res.status(500).send({
-            message:
-                err.message || "Error updating the purchase."
+            message: "Error updating purchase with id=" + id
         });
     });
 };
@@ -93,15 +97,19 @@ exports.delete = (req, res) => {
         where: { id: id }
     }).then(num => {
         if (num == 1) {
-            console.log('Purchase deleted')
+            res.send({
+                message: "Purchase deleted successfully."
+            });
         } else {
-            console.log('Purchase cannot be deleted')
+            res.send({
+                message: "Purchase cannot be deleted."
+            });
         }
     })
-    .catch(err => {
-        res.status(500).send({
-            message:
-                err.message || "Error deleting the purchase."
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Error deleting the purchase."
+            });
         });
-    });
 };              

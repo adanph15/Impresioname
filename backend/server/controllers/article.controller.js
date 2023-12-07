@@ -30,7 +30,12 @@ exports.create = (req, res) => {
         .then(data => {
             res.send(data);
         })
-        .catch(console.log('Error saving article'));
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Error saving article."
+            });
+        });
 };
 
 // Find All Articles with a spesific Category
@@ -44,7 +49,6 @@ exports.findCategory = (req, res) => {
             res.send(data);
         })
         .catch(error => {
-            console.log('Error finding Articles:', error);
             res.status(500).send({ message: 'Error finding Articles' });
         });
 };
@@ -56,7 +60,6 @@ exports.findAll = (req, res) => {
             res.send(data);
         })
         .catch(error => {
-            console.log('Error finding Articles:', error);
             res.status(500).send({ message: 'Error finding Articles' });
         });
 };
@@ -67,7 +70,9 @@ exports.findOne = (req, res) => {
     Article.findByPk(id)
         .then(data => {
             if (!data) {
-                console.log('Article not found');
+                res.send({
+                    message: "Article not found."
+                });
             } else {
                 res.send(data);
             }
@@ -99,9 +104,13 @@ exports.update = (req, res) => {
         where: { id: id }
     }).then(num => {
         if (num == 1) {
-            console.log('Article updated');
+            res.send({
+                message: "Article updated."
+            });
         } else {
-            console.log('Article cannot be updated');
+            res.send({
+                message: "Article cannot be updated."
+            });
         }
     }).catch(error => {
         res.status(500).send({ message: 'Error updating article' });
@@ -128,9 +137,13 @@ exports.delete = (req, res) => {
         where: { id: id }
     }).then(num => {
         if (num == 1) {
-            console.log('Article deleted');
+            res.send({
+                message: "Article deleted."
+            });
         } else {
-            console.log('Article cannot be deleted');
+            res.send({
+                message: "Article cannot be deleted."
+            });
         }
     }).catch(error => {
         res.status(500).send({ message: 'Error deleting Article' });

@@ -22,7 +22,7 @@ export default function ShopWomen() {
     const articlesList = () => {
         return (
             <div className="shop-container">
-                <h2>women</h2>
+                <h2>Women</h2>
                 <div className="shop-card-container">
                     {articles.map((article) => (
                     <Link to={`/glasses/${article.id}`} className='link'>
@@ -31,7 +31,7 @@ export default function ShopWomen() {
                             <strong>{article.name}</strong>
                             <p>{article.price}€</p>
                             <button className="shop-card-item-button">
-                                try me 
+                                Try me 
                             </button>
                         </div>
                     </Link>

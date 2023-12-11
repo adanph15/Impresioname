@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import './Scroll.css'; 
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+
+import './Scroll.css';
 
 const Scroll = () => {
 
@@ -21,17 +23,19 @@ const Scroll = () => {
         return (
             <div className="scroll-card">
                 {articles.map((article) => (
-                    <div className="scroll-card-item">
-                        <img src={`http://localhost:8000/images/${article.filename}`} className="scroll-card-item-photo" />
-                        <strong className='scroll-card-item-title'>{article.name}</strong>
-                        <p className="scroll-card-item-text">{article.price}€</p>
-                        <p className="scroll-card-item-text">for {article.category}</p>
-                    </div>
+                    <Link to={`/glasses/${article.id}`} className='link'>
+                        <div className="scroll-card-item">
+                            <img src={`http://localhost:8000/images/${article.filename}`} className="scroll-card-item-photo" />
+                            <strong className='scroll-card-item-title'>{article.name}</strong>
+                            <p className="scroll-card-item-text">{article.price}€</p>
+                            <p className="scroll-card-item-text">for {article.category}</p>
+                        </div>
+                    </Link>
                 ))}
             </div>
         );
     };
-    
+
     useEffect(() => {
         const scrollers = document.querySelectorAll(".scroller");
 

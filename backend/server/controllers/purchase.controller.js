@@ -68,6 +68,23 @@ exports.findOne = (req, res) => {
         });
 };
 
+exports.findByUser = (req, res) => {
+    const userId = req.params.userId;
+
+    let condition = userId ? { user_id: userId } : null;
+
+    Purchase.findAll({ where: condition })
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Error user not found."
+            });
+        });
+};
+
 // Update One Purchase with ID
 exports.update = (req, res) => {
     const id = req.params.id;

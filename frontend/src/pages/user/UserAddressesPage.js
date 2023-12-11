@@ -65,43 +65,45 @@ const UserAddressesPage = () => {
       <body>
         <Header />
         <div className="singin-container">
-        <div className='singin-form-container'>
-          <h2>Directions Info</h2>
+          <div className="double-container">
+            <div className='singin-form-container'>
+              <h2>Directions Info</h2>
 
-          {addresses.map((address) => (
-            <div className="direction-container">
-              <div className="direction-item">
-                <p>Street: {address.direction}, {address.post_code}, {address.location}, {address.province}</p>
+              {addresses.map((address) => (
+                <div className="direction-container">
+                  <div className="direction-item">
+                    <p>Street: {address.direction}, {address.post_code}, {address.location}, {address.province}</p>
+                  </div>
+                  <div className="direction-item">
+                    <button className="direction-button" onClick={() => handleUpdate(address.id)}>Update</button>
+                    <button className="direction-button" onClick={() => handleDelete(address.id)}>Delete</button>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className='singin-form-container'>
+              <h2>Add New Address</h2>
+              <div className="singin-form-item">
+                <h4>Direction:</h4>
+                <input type="text" name="direction" value={newAddress.direction} onChange={handleInputChange} />
               </div>
-              <div className="direction-item">
-                <button className="direction-button" onClick={() => handleUpdate(address.id)}>Update</button>
-                <button className="direction-button" onClick={() => handleDelete(address.id)}>Delete</button>
+              <div className="singin-form-item">
+                <h4>Post Code:</h4>
+                <input type="text" name="post_code" value={newAddress.post_code} onChange={handleInputChange} />
+              </div>
+              <div className="singin-form-item">
+                <h4>Location:</h4>
+                <input type="text" name="location" value={newAddress.location} onChange={handleInputChange} />
+              </div>
+              <div className="singin-form-item">
+                <h4>Province:</h4>
+                <input type="text" name="province" value={newAddress.province} onChange={handleInputChange} />
+              </div>
+              <div className="singin-form-item">
+                <button onClick={addNewAddress}>add address</button>
               </div>
             </div>
-          ))}
-        </div>
-        <div className='singin-form-container'>
-          <h2>add new address</h2>
-          <div className="singin-form-item">
-            <h4>direction:</h4>
-            <input type="text" name="direction" value={newAddress.direction} onChange={handleInputChange} />
           </div>
-          <div className="singin-form-item">
-            <h4>post code:</h4>
-            <input type="text" name="post_code" value={newAddress.post_code} onChange={handleInputChange} />
-          </div>
-          <div className="singin-form-item">
-            <h4>location:</h4>
-            <input type="text" name="location" value={newAddress.location} onChange={handleInputChange} />
-          </div>
-          <div className="singin-form-item">
-            <h4>province:</h4>
-            <input type="text" name="province" value={newAddress.province} onChange={handleInputChange} />
-          </div>
-          <div className="singin-form-item">
-            <button onClick={addNewAddress}>add address</button>
-          </div>
-        </div>
         </div>
         <Footer />
       </body >

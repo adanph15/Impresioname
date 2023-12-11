@@ -90,7 +90,7 @@ function initial() {
     price: 100,
     category: "men",
     stock: 1,
-    filename: "./server/public/images/glasses.png"
+    filename: "glasses.png"
   });
 
   Article.create({
@@ -100,7 +100,7 @@ function initial() {
     price: 100,
     category: "men",
     stock: 1,
-    filename: "./server/public/images/glasses.png"
+    filename: "glasses.png"
   });
 
   Article.create({
@@ -110,7 +110,7 @@ function initial() {
     price: 100,
     category: "men",
     stock: 1,
-    filename: "./server/public/images/glasses.png"
+    filename: "glasses.png"
   });
 
   Article.create({
@@ -120,7 +120,7 @@ function initial() {
     price: 100,
     category: "men",
     stock: 1,
-    filename: "./server/public/images/glasses.png"
+    filename: "glasses.png"
   });
 
   Article.create({
@@ -130,7 +130,7 @@ function initial() {
     price: 100,
     category: "men",
     stock: 1,
-    filename: "./server/public/images/glasses.png"
+    filename: "glasses.png"
   });
 
   Article.create({
@@ -140,7 +140,7 @@ function initial() {
     price: 100,
     category: "men",
     stock: 1,
-    filename: "./server/public/images/glasses.png"
+    filename: "glasses.png"
   });
   
   Article.create({
@@ -150,7 +150,7 @@ function initial() {
     price: 100,
     category: "men",
     stock: 1,
-    filename: "./server/public/images/glasses.png"
+    filename: "glasses.png"
   });
 
   Article.create({
@@ -160,7 +160,7 @@ function initial() {
     price: 100,
     category: "men",
     stock: 1,
-    filename: "./server/public/images/glasses.png"
+    filename: "glasses.png"
   });
 
   Article.create({
@@ -170,7 +170,7 @@ function initial() {
     price: 100,
     category: "men",
     stock: 1,
-    filename: "./server/public/images/glasses.png"
+    filename: "glasses.png"
   });
 
   Article.create({
@@ -180,6 +180,6 @@ function initial() {
     price: 100,
     category: "men",
     stock: 1,
-    filename: "./server/public/images/glasses.png"
+    filename: "glasses.png"
   });
 }

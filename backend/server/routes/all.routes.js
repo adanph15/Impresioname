@@ -9,6 +9,8 @@ module.exports = function (app) {
 
   app.get("/api/purchase", purchaseController.findAll);
 
+  app.get("/api/purchase/user/:userId?", purchaseController.findByUser);
+
   app.put("/api/purchase/:id", purchaseController.update);
 
   app.delete("/api/purchase/:id", purchaseController.delete);

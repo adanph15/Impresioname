@@ -14,6 +14,7 @@ import UserPage from "./pages/user/UserPage";
 import UserAddressesPage from "./pages/user/UserAddressesPage";
 import UserAddressesUpdate from "./pages/user/UserAddressesUpdate";
 import CartPage from "./pages/shop/CartPage";
+import UserPurchasePage from "./pages/user/UserPurchasePage";
 
 
 function App() {
@@ -27,16 +28,17 @@ function App() {
             <Route path="/home" element={<Home />} />
             <Route path="/sing-in" element={<SingIn />} />
             <Route path="/sing-up" element={<SingUp />} />
+            <Route path="/shop-kids" element={<ShopKids />} />
             <Route path="/shop-men" element={<ShopMen />} />
             <Route path="/shop-women" element={<ShopWomen />} />
             <Route path="/shop-kids" element={<ShopKids />} />
             <Route path="/admin-article" element={<AdminArticle />} />
             <Route path="/glasses/:id" element={<GlassesPage />} />
             <Route path="/cart" element={<CartPage />} />
-
             <Route path="/profile" element={<UserPage />} />
             <Route path="/direction" element={<UserAddressesPage />} />
             <Route path="/direction-update/:id" element={<UserAddressesUpdate />} />
+            <Route path="/purchases" element={<UserPurchasePage />} />
           </Routes>
       </BrowserRouter>
     </>

@@ -181,72 +181,8 @@ a {
     color: white;
 }
 
-.cart-container {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: end;
-    align-items:center;
-    gap: 5vh;
-    margin-bottom: 5vh;
-    margin-top: 2vh;
-}
-
-.cart-item {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-around;
-    align-items: center;
-    border: black solid 1px;
-    width: 20vw;
-    height: 20vh;
-    color: black;
-    padding-top: 2vh;
-    padding-bottom: 2vh;
-    margin-bottom: 4vh;
-    border-radius: 6px;
-}
-
-.cart-item>img {
-    height: 18vh;
-}
-
-.cart-button {
-    border: black solid 1px;
-    color: black;
-    width: 10vw;
-    background-color: white;
-}
-
-.cart-button:hover {
-    color: white;
-    background-color: #333333;
-}
-
-.cart-info {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.cart-resume {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: space-around;
-    align-items: center;
-    border: black solid 1px;
-    width: 20vw;
-    height: 20vh;
-    padding-top: 2vh;
-    padding-bottom: 2vh;
-    margin-bottom: 4vh;
-    border-radius: 6px;
-}
-
 /* --------------------------------- */
-/* SING-IN SING-UP USER-PAGE DIRECTION STYLES */
+/* SING-IN SING-UP USER-PAGE STYLES */
 
 .singin-container {
     display: flex;
@@ -278,8 +214,13 @@ a {
     padding-top: 2vh;
 }
 
+
+/* --------------------------------- */
+/* DIRECTION STYLES */
+
 .direction-container {
-    color: black;
+    background-color: #333333;
+    color: white;
     width: 40vw; 
     height: 10vh;
     display: flex;
@@ -289,7 +230,6 @@ a {
     align-items: center;
     padding-bottom: 4vh;
     border-radius: 6px;
-    border: black solid 1px;
 }
 
 .direction-item {
@@ -298,15 +238,62 @@ a {
     justify-content: center;
     align-items: center;
     gap: 10px;
-    background-color: aqua;
+
 }
 
 .direction-button {
-    width: 5vw;
+    width: 10vw;
+}
+
+@media only screen and (max-width: 999px) {
+    .direction-button {
+        width: 30vw;
+    } 
+    .direction-container {
+        width: 60vw;
+    }
+
 }
 
 
+/* --------------------------------- */
+/* PURCHASE STYLES */
 
+.purchase {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.purchase-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #333333;
+    color: white;
+    border-radius: 6px;
+    padding: 20px;
+}
+
+.purchase-item {
+    width: 50vw;
+}
+
+.purchase-button {
+    color: black;
+    background-color: white;
+}
+
+@media only screen and (max-width: 999px) {
+    .purchase-item { width: 60vw; }
+
+}
+
+
+/* --------------------------------- */
+/* CART STYLES */
 
 .double-container {
     display: flex;
@@ -317,4 +304,69 @@ a {
     margin-bottom: 20vh;
     margin-top: 2vh;
     gap: 10vh;
+}
+
+.cart-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: end;
+    align-items:center;
+    padding: 20px;
+}
+
+.cart-item {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: center;
+    border: black solid 1px;
+    width: 40vw;
+    height: 20vh;
+    background-color: #333333;
+    color: white;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    margin-bottom: 4vh;
+    border-radius: 6px;
+}
+
+.cart-button {
+    color: black;
+    width: 20vw;
+    background-color: white;
+}
+
+.cart-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cart-resume {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: center;
+    border: black solid 1px;
+    background-color: #333333;
+    color: white;
+    width: 40vw;
+    height: 20vh;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    border-radius: 6px;
+}
+
+@media only screen and (max-width: 999px) {
+    .double-container { flex-direction: column; }
+
+    .cart-item { width: 60vw; }
+
+    .cart-resume { width: 60vw; }
+
+    .cart-button { width: 30vw; }
+
 }

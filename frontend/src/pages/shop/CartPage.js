@@ -1,6 +1,7 @@
 import Header from '../../components/header/Header';
 import Footer from '../../components/footer/Footer';
 import CartService from '../../services/CartService';
+import PurchaseService from '../../services/PurcharseService';
 import React, { useState, useEffect } from 'react';
 
 
@@ -27,6 +28,13 @@ const CartPage = () => {
     setCartItems(updatedCart);
   };
 
+  const calculateTotalPrice = () => {
+    return cartItems.reduce((total, item) => total + item.price, 0);
+  };
+
+  const handlePurchase = () => {
+    PurchaseService.createPurchase(calculateTotalPrice());
+  };
 
   const renderCartItems = () => {
     if (cartItems.length === 0) {
@@ -38,19 +46,26 @@ const CartPage = () => {
     } else {
 
       return (
-        <div>
-          {cartItems.map((article) => (
-            <li key={article.id}>
-              <img src={`http://localhost:8000/images/${article.filename}`} alt={article.name} />
-              <div>
-                <h3>{article.name}</h3>
-                <p>{article.description}</p>
-                <p>{article.price}€</p>
-                <p>{article.stock ? 'En stock' : 'Agotado'}</p>
-                <button onClick={() => removeFromCart(article.id)}>Remove from Cart</button>
+        <div className='double-container'>
+          <div className='cart-container'>
+            {cartItems.map((article) => (
+              <div className="cart-item" key={article.id}>
+                <img src={`http://localhost:8000/images/glass.png`} alt={article.name} />
+                <div className='cart-info'>
+                  <strong>{article.name}</strong>
+                  <p>{article.price}€</p>
+                  <button className="cart-button" onClick={() => removeFromCart(article.id)}>Delete</button>
+                </div>
               </div>
-            </li>
-          ))}
+            ))}
+          </div>
+          <div className='cart-container'>
+            <div className="cart-resume">
+              <strong>Resume</strong>
+              <p>Total: {calculateTotalPrice()}€</p>
+              <button className="cart-button" onClick={handlePurchase}>Do Purchase</button>
+            </div>
+          </div>
         </div>
       );
     };
@@ -61,7 +76,7 @@ const CartPage = () => {
       <body>
         <Header />
         <div className="cart-container">
-          <h1>Carrito de Compras</h1>
+          <h2>My Carry</h2>
           {renderCartItems()}
         </div>
         <Footer />

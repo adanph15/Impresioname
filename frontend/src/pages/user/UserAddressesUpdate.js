@@ -56,19 +56,19 @@ const UserAddressesUpdate = () => {
         <div className='singin-form-container'>
           <h2>Update Address</h2>
           <div className="singin-form-item">
-            <h4>direction:</h4>
+            <h4>Direction:</h4>
             <input type="text" name="direction" value={address.direction} onChange={handleInputChange} />
           </div>
           <div className="singin-form-item">
-            <h4>post code:</h4>
+            <h4>Post code:</h4>
             <input type="text" name="post_code" value={address.post_code} onChange={handleInputChange} />
           </div>
           <div className="singin-form-item">
-            <h4>location:</h4>
+            <h4>Location:</h4>
             <input type="text" name="location" value={address.location} onChange={handleInputChange} />
           </div>
           <div className="singin-form-item">
-            <h4>province:</h4>
+            <h4>Province:</h4>
             <input type="text" name="province" value={address.province} onChange={handleInputChange} />
           </div>
           <div className="singin-form-item">

@@ -5,7 +5,7 @@ module.exports = (sequelize, Sequelize) => {
             defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
         },
         total: {
-            type: Sequelize.INTEGER
+            type: Sequelize.FLOAT
         },
         status: {
             type: Sequelize.STRING

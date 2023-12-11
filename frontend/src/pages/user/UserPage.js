@@ -5,8 +5,6 @@ import AuthService from "../../services/AuthService";
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-
-
 export default function UserPage() {
   const [user, setUser] = useState(null);
 
@@ -35,29 +33,35 @@ export default function UserPage() {
     AuthService.logout();
   };
 
+   const handleUser = () => {
+    const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+     if (!userInfo) {
+       window.location.href = "/sing-in";
+     }
+  }
+
   return (
     <>
       <body>
         <Header />
-
         <div className="singin-form-container">
-          <h2>my account</h2>
+          <h2>My Account</h2>
           {user ? (
             <form className='singin-form-container'>
               <div className="singin-form-item">
-                <h4>username</h4>
+                <h4>Username</h4>
                 <input name="username" type="text" value={user.username} ></input>
               </div>
               <div className="singin-form-item">
-                <h4>name</h4>
+                <h4>Name</h4>
                 <input name="name" type="text" value={user.name}></input>
               </div>
               <div className="singin-form-item">
-                <h4>last name</h4>
+                <h4>Last Name</h4>
                 <input name="last_name" type="text" value={user.last_name} ></input>
               </div>
               <div className="singin-form-item">
-                <h4>mail</h4>
+                <h4>Mail</h4>
                 <input name="mail" type="text" value={user.mail} ></input>
               </div>
               <div className="singin-form-item">
@@ -66,16 +70,13 @@ export default function UserPage() {
                 </Link>
               </div>
               <div className="singin-form-item">
-                <button onClick={handleLogout}>log-out</button>
+                <button onClick={handleLogout}>Log Out</button>
               </div>
 
             </form>
           ) : (
             <>
-              <p>you must sing in</p>
-              <Link to={`/sing-in`} className='link'>
-              <button>sing-in</button>
-              </Link>
+              {handleUser(user)}
             </>
           )}
         </div>

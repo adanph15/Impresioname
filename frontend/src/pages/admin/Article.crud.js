@@ -90,6 +90,7 @@ export default function AdminArticle() {
                     {articles.map((article) => (
                         <div key={article.id} className="card-item">
                             <img src={`http://localhost:8000/images/${article.filename}`} className="card-item-photo" />
+                            <p></p>
                             <strong>{article.name}</strong>
                             <p>{article.description}</p>
                             <p>Price: {article.price}€</p>

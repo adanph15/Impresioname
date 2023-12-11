@@ -2,67 +2,50 @@ const db = require("../models");
 const User = db.user;
 const Op = db.Sequelize.Op;
 const utils = require("../../utils");
-const bcrypt  =  require('bcryptjs');
+const bcrypt = require('bcryptjs');
 const Direction = db.direction;
 
 // Create and Save a new User
-exports.create = (req, res) => {
-  //Validate request
-  if (!req.body.password || !req.body.username) {
-    res.status(400).send({
-      message: "Content can not be empty!"
-    });
-    return;
-  }
+exports.create = async (req, res) => {
+  try {
+    // if (!req.body.password || !req.body.username) {
+    //   res.status(400).send({
+    //     message: "User must have a username and a password"
+    //   });
+    //   return;
+    // }
 
-  // Create a User
-  let user = {
-    password: req.body.password,
-    name: req.body.name,
-    username: req.body.username,
-    last_name: req.body.last_name,
-    mail: req.body.mail,
-    role: "user",
-  };
-
-  User.findOne({ where: { username: user.username } })
-    .then(data => {
-      if (data) {
-        const result = bcrypt.compareSync(user.password, data.password);
-        if (!result) return res.status(401).send('Password not valid!');
-        const token = utils.generateToken(data);
-        // get basic user details
-        const userObj = utils.getCleanUser(data);
-        // return the token along with user details
-        return res.json({ user: userObj, access_token: token });
-      }
-
-      user.password = bcrypt.hashSync(req.body.password);
-
-      // User not found. Save new User in the database
-      User.create(user)
-        .then(data => {
-          const token = utils.generateToken(data);
-          // get basic user details
-          const userObj = utils.getCleanUser(data);
-          // return the token along with user details
-          return res.json({ user: userObj, access_token: token });
-        })
-        .catch(err => {
-          res.status(500).send({
-            message:
-              err.message || "Some error occurred while creating the User."
-          });
-        });
-
-    })
-    .catch(err => {
-      res.status(500).send({
-        message:
-          err.message || "User not found."
+    const existingUser = await User.findOne({ where: { username: req.body.username } });
+    if (existingUser) {
+      return res.status(409).send({
+        message: "Username already exists!"
       });
-    });
+    }
 
+    const hashedPassword = bcrypt.hashSync(req.body.password);
+
+    let user = {
+      username: req.body.username,
+      name: req.body.name,
+      last_name: req.body.last_name,
+      mail: req.body.mail,
+      password: hashedPassword,
+      role: "user",
+    };
+
+    const createdUser = await User.create(user);
+
+    const token = utils.generateToken(createdUser);
+
+    const userObj = utils.getCleanUser(createdUser);
+
+    res.json({ user: userObj, access_token: token });
+  } catch (err) {
+    res.status(500).send({
+      message:
+        err.message || "Some error occurred while creating the User."
+    });
+  };
 };
 
 // Create and Save a new User
@@ -226,12 +209,12 @@ exports.getUserDirections = (req, res) => {
   const userId = req.params.id;
 
   Direction.findAll({
-      where: { user_id: userId }
+    where: { user_id: userId }
   })
-  .then(directions => {
+    .then(directions => {
       res.send(directions);
-  })
-  .catch(error => {
+    })
+    .catch(error => {
       res.status(500).send('Internal Server Error');
-  });
+    });
 };

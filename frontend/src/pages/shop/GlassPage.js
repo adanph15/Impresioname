@@ -4,6 +4,7 @@ import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
 import { useParams } from 'react-router-dom';
 import CartService from "../../services/CartService";
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 export default function GlassesPage() {
   const [article, setArticle] = useState(null);
@@ -66,7 +67,9 @@ export default function GlassesPage() {
                 <p>{article.name} - {article.description}</p>
                 <p>{article.stock ? 'in stock' : 'out of stock'}</p>
               </div>
-              <button id='buttonBasket' onClick={addToCart}>add to basket</button>
+              <Link to={`/shop-men`} className='link'>
+              <button className="button-glasses" id='buttonBasket' onClick={addToCart}>add to basket</button>
+              </Link>
             </div>
           </div>
         </div>

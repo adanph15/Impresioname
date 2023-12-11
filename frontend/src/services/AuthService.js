@@ -26,6 +26,19 @@ const AuthService = {
     return response.data;
   },
 
+  register: async (username, name, last_name, mail, password) => {
+    const response = await axios.post('http://localhost:8000/api/users/signup', {
+      username,
+      name,
+      last_name,
+      mail,
+      password,
+    });
+    const token = response.data.access_token;
+    localStorage.setItem('token', token);
+    return response.data;
+  },
+
   logout: () => {
     localStorage.removeItem('token');
     localStorage.removeItem('userInfo');

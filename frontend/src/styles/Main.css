@@ -1,6 +1,18 @@
-input { 
-    width: 40vw; 
-  }
+input , button{
+    background-color: #3C3C3C;
+    color: white;
+    border: 0;
+    border-radius: 6px;
+    width: 40vw;
+    height: 4vh;
+    font-size: 16px;
+}
+  
+h4 {
+    margin-top: 1vh;
+    margin-left: 1vh;
+    margin-bottom: 0.5vh;
+}
 
 select { 
     width: 40vw; 
@@ -32,6 +44,10 @@ a {
 .header-container>a {
     color: black;
     text-decoration: none;
+}
+
+.hide{
+    color: white;
 }
 
 .icon {
@@ -145,9 +161,14 @@ a {
     margin-top: -2vh;
 }
 
-.glasses-item-info>button {
-   background-color: white;
-   color: black;
+.button-glasses {
+    background-color: white;
+    color: black;
+}
+
+.button-glasses:hover {
+    background-color: black;
+    color: white;
 }
 
 .glasses-item-img {
@@ -160,6 +181,69 @@ a {
     color: white;
 }
 
+.cart-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: end;
+    align-items:center;
+    gap: 5vh;
+    margin-bottom: 5vh;
+    margin-top: 2vh;
+}
+
+.cart-item {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: center;
+    border: black solid 1px;
+    width: 20vw;
+    height: 20vh;
+    color: black;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    margin-bottom: 4vh;
+    border-radius: 6px;
+}
+
+.cart-item>img {
+    height: 18vh;
+}
+
+.cart-button {
+    border: black solid 1px;
+    color: black;
+    width: 10vw;
+    background-color: white;
+}
+
+.cart-button:hover {
+    color: white;
+    background-color: #333333;
+}
+
+.cart-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cart-resume {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: center;
+    border: black solid 1px;
+    width: 20vw;
+    height: 20vh;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    margin-bottom: 4vh;
+    border-radius: 6px;
+}
 
 /* --------------------------------- */
 /* SING-IN SING-UP USER-PAGE DIRECTION STYLES */
@@ -167,7 +251,7 @@ a {
 .singin-container {
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
     margin-bottom: 20vh;
@@ -197,13 +281,15 @@ a {
 .direction-container {
     color: black;
     width: 40vw; 
+    height: 10vh;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: nowrap;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
-    text-transform: lowercase;
     padding-bottom: 4vh;
+    border-radius: 6px;
+    border: black solid 1px;
 }
 
 .direction-item {
@@ -212,8 +298,23 @@ a {
     justify-content: center;
     align-items: center;
     gap: 10px;
+    background-color: aqua;
 }
 
 .direction-button {
-    width: 15vw;
+    width: 5vw;
+}
+
+
+
+
+.double-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: start;
+    margin-bottom: 20vh;
+    margin-top: 2vh;
+    gap: 10vh;
 }

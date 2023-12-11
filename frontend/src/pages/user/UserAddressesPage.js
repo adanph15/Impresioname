@@ -64,34 +64,23 @@ const UserAddressesPage = () => {
     <>
       <body>
         <Header />
+        <div className="singin-container">
         <div className='singin-form-container'>
-          <h2>directions info</h2>
+          <h2>Directions Info</h2>
 
           {addresses.map((address) => (
             <div className="direction-container">
               <div className="direction-item">
-                <h5>direction: </h5>
-                <p>{address.direction}</p>
+                <p>Street: {address.direction}, {address.post_code}, {address.location}, {address.province}</p>
               </div>
               <div className="direction-item">
-                <h5>post code</h5>
-                <p>{address.post_code}</p>
-              </div>
-              <div className="direction-item">
-                <h5>location</h5>
-                <p>{address.location}</p>
-              </div>
-              <div className="direction-item">
-                <h5>province</h5>
-                <p>{address.province}</p>
-              </div>
-              <div className="direction-item">
-                <button className="direction-button" onClick={() => handleUpdate(address.id)}>Update Address</button>
-                <button className="direction-button" onClick={() => handleDelete(address.id)}>Delete Address</button>
+                <button className="direction-button" onClick={() => handleUpdate(address.id)}>Update</button>
+                <button className="direction-button" onClick={() => handleDelete(address.id)}>Delete</button>
               </div>
             </div>
           ))}
-
+        </div>
+        <div className='singin-form-container'>
           <h2>add new address</h2>
           <div className="singin-form-item">
             <h4>direction:</h4>
@@ -112,6 +101,7 @@ const UserAddressesPage = () => {
           <div className="singin-form-item">
             <button onClick={addNewAddress}>add address</button>
           </div>
+        </div>
         </div>
         <Footer />
       </body >

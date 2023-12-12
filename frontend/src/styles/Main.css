@@ -41,7 +41,7 @@ a {
     margin-top: 0;
 }
 
-.header-container>a {
+.header-container a {
     color: black;
     text-decoration: none;
 }
@@ -52,6 +52,10 @@ a {
 
 .icon {
     width: 50px;
+}
+
+@media only screen and (max-width: 999px) {
+    .hide{ width: 1px; }
 }
 
 
@@ -181,6 +185,7 @@ a {
     color: white;
 }
 
+
 /* --------------------------------- */
 /* SING-IN SING-UP USER-PAGE STYLES */
 
@@ -200,7 +205,6 @@ a {
     flex-wrap: nowrap;
     justify-content: space-around;
     align-items: center;
-
 }
 
 .singin-form-title {
@@ -212,6 +216,12 @@ a {
 
 .singin-form-item {
     padding-top: 2vh;
+}
+
+@media only screen and (max-width: 999px) {
+    .singin-form-item input{ width: 70vw; }
+
+    .singin-form-item button{ width: 70vw; }
 }
 
 
@@ -230,6 +240,7 @@ a {
     align-items: center;
     padding-bottom: 4vh;
     border-radius: 6px;
+    margin-bottom: 2vh;
 }
 
 .direction-item {
@@ -238,7 +249,6 @@ a {
     justify-content: center;
     align-items: center;
     gap: 10px;
-
 }
 
 .direction-button {
@@ -246,13 +256,9 @@ a {
 }
 
 @media only screen and (max-width: 999px) {
-    .direction-button {
-        width: 30vw;
-    } 
-    .direction-container {
-        width: 60vw;
-    }
+    .direction-button { width: 30vw; } 
 
+    .direction-container { width: 70vw; flex-direction: column; }
 }
 
 
@@ -288,7 +294,6 @@ a {
 
 @media only screen and (max-width: 999px) {
     .purchase-item { width: 60vw; }
-
 }
 
 
@@ -363,10 +368,9 @@ a {
 @media only screen and (max-width: 999px) {
     .double-container { flex-direction: column; }
 
-    .cart-item { width: 60vw; }
+    .cart-item { width: 70vw; }
 
-    .cart-resume { width: 60vw; }
+    .cart-resume { width: 70vw; }
 
     .cart-button { width: 30vw; }
-
 }

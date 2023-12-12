@@ -100,7 +100,7 @@ const UserAddressesPage = () => {
                 <input type="text" name="province" value={newAddress.province} onChange={handleInputChange} />
               </div>
               <div className="singin-form-item">
-                <button onClick={addNewAddress}>add address</button>
+                <button onClick={addNewAddress}>Add Address</button>
               </div>
             </div>
           </div>

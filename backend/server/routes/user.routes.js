@@ -21,9 +21,6 @@ module.exports = app => {
 
   router.get("/direction/:id", users.getUserDirections);
 
-  // Retrieve a single User with id
-  router.get("/:id", auth.isAuthenticated, users.findOne);
-
   // Update a User with id
   router.put("/:id", users.update);
   // router.put("/:id", auth.isAuthenticated, users.update);

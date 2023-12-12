@@ -70,6 +70,11 @@ export default function UserPage() {
                 </Link>
               </div>
               <div className="singin-form-item">
+                <Link to={`/purchases`} className='link'>
+                  <button>View Purchases</button>
+                </Link>
+              </div>
+              <div className="singin-form-item">
                 <button onClick={handleLogout}>Log Out</button>
               </div>
 

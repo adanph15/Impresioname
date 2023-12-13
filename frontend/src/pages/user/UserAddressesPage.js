@@ -62,7 +62,7 @@ const UserAddressesPage = () => {
 
   return (
     <>
-      <body>
+      <div>
         <Header />
         <div className="singin-container">
           <div className="double-container">
@@ -106,7 +106,7 @@ const UserAddressesPage = () => {
           </div>
         </div>
         <Footer />
-      </body >
+      </div >
     </>
   );
 };

@@ -42,11 +42,11 @@ export default function ShopKids() {
 
     return (
         <>
-            <body>
+            <div>
                 <Header />
                 {articlesList()}
                 <Footer />
-            </body>
+            </div>
         </>
     );
 }

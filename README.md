@@ -5,16 +5,15 @@ This application consists in a shop page were a user can buy and see a catalogue
 <br><br>
 
 
-## BUILD IN 🔨 
+## BUILD IN <a name ="idBuild"></a> 🔨 
 
 Build in React `[JS]` , NodeJS `[Express - Sequelize]` & MysQL.
 
 <br><br>
 
-## MODEL AND DIAGRAMS INFO 📊
+## MODEL AND DIAGRAMS INFO <a name ="idModels"></a> 📊
 
 Database structure and its respective diagrams.
-
 
 ### ENTITIES 📝
 * User: The user has an id, a username, name, last name, mail, password and role.
@@ -25,7 +24,6 @@ Database structure and its respective diagrams.
 
 * Article: It has an id, a name, description, price, category and stock.
 
-
 ### RELATIONSHIPS 🔌
 * A user can have one or more direction, but one direction must be for one user.
 
@@ -34,13 +32,6 @@ Database structure and its respective diagrams.
 * A purcharse can carry one or more articles, but one article can not belong to a purcharse or can be in many purcharses.
 
 <br><br>
-
-### USE CASE DRIAGRAM
-
-<p align="center">
-    <img src="img/UseCaseDiagram.png" alt="useCase" >
-</p>
-
 
 ### CLASS DIAGRAM
 
@@ -83,22 +74,25 @@ Database structure and its respective diagrams.
 
     If you are a guest, you will see the home, all the shops pages, and you can log-in and register also.
 
-    If you are a user, you will see the catalogue and you can add products and buy it, you can go to your profile and there you can add address, edit update(not recommended yet) and log out, you can
+    If you are a user, you will see the catalogue and you can add products and buy it, you can go to your profile and there you can view and add address, edit update(not recommended yet) and log out, you can also see all your purchases.
 
     If you are an admin, you will see the same features like user but you can add, edit and
-    delete products and finally you can edit and remove the tracing of users
+    delete products and finally you can edit and remove the status of users purchases.
 
 
+### USE CASE DRIAGRAM
 
+<p align="center">
+    <img src="img/UseCaseDiagram.png" alt="useCase" >
+</p>
 
 <br><br>
 
-
 -----------------------------------
 
-## Installation Manual 🔧 <a name="idUserManual"></a>
+## Installation Manual <a name="idUserManual"></a> 🔧
 
-    To start using the app, we will need ReactJS, NodeJS and MySQL as DB
+    To start using the app, we will need ReactJS, NodeJS and MySQL as Data Base.
 
 <br>
 
@@ -109,6 +103,8 @@ _*You need to download and install [NodeJS](https://nodejs.org/en/download/curre
 You can check your version with:  
 
     npm -v
+
+_*Recommended to have version: 9.6.7 or higher*._
 
 <br>
 
@@ -178,8 +174,7 @@ DB_NAME will be the name of the DB that we created previously, and DB_PASSWORD_ 
 <br><br>
 
 
-
-## TECHNOLOGY STACK <a name="idTechStack"></a>👨‍💻
+## TECHNOLOGY STACK <a name="idTech"></a> 🔨
 
 
 _This project have a stack like MEAN but for this time isn't mongoose it's mysql and it's not only angular is Ionic/Angular_
@@ -208,69 +203,13 @@ Ionic/Angular
 <br><br>
 
 
-## TECHNOLOGICAL COMPARISON <a name="idCompareTech"></a> ⚙️
-
-IONIC, EXPRESS, NODE JS, MYSQL(IENM):
-
-PROS OF IENM:
-
-* Allows for rapid prototyping
-
-* Hybrid mobile
-
-* It's angularjs
-
-* Free
-
-* It's javascript, html, and css
-
-* Ui and theming
-
-* Great designs
-
-* Mv* pattern
-
-* Reuse frontend devs on mobile
-
-*Extensibility
-
-
-
-PROS OF MEAN
-
-* Javascript
-
-* Easy
-
-* Nosql
-
-* Great community
-
-* Mongoose
-
-* Modularity
-
-* Open source
-
-* Organized
-
-* Simple
-
-* Boilerplate
 
 ---
 <br>
 
-## Repository <a name="idRepositories"></a>👨‍💻
+## PLANNING 📅  <a name="idPlaniNG"></a>
 
-[GonzaloSS](https://github.com/GonzaloSS/E-Commerce-project)
-
----
-<br>
-
-## Planning 📅  <a name="idPlanification"></a>
-
-[Go to planning](https://github.com/users/GonzaloSS/projects/1)
+[To see the planning click here](https://github.com/users/adanelrincon/projects/1)
 
 ---
 <br>

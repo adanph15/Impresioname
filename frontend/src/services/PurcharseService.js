@@ -9,7 +9,7 @@ const getCurrentDate = () => {
     const currentDate = new Date();
     const formattedDate = currentDate.toISOString(); // Obtiene la fecha en formato "2002-10-10T00:00:00.000Z"
     return formattedDate;
-  };
+};
 const userInfo = JSON.parse(localStorage.getItem('userInfo'));
 
 const PurchaseService = {
@@ -31,6 +31,7 @@ const PurchaseService = {
             throw error;
         }
     },
+
     createPurchase: async (total) => {
         try {
             const user_id = userInfo.id;
@@ -45,6 +46,15 @@ const PurchaseService = {
             console.log(response.data)
             console.log("id: ", response.data.id)
             await PurchaseService.associateArticlesWithPurchase(response.data.id);
+            return response.data;
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    getArticlesByPurchaseId: async (purchaseId) => {
+        try {
+            const response = await axios.get(`${BASE_URL}/carry/${purchaseId}`);
             return response.data;
         } catch (error) {
             throw error;

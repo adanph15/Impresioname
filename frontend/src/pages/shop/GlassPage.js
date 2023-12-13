@@ -56,7 +56,7 @@ export default function GlassesPage() {
 
   return (
     <>
-      <body>
+      <div>
         <Header />
         <div className='glasses-container'>
           <div className='glasses-item'>
@@ -74,7 +74,7 @@ export default function GlassesPage() {
           </div>
         </div>
         <Footer />
-      </body>
+      </div>
     </>
   );
 

@@ -7,7 +7,7 @@ import "./Home.css";
 export default function Home() {
   return (
     <>
-      <body>
+      <div>
         <Header />
         <div className="home-container">
           <h2>Newest</h2>
@@ -37,7 +37,7 @@ export default function Home() {
           </div>
         </div>
         <Footer />
-      </body>
+      </div>
     </>
   );
 }

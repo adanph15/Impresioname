@@ -103,21 +103,28 @@ exports.delete = (req, res) => {
             article_id: article_id,
             purchase_id: purchase_id
         }
-    })
-    .then(num => {
-        if (num > 0) {
-            res.send({
-                message: "Carries deleted."
-            });
-        } else {
-            res.send({
-                message: "Carries cannot be deleted."
-            });
-        }
+    }).then(data => {
+        res.send(data);
     })
     .catch(err => {
         res.status(500).send({
-            message: err.message || "Error deleting the carries."
+            message:
+                err.message || "Error finding carries."
+        });
+    });
+};
+
+exports.findByPurchaseId = (req, res) => {
+    const purchase_id = req.params.purchase_id;
+
+    Carry.findAll({ where: { purchase_id: purchase_id } })
+    .then(data => {
+        res.send(data);
+    })
+    .catch(err => {
+        res.status(500).send({
+            message:
+                err.message || "Error finding carries."
         });
     });
 };

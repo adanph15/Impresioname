@@ -44,11 +44,11 @@ export default function ShopMen() {
 
     return (
         <>
-            <body>
+            <div>
                 <Header />
                 {articlesList()}
                 <Footer />
-            </body>
+            </div>
         </>
     );
 }

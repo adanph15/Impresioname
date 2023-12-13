@@ -51,7 +51,7 @@ const UserAddressesUpdate = () => {
 
   return (
     <>
-      <body>
+      <div>
         <Header />
         <div className='singin-form-container'>
           <h2>Update Address</h2>
@@ -78,7 +78,7 @@ const UserAddressesUpdate = () => {
           </div>
         </div>
         <Footer />
-      </body>
+      </div>
     </>
   );
 };

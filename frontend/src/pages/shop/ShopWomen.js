@@ -43,11 +43,11 @@ export default function ShopWomen() {
 
     return (
         <>
-            <body>
+            <div>
                 <Header />
                 {articlesList()}
                 <Footer />
-            </body>
+            </div>
         </>
     );
 }

@@ -26,7 +26,7 @@ export default function SingIn() {
 
   return (
     <>
-      <body>
+      <div>
         <Header />
         <div className="singin-container">
           <form className='singin-form-container'>
@@ -66,7 +66,7 @@ export default function SingIn() {
           </form>
         </div>
         <Footer />
-      </body>
+      </div>
     </>
   );
 };

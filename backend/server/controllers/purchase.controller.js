@@ -9,7 +9,8 @@ exports.create = (req, res) => {
         !req.body.total ||
         !req.body.status ||
         !req.body.user_id) {
-        return console.log('Missing data');
+        res.status(400).send({ message: 'Missing data' });
+        return;
     }
 
     // Create a purchase

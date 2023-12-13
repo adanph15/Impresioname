@@ -22,6 +22,8 @@ module.exports = function (app) {
 
   app.get("/api/carry/:article_id/:purchase_id", carryController.findOne);
 
+  app.get("/api/carry/:purchase_id", carryController.findByPurchaseId);
+
   app.put("/api/carry/:article_id/:purchase_id", carryController.update);
 
   app.delete("/api/carry/:article_id/:purchase_id", carryController.delete);

@@ -42,7 +42,7 @@ export default function UserPage() {
 
   return (
     <>
-      <body>
+      <div>
         <Header />
         <div className="singin-form-container">
           <h2>My Account</h2>
@@ -86,7 +86,7 @@ export default function UserPage() {
           )}
         </div>
         <Footer />
-      </body>
+      </div>
     </>
   );
 } 

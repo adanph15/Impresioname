@@ -183,3 +183,5 @@ function initial() {
     filename: "glasses.png"
   });
 }
+
+module.exports = app;

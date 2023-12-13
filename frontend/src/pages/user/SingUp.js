@@ -27,7 +27,7 @@ export default function SingUp() {
 
     return (
         <>
-            <body>
+            <div>
                 <Header />
                 <div className="singin-form-container">
                     <h2>Sing Up</h2>
@@ -58,7 +58,7 @@ export default function SingUp() {
                     </form>
                 </div>
                 <Footer />
-            </body>
+            </div>
         </>
     );
 }

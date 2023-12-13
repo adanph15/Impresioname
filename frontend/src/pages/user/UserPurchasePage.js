@@ -2,6 +2,7 @@ import Footer from "../../components/footer/Footer";
 import Header from "../../components/header/Header";
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import PurchaseService from '../../services/PurcharseService';
 
 const UserPurchasePage = () => {
     const userInfo = JSON.parse(localStorage.getItem('userInfo'));
@@ -30,6 +31,24 @@ const UserPurchasePage = () => {
     //     }
     //   };
 
+  //     const renderArticlesForPurchase = async (purchaseId) => {
+  //   try {
+  //     const articles = await PurchaseService.getArticlesByPurchaseId(purchaseId);
+  //     return (
+  //       <div>
+  //         {articles.map((article) => (
+  //           <div key={article.id}>
+  //             <p>Name: {article.name}</p>
+  //             <p>Price: {article.price}</p>
+  //           </div>
+  //         ))}
+  //       </div>
+  //     );
+  //   } catch (error) {
+  //     console.error('Error al obtener los artículos:', error);
+  //   }
+  // };
+
     return (
         <>
             <body>
@@ -39,9 +58,12 @@ const UserPurchasePage = () => {
                         {purchases.map((purchase) => (
                             <div className="purchase-container">
                                 <div className="purchase-item">
-                                    <p>Purchase: {purchase.date}, {purchase.total}€, {purchase.status}</p>
-                                    <p>Purchase: {purchase.date}, {purchase.total}€, {purchase.status}</p>
-                                    <p>Purchase: {purchase.date}, {purchase.total}€, {purchase.status}</p>
+                                    <p>Purchase: {purchase.date}</p>
+                                    <p>Total: {purchase.total}€</p>
+                                    <p>Status: {purchase.status}</p>
+                                </div>
+                                <div>
+                                {/* {renderArticlesForPurchase(purchase.id)} */}
                                 </div>
                                 <div>
                                     <button className="purchase-button">Cancel Purchase</button>
@@ -57,3 +79,7 @@ const UserPurchasePage = () => {
 };
 
 export default UserPurchasePage;
+
+
+
+

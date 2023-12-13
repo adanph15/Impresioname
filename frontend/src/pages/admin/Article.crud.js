@@ -108,7 +108,7 @@ export default function AdminArticle() {
 
     return (
         <>
-            <body>
+            <div>
                 <Header />
                 <form onSubmit={handleCreateArticle} className='singin-form-container'>
                     <div className="singin-form-item">
@@ -152,7 +152,7 @@ export default function AdminArticle() {
 
                 {renderArticles()}
                 <Footer />
-            </body>
+            </div>
         </>
     );
 };

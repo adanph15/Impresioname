@@ -3,6 +3,8 @@ import Footer from '../../components/footer/Footer';
 import CartService from '../../services/CartService';
 import PurchaseService from '../../services/PurcharseService';
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+
 
 
 const CartPage = () => {
@@ -33,7 +35,9 @@ const CartPage = () => {
   };
 
   const handlePurchase = () => {
+    const userInfo = JSON.parse(localStorage.getItem('userInfo'));
     PurchaseService.createPurchase(calculateTotalPrice());
+    CartService.removeToken(userInfo.id);
   };
 
   const renderCartItems = () => {
@@ -63,7 +67,9 @@ const CartPage = () => {
             <div className="cart-resume">
               <strong>Resume</strong>
               <p>Total: {calculateTotalPrice()}€</p>
+              <Link to={`/purchases`} className='link'>
               <button className="cart-button" onClick={handlePurchase}>Do Purchase</button>
+              </Link>
             </div>
           </div>
         </div>
@@ -73,14 +79,14 @@ const CartPage = () => {
 
   return (
     <>
-      <body>
+      <div>
         <Header />
-        <div className="cart-container">
+        <div className="no-cart-container">
           <h2>My Carry</h2>
           {renderCartItems()}
         </div>
         <Footer />
-      </body>
+      </div>
     </>
   );
 };

@@ -90,7 +90,7 @@ export default function AdminPurcharse() {
 
     return (
         <>
-            <body>
+            <div>
                 <Header />
                 <form onSubmit={handleCreateArticle} className='singin-form-container'>
                     <div className="singin-form-item">
@@ -136,7 +136,7 @@ export default function AdminPurcharse() {
 
                 {renderArticles()}
                 <Footer />
-            </body>
+            </div>
         </>
     );
 };

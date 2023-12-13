@@ -5,7 +5,7 @@ This application consists in a shop page were a user can buy and see a catalogue
 <br><br>
 
 
-## BUILD IN <a name ="idBuild"></a> 🔨 
+## MORE ABOUT  <a name ="idBuild"></a> 🔨 
 
 Build in React `[JS]` , NodeJS `[Express - Sequelize]` & MysQL.
 
@@ -174,44 +174,46 @@ DB_NAME will be the name of the DB that we created previously, and DB_PASSWORD_ 
 <br><br>
 
 
-## TECHNOLOGY STACK <a name="idTech"></a> 🔨
+## BUILD WITH <a name="idTech"></a> 🛠️
 
+MySQL:
 
-_This project have a stack like MEAN but for this time isn't mongoose it's mysql and it's not only angular is Ionic/Angular_
+* MySQL is a relational database management system based on SQL. It's widely used for storing and managing structured data. In the context of your project, MySQL will act as the database to store application data.
+<br>
+
+Express:
+
+* Express is a web application framework for NodeJS. In your application, Express will be used as the server-side framework to handle HTTP requests, define routes, and manage server logic.
+<br>
+
+NodeJS:
+* NodeJS is a JavaScript runtime environment on the server side. In this project, NodeJS will be used to run the application server. Its single-threaded, event-driven nature makes it ideal for scalable and high-performance web applications.
+<br>
+
+Sequelize:
+
+* Sequelize is an Object-Relational Mapping (ORM) for NodeJS. It simplifies interaction with relational databases, such as MySQL, through JavaScript. Sequelize streamlines database queries and provides an object-based data model instead of direct SQL queries.
+<br>
+
+ReactJS:
+
+* ReactJS is a JavaScript library for building interactive user interfaces. In the context of your project, ReactJS will be used on the client side to build the user interface. You can create reusable components and efficiently manage the application state.
 
 <br><br>
 
-MySQL
-* MySQL is a relational database management system based on SQL – Structured Query Language. ...
-<br><br>
 
-Express
-
-*   Express, is a back end web application framework for Node. js, released as free and open-source software under the MIT License.
-<br><br>
-
-Node
-
-* Node. js is primarily used for non-blocking, event-driven servers, due to its single-threaded nature. It's used for traditional web sites and back-end API services
-<br><br>
-
-Ionic/Angular
-
-* Ionic Framework is an open source UI toolkit for building performant, high-quality mobile and desktop apps using web technologies — HTML, CSS, and JavaScript — with integrations for popular frameworks like Angular, React, and Vue.
----
-
-<br><br>
-
-
-
----
 <br>
 
 ## PLANNING 📅  <a name="idPlaniNG"></a>
 
-[To see the planning click here](https://github.com/users/adanelrincon/projects/1)
++ [To see the planning click here](https://github.com/users/adanelrincon/projects/1)
 
----
+<br>
+
+## AUTHOR <a name="idAuthor"></a> 👋
+
++ [By Adán Pérez Hernándeaz](https://github.com/adanelrincon)
+
 <br>
 
 ## Conclusion <a name="idConclusion"></a> 💬
@@ -220,36 +222,3 @@ Ionic/Angular
     self so I'm very proud of my self, this ecommerce was good to start programming a full
     stack project so I'm very happy with this project. 
 ---
-
-
-## Built With 🛠️
-
-_For this project I use Ionic, Node js and MySQL_
-
-* [Ionic](ionicframework.com) - Ionic is a complete open-source SDK for hybrid mobile app development created by Max Lynch, Ben Sperry, and Adam Bradley of Drifty Co. in 2013. The original version was released in 2013 and built on top of AngularJS and Apache Cordova. However, the latest release was re-built as a set of Web Components, allowing the user to choose any user interface framework, such as Angular, React or Vue.js.
-<br><br>
-
-
-* [Node.js](https://nodejs.org/es/) - Node.js is an open-source, cross-platform, back-end, JavaScript runtime environment that executes JavaScript code outside a web browser. Node.js lets developers use JavaScript to write command line tools and for server-side scripting—running scripts server-side to produce dynamic web page content before the page is sent to the user's web browser.
-<br><br>
-
-* [MySQL](https://www.mysql.com) - MySQL is an open-source relational database management system (RDBMS). Its name is a combination of "My", the name of co-founder Michael Widenius's daughter, and "SQL", the abbreviation for Structured Query Language. A relational database organizes data into one or more data tables in which data types may be related to each other; these relations help structure the data. SQL is a language programmers use to create, modify and extract data from the relational database, as well as control user access to the database.
-
----
-<br>
-
-## Author ✒️
-
-
-* **Juan Gonzalo Santana Santana** - *Author* - [GonzaloSS](https://github.com/GonzaloSS)
-
-
-## Acknowledgment 🎁
-
-* Thanks to The Tandem Enterprise for give us a chance to make this project and work together!! 📢
-
-* Hope you enjoyed this and lot of thanks!! 🤓.
-
-
-
-

@@ -2,13 +2,55 @@ import Header from '../../components/header/Header';
 import Footer from '../../components/footer/Footer';
 import CartService from '../../services/CartService';
 import PurchaseService from '../../services/PurcharseService';
+import AuthService from "../../services/AuthService";
+import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 
 
 const CartPage = () => {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+      const token = AuthService.getToken();
+      if (token) {
+        try {
+          const response = await axios.get(`http://localhost:8000/api/users/${userInfo.id}`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          setUser(response.data);
+        } catch (err) {
+          console.log(err);
+        }
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const handleLogout = () => {
+    AuthService.logout();
+  };
+
+  const handleUser = () => {
+    const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+    if (!userInfo) {
+      window.location.href = "/sing-in";
+    }
+  }
+
   const [cartItems, setCartItems] = useState([]);
+
+  const image = (imageName) => {
+    const newName = imageName.replace('http://localhost:8000/images/', '');
+    console.log("nuevo nombre: ", newName);
+    return newName;
+  };
 
   useEffect(() => {
     const userInfo = JSON.parse(localStorage.getItem('userInfo'));
@@ -35,9 +77,7 @@ const CartPage = () => {
   };
 
   const handlePurchase = () => {
-    const userInfo = JSON.parse(localStorage.getItem('userInfo'));
     PurchaseService.createPurchase(calculateTotalPrice());
-    CartService.removeToken(userInfo.id);
   };
 
   const renderCartItems = () => {
@@ -54,7 +94,7 @@ const CartPage = () => {
           <div className='cart-container'>
             {cartItems.map((article) => (
               <div className="cart-item" key={article.id}>
-                <img src={`http://localhost:8000/images/${article.filename}`} alt={article.name} />
+                <img src={`http://localhost:8000/images${image(article.filename)}`} className="shop-card-item-photo" />
                 <div className='cart-info'>
                   <strong>{article.name}</strong>
                   <p>{article.price}€</p>
@@ -68,7 +108,7 @@ const CartPage = () => {
               <strong>Resume</strong>
               <p>Total: {calculateTotalPrice()}€</p>
               <Link to={`/purchases`} className='link'>
-              <button className="cart-button" onClick={handlePurchase}>Do Purchase</button>
+                <button className="cart-button" onClick={handlePurchase}>Do Purchase</button>
               </Link>
             </div>
           </div>
@@ -83,7 +123,15 @@ const CartPage = () => {
         <Header />
         <div className="no-cart-container">
           <h2>My Carry</h2>
-          {renderCartItems()}
+          {user ? (
+            <>
+              {renderCartItems()}
+            </>
+          ) : (
+            <>
+              {handleUser(user)}
+            </>
+          )}
         </div>
         <Footer />
       </div>

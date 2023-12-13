@@ -28,7 +28,7 @@ const Scroll = () => {
                             <img src={`http://localhost:8000/images/${article.filename}`} className="scroll-card-item-photo" />
                             <strong className='scroll-card-item-title'>{article.name}</strong>
                             <p className="scroll-card-item-text">{article.price}€</p>
-                            <p className="scroll-card-item-text">for {article.category}</p>
+                            <p className="scroll-card-item-text">For {article.category}</p>
                         </div>
                     </Link>
                 ))}

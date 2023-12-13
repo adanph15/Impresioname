@@ -26,6 +26,8 @@ const PurchaseService = {
                 return response.data;
             });
 
+            CartService.removeToken(userInfo.id);
+
             return Promise.all(promises);
         } catch (error) {
             throw error;
@@ -46,15 +48,6 @@ const PurchaseService = {
             console.log(response.data)
             console.log("id: ", response.data.id)
             await PurchaseService.associateArticlesWithPurchase(response.data.id);
-            return response.data;
-        } catch (error) {
-            throw error;
-        }
-    },
-
-    getArticlesByPurchaseId: async (purchaseId) => {
-        try {
-            const response = await axios.get(`${BASE_URL}/carry/${purchaseId}`);
             return response.data;
         } catch (error) {
             throw error;

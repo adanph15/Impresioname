@@ -27,7 +27,6 @@ db.sequelize.sync();
 //  force: true will drop the table if it already exists
  db.sequelize.sync({forcce: true}).then(() => {
    console.log('Drop and Resync Database with { force: true }');
-   initial();
 });
 
 app.get("/", (req, res) => {
@@ -81,107 +80,5 @@ app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
 
-function initial() {
-
-  Article.create({
-    id: 1,
-    name: "gafa1",
-    description: "rojo",
-    price: 100,
-    category: "men",
-    stock: 1,
-    filename: "glasses.png"
-  });
-
-  Article.create({
-    id: 2,
-    name: "gafa2",
-    description: "rojo",
-    price: 100,
-    category: "men",
-    stock: 1,
-    filename: "glasses.png"
-  });
-
-  Article.create({
-    id: 3,
-    name: "gafa3",
-    description: "rojo",
-    price: 100,
-    category: "men",
-    stock: 1,
-    filename: "glasses.png"
-  });
-
-  Article.create({
-    id: 4,
-    name: "gafa4",
-    description: "rojo",
-    price: 100,
-    category: "men",
-    stock: 1,
-    filename: "glasses.png"
-  });
-
-  Article.create({
-    id: 5,
-    name: "gafa5",
-    description: "rojo",
-    price: 100,
-    category: "men",
-    stock: 1,
-    filename: "glasses.png"
-  });
-
-  Article.create({
-    id: 6,
-    name: "gafa6",
-    description: "rojo",
-    price: 100,
-    category: "men",
-    stock: 1,
-    filename: "glasses.png"
-  });
-  
-  Article.create({
-    id: 7,
-    name: "gafa7",
-    description: "rojo",
-    price: 100,
-    category: "men",
-    stock: 1,
-    filename: "glasses.png"
-  });
-
-  Article.create({
-    id: 8,
-    name: "gafa8",
-    description: "rojo",
-    price: 100,
-    category: "men",
-    stock: 1,
-    filename: "glasses.png"
-  });
-
-  Article.create({
-    id: 9,
-    name: "gafa9",
-    description: "rojo",
-    price: 100,
-    category: "men",
-    stock: 1,
-    filename: "glasses.png"
-  });
-
-  Article.create({
-    id: 10,
-    name: "gafa10",
-    description: "rojo",
-    price: 100,
-    category: "men",
-    stock: 1,
-    filename: "glasses.png"
-  });
-}
 
 module.exports = app;

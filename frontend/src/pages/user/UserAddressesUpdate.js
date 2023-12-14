@@ -17,6 +17,13 @@ const UserAddressesUpdate = () => {
     user_id: userId,
   });
 
+  const [addressErrors, setAddressErrors] = useState({
+    direction: '',
+    post_code: '',
+    location: '',
+    province: '',
+  });
+
   useEffect(() => {
     const fetchAddress = async () => {
       try {
@@ -38,13 +45,51 @@ const UserAddressesUpdate = () => {
     }));
   };
 
-  const handleUpdateAddress = async () => {
-    try {
-      await axios.put(`http://localhost:8000/api/direction/${id}`, address);
-      console.log('Address updated successfully.');
-      navigate('/direction');
-    } catch (error) {
-      console.error('Error updating address:', error);
+  const validateAddressForm = () => {
+    let isValid = true;
+    const errors = {
+      direction: '',
+      post_code: '',
+      location: '',
+      province: '',
+    };
+  
+    if (!address.direction.trim()) {
+      errors.direction = 'Direction is required';
+      isValid = false;
+    }
+  
+    if (typeof address.post_code !== 'number' || isNaN(address.post_code)) {
+      errors.post_code = 'Post Code is required and must be a number';
+      isValid = false;
+    }
+  
+    if (!address.location.trim()) {
+      errors.location = 'Location is required';
+      isValid = false;
+    }
+  
+    if (!address.province.trim()) {
+      errors.province = 'Province is required';
+      isValid = false;
+    }
+  
+    setAddressErrors(errors);
+    return isValid;
+  };
+
+  const handleUpdateAddress = async (e) => {
+    e.preventDefault();
+
+
+    if (validateAddressForm()) {
+      try {
+        await axios.put(`http://localhost:8000/api/direction/${id}`, address);
+        console.log('Address updated successfully.');
+        navigate('/direction');
+      } catch (error) {
+        console.error('Error updating address:', error);
+      }
     }
   };
 
@@ -57,19 +102,43 @@ const UserAddressesUpdate = () => {
             <h2>Update Address</h2>
             <div className="singin-form-item">
               <h4>Direction:</h4>
-              <input type="text" name="direction" value={address.direction} onChange={handleInputChange} />
+              <input
+                type="text"
+                name="direction"
+                value={address.direction}
+                onChange={handleInputChange}
+              />
+              <p className="error-message">{addressErrors.direction}</p>
             </div>
             <div className="singin-form-item">
               <h4>Post code:</h4>
-              <input type="text" name="post_code" value={address.post_code} onChange={handleInputChange} />
+              <input
+                type="text"
+                name="post_code"
+                value={address.post_code}
+                onChange={handleInputChange}
+              />
+              <p className="error-message">{addressErrors.post_code}</p>
             </div>
             <div className="singin-form-item">
               <h4>Location:</h4>
-              <input type="text" name="location" value={address.location} onChange={handleInputChange} />
+              <input
+                type="text"
+                name="location"
+                value={address.location}
+                onChange={handleInputChange}
+              />
+              <p className="error-message">{addressErrors.location}</p>
             </div>
             <div className="singin-form-item">
               <h4>Province:</h4>
-              <input type="text" name="province" value={address.province} onChange={handleInputChange} />
+              <input
+                type="text"
+                name="province"
+                value={address.province}
+                onChange={handleInputChange}
+              />
+              <p className="error-message">{addressErrors.province}</p>
             </div>
             <div className="singin-form-item">
               <Link to={`/direction`} className='link'>

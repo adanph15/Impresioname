@@ -96,15 +96,14 @@ Database structure and its respective diagrams.
 <br><br>
 
 ## USER REQUIRMENT <a name ="idRequirements"></a> 👤
-    Web Aplication
+Web Aplication
 
+If you are a guest, you will see the home, all the shops pages, and you can log-in and register also.
 
-    If you are a guest, you will see the home, all the shops pages, and you can log-in and register also.
+If you are a user, you will see the catalogue and you can add products and buy it, you can go to your profile and there you can view and add address, edit update(not recommended yet) and log out, you can also see all your purchases.
 
-    If you are a user, you will see the catalogue and you can add products and buy it, you can go to your profile and there you can view and add address, edit update(not recommended yet) and log out, you can also see all your purchases.
-
-    If you are an admin, you will see the same features like user but you can add, edit and
-    delete products and finally you can edit and remove the status of users purchases.
+If you are an admin, you will see the same features like user but you can add, edit and
+delete products and finally you can edit and remove the status of users purchases.
 
 
 ### USE CASE DRIAGRAM
@@ -381,9 +380,9 @@ ReactJS:
 
 ## CONCLUSION <a name="idConclusion"></a> 💬
 
-    In my conclusion, I think that I have worked a lot on the project throughout the month, I sat a lot in the Backend and that is why some functionalities are missing in the Frontend.
-    But I hope to be able to implement them in the second quarter along with the possibility of seeing the glasses with virtual reality technology.
-    Thanks to ITC for such an interesting project and with a technological stack that I really like a lot.
+In my conclusion, I think that I have worked a lot on the project throughout the month, I sat a lot in the Backend and that is why some functionalities are missing in the Frontend.
+But I hope to be able to implement them in the second quarter along with the possibility of seeing the glasses with virtual reality technology.
+Thanks to ITC for such an interesting project and with a technological stack that I really like a lot.
     
 <br>
 ---

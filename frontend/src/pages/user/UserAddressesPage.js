@@ -35,14 +35,58 @@ const UserAddressesPage = () => {
     }));
   };
 
-  const addNewAddress = async () => {
-    try {
-      const response = await axios.post(`http://localhost:8000/api/direction`, {
-        ...newAddress
-      });
-      setAddresses((prevAddresses) => [...prevAddresses, response.data]);
-    } catch (error) {
-      console.error('Error adding new address:', error);
+  const [addressErrors, setAddressErrors] = useState({
+    direction: '',
+    post_code: '',
+    location: '',
+    province: '',
+  });
+
+  const validateAddressForm = () => {
+    let isValid = true;
+    const errors = {
+      direction: '',
+      post_code: '',
+      location: '',
+      province: '',
+    };
+
+    if (!newAddress.direction.trim()) {
+      errors.direction = 'Direction is required';
+      isValid = false;
+    }
+
+    if (!newAddress.post_code.trim()) {
+      errors.post_code = 'Post Code is required';
+      isValid = false;
+    }
+
+    if (!newAddress.location.trim()) {
+      errors.location = 'Location is required';
+      isValid = false;
+    }
+
+    if (!newAddress.province.trim()) {
+      errors.province = 'Province is required';
+      isValid = false;
+    }
+
+    setAddressErrors(errors);
+    return isValid;
+  };
+
+  const addNewAddress = async (e) => {
+    e.preventDefault();
+
+    if (validateAddressForm()) {
+      try {
+        const response = await axios.post(`http://localhost:8000/api/direction`, {
+          ...newAddress,
+        });
+        setAddresses((prevAddresses) => [...prevAddresses, response.data]);
+      } catch (error) {
+        console.error('Error adding new address:', error);
+      }
     }
   };
 
@@ -84,19 +128,43 @@ const UserAddressesPage = () => {
               <h2>Add New Address</h2>
               <div className="singin-form-item">
                 <h4>Direction:</h4>
-                <input type="text" name="direction" value={newAddress.direction} onChange={handleInputChange} />
+                <input
+                  type="text"
+                  name="direction"
+                  value={newAddress.direction}
+                  onChange={handleInputChange}
+                />
+                <p className="error-message">{addressErrors.direction}</p>
               </div>
               <div className="singin-form-item">
                 <h4>Post Code:</h4>
-                <input type="text" name="post_code" value={newAddress.post_code} onChange={handleInputChange} />
+                <input
+                  type="text"
+                  name="post_code"
+                  value={newAddress.post_code}
+                  onChange={handleInputChange}
+                />
+                <p className="error-message">{addressErrors.post_code}</p>
               </div>
               <div className="singin-form-item">
                 <h4>Location:</h4>
-                <input type="text" name="location" value={newAddress.location} onChange={handleInputChange} />
+                <input
+                  type="text"
+                  name="location"
+                  value={newAddress.location}
+                  onChange={handleInputChange}
+                />
+                <p className="error-message">{addressErrors.location}</p>
               </div>
               <div className="singin-form-item">
                 <h4>Province:</h4>
-                <input type="text" name="province" value={newAddress.province} onChange={handleInputChange} />
+                <input
+                  type="text"
+                  name="province"
+                  value={newAddress.province}
+                  onChange={handleInputChange}
+                />
+                <p className="error-message">{addressErrors.province}</p>
               </div>
               <div className="singin-form-item">
                 <button onClick={addNewAddress}>Add Address</button>
@@ -104,7 +172,7 @@ const UserAddressesPage = () => {
             </div>
           </div>
         </div>
-      </div >
+      </div>
     </>
   );
 };

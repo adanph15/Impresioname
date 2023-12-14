@@ -45,3 +45,57 @@ INSERT INTO articles (name, description, price, category, stock, filename) VALUE
 INSERT INTO articles (name, description, price, category, stock, filename) VALUES ('Glasses 12', 'Description 12', 180.00, 'kids', true, '/kids/12.jpg');
 INSERT INTO articles (name, description, price, category, stock, filename) VALUES ('Glasses 13', 'Description 13', 250.00, 'kids', true, '/kids/13.jpg');
 INSERT INTO articles (name, description, price, category, stock, filename) VALUES ('Glasses 14', 'Description 14', 120.00, 'kids', true, '/kids/14.jpg');
+
+
+
+
+
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255),
+    name VARCHAR(255),
+    last_name VARCHAR(255),
+    mail VARCHAR(255),
+    password VARCHAR(255),
+    role VARCHAR(255)
+);
+
+CREATE TABLE directions (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    direction VARCHAR(255),
+    post_code INT,
+    location VARCHAR(255),
+    province VARCHAR(255),
+    user_id INT,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE TABLE articles (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255),
+    description VARCHAR(255),
+    price FLOAT,
+    category VARCHAR(255),
+    stock BOOLEAN,
+    filename VARCHAR(255)
+);
+
+CREATE TABLE purchases (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    date DATETIME DEFAULT CURRENT_TIMESTAMP,
+    total FLOAT,
+    status VARCHAR(255),
+    user_id INT,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+
+CREATE TABLE carries (
+    article_id INT,
+    purchase_id INT,
+    PRIMARY KEY (article_id, purchase_id),
+    FOREIGN KEY (article_id) REFERENCES articles(id),
+    FOREIGN KEY (purchase_id) REFERENCES purchases(id)
+);
+
+

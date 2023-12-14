@@ -1,26 +1,14 @@
 # IMPRESIÓNAME 👓
-
+<p align="center">
+    <img src="img/Logo.png" alt="logo" >
+</p>
 First version of an online glasses store, where you can see different catalogs depending on the categories, and allows the user to make purchases using a cart.
 
 For the following versions I want to add an option so that the user can view the glasses model using augmented reality technology, we also want to implement the ability to customize a glasses model.
 
 <br><br>
 
-
-## INDICE 📃
-- [MORE ABOUT](#idInfo)
-- [MODEL AND DIAGRAMS INFO](#idModels)
-- [USER REQUIREMENTS](#idRequirements)
-- [USER MANUAL](#idUserManual)
-- [BUILD WITH](#idBuild)
-- [PLANNING](#idPlaning)
-- [POSTMAN](#idPostman)
-- [AUTHOR](#idAuthor)
-- [CONCLUSION](#idConclusion)
-
-<br><br>
-
-## MORE ABOUT  <a name ="idInfo"></a> 🔨 
+## MORE ABOUT  <a name ="idInfo"></a> 📃
 The IMPRESIÓNAME Project is an initiative of the Esteve Terradas e Illa Institute of Barcelona.
 Participating in this project:
 + Esteve Terradas i Illa Institute (Barcelona).
@@ -33,6 +21,22 @@ The objective of the project is to create an App that allows customers to create
 web and finally it will arrive printed at your home.
 
 <br><br>
+
+## INDEX 📃
+- [MODEL AND DIAGRAMS INFO](#idModels)
+- [USER REQUIREMENTS](#idRequirements)
+- [USER REQUIREMENTS](#idRequirements)
+- [USER MANUAL](#idUsermanual)
+- [INSTALLATION MANUAL](#idInstallManual)
+- [BUILD WITH](#idBuild)
+- [PLANNING](#idPlaning)
+- [MOCKUP](#idMockup)
+- [POSTMAN](#idPostman)
+- [AUTHOR](#idAuthor)
+- [CONCLUSION](#idConclusion)
+
+<br><br>
+
 
 ## MODEL AND DIAGRAMS INFO <a name ="idModels"></a> 📊
 
@@ -111,9 +115,15 @@ Database structure and its respective diagrams.
 
 <br><br>
 
------------------------------------
 
-## INSTALLATION MANUAL <a name="idUserManual"></a> 🔧
+## USER MANUAL <a name="idUsermanual"></a> 🙇
+
++ [By Adán Pérez Hernándeaz](https://github.com/adanelrincon)
+
+<br><br>
+
+
+## INSTALLATION MANUAL <a name="idInstallManual"></a> 🔧
 
     To start using the app, we will need ReactJS, NodeJS and MySQL as Data Base.
 
@@ -233,6 +243,18 @@ ReactJS:
 
 <br>
 
+## MOCKUP <a name="idMockup"></a> 👀
+
++ [My Figma Mockup](https://www.figma.com/file/U3BMeKt6Wr9o0ZGAILdvsP/IMPRESIONAME?type=design&node-id=0%3A1&mode=design&t=ajF3B2kh9tfLlvGk-1)
+
+<br>
+
+## POSTMAN <a name="idPostman"></a> 📑
+
++ If you want to see the API Backend, import into POSTMAN the file in the the folder POSTMAN
+
+<br>
+
 ## AUTHOR <a name="idAuthor"></a> 👋
 
 + [By Adán Pérez Hernándeaz](https://github.com/adanelrincon)
@@ -245,3 +267,4 @@ ReactJS:
     self so I'm very proud of my self, this ecommerce was good to start programming a full
     stack project so I'm very happy with this project. 
 ---
+

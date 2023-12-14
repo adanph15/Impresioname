@@ -15,6 +15,8 @@ import UserAddressesPage from "./pages/user/UserAddressesPage";
 import UserAddressesUpdate from "./pages/user/UserAddressesUpdate";
 import CartPage from "./pages/shop/CartPage";
 import UserPurchasePage from "./pages/user/UserPurchasePage";
+import AdminPurchaseList from "./pages/admin/Purchase.view";
+import AdminPurchaseUpdate from "./pages/admin/Purchase.edit";
 
 
 function App() {
@@ -32,13 +34,15 @@ function App() {
             <Route path="/shop-men" element={<ShopMen />} />
             <Route path="/shop-women" element={<ShopWomen />} />
             <Route path="/shop-kids" element={<ShopKids />} />
-            <Route path="/admin-article" element={<AdminArticle />} />
             <Route path="/glasses/:id" element={<GlassesPage />} />
             <Route path="/cart" element={<CartPage />} />
             <Route path="/profile" element={<UserPage />} />
             <Route path="/direction" element={<UserAddressesPage />} />
             <Route path="/direction-update/:id" element={<UserAddressesUpdate />} />
             <Route path="/purchases" element={<UserPurchasePage />} />
+            <Route path="/admin-article" element={<AdminArticle />} />
+            <Route path="/admin-purchases" element={<AdminPurchaseList />} />
+            <Route path="/admin-purchases/update/:id" element={<AdminPurchaseUpdate />} />
           </Routes>
       </BrowserRouter>
     </>

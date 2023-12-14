@@ -1,4 +1,3 @@
-import Footer from "../../components/footer/Footer";
 import Header from "../../components/header/Header";
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -53,31 +52,32 @@ const UserAddressesUpdate = () => {
     <>
       <div>
         <Header />
-        <div className='singin-form-container'>
-          <h2>Update Address</h2>
-          <div className="singin-form-item">
-            <h4>Direction:</h4>
-            <input type="text" name="direction" value={address.direction} onChange={handleInputChange} />
-          </div>
-          <div className="singin-form-item">
-            <h4>Post code:</h4>
-            <input type="text" name="post_code" value={address.post_code} onChange={handleInputChange} />
-          </div>
-          <div className="singin-form-item">
-            <h4>Location:</h4>
-            <input type="text" name="location" value={address.location} onChange={handleInputChange} />
-          </div>
-          <div className="singin-form-item">
-            <h4>Province:</h4>
-            <input type="text" name="province" value={address.province} onChange={handleInputChange} />
-          </div>
-          <div className="singin-form-item">
-            <Link to={`/direction`} className='link'>
-              <button onClick={handleUpdateAddress}>Update Address</button>
-            </Link>
+        <div className="singin-container">
+          <div className='singin-form-container'>
+            <h2>Update Address</h2>
+            <div className="singin-form-item">
+              <h4>Direction:</h4>
+              <input type="text" name="direction" value={address.direction} onChange={handleInputChange} />
+            </div>
+            <div className="singin-form-item">
+              <h4>Post code:</h4>
+              <input type="text" name="post_code" value={address.post_code} onChange={handleInputChange} />
+            </div>
+            <div className="singin-form-item">
+              <h4>Location:</h4>
+              <input type="text" name="location" value={address.location} onChange={handleInputChange} />
+            </div>
+            <div className="singin-form-item">
+              <h4>Province:</h4>
+              <input type="text" name="province" value={address.province} onChange={handleInputChange} />
+            </div>
+            <div className="singin-form-item">
+              <Link to={`/direction`} className='link'>
+                <button onClick={handleUpdateAddress}>Update Address</button>
+              </Link>
+            </div>
           </div>
         </div>
-        <Footer />
       </div>
     </>
   );

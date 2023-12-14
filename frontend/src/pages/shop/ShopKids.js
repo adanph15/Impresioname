@@ -2,7 +2,6 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Header from "../../components/header/Header";
-import Footer from "../../components/footer/Footer";
 
 export default function ShopKids() {
     const [articles, setArticles] = useState([]);
@@ -26,7 +25,7 @@ export default function ShopKids() {
                     {articles.map((article) => (
                     <Link to={`/glasses/${article.id}`} className='link'>
                         <div className="shop-card-item">
-                            <img src={`http://localhost:8000/images/${article.filename}`} className="shop-card-item-photo" />
+                            <img src={`http://localhost:8000/images/${article.filename}`} alt={article.name} className="shop-card-item-photo" />
                             <strong>{article.name}</strong>
                             <p>{article.price}€</p>
                             <button className="shop-card-item-button">
@@ -45,7 +44,6 @@ export default function ShopKids() {
             <div>
                 <Header />
                 {articlesList()}
-                <Footer />
             </div>
         </>
     );

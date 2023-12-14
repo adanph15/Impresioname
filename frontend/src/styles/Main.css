@@ -7,6 +7,11 @@ input , button{
     height: 4vh;
     font-size: 16px;
 }
+
+button:hover {
+    background-color: black;
+    color: white;
+}
   
 h4 {
     margin-top: 1vh;
@@ -58,21 +63,6 @@ a {
     .hide{ width: 1px; }
 }
 
-
-/* --------------------------------- */
-/* FOOTER STYLES */
-
-.footer-container {
-    background-color: black;
-    height: 100px;
-    width: 100%;
-    position: sticky;
-    bottom: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-}
 
 
 /* --------------------------------- */
@@ -132,11 +122,14 @@ a {
     transform: scale(1.1);
 }
 
+.glasses {
+    height: 100vh;
+}
+
 .glasses-container {
     margin-top: 10vh;
     display: flex;
     justify-content: center;
-    margin-bottom: 10vh;
 }
 
 .glasses-item {
@@ -186,6 +179,7 @@ a {
 }
 
 
+
 /* --------------------------------- */
 /* SING-IN SING-UP USER-PAGE STYLES */
 
@@ -194,7 +188,7 @@ a {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
-    align-items: center;
+    align-items: start;
     margin-bottom: 20vh;
     margin-top: 2vh;
     height: 70vh;
@@ -226,6 +220,7 @@ a {
 }
 
 
+
 /* --------------------------------- */
 /* DIRECTION STYLES */
 
@@ -239,9 +234,10 @@ a {
     flex-wrap: nowrap;
     justify-content: space-evenly;
     align-items: center;
-    padding-bottom: 4vh;
     border-radius: 6px;
+    margin-top: 2vh;
     margin-bottom: 2vh;
+    padding-bottom: 1vh;
 }
 
 .direction-item {
@@ -250,10 +246,14 @@ a {
     justify-content: center;
     align-items: center;
     gap: 10px;
+    margin-left: 2vh;
 }
 
 .direction-button {
     width: 10vw;
+    background-color: white;
+    color: black;
+    margin-right: 2vh;
 }
 
 @media only screen and (max-width: 999px) {
@@ -261,6 +261,7 @@ a {
 
     .direction-container { width: 70vw; flex-direction: column; }
 }
+
 
 
 /* --------------------------------- */
@@ -275,6 +276,7 @@ a {
 }
 
 .purchase-container {
+    margin-top: 2vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -283,6 +285,7 @@ a {
     color: white;
     border-radius: 6px;
     padding: 20px;
+    margin-bottom: 4vh;
 }
 
 .purchase-item {
@@ -297,6 +300,7 @@ a {
 @media only screen and (max-width: 999px) {
     .purchase-item { width: 60vw; }
 }
+
 
 
 /* --------------------------------- */
@@ -377,7 +381,7 @@ a {
 }
 
 @media only screen and (max-width: 999px) {
-    .double-container { flex-direction: column; }
+    .double-container { flex-direction: column;}
 
     .cart-item { width: 70vw; }
 

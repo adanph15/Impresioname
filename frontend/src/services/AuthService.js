@@ -1,7 +1,6 @@
-// src/services/AuthService.js
 import axios from 'axios';
 
-const API_URL = "http://localhost:8000/api/users/";
+// const API_URL = "http://localhost:8000/api/users/";
 
 const AuthService = {
   getToken() {
@@ -10,7 +9,7 @@ const AuthService = {
 
   setToken(token) {
     localStorage.setItem('token', token);
-  }, //verificar
+  }, 
 
   removeToken() {
     localStorage.removeItem('token');

@@ -1,4 +1,3 @@
-import Footer from "../../components/footer/Footer";
 import Header from "../../components/header/Header";
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -68,7 +67,7 @@ const UserAddressesPage = () => {
           <div className="double-container">
             <div className='singin-form-container'>
               <h2>Directions Info</h2>
-
+              <br></br>
               {addresses.map((address) => (
                 <div className="direction-container">
                   <div className="direction-item">
@@ -105,7 +104,6 @@ const UserAddressesPage = () => {
             </div>
           </div>
         </div>
-        <Footer />
       </div >
     </>
   );

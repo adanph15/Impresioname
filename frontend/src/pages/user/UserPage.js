@@ -1,4 +1,3 @@
-import Footer from "../../components/footer/Footer";
 import Header from "../../components/header/Header";
 import React, { useState, useEffect } from 'react';
 import AuthService from "../../services/AuthService";
@@ -87,7 +86,6 @@ export default function UserPage() {
             )}
           </div>
         </div>
-        <Footer />
       </div>
     </>
   );

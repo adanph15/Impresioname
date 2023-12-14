@@ -1,7 +1,6 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import Header from "../../components/header/Header";
-import Footer from "../../components/footer/Footer";
 import { useParams } from 'react-router-dom';
 import CartService from "../../services/CartService";
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
@@ -58,22 +57,23 @@ export default function GlassesPage() {
     <>
       <div>
         <Header />
-        <div className='glasses-container'>
-          <div className='glasses-item'>
-            <div className='glasses-item-info'>
-              <img src={`http://localhost:8000/images/${article.filename}`} className="glasses-item-img" />
-              <div className='glasses-info'>
-                <h2>{article.price}€</h2>
-                <p>{article.name} - {article.description}</p>
-                <p>{article.stock ? 'in stock' : 'out of stock'}</p>
+        <div className="glasses">
+          <div className='glasses-container'>
+            <div className='glasses-item'>
+              <div className='glasses-item-info'>
+                <img src={`http://localhost:8000/images/${article.filename}`} className="glasses-item-img" />
+                <div className='glasses-info'>
+                  <h2>{article.price}€</h2>
+                  <p>{article.name} - {article.description}</p>
+                  <p>{article.stock ? 'in stock' : 'out of stock'}</p>
+                </div>
+                <Link to={`/shop-men`} className='link'>
+                  <button className="button-glasses" id='buttonBasket' onClick={addToCart}>add to basket</button>
+                </Link>
               </div>
-              <Link to={`/shop-men`} className='link'>
-              <button className="button-glasses" id='buttonBasket' onClick={addToCart}>add to basket</button>
-              </Link>
             </div>
           </div>
         </div>
-        <Footer />
       </div>
     </>
   );

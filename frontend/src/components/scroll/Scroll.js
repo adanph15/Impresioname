@@ -25,7 +25,7 @@ const Scroll = () => {
                 {articles.map((article) => (
                     <Link to={`/glasses/${article.id}`} className='link'>
                         <div className="scroll-card-item">
-                            <img src={`http://localhost:8000/images/${article.filename}`} className="scroll-card-item-photo" />
+                            <img src={`http://localhost:8000/images/${article.filename}`} alt={article.name} className="scroll-card-item-photo" />
                             <strong className='scroll-card-item-title'>{article.name}</strong>
                             <p className="scroll-card-item-text">{article.price}€</p>
                             <p className="scroll-card-item-text">For {article.category}</p>

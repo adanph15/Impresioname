@@ -1,5 +1,4 @@
 import Header from '../../components/header/Header';
-import Footer from '../../components/footer/Footer';
 import CartService from '../../services/CartService';
 import PurchaseService from '../../services/PurcharseService';
 import AuthService from "../../services/AuthService";
@@ -84,7 +83,7 @@ const CartPage = () => {
     if (cartItems.length === 0) {
       return (
         <div className="cart-container">
-          <p>El carrito está vacío</p>
+          <p>Your Basket seems empty</p>
         </div>
       );
     } else {
@@ -122,7 +121,7 @@ const CartPage = () => {
       <div>
         <Header />
         <div className="no-cart-container">
-          <h2>My Carry</h2>
+          <h2>My Basket</h2>
           {user ? (
             <>
               {renderCartItems()}
@@ -133,7 +132,6 @@ const CartPage = () => {
             </>
           )}
         </div>
-        <Footer />
       </div>
     </>
   );

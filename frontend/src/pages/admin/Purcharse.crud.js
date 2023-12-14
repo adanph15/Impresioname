@@ -1,4 +1,4 @@
-import Footer from "../../components/footer/Footer";
+
 import Header from "../../components/header/Header";
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -131,11 +131,7 @@ export default function AdminPurcharse() {
                     </div>
                 </form>
 
-
-
-
                 {renderArticles()}
-                <Footer />
             </div>
         </>
     );

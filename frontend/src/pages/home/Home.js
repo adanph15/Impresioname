@@ -1,4 +1,3 @@
-import Footer from "../../components/footer/Footer";
 import Header from "../../components/header/Header";
 import Scroll from "../../components/scroll/Scroll";
 import jasonCategories from "../../assets/images/jasonCategories"
@@ -36,7 +35,6 @@ export default function Home() {
             </a>
           </div>
         </div>
-        <Footer />
       </div>
     </>
   );

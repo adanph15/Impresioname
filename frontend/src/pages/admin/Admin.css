@@ -35,17 +35,21 @@
   .active {
     display: block;
   }
-  
 
-
-
-  .hola {
+  .article-admin-item{
+    background-color: #333333;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    align-content: center;
+    color: white;
+    width: 40vh;
+    border-radius: 6px;
+    margin-bottom: 4vh;
   }
+
+  .article-admin-item button{
+    margin-bottom: 2vh;
+  } 
 
 .card-container {
     width: 85vw;
@@ -57,6 +61,7 @@
     gap: 4vh;
     color: white;
     font-weight: bold;
+    background-color: #333333;
 }
 .card-item {
     width: 200px;

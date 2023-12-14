@@ -1,4 +1,3 @@
-import Footer from "../../components/footer/Footer";
 import Header from "../../components/header/Header";
 import React, { useState } from 'react';
 import AuthService from "../../services/AuthService";
@@ -65,7 +64,6 @@ export default function SingIn() {
             </div>
           </form>
         </div>
-        <Footer />
       </div>
     </>
   );

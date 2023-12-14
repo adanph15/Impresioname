@@ -1,13 +1,36 @@
 # IMPRESIÓNAME 👓
 
-This application consists in a shop page were a user can buy and see a catalogue of glasses and in a future customize glasses by her own.
+First version of an online glasses store, where you can see different catalogs depending on the categories, and allows the user to make purchases using a cart.
+
+For the following versions I want to add an option so that the user can view the glasses model using augmented reality technology, we also want to implement the ability to customize a glasses model.
 
 <br><br>
 
 
-## MORE ABOUT  <a name ="idBuild"></a> 🔨 
+## INDICE 📃
+- [MORE ABOUT](#idInfo)
+- [MODEL AND DIAGRAMS INFO](#idModels)
+- [USER REQUIREMENTS](#idRequirements)
+- [USER MANUAL](#idUserManual)
+- [BUILD WITH](#idBuild)
+- [PLANNING](#idPlaning)
+- [POSTMAN](#idPostman)
+- [AUTHOR](#idAuthor)
+- [CONCLUSION](#idConclusion)
 
-Build in React `[JS]` , NodeJS `[Express - Sequelize]` & MysQL.
+<br><br>
+
+## MORE ABOUT  <a name ="idInfo"></a> 🔨 
+The IMPRESIÓNAME Project is an initiative of the Esteve Terradas e Illa Institute of Barcelona.
+Participating in this project:
++ Esteve Terradas i Illa Institute (Barcelona).
++ CIPFP MISLATA (Valencia)
++ Technological Institute of the Canary Islands (ITC).
++ IES El Rincón.
++ LASERCAN (Valencia)
+
+The objective of the project is to create an App that allows customers to create their own glasses at from different 3D models using augmented reality so that the user can go seeing how it looks. Once you are satisfied with the design you can purchase said design at the
+web and finally it will arrive printed at your home.
 
 <br><br>
 
@@ -68,7 +91,7 @@ Database structure and its respective diagrams.
 
 <br><br>
 
-## User Requirement <a name ="idRequirements"></a> 👤
+## USER REQUIRMENT <a name ="idRequirements"></a> 👤
     Web Aplication
 
 
@@ -90,13 +113,13 @@ Database structure and its respective diagrams.
 
 -----------------------------------
 
-## Installation Manual <a name="idUserManual"></a> 🔧
+## INSTALLATION MANUAL <a name="idUserManual"></a> 🔧
 
     To start using the app, we will need ReactJS, NodeJS and MySQL as Data Base.
 
 <br>
 
-### Install NodeJS
+### INSTALL NODEJS
     
 _*You need to download and install [NodeJS](https://nodejs.org/en/download/current)*._
 
@@ -108,7 +131,7 @@ _*Recommended to have version: 9.6.7 or higher*._
 
 <br>
 
-### Install the Project and the Dependencies 💾
+### INSTALL THE PROJECT AND THE DEPENDENCIES 💾
 
 *Then, you need to git clone the repository:*.
 
@@ -132,7 +155,7 @@ _*Recommended to have version: 9.6.7 or higher*._
 
 <br><br>
 
-### Initialize the Project 💻
+### INITIALIZE THE PROJECT 💻
 
 *First, in MySQL you need to create a new Data Base*.
 
@@ -174,7 +197,7 @@ DB_NAME will be the name of the DB that we created previously, and DB_PASSWORD_ 
 <br><br>
 
 
-## BUILD WITH <a name="idTech"></a> 🛠️
+## BUILD WITH <a name="idBuild"></a> 🛠️
 
 MySQL:
 
@@ -204,7 +227,7 @@ ReactJS:
 
 <br>
 
-## PLANNING 📅  <a name="idPlaniNG"></a>
+## PLANNING 📅  <a name="idPlaning"></a>
 
 + [To see the planning click here](https://github.com/users/adanelrincon/projects/1)
 
@@ -216,7 +239,7 @@ ReactJS:
 
 <br>
 
-## Conclusion <a name="idConclusion"></a> 💬
+## CONCLUSION <a name="idConclusion"></a> 💬
 
     In my conclusion was a hard weeks to made this possible but I reached big goals settings by my
     self so I'm very proud of my self, this ecommerce was good to start programming a full

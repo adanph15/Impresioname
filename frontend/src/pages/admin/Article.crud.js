@@ -1,7 +1,7 @@
-import Footer from "../../components/footer/Footer";
 import Header from "../../components/header/Header";
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import "./Admin.css";
 
 export default function AdminArticle() {
     const [file, setImage] = useState();
@@ -86,10 +86,10 @@ export default function AdminArticle() {
         return (
             <div className="shop-container">
                 <h2>Articles</h2>
-                <div className="card-container">
+                <div className="aricle-admin-container">
                     {articles.map((article) => (
-                        <div key={article.id} className="card-item">
-                            <img src={`http://localhost:8000/images/${article.filename}`} className="card-item-photo" />
+                        <div key={article.id} className="article-admin-item">
+                            <img src={`http://localhost:8000/images/${article.filename}`} alt={article.name} className="shop-card-item-photo" />
                             <p></p>
                             <strong>{article.name}</strong>
                             <p>{article.description}</p>
@@ -111,33 +111,34 @@ export default function AdminArticle() {
             <div>
                 <Header />
                 <form onSubmit={handleCreateArticle} className='singin-form-container'>
+                    <h2>Add New Article</h2>
                     <div className="singin-form-item">
-                        <h4>name</h4>
+                        <h4>Name:</h4>
                         <input name="name" type="text" value={newArticle.name} onChange={handleInputChange}></input>
                     </div>
                     <div className="singin-form-item">
-                        <h4>description</h4>
+                        <h4>Description:</h4>
                         <input name="description" type="text" value={newArticle.description} onChange={handleInputChange}></input>
                     </div>
                     <div className="singin-form-item">
-                        <h4>price</h4>
+                        <h4>Price:</h4>
                         <input name="price" type="number" value={newArticle.price} onChange={handleInputChange}></input>
                     </div>
                     <div className="singin-form-item">
-                        <h4>image</h4>
+                        <h4>Image</h4>
                         <input name="file" type="file" onChange={handleImageChange} multiple></input>
                     </div>
                     <div className="signin-form-item">
-                        <h4>category</h4>
+                        <h4>Category:</h4>
                         <select name="category" value={newArticle.category} onChange={handleInputChange}>
-                            <option value="">choose category</option>
+                            <option value="">Choose Category</option>
                             <option value="men">men</option>
                             <option value="women">women</option>
                             <option value="kids">kids</option>
                         </select>
                     </div>
                     <div className="singin-form-item">
-                        <h4>stock</h4>
+                        <h4>Stock:</h4>
                         <input name="category" type="checkbox" checked={newArticle.stock} onChange={() =>
                             setNewArticle((prevArticle) => ({
                                 ...prevArticle,
@@ -146,12 +147,11 @@ export default function AdminArticle() {
                         }></input>
                     </div>
                     <div className="singin-form-item">
-                        <button type='submit'>create</button>
+                        <button type='submit'>Create</button>
                     </div>
                 </form>
 
                 {renderArticles()}
-                <Footer />
             </div>
         </>
     );

@@ -117,7 +117,7 @@ delete products and finally you can edit and remove the status of users purchase
 
 ## USER MANUAL <a name="idUsermanual"></a> 🙇
 
-__[If you want to see more details and an actual manual click here.](/Impresioname/USER-MANUAL/IMPRESIONAME-USER-MANUAL.pdf)__
+__[If you want to see more details and an actual manual click here.](/USER-MANUAL/IMPRESIONAME-USER-MANUAL.pdf)__
 
 <br>
 
@@ -234,7 +234,7 @@ If without having an account we try to go to the basketball page or the user pag
 <br/>
 
 ***
-To see the manual with more info click [HERE](/Impresioname/USER-MANUAL/IMPRESIONAME-USER-MANUAL.pdf)
+To see the manual with more info click [HERE](/USER-MANUAL/IMPRESIONAME-USER-MANUAL.pdf)
 
 
 <br><br>

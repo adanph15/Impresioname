@@ -59,8 +59,11 @@ const UserAddressesUpdate = () => {
       isValid = false;
     }
   
-    if (typeof address.post_code !== 'number' || isNaN(address.post_code)) {
-      errors.post_code = 'Post Code is required and must be a number';
+    if (!address.post_code.trim()) {
+      errors.post_code = 'Post Code is required';
+      isValid = false;
+    } else if (!/^\d{5,}$/.test(address.post_code.trim())) {
+      errors.post_code = 'Post Code must be numeric and have at least 5 characters';
       isValid = false;
     }
   

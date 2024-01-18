@@ -59,7 +59,11 @@ const UserAddressesPage = () => {
     if (!newAddress.post_code.trim()) {
       errors.post_code = 'Post Code is required';
       isValid = false;
+    } else if (!/^\d{5,}$/.test(newAddress.post_code.trim())) {
+      errors.post_code = 'Post Code must be numeric and have at least 5 characters';
+      isValid = false;
     }
+
 
     if (!newAddress.location.trim()) {
       errors.location = 'Location is required';

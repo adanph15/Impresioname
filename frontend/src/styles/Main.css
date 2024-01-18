@@ -178,6 +178,10 @@ a {
     color: white;
 }
 
+@media only screen and (max-width: 999px) {
+    .shop-card-item-photo { width: 120px; }
+}
+
 
 
 /* --------------------------------- */

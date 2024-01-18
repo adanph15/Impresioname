@@ -68,3 +68,7 @@
         transform: translate(calc(-50% - 0.5rem));
     }
 }
+
+@media only screen and (max-width: 999px) {
+    .scroll-card-item-photo { width: 120px; }
+}

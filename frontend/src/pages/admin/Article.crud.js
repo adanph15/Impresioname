@@ -3,6 +3,10 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import "./Admin.css";
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import io from 'socket.io-client';
+
 export default function AdminArticle() {
     const [file, setImage] = useState();
     const [articles, setArticles] = useState([]);
@@ -14,6 +18,15 @@ export default function AdminArticle() {
         stock: true,
         file: '',
     });
+
+    const runEvent = (name, price, category) => {
+        const socket = io("http://localhost:8000", { transports: ["websocket"] });
+        socket.emit("new_glasses", { message:
+            `New glasses ${name} 
+            added right now go check it in ${category} category, 
+            with a price of ${price}€.`
+        });
+    };
 
     useEffect(() => {
         showArticles();
@@ -57,7 +70,7 @@ export default function AdminArticle() {
                     'Content-Type': 'multipart/form-data',
                 },
             });
-
+            runEvent(newArticle.name, newArticle.price, newArticle.category);
             showArticles();
             setNewArticle({
                 name: '',
@@ -149,6 +162,7 @@ export default function AdminArticle() {
                     <div className="singin-form-item">
                         <button type='submit'>Create</button>
                     </div>
+                    <ToastContainer />
                 </form>
 
                 {renderArticles()}

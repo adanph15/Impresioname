@@ -1,0 +1,11 @@
+Model Information:
+* title:	Glasses 09
+* source:	https://sketchfab.com/3d-models/glasses-09-5d4ef7145b1b426cb129e3d661f7c2e6
+* author:	Dokono Kinokoda (https://sketchfab.com/JunkWren)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Glasses 09" (https://sketchfab.com/3d-models/glasses-09-5d4ef7145b1b426cb129e3d661f7c2e6) by Dokono Kinokoda (https://sketchfab.com/JunkWren) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

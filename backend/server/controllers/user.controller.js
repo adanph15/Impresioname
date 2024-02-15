@@ -1,7 +1,7 @@
 const db = require("../models");
 const User = db.user;
 const Op = db.Sequelize.Op;
-const utils = require("../../utils");
+const utils = require("../auth/utils");
 const bcrypt = require('bcryptjs');
 const Direction = db.direction;
 

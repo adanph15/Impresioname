@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Header from "../../components/header/Header";
 import { useParams } from 'react-router-dom';
 import CartService from "../../services/CartService";

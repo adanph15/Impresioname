@@ -17,6 +17,7 @@ import CartPage from "./pages/shop/CartPage";
 import UserPurchasePage from "./pages/user/UserPurchasePage";
 import AdminPurchaseList from "./pages/admin/Purchase.view";
 import AdminPurchaseUpdate from "./pages/admin/Purchase.edit";
+import ThreeService from "./services/ThreeJS";
 
 
 function App() {
@@ -27,6 +28,8 @@ function App() {
       <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/vr" element={<ThreeService />} />
+
             <Route path="/home" element={<Home />} />
             <Route path="/sing-in" element={<SingIn />} />
             <Route path="/sing-up" element={<SingUp />} />

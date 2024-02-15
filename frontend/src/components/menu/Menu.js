@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import "./Menu.css";
 
 export default function Menu({ isOpen, closeNav }) {

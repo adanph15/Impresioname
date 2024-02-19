@@ -18,7 +18,7 @@ export default function Header() {
     return (
         <>
             <div className="header-container">
-                <a  href='/profile'>
+                <a href='/profile'>
                 <FontAwesomeIcon className="hide" icon={faUser} size="xl" />
                 </a>
                 <a onClick={openNav}>

@@ -4,7 +4,7 @@ import PurchaseService from '../../services/PurcharseService';
 import AuthService from "../../services/AuthService";
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 
@@ -32,9 +32,9 @@ const CartPage = () => {
     fetchData();
   }, []);
 
-  const handleLogout = () => {
-    AuthService.logout();
-  };
+  // const handleLogout = () => {
+  //   AuthService.logout();
+  // };
 
   const handleUser = () => {
     const userInfo = JSON.parse(localStorage.getItem('userInfo'));
@@ -93,7 +93,7 @@ const CartPage = () => {
           <div className='cart-container'>
             {cartItems.map((article) => (
               <div className="cart-item" key={article.id}>
-                <img src={`http://localhost:8000/images${image(article.filename)}`} className="shop-card-item-photo" />
+                <img src={`http://localhost:8000/images${image(article.filename)}`} className="shop-card-item-photo" alt={`${article.filename}`}/>
                 <div className='cart-info'>
                   <strong>{article.name}</strong>
                   <p>{article.price}€</p>

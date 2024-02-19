@@ -2,8 +2,7 @@ import Header from "../../components/header/Header";
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import "./Admin.css";
-
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import io from 'socket.io-client';
 

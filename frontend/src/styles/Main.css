@@ -84,7 +84,7 @@ a {
 }
 
 .hide{
-    color: white;
+    visibility: hidden;
 }
 
 .icon {
@@ -148,6 +148,7 @@ a {
     font-weight: bold;
     margin-bottom: 2vh;
     border-radius: 6px;
+    cursor: pointer;
 }
 
 .shop-card-item:hover {
@@ -220,7 +221,7 @@ a {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
-    align-items: start;
+    align-items: flex-start;
     margin-bottom: 20vh;
     margin-top: 2vh;
     height: 70vh;
@@ -302,7 +303,7 @@ a {
 .purchase {
     display: flex;
     flex-direction: column;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: center;
     height: 85vh;
 }
@@ -343,7 +344,7 @@ a {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
-    align-items: start;
+    align-items: flex-start;
     margin-bottom: 20vh;
     margin-top: 2vh;
     gap: 10vh;
@@ -353,7 +354,7 @@ a {
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
-    justify-content: end;
+    justify-content:flex-end;
     align-items:center;
     padding: 20px;
 }
@@ -378,7 +379,7 @@ a {
 .no-cart-container{
     display: flex;
     flex-direction: column;
-    justify-content: start;
+    justify-content: flex-start;
     align-items:center;
     padding: 20px;
     height: 100vh;

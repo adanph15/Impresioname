@@ -61,7 +61,7 @@ export default function GlassesPage() {
           <div className='glasses-container'>
             <div className='glasses-item'>
               <div className='glasses-item-info'>
-                <img src={`https://localhost:8000/images/${article.filename}`} className="glasses-item-img" />
+                <img src={`https://localhost:8000/images/${article.filename}`} className="glasses-item-img" alt='articleImagesGlasses'/>
                 <div className='glasses-info'>
                   <h2>{article.price}€</h2>
                   <p>{article.name} - {article.description}</p>

@@ -32,9 +32,9 @@ const CartPage = () => {
     fetchData();
   }, []);
 
-  const handleLogout = () => {
-    AuthService.logout();
-  };
+  // const handleLogout = () => {
+  //   AuthService.logout();
+  // };
 
   const handleUser = () => {
     const userInfo = JSON.parse(localStorage.getItem('userInfo'));
@@ -93,7 +93,7 @@ const CartPage = () => {
           <div className='cart-container'>
             {cartItems.map((article) => (
               <div className="cart-item" key={article.id}>
-                <img src={`https://localhost:8000/images${image(article.filename)}`} className="shop-card-item-photo" />
+                <img src={`https://localhost:8000/images${image(article.filename)}`} className="shop-card-item-photo" alt='articleImage'/>
                 <div className='cart-info'>
                   <strong>{article.name}</strong>
                   <p>{article.price}€</p>

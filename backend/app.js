@@ -4,18 +4,32 @@ const cors = require("cors");
 const path = require('path');
 const socketIo = require('socket.io');
 const http = require('http');
+const https = require('https');
+const fs = require('fs');
 
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
 
+const USING_HTTPS = process.env.USING_HTTPS == "true" ? true : false;
+const HOST = process.env.HOST || "localhost";
+const HTTP_PORT = process.env.HTTP_PORT || 80; // Puerto para HTTP
+const HTTPS_PORT = process.env.HTTPS_PORT || 443; // Puerto para HTTPS
 
-const server = http.createServer(app);
-const io = socketIo(server);
+// Configuración para redirección HTTP a HTTPS
+const HTTP = express();
 
-app.use('/images' ,express.static(path.join(__dirname, 'server','public', 'images')));
-app.use('/assets' ,express.static(path.join(__dirname, 'server','public', 'assets')));
+if (USING_HTTPS && HTTP_PORT != 443) {
+  HTTP.get("*", (req, res) =>
+    res.redirect("https://" + HOST + ":" + HTTPS_PORT + req.url)
+  );
 
+  HTTP.listen(HTTP_PORT, () => {
+    console.log(`HTTP server listening on port ${HTTP_PORT}`);
+  });
+}
 
+app.use('/images', express.static(path.join(__dirname, 'server', 'public', 'images')));
+app.use('/assets', express.static(path.join(__dirname, 'server', 'public', 'assets')));
 
 var corsOptions = {
   origin: "*"
@@ -33,24 +47,18 @@ const Article = db.article;
 
 db.sequelize.sync();
 //  force: true will drop the table if it already exists
- db.sequelize.sync({forcce: true}).then(() => {
-   console.log('Drop and Resync Database with { force: true }');
+db.sequelize.sync({ force: true }).then(() => {
+  console.log('Drop and Resync Database with { force: true }');
 });
-
-app.get("/", (req, res) => {
-  res.json("Welcome to Impresioname!" );
-});
-
-
 
 app.use(function (req, res, next) {
   // check header or url parameters or post parameters for token
   var token = req.headers['authorization'];
   if (!token) return next(); //if no token, continue
 
-  if(req.headers.authorization.indexOf('Basic ') === 0){
+  if (req.headers.authorization.indexOf('Basic ') === 0) {
     // verify auth basic credentials
-    const base64Credentials =  req.headers.authorization.split(' ')[1];
+    const base64Credentials = req.headers.authorization.split(' ')[1];
     const credentials = Buffer.from(base64Credentials, 'base64').toString('ascii');
     const [username, password] = credentials.split(':');
 
@@ -76,6 +84,31 @@ app.use(function (req, res, next) {
   });
 });
 
+let SERVER = null;
+
+if (USING_HTTPS) {
+  const CERTS = () => {
+    try {
+      return {
+        key: fs.readFileSync("./server/.cert/cert.key"),
+        cert: fs.readFileSync("./server/.cert/cert.crt"),
+      };
+    } catch (err) {
+      console.log("No certificates found: " + err);
+    }
+  };
+  SERVER = https.createServer(CERTS(), app);
+} else {
+  SERVER = http.createServer(app);
+}
+
+const io = socketIo(SERVER, {
+  cors: {
+    origin: "*", // Ajusta según tus necesidades
+    methods: ["GET", "POST"]
+  }
+});
+
 io.on("connection", (socket) => {
   socket.on("disconnect", () => {
     console.log("User disconnected");
@@ -86,17 +119,13 @@ io.on("connection", (socket) => {
   });
 });
 
-
 // routes
 require("./server/routes/all.routes")(app);
 require("./server/routes/article.routes")(app);
 require("./server/routes/user.routes")(app);
 
-// set port, listen for requests
-const PORT = process.env.PORT || 8000;
-server.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}.`);
+(USING_HTTPS ? SERVER : app).listen(HTTPS_PORT, () => {
+  console.log(`Server is running on port ${HTTPS_PORT}`);
 });
-
 
 module.exports = app;

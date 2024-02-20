@@ -13,7 +13,7 @@ const UserPurchasePage = () => {
     useEffect(() => {
         const fetchPurchases = async () => {
             try {
-                const response = await axios.get(`http://localhost:8000/api/purchase/user/${id}`);
+                const response = await axios.get(`https://localhost:8000/api/purchase/user/${id}`);
                 setPurchases(response.data);
             } catch (error) {
                 console.error('Error fetching Purchases:', error);

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Link } from 'react-router-dom';
 import Header from "../../components/header/Header";
 
 export default function ShopKids() {
@@ -11,7 +11,7 @@ export default function ShopKids() {
 
     const fetchArticles = async () => {
         try {
-            const response = await axios.get('http://localhost:8000/api/article/category/kids');
+            const response = await axios.get('https://localhost:8000/api/article/category/kids');
             setArticles(response.data);
         } catch (error) {
             console.error('Error fetching articles:', error);
@@ -25,7 +25,7 @@ export default function ShopKids() {
                     {articles.map((article) => (
                     <Link to={`/glasses/${article.id}`} className='link'>
                         <div className="shop-card-item">
-                            <img src={`http://localhost:8000/images/${article.filename}`} alt={article.name} className="shop-card-item-photo" />
+                            <img src={`https://localhost:8000/images/${article.filename}`} alt={article.name} className="shop-card-item-photo" />
                             <strong>{article.name}</strong>
                             <p>{article.price}€</p>
                             <button className="shop-card-item-button">

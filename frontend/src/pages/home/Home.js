@@ -11,7 +11,7 @@ import io from 'socket.io-client';
 export default function Home() {
 
   const runEvent = () => {
-    const socket = io("http://localhost:8000", {transports: ["websocket"]});
+    const socket = io("https://localhost:8000", {transports: ["websocket"]});
     console.log("ran 1st")
     socket.emit("new_user_login", {message: "User has logged In"});
   };
@@ -26,7 +26,7 @@ export default function Home() {
   };
 
   useEffect(() => {
-    const socket = io("http://localhost:8000", {transports: ["websocket"]});
+    const socket = io("https://localhost:8000", {transports: ["websocket"]});
 
     socket.on("new_user_login", (data) => {
       toast.info(data.message,{

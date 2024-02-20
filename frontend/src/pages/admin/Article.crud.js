@@ -19,7 +19,7 @@ export default function AdminArticle() {
     });
 
     const runEvent = (name, price, category) => {
-        const socket = io("http://localhost:8000", { transports: ["websocket"] });
+        const socket = io("https://localhost:443", { transports: ["websocket"] });
         socket.emit("new_glasses", { message:
             `New glasses ${name} 
             added right now go check it in ${category} category, 
@@ -33,7 +33,7 @@ export default function AdminArticle() {
 
     const showArticles = async () => {
         try {
-            const response = await axios.get('http://localhost:8000/api/article');
+            const response = await axios.get('https://localhost:443/api/article');
             setArticles(response.data);
         } catch (error) {
             console.error('Error fetching articles:', error);
@@ -64,7 +64,7 @@ export default function AdminArticle() {
             formData.append('stock', newArticle.stock);
             formData.append('file', file);
             console.log('Form Data:', formData);
-            await axios.post('http://localhost:8000/api/article', formData, {
+            await axios.post('https://localhost:443/api/article', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
@@ -87,7 +87,7 @@ export default function AdminArticle() {
 
     const handleDeleteArticle = async (id) => {
         try {
-            await axios.delete(`http://localhost:8000/api/article/${id}`);
+            await axios.delete(`https://localhost:443/api/article/${id}`);
             showArticles();
         } catch (error) {
             console.error('Error deleting article:', error);
@@ -101,7 +101,7 @@ export default function AdminArticle() {
                 <div className="aricle-admin-container">
                     {articles.map((article) => (
                         <div key={article.id} className="article-admin-item">
-                            <img src={`http://localhost:8000/images/${article.filename}`} alt={article.name} className="shop-card-item-photo" />
+                            <img src={`https://localhost:443/images/${article.filename}`} alt={article.name} className="shop-card-item-photo" />
                             <p></p>
                             <strong>{article.name}</strong>
                             <p>{article.description}</p>

@@ -24,7 +24,7 @@ app.use(express.urlencoded({ extended: true }));
 const db = require("./server/models");
 const Article = db.article;
 
-db.sequelize.sync({ force: true }).then(() => {
+db.sequelize.sync({ force: false }).then(() => {
   console.log('Drop and Resync Database with { force: true }');
 });
 
@@ -101,3 +101,5 @@ if (USING_HTTPS) {
     console.log("No se pudieron cargar los certificados. El servidor no se iniciará.");
   }
 }
+
+module.exports = app;

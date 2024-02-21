@@ -3,37 +3,61 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-face-aframe.prod.js"></script>
-
+		<!-- <script>
+			let paginaRecargada = false; // Variable para llevar un seguimiento de si la página ha sido recargada
+	
+			const TIEMPO_ESPERA_RECARGA = 500; // Tiempo de espera en milisegundos (en este caso, 5 segundos)
+	
+			window.onload = function() {
+				if (!paginaRecargada) {
+					// Si es la primera vez que se carga la página, recargar después del tiempo de espera
+					setTimeout(function() {
+						window.location.reload(true); // Recargar la página
+						paginaRecargada = true; // Establecer la variable como verdadera
+					}, TIEMPO_ESPERA_RECARGA);
+				}
+			};
+		</script> -->
 		<style>
 			.example-container {
+				display: flex;
+				flex-direction: row;
+				justify-content: center;
+				align-items: flex-end;
+			}
+
+			.example-item {
+				display: flex;
 				overflow: hidden;
 				position: absolute;
-				width: 100%;
-				height: 100%;
+				width: 60%;
+				height: 60%;
 			}
 		</style>
 	</head>
 
 	<body>
 		<div class="example-container">
-			<a-scene mindar-face embedded color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights"
-				vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
-				<a-assets>
-					<a-asset-item id="headModel" src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/examples/face-tracking/assets/sparkar/headOccluder.glb"></a-asset-item>
-					<a-asset-item id="glassesModel6" src="http://localhost:8000/assets/glasses-6/scene.gltf"></a-asset-item>
-				</a-assets>
-				<a-camera active="false" position="0 0 0"></a-camera>
-				<a-entity mindar-face-target="anchorIndex: 168">
-					<a-gltf-model mindar-face-occluder position="0 -0.3 0.15" rotation="0 0 0" scale="0.065 0.065 0.065"
-						src="#headModel">
-					</a-gltf-model>
-				</a-entity>	
-				<a-entity mindar-face-target="anchorIndex: 188">
-					<a-gltf-model rotation="0 0 0" position="0.05 -0.09 0.1" scale="4.2 4.2 4.2" src="#glassesModel6"
-						class="glasses6-entity" visible="false">
-					</a-gltf-model>
-				</a-entity>
-			</a-scene>
+			<div class="example-item">
+				<a-scene mindar-face embedded color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights"
+					vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+					<a-assets>
+						<a-asset-item id="headModel" src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/examples/face-tracking/assets/sparkar/headOccluder.glb"></a-asset-item>
+						<a-asset-item id="glassesModel6" src="./assets/glasses-6/scene.gltf"></a-asset-item>
+					</a-assets>
+					<a-camera active="false" position="0 0 0"></a-camera>
+					<a-entity mindar-face-target="anchorIndex: 168">
+						<a-gltf-model mindar-face-occluder position="0 -0.3 0.15" rotation="0 0 0" scale="0.065 0.065 0.065"
+							src="#headModel">
+						</a-gltf-model>
+					</a-entity>	
+					<a-entity mindar-face-target="anchorIndex: 188">
+						<a-gltf-model rotation="0 0 0" position="0.05 -0.09 0.1" scale="4.2 4.2 4.2" src="#glassesModel6"
+							class="glasses6-entity" visible="true">
+						</a-gltf-model>
+					</a-entity>
+				</a-scene>
+			</div>
 		</div>
 	</body>
 </html>

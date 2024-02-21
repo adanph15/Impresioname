@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import Header from "../../components/header/Header";
 import { useParams } from 'react-router-dom';
 import CartService from "../../services/CartService";
-import { BrowserRouter as Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default function GlassesPage() {
   const [article, setArticle] = useState(null);
@@ -57,19 +57,19 @@ export default function GlassesPage() {
     let path = '';
 
     if (id >= 1 && id <= 4) {
-      path = '/glasses-model-3.html';
+      path = 'https://localhost:3000/glasses-model-3.html';
     } else if (id >= 5 && id <= 10) {
-      path = '/glasses-model-5.html';
+      path = 'https://localhost:3000/glasses-model-5.html';
     } else if (id >= 11 && id <= 14) {
-      path = '/glasses-model-7.html';
+      path = 'https://localhost:3000/glasses-model-7.html';
     } else if (id >= 15 && id <= 19) {
-      path = '/glasses-model-1.html';
+      path = 'https://localhost:3000/glasses-model-1.html';
     } else if (id >= 20 && id <= 23) {
-      path = '/glasses-model-4.html';
+      path = 'https://localhost:3000/glasses-model-4.html';
     } else if (id >= 24 && id <= 28) {
-      path = '/glasses-model-6.html';
+      path = 'https://localhost:3000/glasses-model-6.html';
     } else if (id >= 29 && id <= 42) {
-      path = '/glasses-model-2.html';
+      path = 'https://localhost:3000/glasses-model-2.html';
     }
 
     return path
@@ -93,9 +93,9 @@ export default function GlassesPage() {
                 <Link to={`/shop-men`} className='link'>
                   <button className="button-glasses" id='buttonBasket' onClick={addToCart}>Add to Basket</button>
                 </Link>
-                <Link to={goToTryGlasses(article.id)} className='link'>
+                <a href={goToTryGlasses(article.id)}>
                   <button className="button-glasses" id='buttonBasket'>Try Me</button>
-                </Link>
+                </a>
               </div>
             </div>
           </div>

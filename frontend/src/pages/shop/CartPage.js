@@ -4,7 +4,7 @@ import PurchaseService from '../../services/PurcharseService';
 import AuthService from "../../services/AuthService";
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const CartPage = () => {
   const [user, setUser] = useState(null);

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import CartService from "./CartService";
 
-const BASE_URL = 'https://localhost:8000/api'; // Asegúrate de ajustar la URL según la configuración de tu backend
+const BASE_URL = 'https://localhost/api'; // Asegúrate de ajustar la URL según la configuración de tu backend
 
 const status = "Purchase sent";
 

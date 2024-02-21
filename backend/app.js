@@ -22,7 +22,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const db = require("./server/models");
-const Article = db.article;
 
 db.sequelize.sync({ force: false }).then(() => {
   console.log('Drop and Resync Database with { force: true }');
@@ -67,7 +66,7 @@ require("./server/routes/article.routes")(app);
 require("./server/routes/user.routes")(app);
 
 const USING_HTTPS = true; // Forzamos el uso de HTTPS
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 443;
 
 if (USING_HTTPS) {
   const CERTS = () => {

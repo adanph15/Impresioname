@@ -15,7 +15,7 @@ const CartPage = () => {
       const token = AuthService.getToken();
       if (token) {
         try {
-          const response = await axios.get(`https://localhost:8000/api/users/${userInfo.id}`, {
+          const response = await axios.get(`https://localhost/api/users/${userInfo.id}`, {
             headers: {
               Authorization: `Bearer ${token}`,
             },
@@ -44,7 +44,7 @@ const CartPage = () => {
   const [cartItems, setCartItems] = useState([]);
 
   const image = (imageName) => {
-    const newName = imageName.replace('https://localhost:8000/images/', '');
+    const newName = imageName.replace('https://localhost/images/', '');
     console.log("nuevo nombre: ", newName);
     return newName;
   };
@@ -91,7 +91,7 @@ const CartPage = () => {
           <div className='cart-container'>
             {cartItems.map((article) => (
               <div className="cart-item" key={article.id}>
-                <img src={`https://localhost:8000/images${image(article.filename)}`} className="shop-card-item-photo" alt={`${article.filename}`}/>
+                <img src={`https://localhost/images${image(article.filename)}`} className="shop-card-item-photo" alt={`${article.filename}`}/>
                 <div className='cart-info'>
                   <strong>{article.name}</strong>
                   <p>{article.price}€</p>

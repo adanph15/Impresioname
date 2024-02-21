@@ -13,7 +13,7 @@ export default function UserPage() {
       const token = AuthService.getToken();
       if (token) {
         try {
-          const response = await axios.get(`https://localhost:8000/api/users/${userInfo.id}`, {
+          const response = await axios.get(`https://localhost/api/users/${userInfo.id}`, {
             headers: {
               Authorization: `Bearer ${token}`,
             },

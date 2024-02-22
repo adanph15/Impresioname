@@ -4,13 +4,15 @@ import Header from "../../components/header/Header";
 import { useParams } from 'react-router-dom';
 import CartService from "../../services/CartService";
 import { Link } from 'react-router-dom';
+import useSocketService from '../../services/SocketService';
+import { ToastContainer } from 'react-toastify';
 
 export default function GlassesPage() {
   const [article, setArticle] = useState(null);
   const { id } = useParams();
   const userInfo = JSON.parse(localStorage.getItem('userInfo'));
   const [cartItems, setCartItems] = useState([]);
-
+  useSocketService();
   useEffect(() => {
     const fetchArticle = async () => {
       try {
@@ -93,6 +95,7 @@ export default function GlassesPage() {
                 <Link to={`/shop-men`} className='link'>
                   <button className="button-glasses" id='buttonBasket' onClick={addToCart}>Add to Basket</button>
                 </Link>
+                <ToastContainer />
                 <a href={goToTryGlasses(article.id)}>
                   <button className="button-glasses" id='buttonBasket'>Try Me</button>
                 </a>
@@ -103,5 +106,4 @@ export default function GlassesPage() {
       </div>
     </>
   );
-
 }

@@ -3,8 +3,11 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import useSocketService from '../../services/SocketService';
 
 const UserAddressesUpdate = () => {
+  useSocketService();
   const navigate = useNavigate();
   const { id } = useParams();
   const userInfo = JSON.parse(localStorage.getItem('userInfo'));
@@ -78,6 +81,7 @@ const UserAddressesUpdate = () => {
             </div>
           </div>
         </div>
+        <ToastContainer />
       </div>
     </>
   );

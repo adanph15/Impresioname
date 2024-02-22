@@ -3,35 +3,42 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-face-aframe.prod.js"></script>
-		<!-- <script>
-			let paginaRecargada = false; // Variable para llevar un seguimiento de si la página ha sido recargada
-	
-			const TIEMPO_ESPERA_RECARGA = 500; // Tiempo de espera en milisegundos (en este caso, 5 segundos)
-	
-			window.onload = function() {
-				if (!paginaRecargada) {
-					// Si es la primera vez que se carga la página, recargar después del tiempo de espera
-					setTimeout(function() {
-						window.location.reload(true); // Recargar la página
-						paginaRecargada = true; // Establecer la variable como verdadera
-					}, TIEMPO_ESPERA_RECARGA);
-				}
-			};
-		</script> -->
+		<script>
+			function goToHome() {
+				window.location.href = "/home";
+			}
+			document.getElementById("exitButton").addEventListener("click", goToHome);
+		</script>
 		<style>
 			.example-container {
-				display: flex;
-				flex-direction: row;
-				justify-content: center;
-				align-items: flex-end;
-			}
-
-			.example-item {
-				display: flex;
 				overflow: hidden;
 				position: absolute;
-				width: 60%;
-				height: 60%;
+				width: 100%;
+				height: 100%;
+			}
+	
+			.exit-button {
+				position: absolute;
+				top: 20%;
+				left: 10%;
+				transform: translate(-50%, -50%);
+				z-index: 9999;
+				background-color: #3C3C3C;
+				color: white;
+				border: 0;
+				border-radius: 6px;
+				width: 7vw;
+				height: 7vh;
+				font-size: 20px;
+			}
+	
+			.exit-button:hover {
+				background-color: black;
+				color: white;
+			}
+	
+			@media only screen and (max-width: 999px) {
+				.exit-button { top: 88%; left: 50%; width: 16vw; height: 8vh; }
 			}
 		</style>
 	</head>

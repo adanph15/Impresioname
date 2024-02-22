@@ -1,8 +1,11 @@
 import Header from "../../components/header/Header";
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { ToastContainer } from 'react-toastify';
+import useSocketService from '../../services/SocketService';
 
 const UserAddressesPage = () => {
+  useSocketService();
   const userInfo = JSON.parse(localStorage.getItem('userInfo'));
   const id = userInfo.id;
   const [addresses, setAddresses] = useState([]);
@@ -104,7 +107,8 @@ const UserAddressesPage = () => {
             </div>
           </div>
         </div>
-      </div >
+        <ToastContainer />
+      </div>
     </>
   );
 };

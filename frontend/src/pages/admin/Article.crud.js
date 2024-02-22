@@ -19,7 +19,7 @@ export default function AdminArticle() {
     });
 
     const runEvent = (name, price, category) => {
-        const socket = io("https://localhost:443", { transports: ["websocket"] });
+        const socket = io("https://localhost", { transports: ["websocket"] });
         socket.emit("new_glasses", { message:
             `New glasses ${name} 
             added right now go check it in ${category} category, 
@@ -33,7 +33,7 @@ export default function AdminArticle() {
 
     const showArticles = async () => {
         try {
-            const response = await axios.get('https://localhost:443/api/article');
+            const response = await axios.get('https://localhost/api/article');
             setArticles(response.data);
         } catch (error) {
             console.error('Error fetching articles:', error);

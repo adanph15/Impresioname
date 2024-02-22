@@ -1,8 +1,11 @@
 import Header from "../../components/header/Header";
 import React, { useState } from 'react';
 import AuthService from "../../services/AuthService";
-
+import { ToastContainer } from 'react-toastify';
+import useSocketService from '../../services/SocketService';
+         
 export default function SingUp() {
+    useSocketService();
     const [username, setUserName] = useState('');
     const [name, setName] = useState('');
     const [last_name, setlast_name] = useState('');
@@ -58,6 +61,7 @@ export default function SingUp() {
                         </form>
                     </div>
                 </div>
+                <ToastContainer />
             </div>
         </>
     );

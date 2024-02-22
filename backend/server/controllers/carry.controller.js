@@ -7,7 +7,8 @@ exports.create = (req, res) => {
     // Validate request
     if (!req.body.article_id || 
         !req.body.purchase_id) {
-        return console.log('Missing data');
+            res.status(400).send({ message: 'Missing data' });
+            return;
     }
 
     // Create a Carry
@@ -49,7 +50,7 @@ exports.findOne = (req, res) => {
     Carry.findByPk(id)
         .then(data => {
             if (!data) {
-                res.send({
+                res.status(400).send({
                     message: "Carry not found."
                 });
             } else {
@@ -80,7 +81,7 @@ exports.update = (req, res) => {
                 message: "Carry updated."
             });
         } else {
-            res.send({
+            res.status(400).send({
                 message: "Carry cannot be updated."
             });
         }
@@ -103,8 +104,16 @@ exports.delete = (req, res) => {
             article_id: article_id,
             purchase_id: purchase_id
         }
-    }).then(data => {
-        res.send(data);
+    }).then(num => {
+        if (num == 1) {
+            res.send({
+                message: "Carry deleted."
+            });
+        } else {
+            res.status(400).send({
+                message: "Error finding carries."
+            });
+        }
     })
     .catch(err => {
         res.status(500).send({
@@ -119,7 +128,13 @@ exports.findByPurchaseId = (req, res) => {
 
     Carry.findAll({ where: { purchase_id: purchase_id } })
     .then(data => {
-        res.send(data);
+            if (!data) {
+                res.status(400).send({
+                    message: "Carries not found."
+                });
+            } else {
+                res.send(data);
+            }
     })
     .catch(err => {
         res.status(500).send({

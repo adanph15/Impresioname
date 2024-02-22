@@ -4,52 +4,22 @@ import jasonCategories from "../../assets/images/jasonCategories"
 import "./Home.css";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useEffect } from 'react';
 import io from 'socket.io-client';
-
+import useSocketService from '../../services/SocketService';
 
 export default function Home() {
-
-  const runEvent = () => {
-    const socket = io("https://localhost", {transports: ["websocket"]});
-    console.log("ran 1st")
-    socket.emit("new_user_login", {message: "User has logged In"});
-  };
+  const socket = io("https://localhost", { transports: ["websocket"] });
 
   const runLocalEvent = () => {
-    toast.success("This is a local event",{
-      position: "top-right",
-      theme: "dark",
-      autoClose: 2000,
-      pauseOnHover: false,
+    socket.emit("new_glasses", {
+      message:
+        `New glasses
+          added right now go check it incategory, 
+          with a price of€.`
     });
   };
 
-  useEffect(() => {
-    const socket = io("https://localhost", {transports: ["websocket"]});
-
-    socket.on("new_user_login", (data) => {
-      toast.info(data.message,{
-        position: "top-right",
-        theme: "dark",
-        autoClose: 2000,
-        pauseOnHover: false,
-      });    
-    });
-
-    socket.on("new_glasses", (data) => {
-      toast.info(data.message, {
-          position: "top-right",
-          theme: "dark",
-          autoClose: 20000,
-          pauseOnHover: false,
-      });
-  });
-
-
-  }, []);
-
-
+  useSocketService();
 
   return (
     <>
@@ -83,7 +53,6 @@ export default function Home() {
           </div>
         </div>
         <ToastContainer />
-        <button onClick={() => runEvent()}>REAL TIME EVENT</button>
         <button onClick={() => runLocalEvent()}>LOCAL TIME EVENT</button>
       </div>
     </>

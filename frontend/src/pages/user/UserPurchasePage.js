@@ -1,11 +1,13 @@
 import Header from "../../components/header/Header";
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-// import PurchaseService from '../../services/PurcharseService';
 import { format } from 'date-fns';
-
+import { ToastContainer } from 'react-toastify';
+import useSocketService from '../../services/SocketService';
 
 const UserPurchasePage = () => {
+    useSocketService();
+
     const userInfo = JSON.parse(localStorage.getItem('userInfo'));
     const id = userInfo.id;
     const [purchases, setPurchases] = useState([]);
@@ -65,6 +67,7 @@ const UserPurchasePage = () => {
                         </div>
                     ))}
                 </div>
+                <ToastContainer />
             </body >
         </>
     );

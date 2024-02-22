@@ -2,10 +2,11 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import Header from "../../components/header/Header";
 import { Link } from 'react-router-dom';
-
+import { ToastContainer } from 'react-toastify';
+import useSocketService from '../../services/SocketService';
 
 export default function ShopMen() {
-
+    useSocketService();
     const [articles, setArticles] = useState([]);
     useEffect(() => {
         fetchArticles();
@@ -48,6 +49,7 @@ export default function ShopMen() {
             <div>
                 <Header />
                 {articlesList()}
+                <ToastContainer />
             </div>
         </>
     );

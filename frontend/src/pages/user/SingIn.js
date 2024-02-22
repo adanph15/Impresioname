@@ -2,9 +2,11 @@ import Header from "../../components/header/Header";
 import React, { useState } from 'react';
 import AuthService from "../../services/AuthService";
 import { Link } from 'react-router-dom';
-
+import { ToastContainer } from 'react-toastify';
+import useSocketService from '../../services/SocketService';
 
 export default function SingIn() {
+  useSocketService();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -63,6 +65,7 @@ export default function SingIn() {
               </Link>
             </div>
           </form>
+          <ToastContainer />
         </div>
       </div>
     </>

@@ -12,7 +12,8 @@ exports.create = (req, res) => {
         !req.body.price ||
         !req.body.category ||
         !req.body.stock) {
-        return console.log('Missing data');
+        res.status(400).send({ message: 'Missing data' });
+        return;
     }
 
     // Create a Article
@@ -46,7 +47,11 @@ exports.findCategory = (req, res) => {
 
     Article.findAll({ where: condition })
         .then(data => {
-            res.send(data);
+            if (!data) {
+                res.status(400).send({ message: 'Error finding Articles' });
+            } else {
+                res.send(data);
+            }
         })
         .catch(error => {
             res.status(500).send({ message: 'Error finding Articles' });

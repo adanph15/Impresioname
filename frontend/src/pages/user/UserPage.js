@@ -3,8 +3,12 @@ import React, { useState, useEffect } from 'react';
 import AuthService from "../../services/AuthService";
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import useSocketService from '../../services/SocketService';
 
 export default function UserPage() {
+  useSocketService();
+
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -86,6 +90,7 @@ export default function UserPage() {
             )}
           </div>
         </div>
+        <ToastContainer />
       </div>
     </>
   );

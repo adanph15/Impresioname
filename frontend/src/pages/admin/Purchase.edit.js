@@ -15,7 +15,7 @@ const AdminPurchaseUpdate = () => {
   useEffect(() => {
     const fetchPurchase = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/api/purchase/${id}`);
+        const response = await axios.get(`https://localhost/api/purchase/${id}`);
         setPurchase({ status: response.data.status });
       } catch (error) {
         console.error('Error fetching purchase:', error);
@@ -35,7 +35,7 @@ const AdminPurchaseUpdate = () => {
 
   const handleUpdatePurchaseStatus = async () => {
     try {
-      await axios.put(`http://localhost:8000/api/purchase/${id}`, {
+      await axios.put(`https://localhost/api/purchase/${id}`, {
         status: purchase.status,
       });
       console.log('Purchase status updated successfully.');

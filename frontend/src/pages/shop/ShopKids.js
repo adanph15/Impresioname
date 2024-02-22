@@ -1,9 +1,12 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Header from "../../components/header/Header";
+import { ToastContainer } from 'react-toastify';
+import useSocketService from '../../services/SocketService';
 
 export default function ShopKids() {
+    useSocketService(); 
     const [articles, setArticles] = useState([]);
     useEffect(() => {
         fetchArticles();
@@ -11,7 +14,7 @@ export default function ShopKids() {
 
     const fetchArticles = async () => {
         try {
-            const response = await axios.get('http://localhost:8000/api/article/category/kids');
+            const response = await axios.get('https://localhost/api/article/category/kids');
             setArticles(response.data);
         } catch (error) {
             console.error('Error fetching articles:', error);
@@ -25,12 +28,10 @@ export default function ShopKids() {
                     {articles.map((article) => (
                     <Link to={`/glasses/${article.id}`} className='link'>
                         <div className="shop-card-item">
-                            <img src={`http://localhost:8000/images/${article.filename}`} alt={article.name} className="shop-card-item-photo" />
+                            <img src={`https://localhost/images/${article.filename}`} alt={article.name} className="shop-card-item-photo" />
                             <strong>{article.name}</strong>
                             <p>{article.price}€</p>
-                            <button className="shop-card-item-button">
-                                Try me 
-                            </button>
+                            <button className="shop-card-item-button"> Know More </button>
                         </div>
                     </Link>
                     ))}
@@ -44,6 +45,7 @@ export default function ShopKids() {
             <div>
                 <Header />
                 {articlesList()}
+                <ToastContainer />
             </div>
         </>
     );

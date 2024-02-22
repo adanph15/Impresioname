@@ -1,8 +1,11 @@
 import Header from "../../components/header/Header";
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { ToastContainer } from 'react-toastify';
+import useSocketService from '../../services/SocketService';
 
 const UserAddressesPage = () => {
+  useSocketService();
   const userInfo = JSON.parse(localStorage.getItem('userInfo'));
   const id = userInfo.id;
   const [addresses, setAddresses] = useState([]);
@@ -17,7 +20,7 @@ const UserAddressesPage = () => {
   useEffect(() => {
     const fetchAddresses = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/api/direction/user/${id}`);
+        const response = await axios.get(`https://localhost/api/direction/user/${id}`);
         setAddresses(response.data);
       } catch (error) {
         console.error('Error fetching addresses:', error);
@@ -35,6 +38,7 @@ const UserAddressesPage = () => {
     }));
   };
 
+<<<<<<< HEAD
   const [addressErrors, setAddressErrors] = useState({
     direction: '',
     post_code: '',
@@ -91,6 +95,16 @@ const UserAddressesPage = () => {
       } catch (error) {
         console.error('Error adding new address:', error);
       }
+=======
+  const addNewAddress = async () => {
+    try {
+      const response = await axios.post(`https://localhost/api/direction`, {
+        ...newAddress
+      });
+      setAddresses((prevAddresses) => [...prevAddresses, response.data]);
+    } catch (error) {
+      console.error('Error adding new address:', error);
+>>>>>>> develop
     }
   };
 
@@ -101,7 +115,7 @@ const UserAddressesPage = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:8000/api/direction/${id}`);
+      await axios.delete(`https://localhost/api/direction/${id}`);
     } catch (error) {
       console.error('Error deleting address:', error);
     }
@@ -176,6 +190,10 @@ const UserAddressesPage = () => {
             </div>
           </div>
         </div>
+<<<<<<< HEAD
+=======
+        <ToastContainer />
+>>>>>>> develop
       </div>
     </>
   );

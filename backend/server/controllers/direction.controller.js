@@ -10,7 +10,8 @@ exports.create = (req, res) => {
         !req.body.location || 
         !req.body.province || 
         !req.body.user_id) {
-        return console.log('Missing data');
+        res.status(400).send({ message: 'Missing data' });
+        return;
     }
 
     // Create a Direction
@@ -55,10 +56,9 @@ exports.findOne = (req, res) => {
     Direction.findByPk(id)
         .then(data => {
             if (!data) {
-                res.send({
-                    message: "Direction not found."
+                res.status(500).send({
+                    message: "Error finding direction."
                 });
-                console.log('Direction not found');
             } else {
                 res.send(data);
             }
@@ -100,7 +100,7 @@ exports.update = (req, res) => {
                 message: "Direction updated."
             });
         } else {
-            res.send({
+            res.status(400).send({
                 message: "Direction cannot be updated."
             });
         }
@@ -124,8 +124,8 @@ exports.delete = (req, res) => {
                 message: "Direction deleted."
             });
         } else {
-            res.send({
-                message: "Direction cannot be deleted."
+            res.status(400).send({
+                message: "Error finding direction."
             });
         }
     })
@@ -135,4 +135,4 @@ exports.delete = (req, res) => {
                 err.message || "Error deleting direction."
         });
     });
-};              
+};   

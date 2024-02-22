@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { faUser, faBars, faCartShopping, faX } from '@fortawesome/free-solid-svg-icons'
+import { faUser, faBars, faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Menu from "../menu/Menu";
 
@@ -18,7 +18,7 @@ export default function Header() {
     return (
         <>
             <div className="header-container">
-                <a  href='/profile'>
+                <a href='/profile'>
                 <FontAwesomeIcon className="hide" icon={faUser} size="xl" />
                 </a>
                 <a onClick={openNav}>

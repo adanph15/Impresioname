@@ -4,20 +4,21 @@ import PurchaseService from '../../services/PurcharseService';
 import AuthService from "../../services/AuthService";
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
+import useSocketService from '../../services/SocketService';
+import { ToastContainer } from 'react-toastify';
 
 
 const CartPage = () => {
   const [user, setUser] = useState(null);
-
+  useSocketService();
   useEffect(() => {
     const fetchData = async () => {
       const userInfo = JSON.parse(localStorage.getItem('userInfo'));
       const token = AuthService.getToken();
       if (token) {
         try {
-          const response = await axios.get(`http://localhost:8000/api/users/${userInfo.id}`, {
+          const response = await axios.get(`https://localhost/api/users/${userInfo.id}`, {
             headers: {
               Authorization: `Bearer ${token}`,
             },
@@ -31,11 +32,7 @@ const CartPage = () => {
 
     fetchData();
   }, []);
-
-  const handleLogout = () => {
-    AuthService.logout();
-  };
-
+  
   const handleUser = () => {
     const userInfo = JSON.parse(localStorage.getItem('userInfo'));
     if (!userInfo) {
@@ -46,7 +43,7 @@ const CartPage = () => {
   const [cartItems, setCartItems] = useState([]);
 
   const image = (imageName) => {
-    const newName = imageName.replace('http://localhost:8000/images/', '');
+    const newName = imageName.replace('https://localhost/images/', '');
     console.log("nuevo nombre: ", newName);
     return newName;
   };
@@ -93,7 +90,7 @@ const CartPage = () => {
           <div className='cart-container'>
             {cartItems.map((article) => (
               <div className="cart-item" key={article.id}>
-                <img src={`http://localhost:8000/images${image(article.filename)}`} className="shop-card-item-photo" />
+                <img src={`https://localhost/images${image(article.filename)}`} className="shop-card-item-photo" alt={`${article.filename}`} />
                 <div className='cart-info'>
                   <strong>{article.name}</strong>
                   <p>{article.price}€</p>
@@ -131,6 +128,7 @@ const CartPage = () => {
               {handleUser(user)}
             </>
           )}
+          <ToastContainer />
         </div>
       </div>
     </>

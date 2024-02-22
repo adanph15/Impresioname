@@ -40,5 +40,4 @@ module.exports = function (app) {
   app.put("/api/direction/:id", directionController.update);
 
   app.delete("/api/direction/:id", directionController.delete);
-
 }

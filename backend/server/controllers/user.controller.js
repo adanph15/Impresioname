@@ -1,7 +1,7 @@
 const db = require("../models");
 const User = db.user;
 const Op = db.Sequelize.Op;
-const utils = require("../../utils");
+const utils = require("../auth/utils");
 const bcrypt = require('bcryptjs');
 const Direction = db.direction;
 
@@ -45,9 +45,7 @@ exports.create = async (req, res) => {
 // Create and Save a new User
 exports.createAdmin = (req, res) => {
   if (!req.body.password || !req.body.username) {
-    res.status(400).send({
-      message: "Content can not be empty!"
-    });
+    res.status(400).send({ message: "Content can not be empty!" });
     return;
   }
 
@@ -141,7 +139,7 @@ exports.update = (req, res) => {
           message: "User was updated successfully."
         });
       } else {
-        res.send({
+        res.status(400).send({
           message: `Cannot update User with id=${id}. Maybe User was not found or req.body is empty!`
         });
       }
@@ -166,7 +164,7 @@ exports.delete = (req, res) => {
           message: "User was deleted successfully!"
         });
       } else {
-        res.send({
+        res.status(400).send({
           message: `Cannot delete User with id=${id}. Maybe User was not found!`
         });
       }
@@ -202,7 +200,11 @@ exports.getUserDirections = (req, res) => {
     where: { user_id: userId }
   })
     .then(directions => {
-      res.send(directions);
+      if (!directions) {
+        res.status(400).send({ message: "Error finding Directions" });
+      } else {
+        res.status(300).send(directions);
+      }
     })
     .catch(error => {
       res.status(500).send('Internal Server Error');

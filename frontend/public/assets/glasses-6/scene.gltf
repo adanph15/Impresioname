@@ -1,0 +1,422 @@
+{
+  "accessors": [
+    {
+      "bufferView": 2,
+      "componentType": 5126,
+      "count": 676,
+      "max": [
+        0.06472200155258179,
+        0.005396343767642975,
+        0.024828791618347168
+      ],
+      "min": [
+        -0.06472200155258179,
+        -0.004030667245388031,
+        -0.024441242218017578
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 8112,
+      "componentType": 5126,
+      "count": 676,
+      "max": [
+        0.41603943705558777,
+        0.9999181032180786,
+        0.3891143798828125
+      ],
+      "min": [
+        -0.41603943705558777,
+        -0.9999181032180786,
+        -0.3891143798828125
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5126,
+      "count": 676,
+      "max": [
+        0.7421519756317139,
+        0.932889997959137
+      ],
+      "min": [
+        0.6655970811843872,
+        0.8981840014457703
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 5408,
+      "componentType": 5126,
+      "count": 676,
+      "max": [
+        0.3664320111274719,
+        0.9646300077438354
+      ],
+      "min": [
+        -0.36724498867988586,
+        0.8557419776916504
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "componentType": 5125,
+      "count": 3456,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 16224,
+      "componentType": 5126,
+      "count": 1504,
+      "max": [
+        0.07925011217594147,
+        0.05315616726875305,
+        0.022968053817749023
+      ],
+      "min": [
+        -0.07924988865852356,
+        -0.034236326813697815,
+        -0.032992005348205566
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 34272,
+      "componentType": 5126,
+      "count": 1504,
+      "max": [
+        0.9968012571334839,
+        0.9987960457801819,
+        1.0
+      ],
+      "min": [
+        -0.9968012571334839,
+        -0.9893285632133484,
+        -0.9999730587005615
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 10816,
+      "componentType": 5126,
+      "count": 1504,
+      "max": [
+        0.7457200288772583,
+        0.9349899888038635
+      ],
+      "min": [
+        0.5065649747848511,
+        0.8779199719429016
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 22848,
+      "componentType": 5126,
+      "count": 1504,
+      "max": [
+        0.5989375114440918,
+        0.9614959955215454
+      ],
+      "min": [
+        -0.5989375114440918,
+        0.8846819996833801
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 13824,
+      "componentType": 5125,
+      "count": 6096,
+      "type": "SCALAR"
+    }
+  ],
+  "asset": {
+    "extras": {
+      "author": "maximkuzlin (https://sketchfab.com/maximkuzlin)",
+      "license": "CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)",
+      "source": "https://sketchfab.com/3d-models/cat-eye-glasses-2db7e238fad644719a7d2d6237f4b177",
+      "title": "Cat Eye Glasses"
+    },
+    "generator": "Sketchfab-12.68.0",
+    "version": "2.0"
+  },
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteLength": 38208,
+      "name": "floatBufferViews",
+      "target": 34963
+    },
+    {
+      "buffer": 0,
+      "byteLength": 34880,
+      "byteOffset": 38208,
+      "byteStride": 8,
+      "name": "floatBufferViews",
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 52320,
+      "byteOffset": 73088,
+      "byteStride": 12,
+      "name": "floatBufferViews",
+      "target": 34962
+    }
+  ],
+  "buffers": [
+    {
+      "byteLength": 125408,
+      "uri": "scene.bin"
+    }
+  ],
+  "materials": [
+    {
+      "alphaMode": "BLEND",
+      "doubleSided": true,
+      "name": "Material.001",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.0,
+          0.0,
+          0.0,
+          0.15947246043310292
+        ],
+        "metallicFactor": 0.0,
+        "roughnessFactor": 0.0
+      }
+    },
+    {
+      "doubleSided": true,
+      "name": "Material",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "metallicFactor": 0.2990677554647243,
+        "roughnessFactor": 0.2505128702363343
+      }
+    }
+  ],
+  "meshes": [
+    {
+      "name": "steklo_Material.001_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 1,
+            "POSITION": 0,
+            "TEXCOORD_0": 2,
+            "TEXCOORD_1": 3
+          },
+          "indices": 4,
+          "material": 0,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "name": "oprava_Material_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 6,
+            "POSITION": 5,
+            "TEXCOORD_0": 7,
+            "TEXCOORD_1": 8
+          },
+          "indices": 9,
+          "material": 1,
+          "mode": 4
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "children": [
+        1
+      ],
+      "matrix": [
+        0.016182878986001015,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        3.5933209709961866e-18,
+        -0.016182878986001015,
+        0.0,
+        0.0,
+        0.016182878986001015,
+        3.5933209709961866e-18,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "Sketchfab_model"
+    },
+    {
+      "children": [
+        2
+      ],
+      "matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "6756ebbc3cd64bdabb2f19d71ca763cc.fbx"
+    },
+    {
+      "children": [
+        3,
+        5,
+        7
+      ],
+      "name": "RootNode"
+    },
+    {
+      "children": [
+        4
+      ],
+      "matrix": [
+        100.0,
+        0.0,
+        0.0,
+        0.0,
+        -0.0,
+        -1.629206793918314e-05,
+        -99.99999999999868,
+        0.0,
+        0.0,
+        99.99999999999868,
+        -1.629206793918314e-05,
+        0.0,
+        -0.023368678987026215,
+        2.2496135234832764,
+        -1.3296140432357788,
+        1.0
+      ],
+      "name": "steklo"
+    },
+    {
+      "mesh": 0,
+      "name": "steklo_Material.001_0"
+    },
+    {
+      "children": [
+        6
+      ],
+      "matrix": [
+        100.0,
+        0.0,
+        0.0,
+        0.0,
+        -0.0,
+        -1.629206793918314e-05,
+        -99.99999999999868,
+        0.0,
+        0.0,
+        99.99999999999868,
+        -1.629206793918314e-05,
+        0.0,
+        -0.023380178958177567,
+        2.8466851711273193,
+        -3.9945807456970215,
+        1.0
+      ],
+      "name": "oprava"
+    },
+    {
+      "mesh": 1,
+      "name": "oprava_Material_0"
+    },
+    {
+      "children": [
+        8
+      ],
+      "matrix": [
+        59.96882247924805,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        59.968822479247876,
+        -4.527520664563321e-06,
+        0.0,
+        0.0,
+        4.527520664563321e-06,
+        59.968822479247876,
+        0.0,
+        -5.682127952575684,
+        13.505374908447266,
+        8.652552604675293,
+        1.0
+      ],
+      "name": "Point"
+    },
+    {
+      "children": [
+        9
+      ],
+      "matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        2.220446049250313e-16,
+        1.0,
+        0.0,
+        0.0,
+        -1.0,
+        2.220446049250313e-16,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "Object_8"
+    },
+    {
+      "name": "Object_9"
+    }
+  ],
+  "scene": 0,
+  "scenes": [
+    {
+      "name": "Sketchfab_Scene",
+      "nodes": [
+        0
+      ]
+    }
+  ]
+}

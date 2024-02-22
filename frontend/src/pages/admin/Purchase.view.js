@@ -8,7 +8,7 @@ const AdminPurchaseList = () => {
     useEffect(() => {
         const fetchPurchases = async () => {
             try {
-                const response = await axios.get('http://localhost:8000/api/purchase');
+                const response = await axios.get('https://localhost/api/purchase');
                 setPurchases(response.data);
             } catch (error) {
                 console.error('Error fetching purchases:', error);

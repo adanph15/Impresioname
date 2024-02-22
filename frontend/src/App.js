@@ -18,7 +18,6 @@ import UserPurchasePage from "./pages/user/UserPurchasePage";
 import AdminPurchaseList from "./pages/admin/Purchase.view";
 import AdminPurchaseUpdate from "./pages/admin/Purchase.edit";
 
-
 function App() {
 
   document.title = "IMPRESIÓNAME";

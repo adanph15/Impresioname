@@ -3,8 +3,11 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import useSocketService from '../../services/SocketService';
 
 const UserAddressesUpdate = () => {
+  useSocketService();
   const navigate = useNavigate();
   const { id } = useParams();
   const userInfo = JSON.parse(localStorage.getItem('userInfo'));
@@ -27,7 +30,7 @@ const UserAddressesUpdate = () => {
   useEffect(() => {
     const fetchAddress = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/api/direction/${id}`);
+        const response = await axios.get(`https://localhost/api/direction/${id}`);
         setAddress(response.data);
       } catch (error) {
         console.error('Error fetching address:', error);
@@ -45,6 +48,7 @@ const UserAddressesUpdate = () => {
     }));
   };
 
+<<<<<<< HEAD
   const validateAddressForm = () => {
     let isValid = true;
     const errors = {
@@ -93,6 +97,15 @@ const UserAddressesUpdate = () => {
       } catch (error) {
         console.error('Error updating address:', error);
       }
+=======
+  const handleUpdateAddress = async () => {
+    try {
+      await axios.put(`https://localhost/api/direction/${id}`, address);
+      console.log('Address updated successfully.');
+      navigate('/direction');
+    } catch (error) {
+      console.error('Error updating address:', error);
+>>>>>>> develop
     }
   };
 
@@ -150,6 +163,7 @@ const UserAddressesUpdate = () => {
             </div>
           </div>
         </div>
+        <ToastContainer />
       </div>
     </>
   );

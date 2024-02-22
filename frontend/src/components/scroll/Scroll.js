@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import './Scroll.css';
 
@@ -13,7 +13,7 @@ const Scroll = () => {
 
     const fetchArticles = async () => {
         try {
-            const response = await axios.get('http://localhost:8000/api/article');
+            const response = await axios.get('https://localhost/api/article');
             setArticles(response.data);
         } catch (error) {
             console.error('Error fetching articles:', error);
@@ -25,7 +25,7 @@ const Scroll = () => {
                 {articles.map((article) => (
                     <Link to={`/glasses/${article.id}`} className='link'>
                         <div className="scroll-card-item">
-                            <img src={`http://localhost:8000/images/${article.filename}`} alt={article.name} className="scroll-card-item-photo" />
+                            <img src={`https://localhost/images/${article.filename}`} alt={article.name} className="scroll-card-item-photo" />
                             <strong className='scroll-card-item-title'>{article.name}</strong>
                             <p className="scroll-card-item-text">{article.price}€</p>
                             <p className="scroll-card-item-text">For {article.category}</p>

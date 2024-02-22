@@ -3,8 +3,12 @@ import React, { useState, useEffect } from 'react';
 import AuthService from "../../services/AuthService";
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import useSocketService from '../../services/SocketService';
 
 export default function UserPage() {
+  useSocketService();
+
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -13,7 +17,7 @@ export default function UserPage() {
       const token = AuthService.getToken();
       if (token) {
         try {
-          const response = await axios.get(`http://localhost:8000/api/users/${userInfo.id}`, {
+          const response = await axios.get(`https://localhost/api/users/${userInfo.id}`, {
             headers: {
               Authorization: `Bearer ${token}`,
             },
@@ -86,6 +90,7 @@ export default function UserPage() {
             )}
           </div>
         </div>
+        <ToastContainer />
       </div>
     </>
   );

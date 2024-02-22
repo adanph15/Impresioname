@@ -44,8 +44,7 @@ exports.findCategory = (req, res) => {
     const category = req.params.category;
 
     let condition = category ? { category: category } : null;
-
-    Article.findAll({ where: condition })
+        Article.findAll({ where: condition })
         .then(data => {
             if (!data) {
                 res.status(400).send({ message: 'Error finding Articles' });
@@ -121,7 +120,7 @@ exports.update = (req, res) => {
         res.status(500).send({ message: 'Error updating article' });
     });
 };
-
+// 
 // Delete One Article with ID
 exports.delete = (req, res) => {
     const id = req.params.id;
@@ -134,8 +133,11 @@ exports.delete = (req, res) => {
                     else { console.log('image deleted') };
                 })
             }
-        }).catch(error => {
-            res.status(500).send({ message: 'Error finding article' });
+        }).catch(err => {
+            // res.status(400).send({
+            //     message:
+            //         err.message || "Error finding article."
+            // });
         });
 
     Article.destroy({
@@ -146,9 +148,7 @@ exports.delete = (req, res) => {
                 message: "Article deleted."
             });
         } else {
-            res.send({
-                message: "Article cannot be deleted."
-            });
+            res.status(400).send({ message: 'Article cannot be deleted.' });
         }
     }).catch(error => {
         res.status(500).send({ message: 'Error deleting Article' });

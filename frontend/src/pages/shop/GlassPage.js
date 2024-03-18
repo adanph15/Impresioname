@@ -58,12 +58,10 @@ export default function GlassesPage() {
   const goToTryGlasses = (id) => {
     let path = '';
 
-    if (id >= 1 && id <= 4) {
+    if (id >= 1 && id <= 7) {
       path = 'https://localhost:3000/glasses-model-3.html';
-    } else if (id >= 5 && id <= 10) {
+    } else if (id >= 8 && id <= 14) {
       path = 'https://localhost:3000/glasses-model-5.html';
-    } else if (id >= 11 && id <= 14) {
-      path = 'https://localhost:3000/glasses-model-7.html';
     } else if (id >= 15 && id <= 19) {
       path = 'https://localhost:3000/glasses-model-1.html';
     } else if (id >= 20 && id <= 23) {

@@ -48,7 +48,6 @@ const UserAddressesUpdate = () => {
     }));
   };
 
-<<<<<<< HEAD
   const validateAddressForm = () => {
     let isValid = true;
     const errors = {
@@ -97,15 +96,6 @@ const UserAddressesUpdate = () => {
       } catch (error) {
         console.error('Error updating address:', error);
       }
-=======
-  const handleUpdateAddress = async () => {
-    try {
-      await axios.put(`https://localhost/api/direction/${id}`, address);
-      console.log('Address updated successfully.');
-      navigate('/direction');
-    } catch (error) {
-      console.error('Error updating address:', error);
->>>>>>> develop
     }
   };
 

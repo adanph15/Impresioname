@@ -38,7 +38,6 @@ const UserAddressesPage = () => {
     }));
   };
 
-<<<<<<< HEAD
   const [addressErrors, setAddressErrors] = useState({
     direction: '',
     post_code: '',
@@ -95,16 +94,6 @@ const UserAddressesPage = () => {
       } catch (error) {
         console.error('Error adding new address:', error);
       }
-=======
-  const addNewAddress = async () => {
-    try {
-      const response = await axios.post(`https://localhost/api/direction`, {
-        ...newAddress
-      });
-      setAddresses((prevAddresses) => [...prevAddresses, response.data]);
-    } catch (error) {
-      console.error('Error adding new address:', error);
->>>>>>> develop
     }
   };
 
@@ -190,10 +179,7 @@ const UserAddressesPage = () => {
             </div>
           </div>
         </div>
-<<<<<<< HEAD
-=======
         <ToastContainer />
->>>>>>> develop
       </div>
     </>
   );

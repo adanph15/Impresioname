@@ -3,12 +3,6 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-face-aframe.prod.js"></script>
-		<script>
-			function goToHome() {
-				window.location.href = "/home";
-			}
-			document.getElementById("exitButton").addEventListener("click", goToHome);
-		</script>
 		<style>
 			.example-container {
 				overflow: hidden;
@@ -63,8 +57,17 @@
 							class="glasses6-entity" visible="true">
 						</a-gltf-model>
 					</a-entity>
+					<button onclick={goToShop} id="exitButton" class="exit-button">Exit</button>
 				</a-scene>
 			</div>
+			<script>
+				document.addEventListener("DOMContentLoaded", function() {
+					function goToShop() {
+						window.location.href = "/shop-women";
+					}
+					document.getElementById("exitButton").addEventListener("click", goToShop);
+				});
+			</script>
 		</div>
 	</body>
 </html>

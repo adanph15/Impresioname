@@ -2,22 +2,13 @@ import Header from "../../components/header/Header";
 import Scroll from "../../components/scroll/Scroll";
 import jasonCategories from "../../assets/images/jasonCategories"
 import "./Home.css";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import io from 'socket.io-client';
 import useSocketService from '../../services/SocketService';
 
 export default function Home() {
   const socket = io("https://localhost", { transports: ["websocket"] });
-
-  const runLocalEvent = () => {
-    socket.emit("new_glasses", {
-      message:
-        `New glasses
-          added right now go check it incategory, 
-          with a price of€.`
-    });
-  };
 
   useSocketService();
 
@@ -53,7 +44,6 @@ export default function Home() {
           </div>
         </div>
         <ToastContainer />
-        <button onClick={() => runLocalEvent()}>LOCAL TIME EVENT</button>
       </div>
     </>
   );

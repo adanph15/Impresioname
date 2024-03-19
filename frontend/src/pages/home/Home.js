@@ -4,12 +4,9 @@ import jasonCategories from "../../assets/images/jasonCategories"
 import "./Home.css";
 import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import io from 'socket.io-client';
 import useSocketService from '../../services/SocketService';
 
 export default function Home() {
-  const socket = io("https://localhost", { transports: ["websocket"] });
-
   useSocketService();
 
   return (

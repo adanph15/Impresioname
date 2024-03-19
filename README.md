@@ -96,15 +96,14 @@ Database structure and its respective diagrams.
 <br><br>
 
 ## USER REQUIRMENT <a name ="idRequirements"></a> 👤
-    Web Aplication
+Web Aplication
 
+If you are a guest, you will see the home, all the shops pages, and you can log-in and register also.
 
-    If you are a guest, you will see the home, all the shops pages, and you can log-in and register also.
+If you are a user, you will see the catalogue and you can add products and buy it, you can go to your profile and there you can view and add address, edit update(not recommended yet) and log out, you can also see all your purchases.
 
-    If you are a user, you will see the catalogue and you can add products and buy it, you can go to your profile and there you can view and add address, edit update(not recommended yet) and log out, you can also see all your purchases.
-
-    If you are an admin, you will see the same features like user but you can add, edit and
-    delete products and finally you can edit and remove the status of users purchases.
+If you are an admin, you will see the same features like user but you can add, edit and
+delete products and finally you can edit and remove the status of users purchases.
 
 
 ### USE CASE DRIAGRAM
@@ -116,9 +115,40 @@ Database structure and its respective diagrams.
 <br><br>
 
 
+## USUABILITY ✨
+
+1. **Intuitive Design:**
+   + Ensure that the navigation and overall site design are intuitive, allowing users to easily find what they are looking for. Guest options should be accessible to everyone, and user options are available from the same page.
+
+2. **Design Consistency:**
+   + Maintain consistency in the design across all pages to make users feel comfortable and avoid confusion when transitioning from one section to another.
+
+3. **Color Contrast:**
+   + Maintain good contrast between text and background to facilitate readability.
+
+4. **Responsives:**
+   + The application is fully responsive between mobile devices, tablets and PC.
+
+5. **Forms:**
+   + Simplify forms as much as possible by removing unnecessary fields and organizing them into clear sections.
+
+6. **Clear Error Messages:**
+   + If a user makes an error while completing a form, provide clear error messages and suggested solutions to address the issue.
+
+7. **Language Simplification:**
+    + Use clear and simple language throughout the content to make it understandable to the all the  possible audience.
+
+8. **Meaningful Icons:**
+    + Use icons with clear and universal meanings. Provide labels or tooltips for users who may have difficulty interpreting icons.
+
+9. **Fast Loading:**
+   + Web with fast loading times, contributing to a more enjoyable user experience.
+
+<br><br>
+
 ## USER MANUAL <a name="idUsermanual"></a> 🙇
 
-__[If you want to see more details and an actual manual click here.](/Impresioname/USER-MANUAL/IMPRESIONAME-USER-MANUAL.pdf)__
+__[If you want to see more details and an actual manual click here.](/USER-MANUAL/IMPRESIONAME-USER-MANUAL.pdf)__
 
 <br>
 
@@ -235,7 +265,7 @@ If without having an account we try to go to the basketball page or the user pag
 <br/>
 
 ***
-To see the manual with more info click [HERE](/Impresioname/USER-MANUAL/IMPRESIONAME-USER-MANUAL.pdf)
+To see the manual with more info click [HERE](/USER-MANUAL/IMPRESIONAME-USER-MANUAL.pdf)
 
 
 <br><br>
@@ -352,8 +382,85 @@ ReactJS:
 
 <br><br>
 
+## TECHNOLOGIES COMPARATION
+
+### MY TYPE OF APP
+
+In my case I have a web application, since currently it only works in web browsers.
+These applications stand out for their universal accessibility, eliminating the need for installation and allowing centralized maintenance. They are cross-platform, scalable and flexible, making it easy to adapt to various devices and changing requirements. Additionally, they offer convenient access from anywhere, promote real-time interactivity, and are search engine friendly.
 
 <br>
+
+### MySQL:
+**Advantages:**
++ **Native Apps:** Excellent choice for native applications where complex data manipulation and high performance are crucial.
++ **Hybrid Apps:** Can be used, but performance might be influenced by the hybrid environment.
++ **Web Apps:** Widely used in web applications to store and manage structured data.
+
+**Disadvantages:**
+- **Hybrid Apps:** Performance may be affected in hybrid environments.
+
+**Alternatives:**
+- PostgreSQL vs MySQL: Both are powerful relational databases, but PostgreSQL is known for its extensibility and support for advanced data types.
+- MongoDB vs MySQL: MongoDB is a NoSQL database, suitable for handling unstructured data and providing high scalability.
+
+### Express:
+
+**Advantages:**
++ **Native Apps:** Suitable for native applications requiring a robust and fast server to handle HTTP requests.
++ **Hybrid Apps:** Can be used for server logic, but performance may be impacted in hybrid environments.
++ **Web Apps:** Primarily used as a web application framework to define routes and manage server logic in web applications.
+
+**Disadvantages:**
+- **Hybrid Apps:** Performance may be affected in hybrid environments.
+
+**Alternatives:**
+- Koa vs Express: Koa is a more lightweight alternative to Express, focusing on modularity and simplicity.
+- Django vs Express: Django is a high-level Python web framework known for its simplicity and rapid development.
+
+### NodeJS:
+
+**Advantages:**
++ **Native Apps:** Ideal for native applications due to its efficiency in handling multiple simultaneous connections and events.
++ **Hybrid Apps:** Can be used, but certain performance aspects may be affected compared to native usage.
++ **Web Apps:** Widely used on the server side to build efficient and scalable web applications.
+
+**Disadvantages:**
+- **Hybrid Apps:** Some performance aspects may be affected compared to native usage.
+
+**Alternatives:**
+- Django (Python) vs NodeJS: Django provides a robust framework for building web applications in Python.
+- Ruby on Rails vs NodeJS: Ruby on Rails is a web application framework in Ruby, known for its convention over configuration.
+
+### Sequelize:
+
+**Advantages:**
++ **Native Apps:** Beneficial in native applications for simplifying interactions with the database through object-relational mapping.
++ **Hybrid Apps:** Can be used, but some advanced features may not be fully compatible in hybrid environments.
++ **Web Apps:** Useful for simplifying database queries in web applications and providing an object-based data model.
+
+**Disadvantages:**
+- **Hybrid Apps:** Some advanced features may not be fully compatible in hybrid environments.
+
+**Alternatives:**
+- TypeORM vs Sequelize: TypeORM is an alternative ORM for TypeScript and JavaScript with a focus on flexibility.
+- Hibernate (Java) vs Sequelize: Hibernate is a widely used ORM solution for Java applications.
+
+### ReactJS:
+
+**Advantages:**
++ **Native Apps:** Commonly used in native applications to build interactive and scalable user interfaces.
++ **Hybrid Apps:** Can be used in hybrid apps, especially with frameworks like React Native, offering a more native-like user experience compared to traditional hybrid web apps.
++ **Web Apps:** Essential for building interactive and responsive user interfaces on the client side for web applications.
+
+**Disadvantages:**
+- **Hybrid Apps:** There may be certain limitations compared to native development.
+
+**Alternatives:**
+- Vue.js vs ReactJS: Vue.js is a progressive JavaScript framework for building user interfaces with a simpler learning curve.
+- Angular vs ReactJS: Angular is a comprehensive front-end framework, offering a full solution for building web applications.
+
+<br><br>
 
 ## PLANNING 📅  <a name="idPlaning"></a>
 
@@ -381,10 +488,11 @@ ReactJS:
 
 ## CONCLUSION <a name="idConclusion"></a> 💬
 
-    In my conclusion, I think that I have worked a lot on the project throughout the month, I sat a lot in the Backend and that is why some functionalities are missing in the Frontend.
-    But I hope to be able to implement them in the second quarter along with the possibility of seeing the glasses with virtual reality technology.
-    Thanks to ITC for such an interesting project and with a technological stack that I really like a lot.
+In my conclusion, I think that I have worked a lot on the project throughout the month, I sat a lot in the Backend and that is why some functionalities are missing in the Frontend.
+But I hope to be able to implement them in the second quarter along with the possibility of seeing the glasses with virtual reality technology.
+Thanks to ITC for such an interesting project and with a technological stack that I really like a lot.
     
 <br>
----
+
+-----
 

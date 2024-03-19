@@ -14,7 +14,6 @@ const customButtonStyle = {
     width: '5vw',
     height: '5vh',
     backgroundColor: '#3C3C3C',
-    color: 'white',
     fontSize: '16px',
 };
 

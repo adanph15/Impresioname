@@ -70,7 +70,5 @@
 }
 
 @media only screen and (max-width: 999px) {
-    .scroll-card-item-photo {
-        width: 100px;
-    }
+    .scroll-card-item-photo { width: 120px; }
 }

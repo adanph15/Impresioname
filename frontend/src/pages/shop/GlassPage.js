@@ -6,10 +6,13 @@ import CartService from "../../services/CartService";
 import { Link } from 'react-router-dom';
 import useSocketService from '../../services/SocketService';
 import { ToastContainer } from 'react-toastify';
+import { useNavigate } from "react-router-dom";
 
 export default function GlassesPage() {
+  const navigate = useNavigate();
   const [article, setArticle] = useState(null);
   const { id } = useParams();
+  console.log("ID:", id);
   const userInfo = JSON.parse(localStorage.getItem('userInfo'));
   const [cartItems, setCartItems] = useState([]);
   useSocketService();
@@ -56,23 +59,7 @@ export default function GlassesPage() {
 
 
   const goToTryGlasses = (id) => {
-    let path = '';
-
-    if (id >= 1 && id <= 7) {
-      path = 'https://localhost:3000/glasses-model-3.html';
-    } else if (id >= 8 && id <= 14) {
-      path = 'https://localhost:3000/glasses-model-5.html';
-    } else if (id >= 15 && id <= 19) {
-      path = 'https://localhost:3000/glasses-model-1.html';
-    } else if (id >= 20 && id <= 23) {
-      path = 'https://localhost:3000/glasses-model-4.html';
-    } else if (id >= 24 && id <= 28) {
-      path = 'https://localhost:3000/glasses-model-6.html';
-    } else if (id >= 29 && id <= 42) {
-      path = 'https://localhost:3000/glasses-model-2.html';
-    }
-
-    return path
+    navigate(`/prueba/${id}`);
   };
 
 
@@ -94,9 +81,7 @@ export default function GlassesPage() {
                   <button className="button-glasses" id='buttonBasket' onClick={addToCart}>Add to Basket</button>
                 </Link>
                 <ToastContainer />
-                <a href={goToTryGlasses(article.id)}>
-                  <button className="button-glasses" id='buttonBasket'>Try Me</button>
-                </a>
+                  <button onClick={() => goToTryGlasses(article.id)} className="button-glasses" id='buttonBasket'>Try Me</button>
               </div>
             </div>
           </div>

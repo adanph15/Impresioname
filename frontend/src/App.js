@@ -17,7 +17,8 @@ import CartPage from "./pages/shop/CartPage";
 import UserPurchasePage from "./pages/user/UserPurchasePage";
 import AdminPurchaseList from "./pages/admin/Purchase.view";
 import AdminPurchaseUpdate from "./pages/admin/Purchase.edit";
-import Prueba from "./components/prueba/prueba";
+import Prueba from "./pages/prueba/PruebaNuevo";
+
 
 function App() {
 
@@ -43,7 +44,7 @@ function App() {
             <Route path="/admin-article" element={<AdminArticle />} />
             <Route path="/admin-purchases" element={<AdminPurchaseList />} />
             <Route path="/admin-purchases/update/:id" element={<AdminPurchaseUpdate />} />
-            <Route path="/prueba" element={<Prueba />} />
+            <Route path="/prueba/:id" element={<Prueba />} />
           </Routes>
       </BrowserRouter>
     </>

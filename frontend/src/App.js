@@ -19,6 +19,17 @@ import AdminPurchaseList from "./pages/admin/Purchase.view";
 import AdminPurchaseUpdate from "./pages/admin/Purchase.edit";
 import Prueba from "./pages/prueba/PruebaNuevo";
 
+function NotFound() {
+  return (
+    <>
+      <div className="header-container">
+        <h1>404</h1>
+        <h2>Page not found!!!</h2>
+      </div>
+    </>
+
+  );
+}
 
 function App() {
 
@@ -26,26 +37,27 @@ function App() {
   return (
     <>
       <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/home" element={<Home />} />
-            <Route path="/sing-in" element={<SingIn />} />
-            <Route path="/sing-up" element={<SingUp />} />
-            <Route path="/shop-kids" element={<ShopKids />} />
-            <Route path="/shop-men" element={<ShopMen />} />
-            <Route path="/shop-women" element={<ShopWomen />} />
-            <Route path="/shop-kids" element={<ShopKids />} />
-            <Route path="/glasses/:id" element={<GlassesPage />} />
-            <Route path="/cart" element={<CartPage />} />
-            <Route path="/profile" element={<UserPage />} />
-            <Route path="/direction" element={<UserAddressesPage />} />
-            <Route path="/direction-update/:id" element={<UserAddressesUpdate />} />
-            <Route path="/purchases" element={<UserPurchasePage />} />
-            <Route path="/admin-article" element={<AdminArticle />} />
-            <Route path="/admin-purchases" element={<AdminPurchaseList />} />
-            <Route path="/admin-purchases/update/:id" element={<AdminPurchaseUpdate />} />
-            <Route path="/prueba/:id" element={<Prueba />} />
-          </Routes>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/sing-in" element={<SingIn />} />
+          <Route path="/sing-up" element={<SingUp />} />
+          <Route path="/shop-kids" element={<ShopKids />} />
+          <Route path="/shop-men" element={<ShopMen />} />
+          <Route path="/shop-women" element={<ShopWomen />} />
+          <Route path="/shop-kids" element={<ShopKids />} />
+          <Route path="/glasses/:id" element={<GlassesPage />} />
+          <Route path="/cart" element={<CartPage />} />
+          <Route path="/profile" element={<UserPage />} />
+          <Route path="/direction" element={<UserAddressesPage />} />
+          <Route path="/direction-update/:id" element={<UserAddressesUpdate />} />
+          <Route path="/purchases" element={<UserPurchasePage />} />
+          <Route path="/admin-article" element={<AdminArticle />} />
+          <Route path="/admin-purchases" element={<AdminPurchaseList />} />
+          <Route path="/admin-purchases/update/:id" element={<AdminPurchaseUpdate />} />
+          <Route path="/prueba/:id" element={<Prueba />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
       </BrowserRouter>
     </>
   );

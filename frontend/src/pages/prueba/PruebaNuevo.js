@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import 'aframe';
-import 'mind-ar/dist/mindar-face-aframe.prod.js';
 import "./prueba.css"
 import { useParams } from 'react-router-dom';
+import 'aframe';
+import 'mind-ar/dist/mindar-face-aframe.prod.js';
 
 const Prueba = () => {
 
@@ -16,13 +16,13 @@ const Prueba = () => {
 
     useEffect(() => {
         const idNumber = parseInt(id);
-        switch (true) {
+        switch (idNumber > 0) {
             case (idNumber >= 1 && idNumber <= 7):
                 setModelId(3);
                 setAnchorIndex(188);
-                setPosition({ x: 0, y: -0.3, z: 0.15 });
+                setPosition({ x: -0.2, y: -0.09, z: 0.22 });
                 setRotation({ x: 0, y: 0, z: 0 });
-                setScale({ x: 0.065, y: 0.065, z: 0.065 });
+                setScale({ x: 0.003, y: 0.003, z: 0.003 });
                 break;
             case (idNumber >= 8 && idNumber <= 14):
                 setModelId(5);
@@ -63,14 +63,6 @@ const Prueba = () => {
 
     }, [id]);
 
-
-    useEffect(() => {
-        const goToShop = () => {
-            window.location.href = "/shop-men";
-        }
-        document.getElementById("exitButton")?.addEventListener("click", goToShop);
-    }, []);
-
     return (
         <div dangerouslySetInnerHTML={{
             __html: `
@@ -83,15 +75,9 @@ const Prueba = () => {
                         <a-asset-item id="glassesModel" src="https://localhost:443/assets/glasses-${modelId}/scene.gltf"></a-asset-item>
                     </a-assets>
                     <a-camera active="false" position="0 0 0"></a-camera>
-                    <a-entity mindar-face-target={ \`anchorIndex: ${anchorIndex}\` }>
-                        <a-gltf-model mindar-face-occluder position={ \`${position.x} ${position.y} ${position.z}\` }
-                            rotation={ \`${rotation.x} ${rotation.y} ${rotation.z}\` } scale={ \`${scale.x} ${scale.y} ${scale.z}\` }
-                            src="#headModel">
-                        </a-gltf-model>
-                    </a-entity>
-                    <a-entity mindar-face-target={ \`anchorIndex: ${anchorIndex}\` }>
-                        <a-gltf-model rotation="0 0 0" position="-0.2 -0.09 0.22" scale="0.003 0.003 0.003" src="#glassesModel"
-                            class="glasses-entity" visible="true">
+                    <a-entity mindar-face-target="anchorIndex: ${anchorIndex}">
+                        <a-gltf-model position="${position.x} ${position.y} ${position.z}" rotation="${rotation.x} ${rotation.y} ${rotation.z}" scale="${scale.x} ${scale.y} ${scale.z}" src="#glassesModel"
+                        class="glasses-entity" visible="true">
                         </a-gltf-model>
                     </a-entity>
                     <button id="exitButton" class="exit-button">Exit</button>
@@ -102,3 +88,6 @@ const Prueba = () => {
 }
 
 export default Prueba;
+
+
+//

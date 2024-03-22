@@ -26,7 +26,7 @@ export default function ShopKids() {
                 <h2>Kids</h2>
                 <div className="shop-card-container">
                     {articles.map((article) => (
-                    <Link to={`/glasses/${article.id}`} className='link'>
+                    <Link to={`/glasses/${article.id}`} className='link' key={article.id}>
                         <div className="shop-card-item">
                             <img src={`https://localhost/images/${article.filename}`} alt={article.name} className="shop-card-item-photo" />
                             <strong>{article.name}</strong>

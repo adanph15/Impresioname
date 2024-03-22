@@ -21,8 +21,10 @@ export default function GlassesPage() {
       try {
         const response = await axios.get(`https://localhost/api/article/${id}`);
         setArticle(response.data);
-        const cart = CartService.getCart(userInfo.id);
-        setCartItems(cart);
+        if (userInfo) {
+          const cart = CartService.getCart(userInfo.id);
+          setCartItems(cart);
+        }
       } catch (error) {
         console.error('Error fetching article details:', error);
       }

@@ -1,32 +1,6 @@
-.custom-container {
-    display: flex;
-    justify-content: space-evenly;
-    align-content: center;
-    /* align-items: center; */
+.a-enter-vr {
+    display: none !important;
 }
-
-.custom-camera-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-content: center;
-    background-color: black;
-
-    width: 50vw;
-    height: 80vh;
-
-}
-
-.custom-option-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-content: center;
-    background-color: gray;
-    width: 50vw;
-    height: 80vh;
-}
-
 
 .custom {
     display: flex;
@@ -41,11 +15,8 @@
     height: 70%;
     border: 10px solid #3C3C3C; 
     border-radius: 20px;
-
-}
-
-.a-enter-vr {
-    display: none !important;
+    position: relative;
+    overflow: hidden;
 }
 
 .controls {
@@ -84,22 +55,42 @@
 }
 
 .color-circle.red {
-    background-color: red;
+    background-color: #680909;
 }
 
 .color-circle.pink {
-    background-color: pink;
+    background-color: #970074;
 }
 
 .color-circle.orange {
-    background-color: orange;
+    background-color: #ff7d00;
 }
 
 .color-circle.blue {
-    background-color: blue;
+    background-color: #0092ff;
 }
 
-.submit-button {
+.color-circle-text.black {
+    color: black;
+}
+
+.color-circle-text.red {
+    color: #680909;
+}
+
+.color-circle-text.pink {
+    color: #970074;
+}
+
+.color-circle-text.orange {
+    color: #ff7d00;
+}
+
+.color-circle-text.blue {
+    color: #0092ff;
+}
+
+.custom-button {
     width: 84%;
     height: 10%;
     margin-top: 20px;
@@ -109,7 +100,6 @@
     border: none;
     cursor: pointer;
     font-weight: bold;
-
 }
 
 

@@ -17,7 +17,8 @@ import CartPage from "./pages/shop/CartPage";
 import UserPurchasePage from "./pages/user/UserPurchasePage";
 import AdminPurchaseList from "./pages/admin/Purchase.view";
 import AdminPurchaseUpdate from "./pages/admin/Purchase.edit";
-import Prueba from "./pages/prueba/PruebaNuevo";
+import CustomGlasses from "./pages/prueba/CustomGlasses";
+import PreviewGlasses from "./pages/prueba/PreviewGlasses";
 
 function NotFound() {
   return (
@@ -55,7 +56,8 @@ function App() {
           <Route path="/admin-article" element={<AdminArticle />} />
           <Route path="/admin-purchases" element={<AdminPurchaseList />} />
           <Route path="/admin-purchases/update/:id" element={<AdminPurchaseUpdate />} />
-          <Route path="/prueba/:id" element={<Prueba />} />
+          <Route path="/preview/:id" element={<PreviewGlasses />} />
+          <Route path="/custom" element={<CustomGlasses />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

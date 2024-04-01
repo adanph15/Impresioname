@@ -61,7 +61,7 @@ export default function GlassesPage() {
 
 
   const goToTryGlasses = (id) => {
-    navigate(`/prueba/${id}`);
+    navigate(`/preview/${id}`);
   };
 
 

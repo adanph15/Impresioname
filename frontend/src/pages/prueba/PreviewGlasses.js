@@ -4,10 +4,9 @@ import { useParams } from 'react-router-dom';
 import 'aframe';
 import 'mind-ar/dist/mindar-face-aframe.prod.js';
 
-const Prueba = () => {
+const PreviewGlasses = () => {
 
     const { id } = useParams();
-
     const [modelId, setModelId] = useState(1);
     const [anchorIndex, setAnchorIndex] = useState(0);
     const [position, setPosition] = useState({ x: 0, y: 0, z: 0 });
@@ -60,10 +59,10 @@ const Prueba = () => {
                 setScale({ x: 0.08, y: 0.08, z: 0.08 });
                 break;
         }
-
     }, [id]);
 
     return (
+        
         <div dangerouslySetInnerHTML={{
             __html: `
             <div class="example-container">
@@ -87,7 +86,4 @@ const Prueba = () => {
     );
 }
 
-export default Prueba;
-
-
-//
+export default PreviewGlasses;

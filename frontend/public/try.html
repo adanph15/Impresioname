@@ -78,52 +78,38 @@
 		</div>
 		<a-scene mindar-face embedded color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights"
 			vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
-			<a-assets>
-				<a-asset-item id="headModel"
-					src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/examples/face-tracking/assets/sparkar/headOccluder.glb"></a-asset-item>
-				<a-asset-item id="glassesModel"
-					src="https://localhost:443/assets/custom/frames/custom-frame-5.gltf"></a-asset-item>
-				<a-asset-item id="glassesModel2"
-					src="https://localhost:443/assets/custom/temples/custom-temple-2.gltf"></a-asset-item>
-				<a-asset-item id="hatModel"
-					src="https://localhost:443/assets/custom/temples-tips/custom-temple-tips-4.gltf"></a-asset-item>
-				<a-asset-item id="hatModel2"
-					src="https://localhost:443/assets/custom/lenses/custom-lenses-2.gltf"></a-asset-item>
-				<a-asset-item id="earringModel"
-					src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/examples/face-tracking/assets/earring/scene.gltf"></a-asset-item>
-			</a-assets>
-			<a-camera active="false" position="0 0 0"></a-camera>
-			<!-- head occluder -->
-			<a-entity mindar-face-target="anchorIndex: 168">
-				<a-gltf-model mindar-face-occluder position="0 -0.3 0.15" rotation="0 0 0" scale="0.065 0.065 0.065"
-					src="#headModel"></a-gltf-model>
-			</a-entity>
-			<a-entity mindar-face-target="anchorIndex: 10">
-				<a-gltf-model rotation="0 0 0" position="0 0 0" scale="1 1 1" src="#hatModel" class="hat1-entity"
-					visible="false"></a-gltf-model>
-			</a-entity>
-			<a-entity mindar-face-target="anchorIndex: 10">
-				<a-gltf-model rotation="0 0 0" position="0 0 0" scale="1 1 1" src="#hatModel2"
-					class="hat2-entity" visible="false"></a-gltf-model>
-			</a-entity>
-			<a-entity mindar-face-target="anchorIndex: 168">
-				<a-gltf-model rotation="0 0 0" position="0 0 0" scale="1 1 1" src="#glassesModel"
-					class="glasses1-entity" visible="false"></a-gltf-model>
-			</a-entity>
-			<a-entity mindar-face-target="anchorIndex: 168">
-				<a-gltf-model rotation="0 0 0" position="0 0 0" scale="1 1 1" src="#glassesModel2"
-					class="glasses2-entity" visible="false"></a-gltf-model>
-			</a-entity>
-			<a-entity mindar-face-target="anchorIndex: 127">
-				<a-gltf-model rotation="0 0 0" position="0 0 0" scale="1 1 1" src="#earringModel"
-					class="earring-entity" visible="false"></a-gltf-model>
-			</a-entity>
-			<a-entity mindar-face-target="anchorIndex: 356">
-				<a-gltf-model rotation="0 0 0" position="0 0 0" scale="1 1 1" src="#earringModel"
-					class="earring-entity" visible="false"></a-gltf-model>
-			</a-entity>
-		</a-scene>
+				<a-assets>
+					<a-asset-item id="headModel"
+						src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/examples/face-tracking/assets/sparkar/headOccluder.glb"></a-asset-item>
+					<a-asset-item id="frameModel"
+						src="https://localhost:443/assets/custom/frames/custom-frame-2.gltf"></a-asset-item>
+					<a-asset-item id="templeModel"
+						src="https://localhost:443/assets/custom/temples/custom-temple-1.gltf"></a-asset-item>
+					<a-asset-item id="templeTipsModel"
+						src="https://localhost:443/assets/custom/temples-tips/custom-temple-tips-1.gltf"></a-asset-item>
+					<a-asset-item id="lensesModel"
+						src="https://localhost:443/assets/custom/lenses/custom-lenses-1.gltf"></a-asset-item>
+				</a-assets>
+				<a-camera active="false" position="0 0 0"></a-camera>
+				<a-entity mindar-face-target="anchorIndex: 188">
+					<a-gltf-model rotation="0 0 0" position="0 0 0" scale="1 1 1" src="#frameModel"
+						visible="true"></a-gltf-model>
+				</a-entity>
+				<a-entity mindar-face-target="anchorIndex: 188">
+					<a-gltf-model rotation="0 0 0" position="0 0 0" scale="1 1 1" src="#templeModel"
+						visible="true"></a-gltf-model>
+				</a-entity>
+				<a-entity mindar-face-target="anchorIndex: 188">
+					<a-gltf-model rotation="0 0 0" position="0 0 0" scale="1 1 1" src="#templeTipsModel"
+						visible="true"></a-gltf-model>
+				</a-entity>
+				<a-entity mindar-face-target="anchorIndex: 188">
+					<a-gltf-model rotation="0 0 0" position="0 0 0" scale="1 1 1" src="#lensesModel"
+						visible="true"></a-gltf-model>
+				</a-entity>
+			</a-scene>
+
 	</div>
 </body>
 
-</html>
+</html>	

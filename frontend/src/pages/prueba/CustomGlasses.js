@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import 'aframe';
 import 'mind-ar/dist/mindar-face-aframe.prod.js';
-import './circleColors.css'
 import Header from "../../components/header/Header";
 import OptionCarrousel from '../../components/optionCarrousel/OptionCarrousel';
+import './prueba.css';
 
 const CustomGlasses = () => {
   const [frame, setFrame] = useState(0);
@@ -18,27 +18,80 @@ const CustomGlasses = () => {
   const [lensesColor, setLensesColor] = useState('black');
   const [templeTipsColor, setTempleTipsColor] = useState('black');
 
-  const frameCircleColors = ['Black', 'Red', 'Pink', 'Orange', 'Blue'];
-  const templeTipsCircleColors = ['Black', 'Red', 'Pink', 'Orange', 'Blue'];
-  const templeCircleColors = ['Black', 'Silver'];
-  const lensesCircleColors = ['Vision glasses', 'Sunglasses']
 
-  const ColorPicker = ({ title, setColor, colors }) => (
-    <div style={{ padding: '10px' }} className='controls-item'>
-      <h2>{title}</h2>
-      <div style={{ display: 'flex', justifyContent: 'space-around', marginTop: '3em' }}>
-        {colors.map((color) => (
-          <div key={color} style={{ textAlign: 'center', color: `${color.toLowerCase()}` }}>
-            <div
-              className={`color-circle ${color.toLowerCase()}`}
-              onClick={() => setColor(color.toLowerCase())}
-            />
-            <div className={`color-circle-text ${color.toLowerCase()}`}>{color}</div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
+
+
+  useEffect(() => {
+    const list = [
+      'frame1',
+      'frame2',
+      'frame3',
+      'frame4', 
+      'frame5', 
+      'templeModel1', 
+      'templeModel2'
+    
+    
+    
+    
+    ];
+    const visibles = [true, false, false, true, true];
+
+    const setVisible = (button, entities, visible) => {
+      if (visible) {
+        button.classList.add("selected");
+      } else {
+        button.classList.remove("selected");
+      }
+      entities.forEach((entity) => {
+        entity.setAttribute("visible", visible);
+      });
+    };
+
+    list.forEach((item, index) => {
+      const button = document.querySelector("#" + item);
+      const entities = document.querySelectorAll("." + item + "-entity");
+      setVisible(button, entities, visibles[index]);
+      button.addEventListener('click', () => {
+        visibles[index] = !visibles[index];
+        setVisible(button, entities, visibles[index]);
+      });
+    });
+  }, []);
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // const frameCircleColors = ['Black', 'Red', 'Pink', 'Orange', 'Blue'];
+  // const templeTipsCircleColors = ['Black', 'Red', 'Pink', 'Orange', 'Blue'];
+  // const templeCircleColors = ['Black', 'Silver'];
+  // const lensesCircleColors = ['Vision glasses', 'Sunglasses']
+
+  // const ColorPicker = ({ title, setColor, colors }) => (
+  //   <div style={{ padding: '10px' }} className='controls-item'>
+  //     <h2>{title}</h2>
+  //     <div style={{ display: 'flex', justifyContent: 'space-around', marginTop: '3em' }}>
+  //       {colors.map((color) => (
+  //         <div key={color} style={{ textAlign: 'center', color: `${color.toLowerCase()}` }}>
+  //           <div
+  //             className={`color-circle ${color.toLowerCase()}`}
+  //             onClick={() => setColor(color.toLowerCase())}
+  //           />
+  //           <div className={`color-circle-text ${color.toLowerCase()}`}>{color}</div>
+  //         </div>
+  //       ))}
+  //     </div>
+  //   </div>
+  // );
 
   const handleSubmit = () => {
     alert(`Frame color: ${frameColor}, Temple color: ${templeColor}`);
@@ -101,20 +154,32 @@ const CustomGlasses = () => {
     }
   }, [templeTipsColor]);
 
+  useEffect(() => {
+    switch (lensesColor) {
+      case "black":
+        setLensesColor(1);
+        break;
+      case "silver":
+        setLensesColor(2);
+        break;
+      default:
+        setLensesColor(1);
+    }
+  }, [templeTipsColor]);
+
   return (
     <>
       <Header />
-
-      <div dangerouslySetInnerHTML={{
-        __html: `
+      <div className='preview' dangerouslySetInnerHTML={{
+        __html: `   
             <div>
               <a-scene mindar-face embedded color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
                 <a-assets>
                   <a-asset-item id="headModel" src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/examples/face-tracking/assets/sparkar/headOccluder.glb"></a-asset-item>
-                  <a-asset-item id="frameModel" src="https://localhost:443/assets/custom/frames/custom-frame-${frame}.gltf"></a-asset-item>
-                  <a-asset-item id="templeModel" src="https://localhost:443/assets/custom/temples/custom-temple-${temple}.gltf"></a-asset-item>
-                  <a-asset-item id="templeTipsModel" src="https://localhost:443/assets/custom/temples-tips/custom-temple-tips-${templeTips}.gltf"></a-asset-item>
-                  <a-asset-item id="lensesModel" src="https://localhost:443/assets/custom/lenses/custom-lenses-${lenses}.gltf"></a-asset-item>
+                  <a-asset-item id="frameModel" src="https://localhost:443/assets/custom/frames/custom-frame-2.gltf"></a-asset-item>
+                  <a-asset-item id="templeModel" src="https://localhost:443/assets/custom/temples/custom-temple-1.gltf"></a-asset-item>
+                  <a-asset-item id="templeTipsModel" src="https://localhost:443/assets/custom/temples-tips/custom-temple-tips-1.gltf"></a-asset-item>
+                  <a-asset-item id="lensesModel" src="https://localhost:443/assets/custom/lenses/custom-lenses-1.gltf"></a-asset-item>
                 </a-assets>
                 <a-camera active="false" position="0 0 0"></a-camera>
                 <a-entity mindar-face-target="anchorIndex: 188">
@@ -134,24 +199,8 @@ const CustomGlasses = () => {
         ` }} />
 
       <OptionCarrousel setLensesColor={setLensesColor} setFrameColor={setFrameColor} setTempleColor={setTempleColor} setTempleTipsColor={setTempleTipsColor} />
-
-
     </>
   );
 }
 
 export default CustomGlasses;
-
-
-
-
-      {/* <div className='controls'>
-          <ColorPicker title="Frame" setColor={setFrameColor} colors={frameCircleColors} />
-          <ColorPicker title="Temples" setColor={setTempleColor} colors={templeCircleColors} />
-          <ColorPicker title="Temples Tips" setColor={setTempleTipsColor} colors={templeTipsCircleColors} />
-          <ColorPicker title="Lenses" setColor={setLensesColor} colors={lensesCircleColors} />
-          <button className='custom-button' onClick={handleSubmit}>Submit</button>
-        </div> */}
-
-
-

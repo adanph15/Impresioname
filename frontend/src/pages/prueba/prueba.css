@@ -2,6 +2,17 @@
     display: none !important;
 }
 
+
+.preview {
+    /* width: 55%;  */
+    height: 70vh;
+    /* border: 10px solid #3C3C3C;
+    border-radius: 20px; */
+    position: relative;
+    overflow: hidden;
+}
+
+
 /* .custom {
     display: flex;
     justify-content: space-evenly;

@@ -79,7 +79,7 @@ export default function GlassesPage() {
                   <p>{article.name} - {article.description}</p>
                   <p>{article.stock ? 'in stock' : 'out of stock'}</p>
                 </div>
-                <Link to={`/shop-men`} className='link'>
+                <Link to={`/shop`} className='link'>
                   <button className="button-glasses" id='buttonBasket' onClick={addToCart}>Add to Basket</button>
                 </Link>
                 <ToastContainer />

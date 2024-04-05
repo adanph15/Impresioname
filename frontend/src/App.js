@@ -19,6 +19,7 @@ import AdminPurchaseList from "./pages/admin/Purchase.view";
 import AdminPurchaseUpdate from "./pages/admin/Purchase.edit";
 import CustomGlasses from "./pages/prueba/CustomGlasses";
 import PreviewGlasses from "./pages/prueba/PreviewGlasses";
+import Shop from "./pages/shop/Shop";
 
 function NotFound() {
   return (
@@ -43,10 +44,14 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/sing-in" element={<SingIn />} />
           <Route path="/sing-up" element={<SingUp />} />
+
+          <Route path="/shop" element={<Shop />} />
+
+
+
           <Route path="/shop-kids" element={<ShopKids />} />
           <Route path="/shop-men" element={<ShopMen />} />
           <Route path="/shop-women" element={<ShopWomen />} />
-          <Route path="/shop-kids" element={<ShopKids />} />
           <Route path="/glasses/:id" element={<GlassesPage />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/profile" element={<UserPage />} />

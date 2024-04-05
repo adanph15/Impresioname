@@ -29,7 +29,8 @@ const CustomGlasses = () => {
       'frame4', 
       'frame5', 
       'templeModel1', 
-      'templeModel2'
+      'templeModel2',
+      'templeTipsModel1'
     
     
     

@@ -2,7 +2,7 @@ import Slider from 'react-slick';
 import Circles from '../circles/Circles';
 import "./OptionCarrousel.css";
 
-const OptionCarrousel = (setLensesColor, setFrameColor, setTempleColor, setTempleTipsColor) => {
+const OptionCarrousel = ({setLensesColor, setFrameColor, setTempleColor, setTempleTipsColor}) => {
 
   function Arrow(props) {
     const { className, style, onClick } = props;

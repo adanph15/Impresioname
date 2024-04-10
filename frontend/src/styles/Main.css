@@ -1,4 +1,4 @@
-input , button{
+input {
     background-color: #3C3C3C;
     color: white;
     border: 0;
@@ -31,6 +31,9 @@ a {
     text-decoration: none;
 }
 
+/* Button{
+    width: 10vh;
+} */
 
 
 /* --------------------------------- */

@@ -11,8 +11,6 @@ module.exports = app => {
 
   router.get("/category/:category?", article.findCategory);
 
-  router.post("/", upload.single('file'), article.create);
-
   router.put("/:id", upload.single('file'), article.update);
 
   router.delete("/:id", article.delete);

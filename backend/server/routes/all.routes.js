@@ -11,6 +11,8 @@ module.exports = function (app) {
 
   app.get("/api/purchase/user/:userId?", purchaseController.findByUser);
 
+  app.get("/api/purchase/:id", purchaseController.findOne);
+
   app.put("/api/purchase/:id", purchaseController.update);
 
   app.delete("/api/purchase/:id", purchaseController.delete);
@@ -20,9 +22,11 @@ module.exports = function (app) {
 
   app.get("/api/carry", carryController.findAll);
 
-  app.get("/api/carry/:article_id/:purchase_id", carryController.findOne);
+  // app.get("/api/carry/:article_id/:purchase_id", carryController.findOne);
 
-  app.get("/api/carry/:purchase_id", carryController.findByPurchaseId);
+  app.get("/api/carry/purchase/:purchaseId?", carryController.findByPurchaseId);
+
+  app.get("/api/carry/article/:articleId?", carryController.findByArticleId);
 
   app.put("/api/carry/:article_id/:purchase_id", carryController.update);
 

@@ -1,175 +1,171 @@
-import Header from "../../components/header/Header";
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import "./Admin.css";
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import io from 'socket.io-client';
-
+import React, { useState, useEffect, useRef } from 'react';
+import { DataTable } from 'primereact/datatable';
+import { Column } from 'primereact/column';
+import { Button } from 'primereact/button';
+import { Tag } from 'primereact/tag';
+import { Toast } from 'primereact/toast';
+import ArticleService from '../../services/ArticleService';
+import PurchaseService from '../../services/PurcharseService'
 
 export default function AdminArticle() {
-    const [file, setImage] = useState();
     const [articles, setArticles] = useState([]);
-    const [newArticle, setNewArticle] = useState({
-        name: '',
-        description: '',
-        price: 0,
-        category: '',
-        stock: true,
-        file: '',
-    });
+    const [expandedRows, setExpandedRows] = useState({});
+    const toast = useRef(null);
 
-    const runEvent = (name, price, category) => {
-        const socket = io("https://localhost", { transports: ["websocket"] });
-        socket.emit("new_glasses", { message:
-            `New glasses ${name} 
-            added right now go check it in ${category} category, 
-            with a price of ${price}€.`
-        });
-    };
+    const [purchases, setPurchases] = useState({});
+    // const [purchases, setPurchases] = useState({});
+
+
 
     useEffect(() => {
-        showArticles();
+        const fetchInfo = async () => {
+            const fetchedArticles = await ArticleService.getAllArticles();
+            setArticles(fetchedArticles);
+        };
+
+        fetchInfo();
     }, []);
 
-    const showArticles = async () => {
-        try {
-            const response = await axios.get('https://localhost/api/article');
-            setArticles(response.data);
-        } catch (error) {
-            console.error('Error fetching articles:', error);
+    const onRowExpand = async (event) => {
+        toast.current.show({ severity: 'info', summary: 'Product Expanded', life: 3000 });
+        setExpandedRows({ ...expandedRows, });
+    };
+
+    const onRowCollapse = (event) => {
+        toast.current.show({ severity: 'success', summary: 'Product Collapsed', detail: event.data.name, life: 3000 });
+        setExpandedRows({ ...expandedRows, [`${event.data.id}`]: false });
+    };
+
+    const expandAll = () => {
+        let _expandedRows = {};
+
+        articles.forEach((a) => (_expandedRows[`${a.id}`] = true));
+
+        setExpandedRows(_expandedRows);
+    };
+
+    const collapseAll = () => {
+        setExpandedRows({});
+    };
+
+    const formatCurrency = (value) => {
+        return value.toLocaleString('en-US', { style: 'currency', currency: 'EUR' });
+    };
+
+    const amountBodyTemplate = (rowData) => {
+        return formatCurrency(rowData.total);
+    };
+
+    const statusPurchaseBodyTemplate = (rowData) => {
+        // return <Tag value={rowData.status.toLowerCase()} severity={getPurchaseSeverity(rowData.status)}></Tag>;
+        return <Tag value={rowData.status.toLowerCase()} severity="success"></Tag>;
+
+    };
+
+    const imageBodyTemplate = (rowData) => {
+        return <img src={`https://localhost/images/${rowData.filename}`} alt={rowData.name} width="64px" className="shadow-4" />;
+    };
+
+    const priceBodyTemplate = (rowData) => {
+        return formatCurrency(rowData.price);
+    };
+
+    const stockBodyTemplate = (rowData) => {
+        return <Tag value={rowData.stock} severity={getArticleSeverity(rowData)}></Tag>;
+    };
+
+    const getArticleSeverity = (article) => {
+        return article.stock === 1 ? 'success' : 'danger';
+    };
+
+    const getPurchaseSeverity = (status) => {
+        switch (status) {
+            case 'DELIVERED':
+                return 'success';
+
+            case 'CANCELLED':
+                return 'danger';
+
+            case 'PENDING':
+                return 'warning';
+
+            case 'RETURNED':
+                return 'info';
+
+            default:
+                return null;
         }
     };
 
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setNewArticle((prevArticle) => ({
-            ...prevArticle,
-            [name]: value,
-        }));
-    };
-
-    const handleImageChange = (e) => {
-        const file = e.target.files[0];
-        setImage(file);
-    };
-
-    const handleCreateArticle = async (e) => {
-        e.preventDefault();
+    const fetchData = async (article) => {
         try {
-            const formData = new FormData();
-            formData.append('name', newArticle.name);
-            formData.append('description', newArticle.description);
-            formData.append('price', newArticle.price);
-            formData.append('category', newArticle.category);
-            formData.append('stock', newArticle.stock);
-            formData.append('file', file);
-            console.log('Form Data:', formData);
-            await axios.post('https://localhost:443/api/article', formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                },
-            });
-            runEvent(newArticle.name, newArticle.price, newArticle.category);
-            showArticles();
-            setNewArticle({
-                name: '',
-                description: '',
-                price: 0,
-                category: '',
-                stock: false,
-                file: '',
-            });
-            setImage(null);
+            const purchasesData = await PurchaseService.getPurchasesByArticleId(article.id);
+            setPurchases((prevPurchases) => ({
+                ...prevPurchases,
+                [article.id]: purchasesData,
+            }));
         } catch (error) {
-            console.error('Error creating article:', error);
+            console.error("Error fetching purchases:", error);
         }
     };
 
-    const handleDeleteArticle = async (id) => {
-        try {
-            await axios.delete(`https://localhost:443/api/article/${id}`);
-            showArticles();
-        } catch (error) {
-            console.error('Error deleting article:', error);
-        }
-    };
+    const rowExpansionTemplate = (article) => {
+        const articlePurchases = purchases[article.id];
 
-    const renderArticles = () => {
+        if (!articlePurchases) {
+            fetchData(article);
+            return <div>Not found</div>;
+        }
+
         return (
-            <div className="shop-container">
-                <h2>Articles</h2>
-                <div className="aricle-admin-container">
-                    {articles.map((article) => (
-                        <div key={article.id} className="article-admin-item">
-                            <img src={`https://localhost:443/images/${article.filename}`} alt={article.name} className="shop-card-item-photo" />
-                            <p></p>
-                            <strong>{article.name}</strong>
-                            <p>{article.description}</p>
-                            <p>Price: {article.price}€</p>
-                            <p>Category: {article.category}</p>
-                            <p>{article.stock ? 'In Stock' : 'Out of Stock'}</p>
-                            <button onClick={() => handleDeleteArticle(article.id)} className='card-item-button'>
-                                Delete
-                            </button>
-                        </div>
-                    ))}
-                </div>
+            <div className="p-3">
+                <h5>Orders for {article.name}</h5>
+                <DataTable value={articlePurchases}>
+                    <Column style={{ width: '5rem' }} />
+                    <Column field="id" header="Id" sortable />
+                    {/* <Column field={async (rowData) => {
+                        const name = await PurchaseService.getUserNameByPurchaseId(rowData.id);
+                        console.log("NOMBRE:", name);
+                        return name;
+                    }} header="Customer" sortable /> */}
+                    <Column field="user_id" header="Name" sortable />
+                    <Column field="date" header="Date" sortable />
+                    <Column field="total" header="Amount" body={amountBodyTemplate} sortable />
+                    <Column field="status" header="Status" body={statusPurchaseBodyTemplate} sortable />
+                </DataTable>
             </div>
         );
     };
 
- 
-
-
+    const header = (
+        <div className="flex flex-wrap justify-content-end gap-2">
+            <Button icon="pi pi-plus" label="Expand All" onClick={expandAll} text style={{ width: '5rem' }} />
+            <Button icon="pi pi-minus" label="Collapse All" onClick={collapseAll} text style={{ width: '5rem' }} />
+        </div>
+    );
 
     return (
-        <>
-            <div>
-                <Header />
-                <form onSubmit={handleCreateArticle} className='singin-form-container'>
-                    <h2>Add New Article</h2>
-                    <div className="singin-form-item">
-                        <h4>Name:</h4>
-                        <input name="name" type="text" value={newArticle.name} onChange={handleInputChange}></input>
-                    </div>
-                    <div className="singin-form-item">
-                        <h4>Description:</h4>
-                        <input name="description" type="text" value={newArticle.description} onChange={handleInputChange}></input>
-                    </div>
-                    <div className="singin-form-item">
-                        <h4>Price:</h4>
-                        <input name="price" type="number" value={newArticle.price} onChange={handleInputChange}></input>
-                    </div>
-                    <div className="singin-form-item">
-                        <h4>Image</h4>
-                        <input name="file" type="file" onChange={handleImageChange} multiple></input>
-                    </div>
-                    <div className="signin-form-item">
-                        <h4>Category:</h4>
-                        <select name="category" value={newArticle.category} onChange={handleInputChange}>
-                            <option value="">Choose Category</option>
-                            <option value="men">men</option>
-                            <option value="women">women</option>
-                            <option value="kids">kids</option>
-                        </select>
-                    </div>
-                    <div className="singin-form-item">
-                        <h4>Stock:</h4>
-                        <input name="category" type="checkbox" checked={newArticle.stock} onChange={() =>
-                            setNewArticle((prevArticle) => ({
-                                ...prevArticle,
-                                stock: !prevArticle.stock,
-                            }))
-                        }></input>
-                    </div>
-                    <div className="singin-form-item">
-                        <button type='submit'>Create</button>
-                    </div>
-                    <ToastContainer />
-                </form>
-                {renderArticles()}
-            </div>
-        </>
+        <div className="card">
+            <Toast ref={toast} />
+            <DataTable
+                value={articles}
+                expandedRows={expandedRows}
+                onRowToggle={(e) => setExpandedRows(e.data)}
+                onRowExpand={onRowExpand}
+                onRowCollapse={onRowCollapse}
+                rowExpansionTemplate={rowExpansionTemplate}
+                dataKey="id"
+                header={header}
+                tableStyle={{ minWidth: '60rem', borderCollapse: 'collapse', border: '1px solid black' }}
+            >
+                <Column expander={true} style={{ width: '5rem' }} />
+                <Column field="id" header="ID" sortable />
+                <Column field="name" header="Name" sortable />
+                <Column header="Image" body={imageBodyTemplate} />
+                <Column field="price" header="Price" sortable body={priceBodyTemplate} />
+                <Column field="category" header="Category" sortable />
+                <Column field="stock" header="Stock" sortable body={stockBodyTemplate} />
+            </DataTable>
+        </div>
     );
-};
+}

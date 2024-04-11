@@ -1,5 +1,6 @@
 const db = require("../models");
 const Carry = db.carry;
+const User = db.user;
 const Op = db.Sequelize.Op;
 
 // Create Carry

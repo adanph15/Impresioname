@@ -5,22 +5,19 @@ import { Button } from 'primereact/button';
 import { Tag } from 'primereact/tag';
 import { Toast } from 'primereact/toast';
 import ArticleService from '../../services/ArticleService';
-import PurchaseService from '../../services/PurcharseService'
+import PurchaseService from '../../services/PurcharseService';
 
-export default function AdminArticle() {
-    const [articles, setArticles] = useState([]);
+export default function PurchaseFilter() {
+    const [purchases, setPurchases] = useState([]);
     const [expandedRows, setExpandedRows] = useState({});
     const toast = useRef(null);
 
-    const [purchases, setPurchases] = useState({});
-    // const [purchases, setPurchases] = useState({});
-
-
+    const [articles, setArticles] = useState({});
 
     useEffect(() => {
         const fetchInfo = async () => {
-            const fetchedArticles = await ArticleService.getAllArticles();
-            setArticles(fetchedArticles);
+            const fetchedPurchases = await PurchaseService.getAllPurchases();
+            setPurchases(fetchedPurchases);
         };
 
         fetchInfo();
@@ -28,7 +25,7 @@ export default function AdminArticle() {
 
     const onRowExpand = async (event) => {
         toast.current.show({ severity: 'info', summary: 'Product Expanded', life: 3000 });
-        setExpandedRows({ ...expandedRows, });
+        setExpandedRows({ ...expandedRows });
     };
 
     const onRowCollapse = (event) => {
@@ -39,7 +36,7 @@ export default function AdminArticle() {
     const expandAll = () => {
         let _expandedRows = {};
 
-        articles.forEach((a) => (_expandedRows[`${a.id}`] = true));
+        purchases.forEach((p) => (_expandedRows[`${p.id}`] = true));
 
         setExpandedRows(_expandedRows);
     };
@@ -56,10 +53,8 @@ export default function AdminArticle() {
         return formatCurrency(rowData.total);
     };
 
-    const statusPurchaseBodyTemplate = (rowData) => {
-        // return <Tag value={rowData.status.toLowerCase()} severity={getPurchaseSeverity(rowData.status)}></Tag>;
+    const statusArticleBodyTemplate = (rowData) => {
         return <Tag value={rowData.status.toLowerCase()} severity="success"></Tag>;
-
     };
 
     const imageBodyTemplate = (rowData) => {
@@ -71,14 +66,14 @@ export default function AdminArticle() {
     };
 
     const stockBodyTemplate = (rowData) => {
-        return <Tag value={rowData.stock} severity={getArticleSeverity(rowData)}></Tag>;
+        return <Tag value={rowData.stock} severity={getPurchaseSeverity(rowData)}></Tag>;
     };
 
-    const getArticleSeverity = (article) => {
-        return article.stock === 1 ? 'success' : 'danger';
+    const getPurchaseSeverity = (purchase) => {
+        return purchase.stock === 1 ? 'success' : 'danger';
     };
 
-    const getPurchaseSeverity = (status) => {
+    const getArticleSeverity = (status) => {
         switch (status) {
             case 'DELIVERED':
                 return 'success';
@@ -97,35 +92,35 @@ export default function AdminArticle() {
         }
     };
 
-    const fetchData = async (article) => {
+    const fetchData = async (purchase) => {
         try {
-            const purchasesData = await PurchaseService.getPurchasesByArticleId(article.id);
-            setPurchases((prevPurchases) => ({
-                ...prevPurchases,
-                [article.id]: purchasesData,
+            const articlesData = await PurchaseService.getArticlesByPurchaseId(purchase.id);
+            setArticles((prevArticles) => ({
+                ...prevArticles,
+                [purchase.id]: articlesData,
             }));
         } catch (error) {
-            console.error("Error fetching purchases:", error);
+            console.error("Error fetching articles:", error);
         }
     };
 
-    const rowExpansionTemplate = (article) => {
-        const articlePurchases = purchases[article.id];
+    const rowExpansionTemplate = (purchase) => {
+        const purchaseArticles = articles[purchase.id];
 
-        if (!articlePurchases) {
-            fetchData(article);
+        if (!purchaseArticles) {
+            fetchData(purchase);
             return <div>Not found</div>;
         }
 
         return (
             <div className="p-3">   
-                <h5>Orders for {article.name}</h5>
-                <DataTable value={articlePurchases}>
+                <h5>Articles for Purchase ID: {purchase.id}</h5>
+                <DataTable value={purchaseArticles}>
                     <Column style={{ width: '5rem' }} />
-                    <Column field="user_id" header="Name" sortable />
-                    <Column field="date" header="Date" sortable />
-                    <Column field="total" header="Amount" body={amountBodyTemplate} sortable />
-                    <Column field="status" header="Status" body={statusPurchaseBodyTemplate} sortable />
+                    <Column field="name" header="Name" sortable />
+                    <Column field="price" header="Price" body={priceBodyTemplate} sortable />
+                    <Column field="category" header="Category" sortable />
+                    <Column field="stock" header="Stock" body={stockBodyTemplate} sortable />
                 </DataTable>
             </div>
         );
@@ -142,7 +137,7 @@ export default function AdminArticle() {
         <div className="card">
             <Toast ref={toast} />
             <DataTable
-                value={articles}
+                value={purchases}
                 expandedRows={expandedRows}
                 onRowToggle={(e) => setExpandedRows(e.data)}
                 onRowExpand={onRowExpand}
@@ -154,11 +149,9 @@ export default function AdminArticle() {
             >
                 <Column expander={true} style={{ width: '5rem' }} />
                 <Column field="id" header="ID" sortable />
-                <Column field="name" header="Name" sortable />
-                <Column header="Image" body={imageBodyTemplate} />
-                <Column field="price" header="Price" sortable body={priceBodyTemplate} />
-                <Column field="category" header="Category" sortable />
-                <Column field="stock" header="Stock" sortable body={stockBodyTemplate} />
+                <Column field="date" header="Date" sortable />
+                <Column field="total" header="Amount" body={amountBodyTemplate} sortable />
+                <Column field="status" header="Status" body={statusArticleBodyTemplate} sortable />
             </DataTable>
         </div>
     );

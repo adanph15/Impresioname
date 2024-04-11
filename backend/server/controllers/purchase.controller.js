@@ -1,5 +1,6 @@
 const db = require("../models");
 const Purchase = db.purchase;
+const User = db.user;
 const Op = db.Sequelize.Op;
 
 // Create purchase
@@ -37,8 +38,14 @@ exports.create = (req, res) => {
 // Find All Purcharses
 exports.findAll = (req, res) => {
     Purchase.findAll()
-        .then(data => {
-            res.send(data);
+        .then(async data => {
+            const purchasesWithUsernames = await Promise.all(data.map(async purchase => {
+                const user = await User.findByPk(purchase.dataValues.user_id);
+                purchase.dataValues.username = user.username;
+                return purchase;
+            }));
+
+            res.send(purchasesWithUsernames);
         })
         .catch(err => {
             res.status(500).send({
@@ -52,12 +59,14 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
     const id = req.params.id;
     Purchase.findByPk(id)
-        .then(data => {
+        .then(async data => {
             if (!data) {
                 res.send({
                     message: "Purcharse not found."
                 });
             } else {
+                const user = await User.findByPk(data.dataValues.user_id);
+                data.dataValues.username = user.username;
                 res.send(data);
             }
         })

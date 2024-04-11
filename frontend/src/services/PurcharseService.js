@@ -71,17 +71,20 @@ const PurchaseService = {
     },
 
 
-    getArticlesByPurchaseId: async (idPurchase) => {
+    getArticlesByPurchaseId: async (purchaseId) => {
         try {
-            const response = await axios.get(`${BASE_URL}/carry/purchase/${idPurchase}`);
+            const response = await axios.get(`${BASE_URL}/carry/purchase/${purchaseId}`);
             const articles = [];
-
-            for (const carry of response.data) {
-                const article = await ArticleService.getOneArticle(carry.article_id);
+            for (let t = 0; t < response.data.length; t++) {
+                const carry = response.data[t];
+                let article = await ArticleService.getOneArticle(carry.article_id);
                 articles.push(article);
+            }    
+            if (articles.length === 0) {
+                return null;
+            } else {
+                return articles;
             }
-
-            return articles;
         } catch (error) {
             throw error;
         }

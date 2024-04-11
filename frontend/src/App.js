@@ -58,7 +58,7 @@ function App() {
           <Route path="/direction" element={<UserAddressesPage />} />
           <Route path="/direction-update/:id" element={<UserAddressesUpdate />} />
           <Route path="/purchases" element={<UserPurchasePage />} />
-          <Route path="/admin-article" element={<AdminArticle />} />
+          <Route path="/admin" element={<AdminArticle />} />
           <Route path="/admin-purchases" element={<AdminPurchaseList />} />
           <Route path="/admin-purchases/update/:id" element={<AdminPurchaseUpdate />} />
           <Route path="/preview/:id" element={<PreviewGlasses />} />

@@ -30,6 +30,20 @@ const ArticleService = {
             console.error(`Error deleting with id ${id} :`, error);
             // Toast.error('Error deleting article');
         }
+    },
+
+    getArticlesByCategory: async function (category) {
+        try {
+            let response;
+            if (category === "men" || category === "women" || category === "kids") {
+                response = await axios.get(`https://localhost/api/article/category/${category}`);
+            } else {
+                response = await axios.get('https://localhost/api/article');
+            }
+            return (response.data);
+        } catch (error) {
+            console.error('Error fetching articles:', error);
+        }
     }
 
 }

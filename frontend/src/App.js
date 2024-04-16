@@ -1,15 +1,11 @@
 import { Route, Routes, BrowserRouter } from "react-router-dom";
-import './App.css';
-import './styles/Main.css';
 import React from 'react';
 import Home from "./pages/home/Home";
-import SingIn from "./pages/user/SingIn";
-import ShopMen from "./pages/shop/ShopMen";
-import ShopWomen from "./pages/shop/ShopWomen";
-import ShopKids from "./pages/shop/ShopKids";
+import SignIn from "./pages/user/SignIn";
+
 import AdminArticle from "./pages/admin/Article.crud";
 import GlassesPage from "./pages/shop/GlassPage";
-import SingUp from "./pages/user/SingUp";
+import SignUp from "./pages/user/SignUp";
 import UserPage from "./pages/user/UserPage";
 import UserAddressesPage from "./pages/user/UserAddressesPage";
 import UserAddressesUpdate from "./pages/user/UserAddressesUpdate";
@@ -20,6 +16,14 @@ import AdminPurchaseUpdate from "./pages/admin/Purchase.edit";
 import CustomGlasses from "./pages/prueba/CustomGlasses";
 import PreviewGlasses from "./pages/prueba/PreviewGlasses";
 import Shop from "./pages/shop/Shop";
+
+// import 'primeicons/primeicons.css';
+// import 'primeflex/primeflex.css';  
+// import 'primereact/resources/primereact.css';
+// import './theme.css';
+// import 'primereact/resources/themes/lara-light-indigo/theme.css';
+
+
 
 function NotFound() {
   return (
@@ -42,16 +46,12 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/sing-in" element={<SingIn />} />
-          <Route path="/sing-up" element={<SingUp />} />
+          <Route path="/sign-in" element={<SignIn />} />
+          <Route path="/sign-up" element={<SignUp />} />
 
-          <Route path="/shop" element={<Shop />} />
+          <Route path="/shop/:category" element={<Shop />} />
 
 
-
-          <Route path="/shop-kids" element={<ShopKids />} />
-          <Route path="/shop-men" element={<ShopMen />} />
-          <Route path="/shop-women" element={<ShopWomen />} />
           <Route path="/glasses/:id" element={<GlassesPage />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/profile" element={<UserPage />} />

@@ -22,6 +22,10 @@ export default function SignUp() {
         window.location.href = '/home';
     }
 
+    const goToSignIn = () => {
+        window.location.href = '/sign-in';
+    }
+
     const handleInputChange = (e, setState, setError) => {
         const value = e.target.value.trim();
         setState(value);
@@ -147,6 +151,11 @@ export default function SignUp() {
                                 <button className="bg-primary text-white w-1/3 h-14 font-bold rounded-md cursor-pointer text-base hover:bg-white hover:text-terciary hover:border-primary hover:border-solid hover:border" onClick={handleSignup}>
                                     Create Account
                                 </button>
+                            </div>
+                            <div class="flex flex-row justify-center -mx-3 mb-6 mt-10 ">
+                                <a href="/sign-in" className="text-primary font-semibold cursor-pointer text-sm">
+                                    Have an  Account ?
+                                </a>
                             </div>
                         </form>
                     </div>

@@ -65,7 +65,7 @@ export default function Login() {
             <div>
                 <Header />
                 <div className="flex flex-col justify-around items-center">
-                    <h2 className="text-4xl font-bold text-terciary  mt-10">Login</h2>
+                    <h2 className="text-4xl font-bold text-terciary mt-10">Login</h2>
                     <form className="w-full max-w-3xl">
                         <div className="flex flex-wrap -mx-3 mb-6 mt-20">
                             <div className="w-full px-3 mb-6 md:mb-0">
@@ -76,12 +76,12 @@ export default function Login() {
                                 <p className="text-red-500 text-xs italic">{usernameError}</p>
                             </div>
                         </div>
-                        <div className="flex flex-wrap -mx-3 mb-6 mt-20">
+                        <div className="flex flex-wrap -mx-3 mb-6 mt-10">
                             <div className="w-full px-3 mb-6 md:mb-0">
                                 <label className="block tracking-wide text-gray-700 text-lg font-bold mb-2" htmlFor="password">
                                     Password
                                 </label>
-                                <input className="appearance-none block w-full bg-gray-200 text-primary border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary text-base" id="username" type="password" placeholder="**********" value={username} onChange={(e) => handleInputChange(e, setPassword, setPasswordError)} />
+                                <input className="appearance-none block w-full bg-gray-200 text-primary border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary text-base" id="username" type="password" placeholder="**********" value={password} onChange={(e) => handleInputChange(e, setPassword, setPasswordError)} />
                                 <p className="text-red-500 text-xs italic">{passwordError}</p>
                             </div>
                         </div>
@@ -89,6 +89,11 @@ export default function Login() {
                             <button className="bg-primary text-white w-1/3 h-14 font-bold rounded-md cursor-pointer text-base hover:bg-white hover:text-terciary hover:border-primary hover:border-solid hover:border" onClick={handleLogin}>
                                 Login
                             </button>
+                        </div>
+                        <div class="flex flex-row justify-center -mx-3 mb-6 mt-10 ">
+                            <a href="/sign-up" className="text-primary font-semibold cursor-pointer text-sm">
+                                Not have an  Account ?
+                            </a>
                         </div>
                     </form>
                 </div>

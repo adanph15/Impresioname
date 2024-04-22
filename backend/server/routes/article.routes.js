@@ -16,9 +16,13 @@ module.exports = app => {
 
   app.post("/api/article", uploadImage, article.create); // Utiliza uploadImage para imágenes
 
+
+ // router.put("/:id", upload.single('file'), article.update);
+
   app.put("/api/article/:id", uploadImage, article.update); // Utiliza uploadImage para imágenes
 
   app.delete("/api/article/:id", article.delete);
+
 
   // Temple
   app.get("/api/temple/:id", temple.findOne);

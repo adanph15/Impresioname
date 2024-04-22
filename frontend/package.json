@@ -8,11 +8,15 @@
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "aframe": "^1.5.0",
+    "autoprefixer": "^10.4.19",
     "axios": "^1.6.8",
     "cross-env": "^7.0.3",
     "date-fns": "^3.6.0",
     "mind-ar": "^1.2.5",
-    "primereact": "^10.6.2",
+    "postcss-cli": "^11.0.0",
+    "primereact": "^10.6.3",
+    "primeicons": "^7.0.0",
+    "primeflex": "^3.3.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.22.3",
@@ -21,6 +25,7 @@
     "react-slide-menu": "^0.5.1",
     "react-toastify": "^10.0.5",
     "react-validation": "^3.0.7",
+    "slick-carousel": "^1.8.1",
     "socket.io": "^4.7.5",
     "socket.io-client": "^4.7.5",
     "three": "^0.163.0",
@@ -52,6 +57,7 @@
     ]
   },
   "devDependencies": {
-    "cross-env": "^7.0.3"
+    "cross-env": "^7.0.3",
+    "tailwindcss": "^3.4.3"
   }
 }

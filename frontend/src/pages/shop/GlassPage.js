@@ -56,13 +56,67 @@ export default function GlassesPage() {
   };
 
   if (!article) {
-    return <div>glasses not found</div>;
+    goToShop();
   }
 
+  const goToShop = () => {
+    navigate(`/shop/All`);
+  };
 
   const goToTryGlasses = (id) => {
     navigate(`/preview/${id}`);
   };
+
+//   .glasses {
+//     height: 100vh;
+// }
+
+// .glasses-container {
+//     margin-top: 10vh;
+//     display: flex;
+//     justify-content: center;
+// }
+
+// .glasses-item {
+//     width: 85%;
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: space-evenly;
+//     align-items: center;    
+//     background-color: #333333;
+//     color: white;
+//     border-radius: 6px;
+// }
+
+// .glasses-item-info {
+//     margin-top: 3vh;
+//     display: flex;
+//     justify-content: space-between;
+//     align-items: center;
+//     flex-direction: column;
+//     gap: 10px 60px;
+//     margin-bottom: 5vh;
+// }
+
+// .glasses-info {
+//     width: 100%;
+//     margin-top: -2vh;
+// }
+
+// .button-glasses {
+//     background-color: white;
+//     color: black;
+// }
+
+// .button-glasses:hover {
+//     background-color: black;
+//     color: white;
+// }
+
+// .glasses-item-img {
+//     border-radius: 6px;
+//     width: 30vw;
+// }
 
 
   return (

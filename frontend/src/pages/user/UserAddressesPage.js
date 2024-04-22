@@ -113,7 +113,6 @@ const UserAddressesPage = () => {
   return (
     <>
       <div>
-        <Header />
         <div className="singin-container">
           <div className="double-container">
             <div className='singin-form-container'>

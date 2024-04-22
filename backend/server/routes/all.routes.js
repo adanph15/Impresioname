@@ -1,6 +1,7 @@
 const purchaseController = require("../controllers/purchase.controller");
 const carryController = require("../controllers/carry.controller");
 const directionController = require("../controllers/direction.controller");
+const printerController = require("../controllers/printer.controller");
 
 module.exports = function (app) {
 
@@ -40,4 +41,15 @@ module.exports = function (app) {
   app.put("/api/direction/:id", directionController.update);
 
   app.delete("/api/direction/:id", directionController.delete);
+
+  // Printer
+  app.post("/api/printer", printerController.create);
+
+  app.get("/api/printer", printerController.findAll);
+
+  app.get("/api/printer/article/:id", printerController.findOne);
+
+  app.put("/api/printer/:id", printerController.update);
+
+  app.delete("/api/printer/:id", printerController.delete);
 }

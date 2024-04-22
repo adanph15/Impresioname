@@ -7,13 +7,14 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING
         },
         price: {
-            type: Sequelize.FLOAT
+            type: Sequelize.JSON,
+            defaultValue: {}
         },
         category: {
             type: Sequelize.STRING
         },
         stock: {
-            type: Sequelize.BOOLEAN
+            type: Sequelize.INTEGER
         },
         filename: {
             type: Sequelize.STRING

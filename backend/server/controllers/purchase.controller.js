@@ -54,7 +54,7 @@ exports.findOne = (req, res) => {
     Purchase.findByPk(id)
         .then(data => {
             if (!data) {
-                res.send({
+                res.status(400).send({
                     message: "Purcharse not found."
                 });
             } else {
@@ -119,15 +119,15 @@ exports.delete = (req, res) => {
                 message: "Purchase deleted successfully."
             });
         } else {
-            res.send({
-                message: "Purchase cannot be deleted."
+            res.status(404).send({
+                message: "Purchase not found."
             });
         }
     })
-        .catch(err => {
-            res.status(500).send({
-                message:
-                    err.message || "Error deleting the purchase."
-            });
+    .catch(err => {
+        res.status(500).send({
+            message:
+                err.message || "Error deleting the purchase."
         });
-};              
+    });
+};

@@ -66,6 +66,10 @@ a {
 
 
 /* --------------------------------- */
+/* CUSTOM GLASSES */
+
+
+/* --------------------------------- */
 /* SHOP STYLES */
 
 .shop-container {
@@ -179,6 +183,10 @@ a {
     color: white;
 }
 
+@media only screen and (max-width: 999px) {
+    .shop-card-item-photo { width: 120px; }
+}
+
 
 
 /* --------------------------------- */
@@ -192,7 +200,7 @@ a {
     align-items: flex-start;
     margin-bottom: 20vh;
     margin-top: 2vh;
-    height: 70vh;
+    height: 90vh;
 }
 
 .singin-form-container{
@@ -218,6 +226,7 @@ a {
     .singin-form-item input{ width: 70vw; }
 
     .singin-form-item button{ width: 70vw; }
+
 }
 
 

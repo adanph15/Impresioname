@@ -9,6 +9,7 @@ export default function SingIn() {
   useSocketService();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
   const goToHome = () => {
     window.location.href = '/home';
@@ -16,6 +17,10 @@ export default function SingIn() {
 
   const handleLogin = async () => {
     try {
+      if (!username || !password) {
+        setError('Please enter both username and password.');
+        return;
+      }
       const response = await AuthService.login(username, password);
       console.log("respuesta de usuarioInfo" + response.user)
       localStorage.setItem("userInfo", JSON.stringify(response.user));
@@ -33,6 +38,7 @@ export default function SingIn() {
           <form className='singin-form-container'>
             <h2>Sing In</h2>
             <h3>Already have an account:</h3>
+            {error && <p className="error-message">{error}</p>}
             <div className="singin-form-item">
               <h4>Username</h4>
               <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />

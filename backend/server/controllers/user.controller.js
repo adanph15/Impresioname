@@ -8,12 +8,6 @@ const Direction = db.direction;
 // Create and Save a new User
 exports.create = async (req, res) => {
   try {
-    // if (!req.body.password || !req.body.username) {
-    //   res.status(400).send({
-    //     message: "User must have a username and a password"
-    //   });
-    //   return;
-    // }
 
     const existingUser = await User.findOne({ where: { username: req.body.username } });
     if (existingUser) {
@@ -50,15 +44,11 @@ exports.create = async (req, res) => {
 
 // Create and Save a new User
 exports.createAdmin = (req, res) => {
-  //Validate request
   if (!req.body.password || !req.body.username) {
-    res.status(400).send({
-      message: "Content can not be empty!"
-    });
+    res.status(400).send({ message: "Content can not be empty!" });
     return;
   }
 
-  // Create a User
   let user = {
     password: req.body.password,
     name: req.body.name,
@@ -74,9 +64,7 @@ exports.createAdmin = (req, res) => {
         const result = bcrypt.compareSync(user.password, data.password);
         if (!result) return res.status(401).send('Password not valid!');
         const token = utils.generateToken(data);
-        // get basic user details
         const userObj = utils.getCleanUser(data);
-        // return the token along with user details
         return res.json({ user: userObj, access_token: token });
       }
 
@@ -127,7 +115,7 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
   const id = req.params.id;
 
-  User.findByPk(id)
+  User.findByPk(id,{attributes: {exclude: ['password']}})
     .then(data => {
       res.send(data);
     })
@@ -151,7 +139,7 @@ exports.update = (req, res) => {
           message: "User was updated successfully."
         });
       } else {
-        res.send({
+        res.status(400).send({
           message: `Cannot update User with id=${id}. Maybe User was not found or req.body is empty!`
         });
       }
@@ -176,7 +164,7 @@ exports.delete = (req, res) => {
           message: "User was deleted successfully!"
         });
       } else {
-        res.send({
+        res.status(400).send({
           message: `Cannot delete User with id=${id}. Maybe User was not found!`
         });
       }
@@ -212,7 +200,11 @@ exports.getUserDirections = (req, res) => {
     where: { user_id: userId }
   })
     .then(directions => {
-      res.send(directions);
+      if (!directions) {
+        res.status(400).send({ message: "Error finding Directions" });
+      } else {
+        res.status(300).send(directions);
+      }
     })
     .catch(error => {
       res.status(500).send('Internal Server Error');

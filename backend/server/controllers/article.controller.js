@@ -46,8 +46,7 @@ exports.findCategory = (req, res) => {
     const category = req.params.category;
 
     let condition = category ? { category: category } : null;
-
-    Article.findAll({ where: condition })
+        Article.findAll({ where: condition })
         .then(data => {
             if (!data) {
                 res.status(400).send({ message: 'Error finding Articles' });
@@ -241,9 +240,7 @@ exports.delete = (req, res) => {
                 message: "Article deleted."
             });
         } else {
-            res.send({
-                message: "Article cannot be deleted."
-            });
+            res.status(400).send({ message: 'Article cannot be deleted.' });
         }
     }).catch(error => {
         res.status(500).send({ message: 'Error deleting Article' });

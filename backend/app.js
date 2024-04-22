@@ -9,12 +9,18 @@ const fs = require("fs");
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
 
-app.use('/images', express.static(path.join(__dirname, 'server', 'public', 'images')));
-app.use('/assets', express.static(path.join(__dirname, 'server', 'public', 'assets')));
+var corsOptionsGLTF = {
+  origin: "*",
+  methods: "GET", // Permitir solo solicitudes GET para los archivos glTF
+  allowedHeaders: ["Content-Type", "Authorization"] // Permitir ciertos encabezados
+};
 
 var corsOptions = {
   origin: "*"
 };
+
+app.use('/images', express.static(path.join(__dirname, 'server', 'public', 'images')));
+app.use('/assets', cors(corsOptionsGLTF), express.static(path.join(__dirname, 'server', 'public', 'assets')));
 
 app.use(cors(corsOptions));
 

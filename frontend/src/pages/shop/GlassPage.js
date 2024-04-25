@@ -53,96 +53,96 @@ export default function GlassesPage() {
     // Update the state with the updated cart
     setCartItems(updatedCart);
     console.log(updatedCart)
+
+    goToShop();
   };
 
   if (!article) {
-    goToShop();
+    return <div>Loading...</div>;
   }
-
-  const goToShop = () => {
-    navigate(`/shop/All`);
-  };
 
   const goToTryGlasses = (id) => {
     navigate(`/preview/${id}`);
   };
 
-//   .glasses {
-//     height: 100vh;
-// }
+  const goToShop = (category) => {
+    navigate(`/shop/${category}`);
+  };
 
-// .glasses-container {
-//     margin-top: 10vh;
-//     display: flex;
-//     justify-content: center;
-// }
+  //   .glasses {
+  //     height: 100vh;
+  // }
 
-// .glasses-item {
-//     width: 85%;
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: space-evenly;
-//     align-items: center;    
-//     background-color: #333333;
-//     color: white;
-//     border-radius: 6px;
-// }
+  // .glasses-container {
+  //     margin-top: 10vh;
+  //     display: flex;
+  //     justify-content: center;
+  // }
 
-// .glasses-item-info {
-//     margin-top: 3vh;
-//     display: flex;
-//     justify-content: space-between;
-//     align-items: center;
-//     flex-direction: column;
-//     gap: 10px 60px;
-//     margin-bottom: 5vh;
-// }
+  // .glasses-item {
+  //     width: 85%;
+  //     display: flex;
+  //     flex-direction: column;
+  //     justify-content: space-evenly;
+  //     align-items: center;    
+  //     background-color: #333333;
+  //     color: white;
+  //     border-radius: 6px;
+  // }
 
-// .glasses-info {
-//     width: 100%;
-//     margin-top: -2vh;
-// }
+  // .glasses-item-info {
+  //     margin-top: 3vh;
+  //     display: flex;
+  //     justify-content: space-between;
+  //     align-items: center;
+  //     flex-direction: column;
+  //     gap: 10px 60px;
+  //     margin-bottom: 5vh;
+  // }
 
-// .button-glasses {
-//     background-color: white;
-//     color: black;
-// }
+  // .glasses-info {
+  //     width: 100%;
+  //     margin-top: -2vh;
+  // }
 
-// .button-glasses:hover {
-//     background-color: black;
-//     color: white;
-// }
+  // .button-glasses {
+  //     background-color: white;
+  //     color: black;
+  // }
 
-// .glasses-item-img {
-//     border-radius: 6px;
-//     width: 30vw;
-// }
+  // .button-glasses:hover {
+  //     background-color: black;
+  //     color: white;
+  // }
+
+  // .glasses-item-img {
+  //     border-radius: 6px;
+  //     width: 30vw;
+  // }
 
 
   return (
     <>
-      <div>
-        <Header />
-        <div className="glasses">
-          <div className='glasses-container'>
-            <div className='glasses-item'>
-              <div className='glasses-item-info'>
-                <img src={`https://localhost/images/${article.filename}`} className="glasses-item-img" alt='articleImagesGlasses'/>
-                <div className='glasses-info'>
-                  <h2>{article.price}€</h2>
-                  <p>{article.name} - {article.description}</p>
-                  <p>{article.stock ? 'in stock' : 'out of stock'}</p>
-                </div>
-                <Link to={`/shop`} className='link'>
-                  <button className="button-glasses" id='buttonBasket' onClick={addToCart}>Add to Basket</button>
-                </Link>
-                <ToastContainer />
-                  <button onClick={() => goToTryGlasses(article.id)} className="button-glasses" id='buttonBasket'>Try Me</button>
-              </div>
+      <Header />
+      <div className="flex flex-col justify-between items-center gap-y-5">
+        <h2 className="text-4xl font-bold text-terciary mt-10">{article.name}</h2>
+        <div className='flex flex-col items-center'>
+          <img src={`https://localhost/images/${article.filename}`} className="w-2/3 rounded-lg mb-6 mt-5 border-b border-r border-primary" alt='articleImagesGlasses' />
+          <div className='flex flex-col items-start w-2/3 '>
+            <p className='text-xl font-semibold mt-5'>{article.price}€   |  {article.stock ? 'In stock' : 'Out of stock'}</p>
+            <p className='text-lg mt-5'>{article.description}</p>
+          </div>
+          <div className="flex flex-row justify-center w-2/3 -mx-3 mb-6">
+            <div className="flex flex-row justify-center w-full mb-6 mt-10">
+              <button onClick={addToCart} className="bg-primary text-white w-2/3 h-14 font-bold rounded-md cursor-pointer text-base hover:bg-white hover:text-terciary hover:border-primary hover:border-solid hover:border" >Add to Basket</button>
+            </div>
+            <div className="flex flex-row justify-center w-full mb-6 mt-10">
+              <button onClick={() => goToTryGlasses(article.id)} className="bg-primary text-white w-2/3 h-14 font-bold rounded-md cursor-pointer text-base hover:bg-white hover:text-terciary hover:border-primary hover:border-solid hover:border" >Try Me</button>
             </div>
           </div>
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 }

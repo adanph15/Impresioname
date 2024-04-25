@@ -191,6 +191,7 @@ describe('Test the user findAll', () => {
 
 //------------------------------------------------------------------------------------
 
+
 describe('Test the purchase creation', () => {
     test('It should not create an purchase with empty atribute', async () => {
         const newPurchase = {
@@ -347,6 +348,3 @@ describe('Test the user isAuthenticated', () => {
         expect(response.statusCode).toBe(400);
         expect(response.body).toHaveProperty('message');
         expect(response.body.message).toBe("Token is required.");
-    });
-});
-

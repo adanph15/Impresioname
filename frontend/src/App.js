@@ -60,8 +60,8 @@ function App() {
           <Route path="/admin" element={<AdminArticle />} />
           <Route path="/admin-purchases" element={<AdminPurchaseList />} />
           <Route path="/admin-purchases/update/:id" element={<AdminPurchaseUpdate />} />
-          <Route path="/preview/:id" element={<PreviewGlasses />} />
-          <Route path="/custom" element={<CustomGlasses />} />
+          {/* <Route path="/preview/:id" element={<PreviewGlasses />} />
+          <Route path="/custom" element={<CustomGlasses />} /> */}
           
           <Route path="*" element={<NotFound />} />
         </Routes>

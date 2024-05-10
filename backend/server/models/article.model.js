@@ -7,8 +7,7 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING
         },
         price: {
-            type: Sequelize.JSON,
-            defaultValue: {}
+            type: Sequelize.FLOAT,
         },
         category: {
             type: Sequelize.STRING

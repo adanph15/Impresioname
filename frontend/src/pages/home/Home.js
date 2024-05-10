@@ -1,13 +1,76 @@
+import React, { useRef } from 'react';
+// import { useState } from 'react';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import Header from "../../components/header/Header";
 import Scroll from "../../components/scroll/Scroll";
-import jasonCategories from "../../assets/images/jasonCategories"
-import "./Home.css";
-import { ToastContainer} from 'react-toastify';
+import HomeRender from "../../components/HomeRender";
+import Shop from "../shop/Shop";
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import useSocketService from '../../services/SocketService';
 
 export default function Home() {
   useSocketService();
+
+  // // Funciones de manejo de cambios para los selectores de opciones
+  // const handleFrameChange = (event) => {
+  //   setFrame(parseInt(event.target.value));
+  // };
+
+  // const handleTempleChange = (event) => {
+  //   setTemple(parseInt(event.target.value));
+  // };
+
+  // const handleLensesChange = (event) => {
+  //   setLenses(parseInt(event.target.value));
+  // };
+
+  // const settings = {
+  //   dots: true,
+  //   infinite: true,
+  //   speed: 500,
+  //   slidesToShow: 1,
+  //   slidesToScroll: 1,
+  //   swipeToSlide: true, // Habilitar el desplazamiento al arrastrar
+  //   draggable: true // Permitir arrastrar con el ratón
+  // };
+
+  // const OptionsSelector = ({ title, selectedOption, setSelectedOption, options }) => (
+  //   <div className='flex flex-col items-center'>
+  //     <p className='text-2xl mb-8 font-semibold text-secundary'>{title}</p>
+  //     <div className='w-full mt-6'>
+  //       <div className='flex justify-around items-center'>
+  //         {options.map((option) => (
+  //           <div
+  //             key={option}
+  //             className={`flex flex-col items-center cursor-pointer ${selectedOption === option ? 'bg-gray-300' : ''}`}
+  //             onClick={() => setSelectedOption(option)}
+  //           >
+  //             <div className={`w-12 h-12 rounded-full mb-2 ${selectedOption === option ? 'bg-blue-500' : 'bg-gray-300'}`}></div>
+  //             <div className={`text-center ${selectedOption === option ? 'text-blue-500' : 'text-gray-700'}`}>{option}</div>
+  //           </div>
+  //         ))}
+  //       </div>
+  //     </div>
+  //   </div>
+  // );
+
+
+
+
+  // const [selectedOption, setSelectedOption] = useState(null);
+  // const options = ['Option 1', 'Option 2', 'Option 3', 'Option 4'];
+
+
+  const videoRef = useRef(null);
+
+  // useEffect(() => {
+  //   const video = videoRef.current;
+  //   if (video) {
+  //     video.play().catch(error => console.error('Error al reproducir el video automáticamente:', error));
+  //   }
+  // }, []);
 
   return (
     <>
@@ -42,7 +105,7 @@ export default function Home() {
                     With less than a month to go before the European Union enacts new consumer privacy laws for its citizens, companies around the world are updating their terms of service agreements to comply.
                 </p>
                 <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                    The European Union’s General Data Protection Regulation (G.D.P.R.) goes into effect on May 25 and is meant to ensure a common set of data rights in the European Union. It requires organizations to notify users as soon as possible of high-risk data breaches that could personally affect them.
+                    The European Unions General Data Protection Regulation (G.D.P.R.) goes into effect on May 25 and is meant to ensure a common set of data rights in the European Union. It requires organizations to notify users as soon as possible of high-risk data breaches that could personally affect them.
                 </p>
             </div>
            
@@ -55,33 +118,39 @@ export default function Home() {
 </div>
 
         <Header />
-        <div className="home-container">
-          <h2>Newest</h2>
-          <div className="home-container-newest">
-            <Scroll />
+        <div className="bg-quaternary min-h-screen">
+          <div className="hidden md:block bg-white w-3/4 mx-auto p-4 rounded-lg shadow-md">
+            <HomeRender />
+
+            <div className=" h-96 p-4 mt-20">
+              <Scroll />
+            </div>
+            <div className="flex bg-primary p-4 mt-20 rounded-lg  text-white ">
+              <div className="w-1/4 mr-2 ml-2 " style={{ height: '304.5px' }}>
+                <img src="/izquierda.jpeg" className="w-full rounded-lg" alt='izquierda'/>
+              </div>
+              <div className="w-1/4 p-4 mr-2 ml-2" style={{ height: '304.5px' }}>
+              <p className="font-semibold text-2xl tracking-tight no-underline"><span className="text-secundary">PREVIEW</span> all <span className="text-secundary">GLASSES</span> </p>
+                <video ref={videoRef} loop muted className="w-full h-full">
+                  <source src="/preview.mp4" type="video/mp4" />
+                  Tu navegador no soporta el elemento de video.
+                </video>
+              </div>
+              <div className="w-1/4 p-4 mr-2 ml-2 " style={{ height: '304.5px' }}>
+                <p className="font-semibold text-2xl tracking-tight no-underline text-right">You don't want to be left without the latest models, log in or create an account to start <span className="text-secundary">SHOWING</span> off your glasses with <span className="text-secundary">STYLE</span></p>
+              </div>
+              <div className="w-1/4 mr-2 ml-2" style={{ height: '304.5px' }}>
+                <img src="/derecha.jpeg" className="w-full rounded-lg" alt='derecha'/>
+              </div>
+            </div>
+            <div id="shop" className='mt-20'>
+              <Shop />
+            </div>
+
           </div>
-          <h2>Category</h2>
-          <div className="home-container-category">
-            <a href="/shop-men">
-              <div className="home-container-category-item" >
-                <img src={jasonCategories[0]} alt="men" className="home-container-category-item-img" />
-                <h3>Men</h3>
-              </div>
-            </a>
-            <a href="/shop-women">
-              <div className="home-container-category-item" >
-                <img src={jasonCategories[1]} alt="women" className="home-container-category-item-img" />
-                <h3>Women</h3>
-              </div>
-            </a>
-            <a href="/shop-kids">
-              <div className="home-container-category-item" >
-                <img src={jasonCategories[2]} alt="kids" className="home-container-category-item-img" />
-                <h3>Kids</h3>
-              </div>
-            </a>
-          </div>
+
         </div>
+
         <ToastContainer />
       </div>
     </>

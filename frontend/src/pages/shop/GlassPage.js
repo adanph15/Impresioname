@@ -8,6 +8,7 @@ import useSocketService from '../../services/SocketService';
 import { ToastContainer } from 'react-toastify';
 import { useNavigate } from "react-router-dom";
 
+
 export default function GlassesPage() {
   const navigate = useNavigate();
   const [article, setArticle] = useState(null);
@@ -65,8 +66,8 @@ export default function GlassesPage() {
     navigate(`/preview/${id}`);
   };
 
-  const goToShop = (category) => {
-    navigate(`/shop/${category}`);
+  const goToShop = () => {
+    navigate(`/home#shop`);
   };
 
   //   .glasses {

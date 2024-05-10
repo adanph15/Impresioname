@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import Header from "../../components/header/Header";
 import { Link } from 'react-router-dom';
-import { SelectButton } from 'primereact/selectbutton';
 import { ToastContainer } from 'react-toastify';
 import useSocketService from '../../services/SocketService';
 import ArticleService from '../../services/ArticleService';
@@ -57,6 +55,9 @@ export default function Shop() {
                 <button className="w-40 h-10 mt-2 bg-white text-black font-bold mb-2 rounded-md cursor-pointer text-sm hover:bg-black hover:text-white">
                   Know me
                 </button>
+                <button className="w-40 h-10 mt-2 bg-white text-black font-bold mb-2 rounded-md cursor-pointer text-sm hover:bg-secundary hover:text-black">
+                  Try me
+                </button>
               </div>
             </Link>
           ))}
@@ -66,9 +67,8 @@ export default function Shop() {
 
   return (
     <>
-        <Header />
         <div className="flex flex-col justify-between items-center gap-y-5">
-          <h2 className="text-4xl font-bold text-terciary mt-10">Shop</h2>
+          <h2 className="text-4xl font-bold text-terciary mt-10">Categories</h2>
 
           <ul className="flex border-b border-gray-300" value>
             <TabItem

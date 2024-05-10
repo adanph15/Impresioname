@@ -1,44 +1,19 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { DataTable } from 'primereact/datatable';
-import { Column } from 'primereact/column';
-import { Button } from 'primereact/button';
-import { Tag } from 'primereact/tag';
-import { Toast } from 'primereact/toast';
-import { classNames } from 'primereact/utils';
-import { FilterMatchMode, FilterOperator } from 'primereact/api';
-import { InputText } from 'primereact/inputtext';
-import { Dropdown } from 'primereact/dropdown';
-import { MultiSelect } from 'primereact/multiselect';
-import { TriStateCheckbox } from 'primereact/tristatecheckbox';
 import ArticleService from '../../services/ArticleService';
-import PurchaseService from '../../services/PurcharseService'
-
-import { IconField } from 'primereact/iconfield';
-import { InputIcon } from 'primereact/inputicon';
+import PurchaseService from '../../services/PurcharseService';
 
 import './AdminArticle.css';
 
 const ArticleFilter = () => {
-    const [filters, setFilters] = useState({
-        global: { value: null, matchMode: FilterMatchMode.CONTAINS },
-        name: { value: null, matchMode: FilterMatchMode.STARTS_WITH },
-        price: { value: null, matchMode: FilterMatchMode.EQUALS },
-        categoty: { value: null, matchMode: FilterMatchMode.EQUALS },
-        stock: { value: null, matchMode: FilterMatchMode.EQUALS },
-    });
-
+    const [articles, setArticles] = useState([]);
     const [loading, setLoading] = useState(true);
     const [globalFilterValue, setGlobalFilterValue] = useState('');
     const [expandedRows, setExpandedRows] = useState({});
-    const toast = useRef(null);
-
     const [categories] = useState(['men', 'women', 'kids']);
     const [stocks] = useState(['true', 'false']);
-
-    const [articles, setArticles] = useState([]);
+    const toast = useRef(null);
     const [purchases, setPurchases] = useState({});
     const [requestedArticles, setRequestedArticles] = useState({});
-
 
     useEffect(() => {
         fetchInfo();
@@ -50,146 +25,23 @@ const ArticleFilter = () => {
         setLoading(false);
     };
 
-    const onRowExpand = async (event) => {
-        toast.current.show({ severity: 'info', summary: 'Product Expanded', life: 3000 });
-        setExpandedRows({ ...expandedRows, });
-    };
-
-    const onRowCollapse = (event) => {
-        toast.current.show({ severity: 'success', summary: 'Product Collapsed', detail: event.data.name, life: 3000 });
-        setExpandedRows({ ...expandedRows, [`${event.data.id}`]: false });
-    };
-
-    const expandAll = () => {
-        let _expandedRows = {};
-
-        articles.forEach((a) => (_expandedRows[`${a.id}`] = true));
-
-        setExpandedRows(_expandedRows);
-    };
-
-    const collapseAll = () => {
-        setExpandedRows({});
+    const onRowExpand = async (event, articleId) => {
+        const newExpandedRows = { ...expandedRows };
+        newExpandedRows[articleId] = !newExpandedRows[articleId];
+        setExpandedRows(newExpandedRows);
     };
 
     const formatCurrency = (value) => {
         return value.toLocaleString('en-US', { style: 'currency', currency: 'EUR' });
     };
 
-    const priceBodyTemplate = (rowData) => {
-        return formatCurrency(rowData.price);
-    };
-
     const onGlobalFilterChange = (e) => {
         const value = e.target.value;
-        let _filters = { ...filters };
-
-        _filters['global'].value = value;
-
-        setFilters(_filters);
         setGlobalFilterValue(value);
-    };
-
-    const renderHeader = () => {
-        return (
-            <div>
-                <div className="flex justify-content-end">
-                    {/* <span className="p-input-icon-left">
-                        <i className="pi pi-search" />
-                        <InputText value={globalFilterValue} onChange={onGlobalFilterChange} placeholder="Keyword Search" />
-                    </span> */}
-                    <IconField iconPosition="left">
-                        <InputIcon className="pi pi-search"> </InputIcon>
-                        <InputText value={globalFilterValue} onChange={onGlobalFilterChange} v-model="value1" placeholder="Search" />
-                    </IconField>
-                </div>
-                <div className="flex flex-wrap justify-content-end gap-2">
-                    <Button icon="pi pi-plus" label="Expand All" onClick={expandAll} text style={{ width: '5rem' }} />
-                    <Button icon="pi pi-minus" label="Collapse All" onClick={collapseAll} text style={{ width: '5rem' }} />
-                </div>
-            </div>
-        );
-    };
-
-    const imageBodyTemplate = (rowData) => {
-        return (
-            <div className='xsadad'>
-                <p>{rowData.name}</p>
-                <img src={`https://localhost/images/${rowData.filename}`} alt={rowData.name} width="64px" className="shadow-4" />
-            </div>
-        );
-    };
-
-    const stockBodyTemplate = (rowData) => {
-        return <Tag value={rowData.stock} severity={getStock(rowData)} />;
-    };
-
-    const stockItemTemplate = (option) => {
-        return <Tag value={option.stock} severity={getStock(option.stock)} />;
-    };
-
-    const stockRowFilterTemplate = (options) => {
-        return (
-            <Dropdown value={options.value} options={stocks} onChange={(e) => options.filterApplyCallback(e.value)} itemTemplate={stockItemTemplate} placeholder="Select One" className="p-column-filter" showClear style={{ minWidth: '12rem' }} />
-        );
-    };
-
-    const categoryBodyTemplate = (rowData) => {
-        return <Tag value={rowData.category} />;
-    };
-
-    const categoryItemTemplate = (option) => {
-        return <Tag value={option} />;
-    };
-
-    const categoryRowFilterTemplate = (options) => {
-        return (
-            <Dropdown value={options.value} options={categories} onChange={(e) => options.filterApplyCallback(e.value)} itemTemplate={categoryItemTemplate} placeholder="Select One" className="p-column-filter" showClear style={{ minWidth: '12rem' }} />
-        );
-    };
-
-    const amountBodyTemplate = (rowData) => {
-        return formatCurrency(rowData.total);
-    };
-
-    const statusPurchaseBodyTemplate = (rowData) => {
-        return <Tag value={rowData.status.toLowerCase()} />;
-
-    };
-
-    const getStock = (stock) => {
-        console.log("stock  ", stock)
-        switch (stock) {
-            case 'false':
-                return 'danger';
-
-            case 'true':
-                return 'success';
-        }
-    };
-
-    const getPurchaseSeverity = (status) => {
-        switch (status) {
-            case 'DELIVERED':
-                return 'success';
-
-            case 'CANCELLED':
-                return 'danger';
-
-            case 'PENDING':
-                return 'warning';
-
-            case 'RETURNED':
-                return 'info';
-
-            default:
-                return null;
-        }
     };
 
     const fetchData = async (article) => {
         try {
-            // Verificar si ya se ha solicitado este artículo
             if (!requestedArticles[article.id]) {
                 const purchasesData = await PurchaseService.getPurchasesByArticleId(article.id);
 
@@ -199,7 +51,6 @@ const ArticleFilter = () => {
                     [article.id]: purchasesData,
                 }));
 
-                // Marcar el artículo como solicitado
                 setRequestedArticles((prevRequestedArticles) => ({
                     ...prevRequestedArticles,
                     [article.id]: true,
@@ -221,47 +72,166 @@ const ArticleFilter = () => {
         return (
             <div className="p-3">
                 <h5>Orders for {article.name}</h5>
-                <DataTable value={articlePurchases}>
-                    <Column style={{ width: '5rem' }} />
-                    <Column field="id" header="Id" sortable />
-                    <Column field="username" header="Name" sortable />
-                    <Column field="date" header="Date" sortable />
-                    <Column field="total" header="Amount" body={amountBodyTemplate} sortable />
-                    <Column field="status" header="Status" body={statusPurchaseBodyTemplate} sortable />
-                </DataTable>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Date</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {articlePurchases.map(purchase => (
+                            <tr key={purchase.id}>
+                                <td>{purchase.id}</td>
+                                <td>{purchase.username}</td>
+                                <td>{purchase.date}</td>
+                                <td>{formatCurrency(purchase.total)}</td>
+                                <td>{purchase.status}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
             </div>
         );
     };
 
+    const expandAll = () => {
+        let _expandedRows = {};
+
+        articles.forEach((a) => (_expandedRows[`${a.id}`] = true));
+
+        setExpandedRows(_expandedRows);
+    };
+
+    const collapseAll = () => {
+        setExpandedRows({});
+    };
+
+    const checkStock = (stock) => {
+        return stock === "true" ? "On Stock" : "Out of Stock";
+    }
+
+    // Filter articles based on global filter value
+    const filteredArticles = articles.filter(article => {
+        const matchesName = article.name.toLowerCase().includes(globalFilterValue.toLowerCase());
+        const matchesCategory = article.category.toLowerCase().includes(globalFilterValue.toLowerCase());
+        return matchesName || matchesCategory;
+    });
+
     return (
-        <div className="card">
-            <Toast ref={toast} />
-            <DataTable
-                value={articles}
-                paginator
-                rows={10}
-                filters={filters}
-                filterDisplay="row"
-                loading={loading}
-                expandedRows={expandedRows}
-                onRowToggle={(e) => setExpandedRows(e.data)}
-                onRowExpand={onRowExpand}
-                onRowCollapse={onRowCollapse}
-                rowExpansionTemplate={rowExpansionTemplate}
-                dataKey="id"
-                header={renderHeader}
-                globalFilterFields={['name', 'price', 'category', 'stock']}
-                tableStyle={{ minWidth: '60rem', borderCollapse: 'collapse', border: '1px solid black' }}
-                emptyMessage="No articles found."
-                className="my-datatable"
-            >
-                <Column expander={true} style={{ width: '5rem' }} />
-                <Column field="id" header="ID" sortable className="columnStyle" />
-                <Column header="Name" filter filterPlaceholder="Search by name" style={{ minWidth: '12rem' }} className="columnStyle" body={imageBodyTemplate} />
-                <Column field="price" header="Price" sortable body={priceBodyTemplate} className="columnStyle" />
-                <Column field="category" header="category" showFilterMenu={false} filterMenuStyle={{ width: '14rem' }} style={{ minWidth: '12rem' }} body={categoryBodyTemplate} filter filterElement={categoryRowFilterTemplate} className="columnStyle" />
-                <Column field="stock" header="Stock" showFilterMenu={false} filterMenuStyle={{ width: '14rem' }} style={{ minWidth: '12rem' }} body={stockBodyTemplate} filter filterElement={stockRowFilterTemplate} className="columnStyle" />
-            </DataTable>
+        <div className="flex flex-col justify-center items-center">
+            <div className='bg-red-400 flex justify-around'>
+                <div className="flex justify-content-end mb-2">
+                    <input value={globalFilterValue} onChange={onGlobalFilterChange} placeholder="Keyword Search" />
+                </div>
+            </div>
+
+            <div className="relative overflow-x-auto shadow-md sm:rounded-lg w-4/5">
+                <SearchBar
+                    globalFilterValue={globalFilterValue}
+                    setGlobalFilterValue={setGlobalFilterValue}
+                    expandAll={expandAll}
+                    collapseAll={collapseAll}
+                />
+                <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 text-center">
+                    <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th scope="col" className="px-6 py-3 w-1/12">
+                                More Info
+                            </th>
+                            <th scope="col" className="px-6 py-3 w-1/12">
+                                ID
+                            </th>
+                            <th scope="col" className="px-6 py-3 w-3/12">
+                                Name
+                            </th>
+                            <th scope="col" className="px-6 py-3 w-1/12">
+                                Price
+                            </th>
+                            <th scope="col" className="px-6 py-3 w-1/12">
+                                Category
+                            </th>
+                            <th scope="col" className="px-6 py-3 w-1/12">
+                                Stock
+                            </th>
+                            <th scope="col" className="px-6 py-3 w-1/12">
+                                Delete
+                            </th>
+                            <th scope="col" className="px-6 py-3 w-1/12">
+                                Update
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {/* Render filtered articles */}
+                        {filteredArticles.map(article => (
+                            <React.Fragment key={article.id}>
+                                <tr className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                        <button onClick={(e) => onRowExpand(e, article.id)}>
+                                            {expandedRows[article.id] ? 'Collapse' : 'Expand'}
+                                        </button>
+                                    </th>
+                                    <td className="px-6 py-4">{article.id}</td>
+                                    <td className="px-6 py-4 flex items-center justify-evenly ">
+                                        <img src={`https://localhost/images/${article.filename}`} alt={article.name} className="w-1/5" />
+                                        <p>{article.name}</p>
+                                    </td>
+                                    <td className="px-6 py-4">{formatCurrency(article.price)}</td>
+                                    <td className="px-6 py-4">{article.category}</td>
+                                    <td className="px-6 py-4">{checkStock(article.stock)}</td>
+                                    <td className="px-6 py-4">borrar</td>
+                                    <td className="px-6 py-4">actualizar</td>
+                                </tr>
+                                {expandedRows[article.id] && (
+                                    <tr>
+                                        <td colSpan="6">{rowExpansionTemplate(article)}</td>
+                                    </tr>
+                                )}
+                            </React.Fragment>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
+}
+
+const SearchBar = ({ globalFilterValue, setGlobalFilterValue, expandAll, collapseAll }) => {
+    const handleSearch = (e) => {
+        const value = e.target.value;
+        setGlobalFilterValue(value);
+    };
+
+    return (
+        <div className='flex justify-between'>
+            <form className="w-1/2 ml-0 mb-10">
+                <input
+                    type="search"
+                    id="search-dropdown"
+                    className="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-e-lg border-s-gray-50 border-s-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-s-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
+                    placeholder="Search by article Name or Category"
+                    onChange={handleSearch}
+                    value={globalFilterValue}
+                    required
+                />
+                <button
+                    type="submit"
+                    className="absolute top-0 end-0 p-2.5 text-sm font-medium h-full text-white bg-secundary rounded-e-lg border border-secundary  focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                >
+                    <svg className="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                    </svg>
+                    <span className="sr-only">Search</span>
+                </button>
+            </form>
+            <div className='flex justify-evenly w-1/2 ml-0 mb-10 '>
+                <button className="bg-secundary rounded-lg w-1/5 text-sm" onClick={expandAll}>Expand All</button>
+                <button className="bg-secundary rounded-lg w-1/5 text-sm " onClick={collapseAll}>Collapse All</button>
+            </div>
         </div>
     );
 }

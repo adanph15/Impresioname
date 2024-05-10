@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useState } from 'react';
 import CartService from '../../services/CartService';
 import CartPopUp from '../CartPopUp'; // Importa el componente CartPopUp
+import { Link } from 'react-router-dom';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,18 +12,27 @@ export default function Header() {
     setIsOpen(!isOpen);
   };
 
+
+  //arreglar este manejo del usario.
+  const cart = {};
   const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-  const cart = CartService.getCart(userInfo.id);
+  if (userInfo) {
+    const cart = CartService.getCart(userInfo.id);
+  } else {
+    const cart = {};
+  }
+
   console.log(cart)
 
   return (
     <>
-      <nav className="flex items-center justify-between flex-wrap bg-primary p-6">
+      {/* poner fixed para que se mueva con la pagina */}
+      <nav className="flex items-center justify-between flex-wrap bg-primary p-6 fixed w-full top-0 z-50">
         <div className="flex items-center flex-shrink-0 text-white mr-6">
           <svg className="fill-current h-8 w-8 mr-2" width="54" height="54" viewBox="0 0 54 54" xmlns="/miniIcon.png">
             <path d="M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z" />
           </svg>
-          <a className="font-semibold text-3xl tracking-tight no-underline" href='/home'>IMPRESIÓNAME</a>
+          <a className="font-semibold text-3xl tracking-tight no-underline" href='/home'>IMPRESI<span className="text-secundary">Ó</span>NAME</a>
         </div>
         <div className="block lg:hidden">
           <button onClick={toggleMenu} className="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white">
@@ -33,14 +43,15 @@ export default function Header() {
           </button>
         </div>
         <div className={`w-full ${isOpen ? 'block' : 'hidden'} lg:block flex-grow lg:flex lg:items-center lg:w-auto`}>
-          <div className="text-xl lg:flex-grow">
-            <a href="/shop/all" className="block mt-4 lg:inline-block lg:mt-0 text-secundary hover:text-white mr-4">
+          <div className="text-xl lg:flex-grow text-white">
+            <a href="/home#shop" className="block mt-4 lg:inline-block lg:mt-0  hover:text-white mr-4" style={{ scrollBehavior: 'smooth' }}>
               Shop
             </a>
-            <a href="#responsive-header" className="block mt-4 lg:inline-block lg:mt-0 text-secundary1 cursor-not-allowed mr-4">
+
+            <a href="#responsive-header" className="block mt-4 lg:inline-block lg:mt-0 cursor-not-allowed mr-4">
               Custom Glasses
             </a>
-            <a href="/sign-in" className="block mt-4 lg:inline-block lg:mt-0 text-teal-500 hover:text-white">
+            <a href="/sign-in" className="block mt-4 lg:inline-block lg:mt-0 hover:text-white">
               Log-In
             </a>
           </div>

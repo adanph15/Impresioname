@@ -10,7 +10,7 @@ import ProfileOptions from "../../components/fffff";
 export default function UserPage() {
   useSocketService();
   const navigate = useNavigate();
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState();
   const userInfo = JSON.parse(localStorage.getItem('userInfo'));
 
   useEffect(() => {
@@ -33,9 +33,9 @@ export default function UserPage() {
     fetchData();
   }, []);
 
-  // const handleUser = () => {
-  //     navigate("/sign-in");
-  // }
+  const handleUser = () => {
+      navigate("/sign-in");
+  }
 
 
   return (
@@ -48,7 +48,7 @@ export default function UserPage() {
         </>
       ) : (
         <>
-          {/* {handleUser()} */}
+          {handleUser()}
         </>
       )}
     </>

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Header from "../../components/header/Header";
 import { Link } from 'react-router-dom';
-import { SelectButton } from 'primereact/selectbutton';
 import { ToastContainer } from 'react-toastify';
 import useSocketService from '../../services/SocketService';
 import ArticleService from '../../services/ArticleService';
@@ -33,17 +32,17 @@ export default function Shop() {
     setSelectedCategory(tabId === 'all' ? 'All' : tabId); // Convert 'all' back to 'All' for consistency
   };
 
-  const getHeader = (category) => {
-    if (category === "men") {
-      return ("Men");
-    } else if (category === "women") {
-      return ("Women");
-    } else if (category === "kids") {
-      return ("Kids");
-    } else {
-      return ("All");
-    }
-  };
+  // const getHeader = (category) => {
+  //   if (category === "men") {
+  //     return ("Men");
+  //   } else if (category === "women") {
+  //     return ("Women");
+  //   } else if (category === "kids") {
+  //     return ("Kids");
+  //   } else {
+  //     return ("All");
+  //   }
+  // };
 
   const articlesList = () => {
     return (

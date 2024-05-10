@@ -22,9 +22,9 @@ export default function SignUp() {
         window.location.href = '/home';
     }
 
-    const goToSignIn = () => {
-        window.location.href = '/sign-in';
-    }
+    // const goToSignIn = () => {
+    //     window.location.href = '/sign-in';
+    // }
 
     const handleInputChange = (e, setState, setError) => {
         const value = e.target.value.trim();

@@ -4,7 +4,6 @@ import { Column } from 'primereact/column';
 import { Button } from 'primereact/button';
 import { Tag } from 'primereact/tag';
 import { Toast } from 'primereact/toast';
-import ArticleService from '../../services/ArticleService';
 import PurchaseService from '../../services/PurcharseService';
 
 export default function PurchaseFilter() {
@@ -57,9 +56,9 @@ export default function PurchaseFilter() {
         return <Tag value={rowData.status.toLowerCase()} severity="success"></Tag>;
     };
 
-    const imageBodyTemplate = (rowData) => {
-        return <img src={`https://localhost/images/${rowData.filename}`} alt={rowData.name} width="64px" className="shadow-4" />;
-    };
+    // const imageBodyTemplate = (rowData) => {
+    //     return <img src={`https://localhost/images/${rowData.filename}`} alt={rowData.name} width="64px" className="shadow-4" />;
+    // };
 
     const priceBodyTemplate = (rowData) => {
         return formatCurrency(rowData.price);
@@ -73,24 +72,24 @@ export default function PurchaseFilter() {
         return purchase.stock === 1 ? 'success' : 'danger';
     };
 
-    const getArticleSeverity = (status) => {
-        switch (status) {
-            case 'DELIVERED':
-                return 'success';
+    // const getArticleSeverity = (status) => {
+    //     switch (status) {
+    //         case 'DELIVERED':
+    //             return 'success';
 
-            case 'CANCELLED':
-                return 'danger';
+    //         case 'CANCELLED':
+    //             return 'danger';
 
-            case 'PENDING':
-                return 'warning';
+    //         case 'PENDING':
+    //             return 'warning';
 
-            case 'RETURNED':
-                return 'info';
+    //         case 'RETURNED':
+    //             return 'info';
 
-            default:
-                return null;
-        }
-    };
+    //         default:
+    //             return null;
+    //     }
+    // };
 
     const fetchData = async (purchase) => {
         try {

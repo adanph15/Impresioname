@@ -1,7 +1,7 @@
 import { faCartShopping, faCircleUser } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useState } from 'react';
-import CartService from '../../services/CartService';
+// import CartService from '../../services/CartService';
 import CartPopUp from '../CartPopUp'; // Importa el componente CartPopUp
 
 export default function Header() {
@@ -12,8 +12,7 @@ export default function Header() {
   };
 
   const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-  const cart = CartService.getCart(userInfo.id);
-  console.log(cart)
+  // const cart = CartService.getCart(userInfo.id);
 
   return (
     <>
@@ -48,11 +47,11 @@ export default function Header() {
             <a className="text-white no-underline relative" href='/profile'>
               <FontAwesomeIcon className="w-14" icon={faCircleUser} size="xl" />
             </a>
-            <a className="text-white no-underline relative mr-10" onClick={() => setIsOpen(true)}> {/* Cambia isOpen a true */}
-              <span id="cart_menu_num" data-action="cart-can" class="absolute top-0 left-0 transform translate-x-7 translate-y-3 bg-red-500 w-5 h-5 rounded-full flex justify-center items-center text-sm text-white">{cart.length > 0 ? cart.length : 0}</span>
+            {/* <a className="text-white no-underline relative mr-10" onClick={() => setIsOpen(true)}> Cambia isOpen a true */}
+              <span id="cart_menu_num" data-action="cart-can" class="absolute top-0 left-0 transform translate-x-7 translate-y-3 bg-red-500 w-5 h-5 rounded-full flex justify-center items-center text-sm text-white">0</span>
               <FontAwesomeIcon className="w-14" icon={faCartShopping} size="xl" />
-            </a>
-            <a href="#" className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">Download</a>
+            {/* </a> */}
+            {/* <a href="#" className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">Download</a> */}
           </div>
         </div>
       </nav>

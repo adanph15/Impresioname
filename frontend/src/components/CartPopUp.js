@@ -1,11 +1,10 @@
 import CartService from '../services/CartService';
-import PurchaseService from '../services/PurcharseService';
+// import PurchaseService from '../services/PurcharseService';
 import AuthService from "../services/AuthService";
-import ArticleService from "../services/ArticleService";
+// import ArticleService from "../services/ArticleService";
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 const CartPopUp = () => {
@@ -14,9 +13,9 @@ const CartPopUp = () => {
   const [cartItems, setCartItems] = useState([]);
 
 
-  function prueba() {
-    CartService.setCart(user.id, ArticleService.getOneArticle(1));
-  };
+  // function prueba() {
+  //   CartService.setCart(user.id, ArticleService.getOneArticle(1));
+  // };
 
 
   useEffect(() => {
@@ -72,9 +71,9 @@ const CartPopUp = () => {
     }
 
 
-    const handlePurchase = () => {
-        PurchaseService.createPurchase(calculateTotalPrice());
-    };
+    // const handlePurchase = () => {
+    //     PurchaseService.createPurchase(calculateTotalPrice());
+    // };
 
 
     const removeFromCart = (itemId) => {

@@ -4,12 +4,9 @@ import { Column } from 'primereact/column';
 import { Button } from 'primereact/button';
 import { Tag } from 'primereact/tag';
 import { Toast } from 'primereact/toast';
-import { classNames } from 'primereact/utils';
-import { FilterMatchMode, FilterOperator } from 'primereact/api';
+import { FilterMatchMode } from 'primereact/api';
 import { InputText } from 'primereact/inputtext';
 import { Dropdown } from 'primereact/dropdown';
-import { MultiSelect } from 'primereact/multiselect';
-import { TriStateCheckbox } from 'primereact/tristatecheckbox';
 import ArticleService from '../../services/ArticleService';
 import PurchaseService from '../../services/PurcharseService'
 
@@ -159,33 +156,33 @@ const ArticleFilter = () => {
 
     const getStock = (stock) => {
         console.log("stock  ", stock)
-        switch (stock) {
-            case 'false':
-                return 'danger';
+        // switch (stock) {
+        //     case 'false':
+        //         return 'danger';
 
-            case 'true':
-                return 'success';
-        }
+        //     case 'true':
+        //         return 'success';
+        // }
     };
 
-    const getPurchaseSeverity = (status) => {
-        switch (status) {
-            case 'DELIVERED':
-                return 'success';
+    // const getPurchaseSeverity = (status) => {
+    //     switch (status) {
+    //         case 'DELIVERED':
+    //             return 'success';
 
-            case 'CANCELLED':
-                return 'danger';
+    //         case 'CANCELLED':
+    //             return 'danger';
 
-            case 'PENDING':
-                return 'warning';
+    //         case 'PENDING':
+    //             return 'warning';
 
-            case 'RETURNED':
-                return 'info';
+    //         case 'RETURNED':
+    //             return 'info';
 
-            default:
-                return null;
-        }
-    };
+    //         default:
+    //             return null;
+    //     }
+    // };
 
     const fetchData = async (article) => {
         try {

@@ -78,24 +78,24 @@ export default function AdminArticle() {
         return article.stock === 1 ? 'success' : 'danger';
     };
 
-    const getPurchaseSeverity = (status) => {
-        switch (status) {
-            case 'DELIVERED':
-                return 'success';
+    // const getPurchaseSeverity = (status) => {
+    //     switch (status) {
+    //         case 'DELIVERED':
+    //             return 'success';
 
-            case 'CANCELLED':
-                return 'danger';
+    //         case 'CANCELLED':
+    //             return 'danger';
 
-            case 'PENDING':
-                return 'warning';
+    //         case 'PENDING':
+    //             return 'warning';
 
-            case 'RETURNED':
-                return 'info';
+    //         case 'RETURNED':
+    //             return 'info';
 
-            default:
-                return null;
-        }
-    };
+    //         default:
+    //             return null;
+    //     }
+    // };
 
     const fetchData = async (article) => {
         try {

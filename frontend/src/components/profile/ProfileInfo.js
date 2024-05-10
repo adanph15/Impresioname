@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import AuthService from "../../services/AuthService";
 import axios from 'axios';
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 export default function ProfileInfo() {
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const [user, setUser] = useState(null);
 
     useEffect(() => {

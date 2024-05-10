@@ -94,9 +94,9 @@ const CustomGlasses = () => {
   //   </div>
   // );
 
-  const handleSubmit = () => {
-    alert(`Frame color: ${frameColor}, Temple color: ${templeColor}`);
-  };
+  // const handleSubmit = () => {
+  //   alert(`Frame color: ${frameColor}, Temple color: ${templeColor}`);
+  // };
 
   useEffect(() => {
     switch (frameColor) {

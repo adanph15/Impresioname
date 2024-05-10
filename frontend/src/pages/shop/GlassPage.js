@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import Header from "../../components/header/Header";
 import { useParams } from 'react-router-dom';
 import CartService from "../../services/CartService";
-import { Link } from 'react-router-dom';
 import useSocketService from '../../services/SocketService';
 import { ToastContainer } from 'react-toastify';
 import { useNavigate } from "react-router-dom";
@@ -14,7 +13,7 @@ export default function GlassesPage() {
   const { id } = useParams();
   console.log("ID:", id);
   const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-  const [cartItems, setCartItems] = useState([]);
+  const [setCartItems] = useState([]);
   useSocketService();
   useEffect(() => {
     const fetchArticle = async () => {
@@ -30,7 +29,7 @@ export default function GlassesPage() {
       }
     };
     fetchArticle();
-  }, [id]);
+  }, []);
 
   const addToCart = () => {
     const userInfo = JSON.parse(localStorage.getItem('userInfo'));

@@ -310,6 +310,8 @@ _*Recommended to have version: 9.6.7 or higher*._
      cd Impresioname/
      cd frontend/
      npm install
+     npm install @headlessui/react @heroicons/react
+     npm install @react-three/fiber three
 
 <br><br>
 
@@ -483,6 +485,7 @@ These applications stand out for their universal accessibility, eliminating the 
 ## AUTHOR <a name="idAuthor"></a> 👋
 
 + [By Adán Pérez Hernándeaz](https://github.com/adanelrincon)
++ [By Alejandro Cruz Pulido](https://github.com/AlejandroCruzPulido)
 
 <br>
 

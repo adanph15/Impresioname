@@ -3,20 +3,21 @@ import { useState, useEffect } from 'react';
 import Header from "../../components/header/Header";
 import { useParams } from 'react-router-dom';
 import CartService from "../../services/CartService";
-import { Link } from 'react-router-dom';
 import useSocketService from '../../services/SocketService';
 import { ToastContainer } from 'react-toastify';
 import { useNavigate } from "react-router-dom";
+import MoreProducts from '../../components/purchase/MoreProducts';
+import { ShoppingCartIcon } from "@heroicons/react/24/solid";
 
 
 export default function GlassesPage() {
   const navigate = useNavigate();
   const [article, setArticle] = useState(null);
   const { id } = useParams();
-  console.log("ID:", id);
   const userInfo = JSON.parse(localStorage.getItem('userInfo'));
   const [cartItems, setCartItems] = useState([]);
   useSocketService();
+  console.log(cartItems)
   useEffect(() => {
     const fetchArticle = async () => {
       try {
@@ -70,77 +71,45 @@ export default function GlassesPage() {
     navigate(`/home#shop`);
   };
 
-  //   .glasses {
-  //     height: 100vh;
-  // }
 
-  // .glasses-container {
-  //     margin-top: 10vh;
-  //     display: flex;
-  //     justify-content: center;
-  // }
 
-  // .glasses-item {
-  //     width: 85%;
-  //     display: flex;
-  //     flex-direction: column;
-  //     justify-content: space-evenly;
-  //     align-items: center;    
-  //     background-color: #333333;
-  //     color: white;
-  //     border-radius: 6px;
-  // }
-
-  // .glasses-item-info {
-  //     margin-top: 3vh;
-  //     display: flex;
-  //     justify-content: space-between;
-  //     align-items: center;
-  //     flex-direction: column;
-  //     gap: 10px 60px;
-  //     margin-bottom: 5vh;
-  // }
-
-  // .glasses-info {
-  //     width: 100%;
-  //     margin-top: -2vh;
-  // }
-
-  // .button-glasses {
-  //     background-color: white;
-  //     color: black;
-  // }
-
-  // .button-glasses:hover {
-  //     background-color: black;
-  //     color: white;
-  // }
-
-  // .glasses-item-img {
-  //     border-radius: 6px;
-  //     width: 30vw;
-  // }
 
 
   return (
     <>
       <Header />
-      <div className="flex flex-col justify-between items-center gap-y-5">
-        <h2 className="text-4xl font-bold text-terciary mt-10">{article.name}</h2>
+      <div className="flex flex-col justify-between items-center gap-y-5 mt-24">
         <div className='flex flex-col items-center'>
-          <img src={`https://localhost/images/${article.filename}`} className="w-2/3 rounded-lg mb-6 mt-5 border-b border-r border-primary" alt='articleImagesGlasses' />
-          <div className='flex flex-col items-start w-2/3 '>
-            <p className='text-xl font-semibold mt-5'>{article.price}€   |  {article.stock ? 'In stock' : 'Out of stock'}</p>
-            <p className='text-lg mt-5'>{article.description}</p>
-          </div>
-          <div className="flex flex-row justify-center w-2/3 -mx-3 mb-6">
-            <div className="flex flex-row justify-center w-full mb-6 mt-10">
-              <button onClick={addToCart} className="bg-primary text-white w-2/3 h-14 font-bold rounded-md cursor-pointer text-base hover:bg-white hover:text-terciary hover:border-primary hover:border-solid hover:border" >Add to Basket</button>
+          <div className='flex flex-row justify-between'>
+
+            <img src={`https://localhost/images/${article.filename}`} className="w-5/12 rounded-lg mb-6 mt-5 image-glasses " alt={article.name} />
+
+            <div className='flex flex-col items-start w-1/3 mb-6 mt-6 ml-5 '>
+              <h2 className="text-2xl font-bold text-terciary ">{article.name}</h2>
+              <p className='text-lg font-semibold mt-5'>{article.price}€ </p>
+              <p className='text-base mt-5'>{article.description}</p>
+              <p className='text-base mt-5'>{article.stock ? 'In stock' : 'Out of stock'}</p>
             </div>
-            <div className="flex flex-row justify-center w-full mb-6 mt-10">
-              <button onClick={() => goToTryGlasses(article.id)} className="bg-primary text-white w-2/3 h-14 font-bold rounded-md cursor-pointer text-base hover:bg-white hover:text-terciary hover:border-primary hover:border-solid hover:border" >Try Me</button>
+            <div className="flex flex-col justify-center w-1/3 -mx-3 mb-6">
+              <div className="flex flex-row justify-center w-full mb-6 mt-10">
+
+
+
+
+                <button onClick={addToCart} className="button-hover button-cart flex flex-row justify-around items-center bg-primary text-white w-2/3 h-14 font-bold rounded-md cursor-pointer text-base hover:bg-white hover:text-white hover:border-primary hover:border-solid hover:border">
+                  <p className='mr-10'>Add to Basket</p>
+                  <div className="icon mr-2">
+                    <ShoppingCartIcon className='w-6' />
+                  </div>
+                </button>
+
+              </div>
+              <div className="flex flex-row justify-center w-full mb-6 mt-10">
+                <button onClick={() => goToTryGlasses(article.id)} className="button-hover bg-primary text-white w-2/3 h-14 font-bold rounded-md cursor-pointer text-base hover:bg-white hover:text-terciary hover:border-primary hover:border-solid hover:border" >Try Me</button>
+              </div>
             </div>
           </div>
+          <MoreProducts excludedId={id} />
         </div>
       </div>
       <ToastContainer />

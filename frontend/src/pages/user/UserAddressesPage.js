@@ -1,26 +1,33 @@
-import Header from "../../components/header/Header";
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { ToastContainer } from 'react-toastify';
-import useSocketService from '../../services/SocketService';
 
 const UserAddressesPage = () => {
-  useSocketService();
   const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-  const id = userInfo.id;
+  const user_id = userInfo.id;
   const [addresses, setAddresses] = useState([]);
-  const [newAddress, setNewAddress] = useState({
-    direction: '',
-    post_code: '',
-    location: '',
-    province: '',
-    user_id: id,
-  });
+  // const [newAddress, setNewAddress] = useState({
+  //   direction: '',
+  //   post_code: '',
+  //   location: '',
+  //   province: '',
+  //   user_id: '',
+  // });
+
+  const [direction, setDirection] = useState('');
+  const [postCode, setPostCode] = useState(0);
+  const [location, setLocation] = useState('');
+  const [province, setProvince] = useState('');
+
+  const [directionError, setDirectionError] = useState('');
+  const [postCodeError, setPostCodeError] = useState('');
+  const [locationError, setLocationError] = useState('');
+  const [provinceError, setProvinceError] = useState('');
+
 
   useEffect(() => {
     const fetchAddresses = async () => {
       try {
-        const response = await axios.get(`https://localhost/api/direction/user/${id}`);
+        const response = await axios.get(`https://localhost/api/direction/user/${user_id}`);
         setAddresses(response.data);
       } catch (error) {
         console.error('Error fetching addresses:', error);
@@ -28,67 +35,68 @@ const UserAddressesPage = () => {
     };
 
     fetchAddresses();
-  }, [id]);
+  }, [user_id]);
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setNewAddress((prevAddress) => ({
-      ...prevAddress,
-      [name]: value,
-    }));
+  const handleInputChange = (e, setState, setError) => {
+    const value = e.target.value.trim();
+    setState(value);
+
+    if (!value) {
+      setError(`${e.target.name} is required`);
+    } else {
+      setError('');
+    }
   };
 
-  const [addressErrors, setAddressErrors] = useState({
-    direction: '',
-    post_code: '',
-    location: '',
-    province: '',
-  });
 
-  const validateAddressForm = () => {
+
+  const validateForm = () => {
     let isValid = true;
-    const errors = {
-      direction: '',
-      post_code: '',
-      location: '',
-      province: '',
-    };
 
-    if (!newAddress.direction.trim()) {
-      errors.direction = 'Direction is required';
+    if (!direction.trim()) {
+      setDirectionError('Direction is required');
       isValid = false;
+    } else {
+      setDirectionError('');
     }
 
-    if (!newAddress.post_code.trim()) {
-      errors.post_code = 'Post Code is required';
+    if (!postCode.trim()) {
+      setPostCodeError('Post code is required');
       isValid = false;
-    } else if (!/^\d{5,}$/.test(newAddress.post_code.trim())) {
-      errors.post_code = 'Post Code must be numeric and have at least 5 characters';
-      isValid = false;
+    } else {
+      setPostCodeError('');
     }
 
-
-    if (!newAddress.location.trim()) {
-      errors.location = 'Location is required';
+    if (!location.trim()) {
+      setLocationError('Location is required');
       isValid = false;
+    } else {
+      setLocationError('');
     }
 
-    if (!newAddress.province.trim()) {
-      errors.province = 'Province is required';
+    if (!province.trim()) {
+      setProvinceError('Province is required');
       isValid = false;
+    } else {
+      setProvinceError('');
     }
 
-    setAddressErrors(errors);
     return isValid;
   };
 
   const addNewAddress = async (e) => {
     e.preventDefault();
-
-    if (validateAddressForm()) {
+    let newAddress = {
+      direction: direction,
+      post_code: postCode,
+      location: location,
+      province: province,
+      user_id: user_id,
+    }
+    if (validateForm()) {
       try {
         const response = await axios.post(`http://localhost:8000/api/direction`, {
-          ...newAddress,
+          newAddress,
         });
         setAddresses((prevAddresses) => [...prevAddresses, response.data]);
       } catch (error) {
@@ -101,84 +109,81 @@ const UserAddressesPage = () => {
     window.location.href = `/direction-update/${id}`;
   }
 
-
-  const handleDelete = async (id) => {
-    try {
-      await axios.delete(`https://localhost/api/direction/${id}`);
-    } catch (error) {
-      console.error('Error deleting address:', error);
-    }
-  };
+  // const handleDelete = async (id) => {
+  //   try {
+  //     await axios.delete(`https://localhost/api/direction/${id}`);
+  //   } catch (error) {
+  //     console.error('Error deleting address:', error);
+  //   }
+  // };
 
   return (
     <>
-      <div>
-        <div className="singin-container">
-          <div className="double-container">
-            <div className='singin-form-container'>
-              <h2>Directions Info</h2>
-              <br></br>
-              {addresses.map((address) => (
-                <div className="direction-container">
-                  <div className="direction-item">
-                    <p>Street: {address.direction}, {address.post_code}, {address.location}, {address.province}</p>
-                  </div>
-                  <div className="direction-item">
-                    <button className="direction-button" onClick={() => handleUpdate(address.id)}>Update</button>
-                    <button className="direction-button" onClick={() => handleDelete(address.id)}>Delete</button>
+      <div className='flex flex-row justify-around'>
+        <div className='w-1/3  items-center '>
+          <h2 className="text-xl font-bold text-terciary mt-10">Your addresses</h2>
+          <div className=' '>
+            {addresses.map((address) => (
+              <div className='flex flex-row align-middle shadow-md border rounded-md cursor-pointer bg-gray-200  pt-4 pb-4 '>
+                <div className='flex flex-col w-3/4 ml-4 ' key={address.id}>
+                  <p>St {address.direction}</p>
+                  <div className='flex flex-row'>
+                    <p className='font-semibold'>{address.province}</p>
+                    <p>,  {address.location}  ,  {address.post_code}</p>
                   </div>
                 </div>
-              ))}
-            </div>
-            <div className='singin-form-container'>
-              <h2>Add New Address</h2>
-              <div className="singin-form-item">
-                <h4>Direction:</h4>
-                <input
-                  type="text"
-                  name="direction"
-                  value={newAddress.direction}
-                  onChange={handleInputChange}
-                />
-                <p className="error-message">{addressErrors.direction}</p>
+                <div className='w/1/4 flex mr-4'>
+                  <button onClick={() => handleUpdate(address.id)} className="w-24 bg-primary text-white rounded-md">Update</button>
+                </div>
               </div>
-              <div className="singin-form-item">
-                <h4>Post Code:</h4>
-                <input
-                  type="text"
-                  name="post_code"
-                  value={newAddress.post_code}
-                  onChange={handleInputChange}
-                />
-                <p className="error-message">{addressErrors.post_code}</p>
-              </div>
-              <div className="singin-form-item">
-                <h4>Location:</h4>
-                <input
-                  type="text"
-                  name="location"
-                  value={newAddress.location}
-                  onChange={handleInputChange}
-                />
-                <p className="error-message">{addressErrors.location}</p>
-              </div>
-              <div className="singin-form-item">
-                <h4>Province:</h4>
-                <input
-                  type="text"
-                  name="province"
-                  value={newAddress.province}
-                  onChange={handleInputChange}
-                />
-                <p className="error-message">{addressErrors.province}</p>
-              </div>
-              <div className="singin-form-item">
-                <button onClick={addNewAddress}>Add Address</button>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
-        <ToastContainer />
+
+
+
+        <div className="flex flex-col justify-around items-center w-1/2">
+          <h2 className="text-xl font-bold text-terciary mt-10">Add new Address</h2>
+          <form className="w-full max-w-3xl">
+            <div className="flex flex-wrap -mx-3 mb-6 mt-10">
+              <div className="w-2/3 px-3 mb-6 md:mb-0">
+                <label className="block tracking-wide text-gray-700 text-lg font-bold mb-2" for="grid-direction">
+                  Direction
+                </label>
+                <input className="shadow-md appearance-none block w-full bg-gray-200 text-primary border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary text-base" id="direction" type="text" placeholder="Street Address" value={direction} onChange={(e) => handleInputChange(e, setDirection, setDirectionError)} />
+                <p className="text-red-500 text-xs italic">{directionError}</p>
+              </div>
+              <div class="w-1/3 px-3">
+                <label className="block  tracking-wide text-primary text-lg font-bold mb-2" for="grid-postCode">
+                  Zip Code
+                </label>
+                <input className="shadow-md appearance-none block w-full bg-gray-200 text-primary border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary text-base" id="postCode" type="number" placeholder="00000" value={postCode} onChange={(e) => handleInputChange(e, setPostCode, setPostCodeError)} />
+                <p className="text-red-500 text-xs italic">{postCodeError}</p>
+              </div>
+            </div>
+            <div className="flex flex-wrap -mx-3 mb-6 ">
+              <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <label className="block tracking-wide text-gray-700 text-lg font-bold mb-2" htmlFor="location">
+                  Location
+                </label>
+                <input className="shadow-md appearance-none block w-full bg-gray-200 text-primary border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary text-base" id="location" type="text" placeholder="Location" value={location} onChange={(e) => handleInputChange(e, setLocation, setLocation)} />
+                <p className="text-red-500 text-xs italic">{locationError}</p>
+              </div>
+              <div class="w-full md:w-1/2 px-3">
+                <label className="block tracking-wide text-gray-700 text-lg font-bold mb-2" htmlFor="province">
+                  Province
+                </label>
+                <input className="shadow-md appearance-none block w-full bg-gray-200 text-primary border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary text-base" id="province" type="text" placeholder="Province" value={province} onChange={(e) => handleInputChange(e, setProvince, setProvinceError)} />
+                <p className="text-red-500 text-xs italic">{provinceError}</p>
+              </div>
+            </div>
+            <div className="flex flex-row justify-center -mx-3 mb-6 mt-10">
+              <button className="bg-primary text-white w-1/3 h-14 font-bold rounded-md cursor-pointer text-base hover:bg-white hover:text-terciary hover:border-primary hover:border-solid hover:border" onClick={addNewAddress}>
+                Add
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </>
   );

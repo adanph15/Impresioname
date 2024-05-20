@@ -31,7 +31,7 @@ export default function Shop() {
     setSelectedCategory(tabId === 'all' ? 'All' : tabId); // Convert 'all' back to 'All' for consistency
   };
 
-  const getHeader = (category) => {
+  const getCategory = (category) => {
     if (category === "men") {
       return ("Men");
     } else if (category === "women") {
@@ -39,7 +39,7 @@ export default function Shop() {
     } else if (category === "kids") {
       return ("Kids");
     } else {
-      return ("All");
+      return ("M");
     }
   };
 
@@ -47,17 +47,15 @@ export default function Shop() {
     return (
         <div className="w-85vw flex flex-row flex-wrap justify-around items-center text-white font-bold text-base">
           {articles.map((article) => (
-            <Link to={`/glasses/${article.id}`} classNameName='link' key={article.id}>
-              <div className="w-48 min-h-60 flex flex-col flex-nowrap justify-center items-center bg-primary m-10 rounded-lg transition-transform transform hover:scale-110">
-                <img className="mt-0 mb-1 rounded-t-lg " src={`https://localhost/images/${article.filename}`} alt={article.name} />
+            <Link to={`/glasses/${article.id}`} className='link' key={article.id}>
+              <div className="w-48 min-h-60 text-black flex flex-col flex-nowrap justify-center items-center bg-gray-200 m-10  rounded-lg  hover:scale-105  shop-card duration-[0.3s]">
+                <img className="mt-0 mb-1 rounded-t-lg border-b-4 border-primary " src={`https://localhost/images/${article.filename}`} alt={article.name} />
                 <strong>{article.name}</strong>
-                <p>{article.price}€</p>
-                <button className="w-40 h-10 mt-2 bg-white text-black font-bold mb-2 rounded-md cursor-pointer text-sm hover:bg-black hover:text-white">
-                  Know me
+                <p>{getCategory(article.category)} - {article.price}€</p>
+                <button className="button-hover-r duration-[0.4s] w-40 h-10 mt-2 bg-primary text-white font-bold mb-2 rounded-md cursor-pointer text-sm ">
+                  Try me  
                 </button>
-                <button className="w-40 h-10 mt-2 bg-white text-black font-bold mb-2 rounded-md cursor-pointer text-sm hover:bg-secundary hover:text-black">
-                  Try me
-                </button>
+                
               </div>
             </Link>
           ))}

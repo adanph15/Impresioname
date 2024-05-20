@@ -1,14 +1,11 @@
 import Header from "../../components/header/Header";
 import React, { useState, useEffect } from 'react';
-import AuthService from "../../services/AuthService";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
-import { ToastContainer } from 'react-toastify';
-import useSocketService from '../../services/SocketService';
-import ProfileOptions from "../../components/fffff";
+import AuthService from "../../services/AuthService";
+// import ProfileOptions from "../../components/fffff";
 
 export default function UserPage() {
-  useSocketService();
   const navigate = useNavigate();
   const [user, setUser] = useState();
   const userInfo = JSON.parse(localStorage.getItem('userInfo'));
@@ -43,8 +40,7 @@ export default function UserPage() {
       {userInfo ? (
         <>
           <Header />
-          <ProfileOptions />
-          <ToastContainer />
+          {/* <ProfileOptions /> */}
         </>
       ) : (
         <>

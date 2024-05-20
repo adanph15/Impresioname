@@ -12,9 +12,7 @@ module.exports = {
       },
       colors: {
         'primary': '#333333',
-        'secundary': '#46cb8e',
-
-        
+        'secundary': ' #428e61 ',
         'secundary1': '#ffff00',
         'terciary': '#222222',
         'quaternary': '#CBCBCB',
@@ -22,7 +20,8 @@ module.exports = {
     },
   },
   plugins: [
-    require('flowbite/plugin')
+    require('flowbite/plugin'),
+    require('@tailwindcss/aspect-ratio')
   ]
-}
+};
 

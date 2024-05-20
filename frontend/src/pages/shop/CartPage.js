@@ -7,6 +7,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import useSocketService from '../../services/SocketService';
 import { ToastContainer } from 'react-toastify';
+import PurchaseStepper from '../../components/purchase/PurchaseStepper';
 
 
 const CartPage = () => {
@@ -117,17 +118,20 @@ const CartPage = () => {
     <>
       <div>
         <Header />
+        
+
         <div className="no-cart-container">
           <h2>My Basket</h2>
           {user ? (
             <>
-              {renderCartItems()}
+              <PurchaseStepper />
             </>
           ) : (
             <>
               {handleUser(user)}
             </>
           )}
+          
           <ToastContainer />
         </div>
       </div>

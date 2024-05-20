@@ -34,7 +34,7 @@ export default function Home() {
                 <img src="/izquierda.jpeg" className=" rounded-lg" alt='model-iamge-right' />
               </div>
               <div className="w-1/4 p-4 mr-2 ml-2" style={{ height: '304.5px' }}>
-              <p className="font-semibold text-2xl tracking-tight no-underline">Preview all glasses</p>
+              <p className="font-semibold text-2xl text-center tracking-tight no-underline">Preview all glasses</p>
                 <video ref={videoRef} loop muted className="w-full h-full">
                   <source src="/preview.mp4" type="video/mp4" />
                   Tu navegador no soporta el elemento de video.

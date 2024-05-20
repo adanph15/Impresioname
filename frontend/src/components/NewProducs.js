@@ -5,19 +5,20 @@ import ArticleService from '../services/ArticleService';
 const NewProducs = () => {
 
     const [articles, setArticles] = useState([]);
+
     useEffect(() => {
+        const fetchArticles = async () => {
+            try {
+                const fetchedArticles = await ArticleService.getAllArticles();
+                const randomArticles = getRandomArticles(fetchedArticles, 3);
+                setArticles(randomArticles);
+            } catch (error) {
+                console.error("Error fetching articles:", error);
+            }
+        };
+
         fetchArticles();
     }, []);
-
-    const fetchArticles = async () => {
-        try {
-            const fetchedArticles = await ArticleService.getAllArticles();
-            const randomArticles = getRandomArticles(fetchedArticles, 3);
-            setArticles(randomArticles);
-        } catch (error) {
-            console.error("Error fetching articles:", error);
-        }
-    };
 
     const getRandomArticles = (articles, n, excludedId) => {
         const filteredArticles = articles.filter(article => article.id);
@@ -36,8 +37,6 @@ const NewProducs = () => {
             return ("M");
         }
     };
-
-    // 
 
     const articlesList = () => {
         return (
@@ -61,8 +60,6 @@ const NewProducs = () => {
         );
     };
 
-
-
     return (
         <div className="w-full mt-24 bg-gray-200 p-4 pb-10 rounded-lg shadow-inner text-terciary info-home flex flex-row justify-between" data-direction="right" data-speed="slow">
             <div className="  " style={{ height: '304.5px' }}>
@@ -79,5 +76,3 @@ const NewProducs = () => {
 };
 
 export default NewProducs;
-
-

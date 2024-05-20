@@ -1,15 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import ArticleService from '../../services/ArticleService';
 import PurchaseService from '../../services/PurcharseService';
 
 const ArticleFilter = () => {
     const [articles, setArticles] = useState([]);
-    const [loading, setLoading] = useState(true);
     const [globalFilterValue, setGlobalFilterValue] = useState('');
     const [expandedRows, setExpandedRows] = useState({});
-    const [categories] = useState(['men', 'women', 'kids']);
-    const [stocks] = useState(['true', 'false']);
-    const toast = useRef(null);
     const [purchases, setPurchases] = useState({});
     const [requestedArticles, setRequestedArticles] = useState({});
 
@@ -20,7 +16,6 @@ const ArticleFilter = () => {
     const fetchInfo = async () => {
         const fetchedArticles = await ArticleService.getAllArticles();
         setArticles(fetchedArticles);
-        setLoading(false);
     };
 
     const onRowExpand = async (event, articleId) => {
@@ -31,11 +26,6 @@ const ArticleFilter = () => {
 
     const formatCurrency = (value) => {
         return value.toLocaleString('en-US', { style: 'currency', currency: 'EUR' });
-    };
-
-    const onGlobalFilterChange = (e) => {
-        const value = e.target.value;
-        setGlobalFilterValue(value);
     };
 
     const fetchData = async (article) => {

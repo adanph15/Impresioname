@@ -1,56 +1,39 @@
-//   const handleUser = () => {
-//       if (!user) {
-//           navigate('/sign-in');
-//       }
-//   }
-
-
-
-
-
-
 import axios from 'axios';
-import CartService from '../services/CartService';
-import PurchaseService from '../services/PurcharseService';
-import AuthService from "../services/AuthService";
-import ArticleService from "../services/ArticleService";
-import { Fragment, useState, useEffect } from 'react'
-import { Dialog, Transition } from '@headlessui/react'
-import { XMarkIcon } from '@heroicons/react/24/outline'
-import { useNavigate, useParams } from 'react-router-dom';
+import CartService from '../../services/CartService';
+import AuthService from "../../services/AuthService";
+import { Fragment, useState, useEffect } from 'react';
+import { Dialog, Transition } from '@headlessui/react';
+import { XMarkIcon } from '@heroicons/react/24/outline';
+import { useNavigate } from 'react-router-dom';
 
 export default function CartPopUp({ isOpen, setOpen }) {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [cartItems, setCartItems] = useState([]);
 
-
   useEffect(() => {
+    const fetchData = async () => {
+      const userInfo = getUser();
+      const cart = getCart(userInfo.id);
+      const token = AuthService.getToken();
+      if (token) {
+        try {
+          const response = await axios.get(`https://localhost/api/users/${userInfo.id}`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          setUser(response.data);
+          setCartItems(cart);
+        } catch (err) {
+          console.log(err);
+        }
+      } else {
+        setCartItems([]);
+      }
+    };
     fetchData();
   }, []);
-
-
-  const fetchData = async () => {
-    const userInfo = getUser();
-    const cart = getCart(userInfo.id);
-    const token = AuthService.getToken();
-    if (token) {
-      try {
-        const response = await axios.get(`https://localhost/api/users/${userInfo.id}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        setUser(response.data);
-        setCartItems(cart);
-      } catch (err) {
-        console.log(err);
-      }
-    } else {
-      setCartItems([]);
-      //handleUser(userInfo);
-    }
-  };
 
   const calculateTotalPrice = () => {
     return cartItems.reduce((total, item) => total + item.price, 0);
@@ -58,12 +41,11 @@ export default function CartPopUp({ isOpen, setOpen }) {
 
   const getUser = () => {
     return JSON.parse(localStorage.getItem('userInfo'));
-  }
-
+  };
 
   const getCart = (id) => {
     return CartService.getCart(id);
-  }
+  };
 
   const removeFromCart = (itemId) => {
     const updatedCart = cartItems.filter(item => item.id !== itemId);
@@ -73,7 +55,7 @@ export default function CartPopUp({ isOpen, setOpen }) {
 
   const goToBasket = () => {
     navigate('/cart');
-  }
+  };
 
   return (
     <Transition.Root show={isOpen} as={Fragment}>
@@ -122,7 +104,7 @@ export default function CartPopUp({ isOpen, setOpen }) {
 
                       <div className="mt-8 h-96">
                         <div className="flow-root">
-                          <ul role="list" className="-my-6 divide-y divide-gray-200">
+                          <ul className="-my-6 divide-y divide-primary">
                             {cartItems.map((article) => (
                               <li key={article.id} className="flex py-6">
                                 <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
@@ -148,6 +130,7 @@ export default function CartPopUp({ isOpen, setOpen }) {
                                       <button
                                         type="button"
                                         className="font-medium text-secundary hover:text-indigo-500"
+                                        onClick={() => removeFromCart(article.id)}
                                       >
                                         Remove
                                       </button>
@@ -161,19 +144,18 @@ export default function CartPopUp({ isOpen, setOpen }) {
                       </div>
                     </div>
 
-                    <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
+                    <div className="border-t border-primary px-4 py-6 sm:px-6">
                       <div className="flex justify-between text-base font-medium text-gray-900">
                         <p>Subtotal</p>
                         <p>{calculateTotalPrice()}€</p>
                       </div>
                       <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
                       <div className="mt-6" onClick={goToBasket}>
-                        <a
-                          href="#"
+                        <button
                           className="flex items-center justify-center rounded-md border border-transparent bg-secundary px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
                         >
                           Checkout
-                        </a>
+                        </button>
                       </div>
                       <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                         <p>
@@ -197,5 +179,5 @@ export default function CartPopUp({ isOpen, setOpen }) {
         </div>
       </Dialog>
     </Transition.Root>
-  )
+  );
 }

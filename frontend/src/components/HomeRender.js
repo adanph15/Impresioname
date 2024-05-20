@@ -2,8 +2,6 @@ import React, { Suspense, useRef } from 'react';
 import { Canvas, useLoader, useFrame } from '@react-three/fiber';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { useState } from 'react';
-
-import { useEffect } from 'react';
 import RenderSelection from './RenderSelection';
 import RenderOptions from './RenderOptions';
 
@@ -37,15 +35,15 @@ const HomeRender = () => {
 	return (
 		<div className="justify-center flex flex-col p-4 mt-24 rounded-lg  text-terciary border-2  bg-gray-200 info-home">
 			<div className='mb-8 text-center flex flex-row justify-between items-center text-2xl'>
-				<p className='w-40 '><span className="text-secundary">NEW</span> feature</p>
-				<p>Create your own glasses</p>
+				<p className='ml-16 font-semibold text-2xl'>New feature create your own glasses</p>
+				<p></p>
 				<button className="w-40 h-10 mt-2 bg-white text-black font-bold mb-2 rounded-md cursor-pointer text-sm hover:bg-white hover:text-secundary ">
 					Try it!
 				</button>
 
 			</div>
 			<div className='flex flex-col justify-around customs'>
-				<div className="h-[32rem]  border-2 border-primary p-4 mr-2 rounded-lg flex flex-row">
+				<div className="h-[32rem] border-primary p-4 mr-2 rounded-lg flex flex-row">
 					<Canvas camera={{ position: [0, 0, 12.25], fov: 15 }}>
 						<ambientLight intensity={1.25} />
 						<ambientLight intensity={0.1} />

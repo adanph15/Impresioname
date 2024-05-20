@@ -55,7 +55,7 @@ const RenderOptions = ({ part, setFrame, setLenses, setTemple, setTempleTips }) 
             <div className='w-full flex flex-row justify-around gap-4 mt-4'>
                 {frames.map(frame => (
                     <div className='w-1/5' key={frame}>
-                        <button className='w-[175px] border border-primary rounded-lg transition duration-[0.4s] hover:scale-110 ' onClick={() => handleClick(frame)}>
+                        <button className='w-[175px] border border-primary rounded-lg  ' onClick={() => handleClick(frame)}>
                             <Canvas camera={{ position: [0, 0, 12.25], fov: 20 }}>
                                 <ambientLight intensity={1.25} />
                                 <ambientLight intensity={0.1} />
@@ -129,7 +129,7 @@ const RenderOptions = ({ part, setFrame, setLenses, setTemple, setTempleTips }) 
                 <div className='w-1/5'></div>
                 {lenses.map(lense => (
                     <div className='w-1/5' key={lense}>
-                        <button className='w-[175px] border border-primary rounded-lg transition duration-[0.4s] hover:scale-110 ' onClick={() => handleClick(lense)}>
+                        <button className='w-[175px] border border-primary rounded-lg ' onClick={() => handleClick(lense)}>
                             <Canvas camera={{ position: [0, 0, 12.25], fov: 20 }}>
                                 <ambientLight intensity={1.25} />
                                 <ambientLight intensity={0.1} />

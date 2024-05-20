@@ -29,7 +29,7 @@
 }
 
 .complete p {
-    @apply text-white;
+    @apply text-primary;
 }
 
 .complete:not(:first-child):before,
@@ -467,3 +467,213 @@
 }
 
   
+
+
+
+.delete {
+
+	border-radius: 50%;
+
+	border: none;
+	font-weight: 600;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
+	cursor: pointer;
+	transition-duration: .3s;
+	overflow: hidden;
+	position: relative;
+  }
+  
+  .delete-icon {
+	transition-duration: .3s;
+  }
+  
+  .delete:hover {
+	width: 120px;
+	border-radius: 50px;
+	transition-duration: .3s;
+	background-color: rgb(255, 69, 69);
+	align-items: center;
+  }
+  
+  .delete:hover .delete-icon {
+	width: 50px;
+	transition-duration: .3s;
+	transform: translateY(60%);
+  }
+  
+  .delete::before {
+	position: absolute;
+	top: -20px;
+	content: "Delete";
+	color: white;
+	transition-duration: .3s;
+	font-size: 2px;
+  }
+  
+  .delete:hover::before {
+	font-size: 13px;
+	opacity: 1;
+	transform: translateY(30px);
+	transition-duration: .3s;
+  }
+
+
+
+  .deleteAddress {
+
+	border-radius: 50%;
+
+	border: none;
+	font-weight: 600;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
+	cursor: pointer;
+	transition-duration: .3s;
+	overflow: hidden;
+	position: relative;
+  }
+  
+  .deleteAddress-icon {
+	transition-duration: .3s;
+  }
+  
+  .deleteAddress:hover {
+	width: 80px;
+	border-radius: 50px;
+	transition-duration: .3s;
+	background-color: rgb(255, 69, 69);
+	align-items: center;
+  }
+  
+  .deleteAddress:hover .deleteAddress-icon {
+	width: 60px;
+	transition-duration: .3s;
+	transform: translateY(50%);
+  }
+  
+  .deleteAddress::before {
+	position: absolute;
+	top: -20px;
+	content: "Delete";
+	color: white;
+	transition-duration: .3s;
+	font-size: 2px;
+  }
+  
+  .deleteAddress:hover::before {
+	font-size: 13px;
+	opacity: 1;
+	transform: translateY(25px);
+	transition-duration: .3s;
+  }
+
+
+
+  .updateAddress {
+	border-radius: 50%;
+	border: none;
+	font-weight: 600;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
+	cursor: pointer;
+	transition-duration: .3s;
+	overflow: hidden;
+	position: relative;
+  }
+  
+  .updateAddress-icon {
+	transition-duration: .3s;
+  }
+  
+  .updateAddress:hover {
+	width: 80px;
+	border-radius: 50px;
+	transition-duration: .3s;
+	background-color: #428e61;
+	align-items: center;
+  }
+  
+  .updateAddress:hover .updateAddress-icon {
+	width: 40px;
+	transition-duration: .3s;
+	transform: translateY(20%) rotateZ(45deg);
+  }
+  
+  .updateAddress::before {
+	position: absolute;
+	top: -20px;
+	content: "Update";
+	color: white;
+	transition-duration: .3s;
+	font-size: 2px;
+  }
+  
+  .updateAddress:hover::before {
+	font-size: 13px;
+	opacity: 1;
+	transform: translateY(25px);
+	transition-duration: .3s;
+  }
+
+  .addAddress {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
+	cursor: pointer;
+	transition-duration: .3s;
+	overflow: hidden;
+	position: relative;
+  }
+  
+  .addAddress-icon {
+	transition-duration: .3s;
+  }
+  
+  .addAddress:hover {
+	border-radius: 50px;
+	transition-duration: .3s;
+	background-color: #428e61;
+	align-items: center;
+  }
+  
+  .addAddress:hover .addAddress-icon {
+	width: 40px;
+	animation: rotateAnimation 0.2s ease;
+  }
+  
+  @keyframes rotateAnimation {
+	0% {
+	  transform: translateY(40%) rotateZ(0deg);
+	}
+	50% {
+	  transform: translateY(40%) rotateZ(45deg);
+	}
+	100% {
+	  transform: translateY(40%) rotateZ(90deg);
+	}
+  }
+  
+  
+  .addAddress::before {
+	position: absolute;
+	top: -20px;
+	content: "Add";
+	color: white;
+	transition-duration: .3s;
+	font-size: 2px;
+  }
+  
+  .addAddress:hover::before {
+	font-size: 13px;
+	opacity: 1;
+	transform: translateY(25px);
+	transition-duration: .3s;
+  }

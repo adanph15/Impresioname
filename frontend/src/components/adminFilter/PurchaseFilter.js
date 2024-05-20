@@ -1,17 +1,12 @@
-import React, { useState, useEffect, useRef } from 'react';
-import ArticleService from '../../services/ArticleService';
+import React, { useState, useEffect } from 'react';
+// import ArticleService from '../../services/ArticleService';
 import PurchaseService from '../../services/PurcharseService';
 
 const PurchaseFilter = () => {
     const [articles, setArticles] = useState([]);
-    const [loading, setLoading] = useState(true);
     const [globalFilterValue, setGlobalFilterValue] = useState('');
     const [expandedRows, setExpandedRows] = useState({});
-    const [categories] = useState(['men', 'women', 'kids']);
-    const [stocks] = useState(['true', 'false']);
-    const toast = useRef(null);
     const [purchases, setPurchases] = useState({});
-    const [requestedArticles, setRequestedArticles] = useState({});
 
     useEffect(() => {
         fetchInfo();
@@ -20,7 +15,6 @@ const PurchaseFilter = () => {
     const fetchInfo = async () => {
         const fetchedPurchases = await PurchaseService.getAllPurchases();
         setPurchases(fetchedPurchases);
-        setLoading(false);
     };
 
     const onRowExpand = async (event, purchaseId) => {
@@ -31,11 +25,6 @@ const PurchaseFilter = () => {
 
     const formatCurrency = (value) => {
         return value.toLocaleString('en-US', { style: 'currency', currency: 'EUR' });
-    };
-
-    const onGlobalFilterChange = (e) => {
-        const value = e.target.value;
-        setGlobalFilterValue(value);
     };
 
     const fetchData = async (purchase) => {

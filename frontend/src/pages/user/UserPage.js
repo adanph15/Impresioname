@@ -7,7 +7,7 @@ import AuthService from "../../services/AuthService";
 
 export default function UserPage() {
   const navigate = useNavigate();
-  const [user, setUser] = useState();
+  const [user, setUser] = useState(); // Eliminamos esta línea ya que 'user' no se utiliza
   const userInfo = JSON.parse(localStorage.getItem('userInfo'));
 
   useEffect(() => {
@@ -28,7 +28,7 @@ export default function UserPage() {
     };
 
     fetchData();
-  }, []);
+  }, [userInfo.id]); // Agregamos 'userInfo.id' al arreglo de dependencias
 
   const handleUser = () => {
       navigate("/sign-in");
@@ -41,6 +41,7 @@ export default function UserPage() {
         <>
           <Header />
           {/* <ProfileOptions /> */}
+          {user}
         </>
       ) : (
         <>

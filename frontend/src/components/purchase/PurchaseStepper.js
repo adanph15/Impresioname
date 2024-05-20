@@ -1,55 +1,28 @@
-import { CheckIcon, ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
+import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 import { CreditCardIcon, ShoppingBagIcon, BuildingOffice2Icon, SparklesIcon } from "@heroicons/react/24/solid";
-import Header from '../../components/header/Header';
 import CartService from '../../services/CartService';
-import PurchaseService from '../../services/PurcharseService';
-import AuthService from "../../services/AuthService";
-import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import useSocketService from '../../services/SocketService';
 import CartOverView from "./CartOverView";
 import UserAddressesPage from "../../pages/user/UserAddressesPage";
 import CreditCardForm from "./CreditCardForm";
 
 const PurchaseStepper = () => {
     const [selectedAddress, setSelectedAddress] = useState(null); // Estado para almacenar la dirección seleccionada
-    const [user, setUser] = useState(null);
-    useSocketService();
-    useEffect(() => {
-        const fetchData = async () => {
-            const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-            const token = AuthService.getToken();
-            if (token) {
-                try {
-                    const response = await axios.get(`https://localhost/api/users/${userInfo.id}`, {
-                        headers: {
-                            Authorization: `Bearer ${token}`,
-                        },
-                    });
-                    setUser(response.data);
-                } catch (err) {
-                    console.log(err);
-                }
-            }
-        };
-
-        fetchData();
-    }, []);
-
-    const handleUser = () => {
-        const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-        if (!userInfo) {
-            window.location.href = "/sing-in";
-        }
-    }
+    console.info(selectedAddress);
+    // const handleUser = () => {
+    //     const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+    //     if (!userInfo) {
+    //         window.location.href = "/sing-in";
+    //     }
+    // }
 
     const [cartItems, setCartItems] = useState([]);
 
-    const image = (imageName) => {
-        const newName = imageName.replace('https://localhost/images/', '');
-        console.log("nuevo nombre: ", newName);
-        return newName;
-    };
+    // const image = (imageName) => {
+    //     const newName = imageName.replace('https://localhost/images/', '');
+    //     console.log("nuevo nombre: ", newName);
+    //     return newName;
+    // };
 
     useEffect(() => {
         const userInfo = JSON.parse(localStorage.getItem('userInfo'));
@@ -65,10 +38,6 @@ const PurchaseStepper = () => {
     //     PurchaseService.createPurchase(calculateTotalPrice());
     // };
 
-
-
-    ;
-    const Step3Content = () => <div>Contenido del Paso 3</div>;
     const Step4Content = () => <div>Contenido del Paso 4</div>;
 
     const steps = ["Cart Overview", "Shipping Info", "Payment", "Step 4"];
@@ -104,9 +73,9 @@ const PurchaseStepper = () => {
     };
 
     return (
-        <div className="flex  justify-center bg-red-200">
+        <div className="flex justify-center">
 
-        <div className="w-4/5 flex flex-col bg-red-300">
+        <div className="w-4/5 flex flex-col bg-gray-200">
             <div className="flex justify-between mt-32 mb-10 ml-24 mr-24">
                 {steps?.map((step, i) => (
                     <div

@@ -5,18 +5,18 @@ const MoreProducts = ({ excludedId }) => {
   const [articles, setArticles] = useState([]);
 
   useEffect(() => {
+    const fetchArticles = async () => {
+      try {
+        const fetchedArticles = await ArticleService.getAllArticles();
+        const randomArticles = getRandomArticles(fetchedArticles, 4, excludedId);
+        setArticles(randomArticles);
+      } catch (error) {
+        console.error("Error fetching articles:", error);
+      }
+    };
+    
     fetchArticles();
-  }, []);
-
-  const fetchArticles = async () => {
-    try {
-      const fetchedArticles = await ArticleService.getAllArticles();
-      const randomArticles = getRandomArticles(fetchedArticles, 4, excludedId);
-      setArticles(randomArticles);
-    } catch (error) {
-      console.error("Error fetching articles:", error);
-    }
-  };
+  }, [excludedId]); // Agregamos 'excludedId' al arreglo de dependencias
 
   const getRandomArticles = (articles, n, excludedId) => {
     const filteredArticles = articles.filter(article => article.id !== excludedId);
@@ -57,8 +57,3 @@ const MoreProducts = ({ excludedId }) => {
 }
 
 export default MoreProducts;
-
-
-
-
-

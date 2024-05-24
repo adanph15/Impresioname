@@ -2,6 +2,7 @@
 module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
+    'node_modules/flowbite-react/lib/esm/*/.js',
   ],
   theme: {
     extend: {
@@ -11,10 +12,16 @@ module.exports = {
       },
       colors: {
         'primary': '#333333',
+        'secundary': ' #428e61 ',
+        'secundary1': '#ffff00',
         'terciary': '#222222',
+        'quaternary': '#CBCBCB',
       },
     },
   },
-  plugins: [],
-}
+  plugins: [
+    require('flowbite/plugin'),
+    require('@tailwindcss/aspect-ratio')
+  ]
+};
 

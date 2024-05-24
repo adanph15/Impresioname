@@ -192,7 +192,7 @@ const AddressForm = () => {
                         />
                         <p className="text-red-500 text-xs italic">{addressErrors.province}</p>
                     </div> */}
-                    <div className="flex flex-wrap -mx-3 mb-6 mt-8">
+                    <div className="flex flex-wrap -mx-3 mb-6 mt-8 justify-center">
                         <button className='bg-primary text-white w-1/3 h-14 font-bold rounded-md cursor-pointer text-base hover:bg-white hover:text-terciary hover:border-primary hover:border-solid hover:border' onClick={addNewAddress}>Add Address</button>
                     </div>
                 </form>

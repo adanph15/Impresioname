@@ -16,7 +16,6 @@ export default function GlassesPage() {
   const userInfo = JSON.parse(localStorage.getItem('userInfo'));
   const [setCartItems] = useState([]);
   useSocketService();
-  console.log(cartItems)
   useEffect(() => {
     const fetchArticle = async () => {
       try {

@@ -99,9 +99,9 @@ export default function SignUp() {
                 <Header />
    
                     <div className="flex flex-col justify-around items-center">
-                        <h2 className="text-4xl font-bold text-terciary  mt-10">Sign Up</h2>
+                        <h2 className="text-4xl font-bold text-terciary  mt-32">Sign Up</h2>
                         <form className="w-full max-w-3xl">
-                            <div className="flex flex-wrap -mx-3 mb-6  mt-20">
+                            <div className="flex flex-wrap -mx-3 mb-6  mt-10">
                                 <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                                     <label className="block tracking-wide text-gray-700 text-lg font-bold mb-2" for="grid-first-name">
                                         First Name
@@ -138,7 +138,7 @@ export default function SignUp() {
                                 </div>
                             </div>
                             <div >
-                                <div class="w-full px-3">
+                                <div class="w-full">
                                     <label className="block  tracking-wide text-gray-700 text-lg font-bold mb-2" for="grid-password">
                                         Password
                                     </label>

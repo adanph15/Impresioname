@@ -1,56 +1,103 @@
-import React, { useState, useEffect } from 'react';
-import AuthService from "../../services/AuthService";
-import axios from 'axios';
-// import { useNavigate } from "react-router-dom";
+import React from 'react';
+import AuthService from '../../services/AuthService';
+import { useNavigate } from 'react-router-dom';
 
-export default function ProfileInfo() {
-    // const navigate = useNavigate();
-    const [user, setUser] = useState(null);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-            const token = AuthService.getToken();
-            if (token) {
-                try {
-                    const response = await axios.get(`https://localhost/api/users/${userInfo.id}`, {
-                        headers: {
-                            Authorization: `Bearer ${token}`,
-                        },
-                    });
-                    setUser(response.data);
-                } catch (err) {
-                    console.log(err);
-                }
-            }
-        };
-
-        fetchData();
-    }, []);
+const ProfileInfo = ({ user, onEditProfile }) => {
+    const navigate = useNavigate();
 
     const handleLogout = () => {
         AuthService.logout();
+        navigate('/home');
     };
 
-
     return (
-        <>
-            <div className="flex flex-col justify-around items-center">
-                <h2 className>{user.username}</h2>
-                <form className='singin-form-container'>
-
-
-                    <p className='text-base'>{user.name} {user.last_name}</p>
-                    <p className='text-base'>{user.mail}</p>
-
-
-                    <div className="flex flex-row justify-center -mx-3 mb-6 mt-10">
-                        <button className="bg-primary text-white w-full h-14 font-bold rounded-md cursor-pointer text-base hover:bg-white hover:text-terciary hover:border-primary hover:border-solid hover:border" onClick={handleLogout}>
-                            Log Out
-                        </button>
+        <div className="flex flex-col justify-around items-center">
+            <h2 className="text-4xl font-bold text-terciary  mt-32">Profile</h2>
+            <form className="w-full max-w-3xl">
+                <div className="flex flex-wrap -mx-3 mb-6  mt-10">
+                    <div className="w-full md:w-1/2 px-3 mb-6 md:mb-1">
+                        <label className="block tracking-wide text-gray-600 text-lg font-bold mb-2" htmlFor="first-name">
+                            First Name
+                        </label>
+                        <input className="appearance-none block w-full bg-gray-200 text-primary border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary text-base"
+                            id="first-name"
+                            type="text"
+                            placeholder="James"
+                            value={user.name}
+                            disabled
+                        />
                     </div>
-                </form>
-            </div>
-        </>
+                    <div className="w-full md:w-1/2 px-3">
+                        <label className="block  tracking-wide text-primary text-lg font-bold mb-2" htmlFor="last-name">
+                            Last Name
+                        </label>
+                        <input className="appearance-none block w-full bg-gray-200 text-primary border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary text-base"
+                            id="last-name"
+                            type="text"
+                            placeholder="Doe"
+                            value={user.last_name}
+                            disabled
+                        />
+                    </div>
+                </div>
+                <div className="flex flex-wrap -mx-3 mb-6">
+                    <div className="w-full md:w-1/2 px-3 mb-5 md:mb-1">
+                        <label className="block tracking-wide text-gray-700 text-lg font-bold mb-2" htmlFor="first-name">
+                            Username
+                        </label>
+                        <input className="appearance-none block w-full bg-gray-200 text-primary border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary text-base"
+                            id="first-name"
+                            type="text"
+                            placeholder="Username"
+                            value={user.username}
+                            disabled
+                        />
+                    </div>
+                    <div className="w-full md:w-1/2 px-3">
+                        <label className="block  tracking-wide text-primary text-lg font-bold mb-2" htmlFor="last-name">
+                            Email
+                        </label>
+                        <input className="appearance-none block w-full bg-gray-200 text-primary border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary text-base"
+                            id="last-name"
+                            type="text"
+                            placeholder="Mail"
+                            value={user.mail}
+                            disabled
+                        />
+                    </div>
+                </div>
+                <div className="w-full">
+                    <label className="block  tracking-wide text-gray-700 text-lg font-bold mb-2" htmlFor="password">
+                        Password
+                    </label>
+                    <input className="appearance-none block w-full bg-gray-200 text-primary border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary text-base"
+                        id="password"
+                        type="password"
+                        placeholder="******************"
+                        disabled
+                    />
+                </div>
+                <div className="flex justify-center mt-8">
+                    <button
+                        type="button"
+                        className="bg-primary text-white w-1/3 h-14 font-bold rounded-md cursor-pointer text-base hover:bg-white hover:text-terciary hover:border-primary hover:border-solid hover:border"
+                        onClick={onEditProfile}
+                    >
+                        Update Profile
+                    </button>
+                </div>
+                <div className="flex justify-center mt-8">
+                    <button
+                        type="button"
+                        className="bg-primary text-white w-1/3 h-14 font-bold rounded-md cursor-pointer text-base hover:bg-white hover:text-terciary hover:border-primary hover:border-solid hover:border"
+                        onClick={handleLogout}
+                    >
+                        Log Out
+                    </button>
+                </div>
+            </form>
+        </div>
     );
-} 
+};
+
+export default ProfileInfo;

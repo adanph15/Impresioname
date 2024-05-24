@@ -1,56 +1,84 @@
-// import Header from "../../components/header/Header";
-// import React, { useState, useEffect } from 'react';
-// import AuthService from "../../services/AuthService";
-// import axios from 'axios';
-// import { useNavigate } from "react-router-dom";
-// import { ToastContainer } from 'react-toastify';
-// import useSocketService from '../../services/SocketService';
-// import ProfileOptions from "../../components/fffff";
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import AuthService from '../../services/AuthService';
+import axios from 'axios';
+import { ToastContainer } from 'react-toastify';
+import Header from '../../components/header/Header';
+import ProfileInfo from '../../components/profile/ProfileInfo';
+import UserPageUpdate from './UserPageUpdate'; // Import the update component
 
-// export default function UserPage() {
-//   useSocketService();
-//   const navigate = useNavigate();
-//   const [user, setUser] = useState(null);
-//   const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+export default function UserPage() {
+  const [user, setUser] = useState(null);
+  const [isUpdatePopupOpen, setIsUpdatePopupOpen] = useState(false);
+  const navigate = useNavigate();
 
-//   useEffect(() => {
-//     const fetchData = async () => {
-//       const token = AuthService.getToken();
-//       if (token) {
-//         try {
-//           const response = await axios.get(`https://localhost/api/users/${userInfo.id}`, {
-//             headers: {
-//               Authorization: `Bearer ${token}`,
-//             },
-//           });
-//           setUser(response.data);
-//         } catch (err) {
-//           console.log(err);
-//         }
-//       }
-//     };
+  useEffect(() => {
+    const userInfo = JSON.parse(localStorage.getItem('userInfo'));
 
-//     fetchData();
-//   }, []);
+    const fetchData = async () => {
+      if (!userInfo || !userInfo.id) {
+        navigate('/sign-in');
+        return;
+      }
 
-//   // const handleUser = () => {
-//   //     navigate("/sign-in");
-//   // }
+      const token = AuthService.getToken();
+      if (!token) {
+        navigate('/sign-in');
+        return;
+      }
 
+      try {
+        const response = await axios.get(`https://localhost/api/users/${userInfo.id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setUser(response.data);
+      } catch (err) {
+        console.log(err);
+        navigate('/sign-in');
+      }
+    };
 
-//   return (
-//     <>
-//       {userInfo ? (
-//         <>
-//           <Header />
-//           <ProfileOptions />
-//           <ToastContainer />
-//         </>
-//       ) : (
-//         <>
-//           {/* {handleUser()} */}
-//         </>
-//       )}
-//     </>
-//   );
-// } 
+    fetchData();
+  }, [navigate]);
+
+  const handleUpdate = () => {
+    setIsUpdatePopupOpen(true);
+  };
+
+  const handleUpdateClose = async () => {
+    const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+    const token = AuthService.getToken();
+    try {
+      const response = await axios.get(`https://localhost/api/users/${userInfo.id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setUser(response.data);
+    } catch (err) {
+      console.log(err);
+    }
+    setIsUpdatePopupOpen(false);
+  };
+
+  return (
+    <>
+      {user ? (
+        <>
+          <Header />
+          <ProfileInfo user={user} onEditProfile={handleUpdate} />
+          {isUpdatePopupOpen && (
+            <div className="popup">
+              <div className="popup-inner">
+                <UserPageUpdate user={user} onClose={handleUpdateClose} />
+              </div>
+            </div>
+          )}
+          <ToastContainer />
+        </>
+      ) : null}
+    </>
+  );
+}

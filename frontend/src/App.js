@@ -13,8 +13,8 @@ import CartPage from "./pages/shop/CartPage";
 import UserPurchasePage from "./pages/user/UserPurchasePage";
 import AdminPurchaseList from "./pages/admin/Purchase.view";
 import AdminPurchaseUpdate from "./pages/admin/Purchase.edit";
-import CustomGlasses from "./pages/prueba/CustomGlasses";
-import PreviewGlasses from "./pages/prueba/PreviewGlasses";
+// import CustomGlasses from "./pages/prueba/CustomGlasses";
+// import PreviewGlasses from "./pages/prueba/PreviewGlasses";
 import Shop from "./pages/shop/Shop";
 
 // import 'primeicons/primeicons.css';

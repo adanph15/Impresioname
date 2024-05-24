@@ -321,3 +321,4 @@ export default function CartPopUp() {
     </Transition.Root>
   )
 }
+

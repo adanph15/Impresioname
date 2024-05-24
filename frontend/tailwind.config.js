@@ -12,14 +12,16 @@ module.exports = {
       },
       colors: {
         'primary': '#333333',
-        'secundary': '#ffff00',
+        'secundary': ' #428e61 ',
+        'secundary1': '#ffff00',
         'terciary': '#222222',
         'quaternary': '#CBCBCB',
       },
     },
   },
   plugins: [
-    require('flowbite/plugin')
+    require('flowbite/plugin'),
+    require('@tailwindcss/aspect-ratio')
   ]
-}
+};
 

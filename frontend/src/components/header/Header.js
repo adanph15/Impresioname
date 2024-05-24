@@ -1,8 +1,7 @@
-import { faCartShopping, faCircleUser } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useState } from 'react';
 import CartService from '../../services/CartService';
-import CartPopUp from '../CartPopUp'; // Importa el componente CartPopUp
+import CartPopUp from '../purchase/CartPopUp';
+import { ShoppingCartIcon, UserCircleIcon } from "@heroicons/react/24/solid";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,21 +10,14 @@ export default function Header() {
     setIsOpen(!isOpen);
   };
 
-
-  //arreglar este manejo del usario.
-  const cart = {};
+  let cart = 0;
   const userInfo = JSON.parse(localStorage.getItem('userInfo'));
   if (userInfo) {
-    const cart = CartService.getCart(userInfo.id);
-  } else {
-    const cart = {};
+    cart = CartService.getCart(userInfo.id).length;
   }
-
-  console.log(cart)
 
   return (
     <>
-      {/* poner fixed para que se mueva con la pagina */}
       <nav className="flex items-center justify-between flex-wrap bg-primary p-6 fixed w-full top-0 z-50">
         <div className="flex items-center flex-shrink-0 text-white mr-6">
           <svg className="fill-current h-8 w-8 mr-2" width="54" height="54" viewBox="0 0 54 54" xmlns="/miniIcon.png">
@@ -46,7 +38,6 @@ export default function Header() {
             <a href="/home#shop" className="block mt-4 lg:inline-block lg:mt-0  hover:text-white mr-4" style={{ scrollBehavior: 'smooth' }}>
               Shop
             </a>
-
             <a href="#responsive-header" className="block mt-4 lg:inline-block lg:mt-0 cursor-not-allowed mr-4">
               Custom Glasses
             </a>
@@ -54,19 +45,18 @@ export default function Header() {
               Log-In
             </a>
           </div>
-          <div>
-            <a className="text-white no-underline relative" href='/profile'>
-              <FontAwesomeIcon className="w-14" icon={faCircleUser} size="xl" />
+          <div className='flex flex-row justify-between mr-16 gap-8'>
+            <a href='/profile' className="text-white no-underline relative">
+              <UserCircleIcon className="w-8" />
             </a>
-            {/* <a className="text-white no-underline relative mr-10" onClick={() => setIsOpen(true)}> Cambia isOpen a true */}
-              <span id="cart_menu_num" data-action="cart-can" class="absolute top-0 left-0 transform translate-x-7 translate-y-3 bg-red-500 w-5 h-5 rounded-full flex justify-center items-center text-sm text-white">0</span>
-              <FontAwesomeIcon className="w-14" icon={faCartShopping} size="xl" />
-            {/* </a> */}
-            {/* <a href="#" className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">Download</a> */}
+            <button onClick={() => setIsOpen(true)} className="text-white no-underline relative mr-10">
+              <span id="cart_menu_num" data-action="cart-can" className="absolute top-0 left-0 transform translate-x-5 translate-y-5 bg-secundary w-5 h-5 rounded-full flex justify-center items-center text-sm text-white cursor-pointer">{cart > 0 ? cart : 0}</span>
+              <ShoppingCartIcon className="w-8 cursor-pointer" />
+            </button>
           </div>
         </div>
       </nav>
-      {isOpen && <CartPopUp />} {/* Renderiza el CartPopUp si isOpen es true */}
+      {isOpen && <CartPopUp isOpen={isOpen} setOpen={setIsOpen} />}
     </>
   );
 }

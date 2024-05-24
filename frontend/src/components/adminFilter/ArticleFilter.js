@@ -4,12 +4,8 @@ import PurchaseService from '../../services/PurcharseService';
 
 const ArticleFilter = () => {
     const [articles, setArticles] = useState([]);
-    const [setLoading] = useState(true);
     const [globalFilterValue, setGlobalFilterValue] = useState('');
     const [expandedRows, setExpandedRows] = useState({});
-    // const [categories] = useState(['men', 'women', 'kids']);
-    // const [stocks] = useState(['true', 'false']);
-    // const toast = useRef(null);
     const [purchases, setPurchases] = useState({});
     const [requestedArticles, setRequestedArticles] = useState({});
 
@@ -20,7 +16,6 @@ const ArticleFilter = () => {
     const fetchInfo = async () => {
         const fetchedArticles = await ArticleService.getAllArticles();
         setArticles(fetchedArticles);
-        setLoading(false);
     };
 
     const onRowExpand = async (event, articleId) => {
@@ -31,11 +26,6 @@ const ArticleFilter = () => {
 
     const formatCurrency = (value) => {
         return value.toLocaleString('en-US', { style: 'currency', currency: 'EUR' });
-    };
-
-    const onGlobalFilterChange = (e) => {
-        const value = e.target.value;
-        setGlobalFilterValue(value);
     };
 
     const fetchData = async (article) => {
@@ -121,12 +111,6 @@ const ArticleFilter = () => {
 
     return (
         <div className="flex flex-col justify-center items-center">
-            <div className='bg-red-400 flex justify-around'>
-                <div className="flex justify-content-end mb-2">
-                    <input value={globalFilterValue} onChange={onGlobalFilterChange} placeholder="Keyword Search" />
-                </div>
-            </div>
-
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg w-4/5">
                 <SearchBar
                     globalFilterValue={globalFilterValue}
@@ -206,11 +190,11 @@ const SearchBar = ({ globalFilterValue, setGlobalFilterValue, expandAll, collaps
 
     return (
         <div className='flex justify-between'>
-            <form className="w-1/2 ml-0 mb-10">
+            <form className="w-1/2 ml-20 mt-24 mb-10 flex flex-row ">
                 <input
                     type="search"
                     id="search-dropdown"
-                    className="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-e-lg border-s-gray-50 border-s-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-s-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
+                    className="block p-2.5 w-3/4 z-20 text-sm text-gray-900 bg-gray-50 rounded-l-lg border-s-gray-50 border-s-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
                     placeholder="Search by article Name or Category"
                     onChange={handleSearch}
                     value={globalFilterValue}
@@ -218,7 +202,7 @@ const SearchBar = ({ globalFilterValue, setGlobalFilterValue, expandAll, collaps
                 />
                 <button
                     type="submit"
-                    className="absolute top-0 end-0 p-2.5 text-sm font-medium h-full text-white bg-secundary rounded-e-lg border border-secundary  focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    className=" top-0 p-2.5 text-sm font-medium  text-white bg-secundary rounded-e-lg border border-secundary  focus:ring-4 focus:outline-none focus:ring-blue-300"
                 >
                     <svg className="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                         <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />

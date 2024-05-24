@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import UserAddressesPage from "../pages/user/UserAddressesPage";
 import AddressForm from "./address/AddressForm";
 import AddressRender from "./address/AddressRender";
 import ProfileInfo from "./profile/ProfileInfo";

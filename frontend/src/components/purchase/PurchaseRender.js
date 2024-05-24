@@ -32,7 +32,7 @@ const PurchaseRender = () => {
 
     useEffect(() => {
         fetchPurchases();
-    }, [id]);
+    }, []);
 
     useEffect(() => {
         purchases.forEach(purchase => {

@@ -1,4 +1,3 @@
-// import React, { useState } from 'react';
 import Header from "../../components/header/Header";
 import NewProducs from "../../components/NewProducs";
 import HomeRender from "../../components/HomeRender";
@@ -6,8 +5,7 @@ import Shop from "../shop/Shop";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import useSocketService from '../../services/SocketService';
-import { useEffect, useRef } from 'react';
-
+import { useRef, useEffect} from 'react';
 
 export default function Home() {
   useSocketService();

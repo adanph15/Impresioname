@@ -1,53 +1,84 @@
-import Header from "../../components/header/Header";
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import AuthService from '../../services/AuthService';
 import axios from 'axios';
-import { useNavigate } from "react-router-dom";
-import AuthService from "../../services/AuthService";
-// import ProfileOptions from "../../components/fffff";
+import { ToastContainer } from 'react-toastify';
+import Header from '../../components/header/Header';
+import ProfileInfo from '../../components/profile/ProfileInfo';
+import UserPageUpdate from './UserPageUpdate'; // Import the update component
 
 export default function UserPage() {
+  const [user, setUser] = useState(null);
+  const [isUpdatePopupOpen, setIsUpdatePopupOpen] = useState(false);
   const navigate = useNavigate();
-  const [user, setUser] = useState(); // Eliminamos esta línea ya que 'user' no se utiliza
-  const userInfo = JSON.parse(localStorage.getItem('userInfo'));
 
   useEffect(() => {
+    const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+
     const fetchData = async () => {
+      if (!userInfo || !userInfo.id) {
+        navigate('/sign-in');
+        return;
+      }
+
       const token = AuthService.getToken();
-      if (token) {
-        try {
-          const response = await axios.get(`https://localhost/api/users/${userInfo.id}`, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
-          setUser(response.data);
-        } catch (err) {
-          console.log(err);
-        }
+      if (!token) {
+        navigate('/sign-in');
+        return;
+      }
+
+      try {
+        const response = await axios.get(`https://localhost/api/users/${userInfo.id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setUser(response.data);
+      } catch (err) {
+        console.log(err);
+        navigate('/sign-in');
       }
     };
 
     fetchData();
-  }, [userInfo.id]); // Agregamos 'userInfo.id' al arreglo de dependencias
+  }, [navigate]);
 
-  const handleUser = () => {
-      navigate("/sign-in");
-  }
+  const handleUpdate = () => {
+    setIsUpdatePopupOpen(true);
+  };
 
+  const handleUpdateClose = async () => {
+    const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+    const token = AuthService.getToken();
+    try {
+      const response = await axios.get(`https://localhost/api/users/${userInfo.id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setUser(response.data);
+    } catch (err) {
+      console.log(err);
+    }
+    setIsUpdatePopupOpen(false);
+  };
 
   return (
     <>
-      {userInfo ? (
+      {user ? (
         <>
           <Header />
-          {/* <ProfileOptions /> */}
-          {user}
+          <ProfileInfo user={user} onEditProfile={handleUpdate} />
+          {isUpdatePopupOpen && (
+            <div className="popup">
+              <div className="popup-inner">
+                <UserPageUpdate user={user} onClose={handleUpdateClose} />
+              </div>
+            </div>
+          )}
+          <ToastContainer />
         </>
-      ) : (
-        <>
-          {handleUser()}
-        </>
-      )}
+      ) : null}
     </>
   );
-} 
+}

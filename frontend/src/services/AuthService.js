@@ -1,7 +1,5 @@
 import axios from 'axios';
 
-// const API_URL = "https://localhost/api/users/";
-
 const AuthService = {
   getToken() {
     return localStorage.getItem('token');

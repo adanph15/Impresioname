@@ -8,7 +8,6 @@ const Direction = db.direction;
 // Create and Save a new User
 exports.create = async (req, res) => {
   try {
-
     const existingUser = await User.findOne({ where: { username: req.body.username } });
     if (existingUser) {
       return res.status(409).send({
@@ -36,10 +35,9 @@ exports.create = async (req, res) => {
     res.json({ user: userObj, access_token: token });
   } catch (err) {
     res.status(500).send({
-      message:
-        err.message || "Some error occurred while creating the User."
+      message: err.message || "Some error occurred while creating the User."
     });
-  };
+  }
 };
 
 // Create and Save a new User
@@ -81,32 +79,27 @@ exports.createAdmin = (req, res) => {
         })
         .catch(err => {
           res.status(500).send({
-            message:
-              err.message || "Some error occurred while creating the Admin."
+            message: err.message || "Some error occurred while creating the Admin."
           });
         });
 
     })
     .catch(err => {
       res.status(500).send({
-        message:
-          err.message || "Some error occurred while retrieving tutorials."
+        message: err.message || "Some error occurred while retrieving tutorials."
       });
     });
-
 };
 
 // Retrieve all Users from the database.
 exports.findAll = (req, res) => {
-
   User.findAll()
     .then(data => {
       res.send(data);
     })
     .catch(err => {
       res.status(500).send({
-        message:
-          err.message || "Some error occurred while retrieving tutorials."
+        message: err.message || "Some error occurred while retrieving tutorials."
       });
     });
 };
@@ -115,7 +108,7 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
   const id = req.params.id;
 
-  User.findByPk(id,{attributes: {exclude: ['password']}})
+  User.findByPk(id, { attributes: { exclude: ['password'] } })
     .then(data => {
       res.send(data);
     })
@@ -127,31 +120,35 @@ exports.findOne = (req, res) => {
 };
 
 // Update a User by the id in the request
-exports.update = (req, res) => {
+exports.update = async (req, res) => {
   const id = req.params.id;
 
-  User.update(req.body, {
-    where: { id: id }
-  })
-    .then(num => {
-      if (num == 1) {
-        res.send({
-          message: "User was updated successfully."
-        });
-      } else {
-        res.status(400).send({
-          message: `Cannot update User with id=${id}. Maybe User was not found or req.body is empty!`
-        });
-      }
-    })
-    .catch(err => {
-      res.status(500).send({
-        message: "Error updating User with id=" + id
-      });
+  try {
+    if (req.body.password) {
+      req.body.password = bcrypt.hashSync(req.body.password);
+    }
+
+    const [num] = await User.update(req.body, {
+      where: { id: id }
     });
+
+    if (num == 1) {
+      res.send({
+        message: "User was updated successfully."
+      });
+    } else {
+      res.status(400).send({
+        message: `Cannot update User with id=${id}. Maybe User was not found or req.body is empty!`
+      });
+    }
+  } catch (err) {
+    res.status(500).send({
+      message: "Error updating User with id=" + id
+    });
+  }
 };
 
-// // Delete a User with the specified id in the request
+// Delete a User with the specified id in the request
 exports.delete = (req, res) => {
   const id = req.params.id;
 
@@ -187,8 +184,7 @@ exports.findUserByUsernameAndPassword = (req, res) => {
     })
     .catch(err => {
       res.status(500).send({
-        message:
-          err.message || "Some error occurred while retrieving tutorials."
+        message: err.message || "Some error occurred while retrieving tutorials."
       });
     });
 };

@@ -172,4 +172,119 @@
 //   );
 // }
 
-// export default CustomGlasses;
+
+
+
+  // const frameCircleColors = ['Black', 'Red', 'Pink', 'Orange', 'Blue'];
+  // const templeTipsCircleColors = ['Black', 'Red', 'Pink', 'Orange', 'Blue'];
+  // const templeCircleColors = ['Black', 'Silver'];
+  // const lensesCircleColors = ['Vision glasses', 'Sunglasses']
+
+  // const ColorPicker = ({ title, setColor, colors }) => (
+  //   <div style={{ padding: '10px' }} className='controls-item'>
+  //     <h2>{title}</h2>
+  //     <div style={{ display: 'flex', justifyContent: 'space-around', marginTop: '3em' }}>
+  //       {colors.map((color) => (
+  //         <div key={color} style={{ textAlign: 'center', color: `${color.toLowerCase()}` }}>
+  //           <div
+  //             className={`color-circle ${color.toLowerCase()}`}
+  //             onClick={() => setColor(color.toLowerCase())}
+  //           />
+  //           <div className={`color-circle-text ${color.toLowerCase()}`}>{color}</div>
+  //         </div>
+  //       ))}
+  //     </div>
+  //   </div>
+  // );
+
+  // const handleSubmit = () => {
+  //   alert(`Frame color: ${frameColor}, Temple color: ${templeColor}`);
+  // };
+
+  import React, { useEffect, useState } from 'react';
+  import Header from "../../components/header/Header";
+  import OptionCarrousel from '../../components/optionCarrousel/OptionCarrousel';
+  
+  const CustomGlasses = () => {
+    const [frameColor, setFrameColor] = useState('black');
+    const [templeColor, setTempleColor] = useState('black');
+    const [templeTipsColor, setTempleTipsColor] = useState('black');
+    const [lensesColor, setLensesColor] = useState('black');
+  
+    useEffect(() => {
+      console.log('Frame color changed:', frameColor);
+      // Aquí podrías realizar otras acciones según el cambio de color del marco
+    }, [frameColor]);
+  
+    useEffect(() => {
+      console.log('Temple color changed:', templeColor);
+      // Aquí podrías realizar otras acciones según el cambio de color del templo
+    }, [templeColor]);
+  
+    useEffect(() => {
+      console.log('Temple tips color changed:', templeTipsColor);
+      // Aquí podrías realizar otras acciones según el cambio de color de las puntas del templo
+    }, [templeTipsColor]);
+  
+    useEffect(() => {
+      console.log('Lenses color changed:', lensesColor);
+      // Aquí podrías realizar otras acciones según el cambio de color de las lentes
+    }, [lensesColor]);
+  
+    const handleColorChange = (colorType, color) => {
+      switch (colorType) {
+        case 'frame':
+          setFrameColor(color);
+          break;
+        case 'temple':
+          setTempleColor(color);
+          break;
+        case 'templeTips':
+          setTempleTipsColor(color);
+          break;
+        case 'lenses':
+          setLensesColor(color);
+          break;
+        default:
+          break;
+      }
+    };
+
+  return (
+    <>
+      <Header />
+
+      <div className='preview' dangerouslySetInnerHTML={{
+        __html: `   
+            <div>
+              <a-scene mindar-face embedded color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+                <a-assets>
+                  <a-asset-item id="headModel" src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/examples/face-tracking/assets/sparkar/headOccluder.glb"></a-asset-item>
+                  <a-asset-item id="frameModel" src="https://localhost:443/assets/custom/frames/custom-frame-2.gltf"></a-asset-item>
+                  <a-asset-item id="templeModel" src="https://localhost:443/assets/custom/temples/custom-temple-1.gltf"></a-asset-item>
+                  <a-asset-item id="templeTipsModel" src="https://localhost:443/assets/custom/temples-tips/custom-temple-tips-1.gltf"></a-asset-item>
+                  <a-asset-item id="lensesModel" src="https://localhost:443/assets/custom/lenses/custom-lenses-1.gltf"></a-asset-item>
+                </a-assets>
+                <a-camera active="false" position="0 0 0"></a-camera>
+                <a-entity mindar-face-target="anchorIndex: 188">
+                  <a-gltf-model rotation="0 0 0" position="0 0 0" scale="1 1 1" src="#frameModel" visible="true"></a-gltf-model>
+                </a-entity>
+                <a-entity mindar-face-target="anchorIndex: 188">
+                    <a-gltf-model rotation="0 0 0" position="0 0 0" scale="1 1 1" src="#templeModel" visible="true"></a-gltf-model>
+                </a-entity>
+                <a-entity mindar-face-target="anchorIndex: 188">
+                  <a-gltf-model rotation="0 0 0" position="0 0 0" scale="1 1 1" src="#templeTipsModel" visible="true"></a-gltf-model>
+                </a-entity>
+                <a-entity mindar-face-target="anchorIndex: 188">
+                  <a-gltf-model rotation="0 0 0" position="0 0 0" scale="1 1 1" src="#lensesModel" visible="true"></a-gltf-model>
+                </a-entity>
+              </a-scene>
+            </div>
+        ` }} />
+
+<OptionCarrousel handleColorChange={handleColorChange} />
+    </>
+  );
+};
+
+export default CustomGlasses;

@@ -14,7 +14,7 @@ export default function GlassesPage() {
   const [article, setArticle] = useState(null);
   const { id } = useParams();
   const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-  const [setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
   useSocketService();
   useEffect(() => {
     const fetchArticle = async () => {
@@ -72,10 +72,10 @@ export default function GlassesPage() {
   return (
     <>
       <Header />
-      <div className="flex flex-col justify-between items-center gap-y-5 mt-24">
+      <div className="flex flex-col justify-between items-center gap-y-5 mt-32">
         <div className='flex flex-col items-center'>
           <div className='flex flex-row justify-between'>
-            <img src={`https://localhost/images/${article.filename}`} className="w-5/12 rounded-lg mb-6 mt-5 image-glasses " alt={article.name} />
+            <img src={`https://localhost/images/${article.filename}`} className="w-4/12 rounded-lg mb-6 mt-5 image-glasses " alt={article.name} style={{ boxShadow: '10px 10px 2px -1px #333333' }}/>
             <div className='flex flex-col items-start w-1/3 mb-6 mt-6 ml-5 '>
               <h2 className="text-2xl font-bold text-terciary ">{article.name}</h2>
               <p className='text-lg font-semibold mt-5'>{article.price}€ </p>

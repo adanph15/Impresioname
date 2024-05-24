@@ -73,9 +73,9 @@ const PurchaseStepper = () => {
     };
 
     return (
-        <div className="flex justify-center">
+        <div className="flex justify-center bg-gray-200">
 
-        <div className="w-4/5 flex flex-col bg-gray-200">
+        <div className="w-4/5 flex flex-col ">
             <div className="flex justify-between mt-32 mb-10 ml-24 mr-24">
                 {steps?.map((step, i) => (
                     <div

@@ -33,7 +33,6 @@ export default function Login() {
             });
         });
 
-        // Cleanup function to remove event listeners when component unmounts
         return () => {
             switchers.forEach(item => {
                 item.removeEventListener('click', () => { });
@@ -154,7 +153,7 @@ export default function Login() {
                     <h2 className="text-4xl font-bold text-terciary mt-10 mb-6">Login & Sign Up</h2>
                     <div className="forms">
                         <div className="form-wrapper is-active  ">
-                            <button type="button" className="switcher switcher-login text-xl text-terciary font-bold">
+                            <button type="button" className="switcher switcher-login text-2xl text-terciary font-bold">
                                 Login
                                 <span className="underline"></span>
                             </button>
@@ -179,7 +178,7 @@ export default function Login() {
                             </form>
                         </div>
                         <div className="form-wrapper  ">
-                            <button type="button" className="switcher switcher-signup">
+                            <button type="button" className="switcher switcher-signup text-2xl text-terciary font-bold">
                                 Sign Up
                                 <span className="underline"></span>
                             </button>

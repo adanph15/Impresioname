@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { PencilIcon, TrashIcon, PlusIcon } from "@heroicons/react/24/solid";
+import { PencilIcon, TrashIcon, PlusIcon, ShoppingCartIcon } from "@heroicons/react/24/solid";
 
 
 const UserAddressesPage = () => {
@@ -167,9 +167,12 @@ const UserAddressesPage = () => {
             </div>
           </div>
           <div className="flex flex-row justify-center -mx-3 mb-6 mt-10">
-            <button className="addAddress bg-primary text-white w-48 h-14 font-bold rounded-md cursor-pointer text-base hover:w-40" onClick={addNewAddress}>
-              <PlusIcon className="w-10 addAddress-icon" />
-            </button>
+            <button onClick={addNewAddress} className="button-hover button-cart flex flex-row justify-around items-center bg-primary text-white w-48 h-14 font-bold rounded-md cursor-pointer text-base hover:bg-white hover:text-white hover:border-primary hover:border-solid hover:border">
+                  <p className='mr-10'>Add address</p>
+                  <div className="icon mr-2">
+                    <PlusIcon className='w-6' />
+                  </div>
+                </button>
           </div>
         </form>
       </div>

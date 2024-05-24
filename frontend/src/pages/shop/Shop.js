@@ -55,7 +55,6 @@ export default function Shop() {
                 <button className="button-hover-r duration-[0.4s] w-40 h-10 mt-2 bg-primary text-white font-bold mb-2 rounded-md cursor-pointer text-sm ">
                   Try me  
                 </button>
-                
               </div>
             </Link>
           ))}

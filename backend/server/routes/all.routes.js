@@ -1,6 +1,7 @@
 const purchaseController = require("../controllers/purchase.controller");
 const carryController = require("../controllers/carry.controller");
 const directionController = require("../controllers/direction.controller");
+const printerController = require("../controllers/printer.controller");
 
 module.exports = function (app) {
 
@@ -11,6 +12,8 @@ module.exports = function (app) {
 
   app.get("/api/purchase/user/:userId?", purchaseController.findByUser);
 
+  app.get("/api/purchase/:id", purchaseController.findOne);
+
   app.put("/api/purchase/:id", purchaseController.update);
 
   app.delete("/api/purchase/:id", purchaseController.delete);
@@ -20,9 +23,11 @@ module.exports = function (app) {
 
   app.get("/api/carry", carryController.findAll);
 
-  app.get("/api/carry/:article_id/:purchase_id", carryController.findOne);
+  // app.get("/api/carry/:article_id/:purchase_id", carryController.findOne);
 
-  app.get("/api/carry/:purchase_id", carryController.findByPurchaseId);
+  app.get("/api/carry/purchase/:purchaseId?", carryController.findByPurchaseId);
+
+  app.get("/api/carry/article/:articleId?", carryController.findByArticleId);
 
   app.put("/api/carry/:article_id/:purchase_id", carryController.update);
 
@@ -40,4 +45,15 @@ module.exports = function (app) {
   app.put("/api/direction/:id", directionController.update);
 
   app.delete("/api/direction/:id", directionController.delete);
+
+  // Printer
+  app.post("/api/printer", printerController.create);
+
+  app.get("/api/printer", printerController.findAll);
+
+  app.get("/api/printer/article/:id", printerController.findOne);
+
+  app.put("/api/printer/:id", printerController.update);
+
+  app.delete("/api/printer/:id", printerController.delete);
 }

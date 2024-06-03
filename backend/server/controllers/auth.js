@@ -4,6 +4,8 @@ const bcrypt = require('bcryptjs');
 
 const db = require("../models");
 const User = db.user;
+const users = require("../controllers/user.controller.js");
+
 
 exports.signin = (req, res) => {
   const user = req.body.username;

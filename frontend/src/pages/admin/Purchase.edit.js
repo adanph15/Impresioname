@@ -57,7 +57,7 @@ const AdminPurchaseUpdate = () => {
               type="text"
               name="status"
               value={purchase.status}
-              onChange={handleInputChange}
+             onChange={handleInputChange}
             />
           </div>
           <div className="singin-form-item">

@@ -1,7 +1,5 @@
 import axios from 'axios';
 
-// const API_URL = "https://localhost/api/users/";
-
 const AuthService = {
   getToken() {
     return localStorage.getItem('token');
@@ -43,6 +41,41 @@ const AuthService = {
     localStorage.removeItem('userInfo');
     window.location.href = '/home';
   },
+
+  verifyRole: () => {
+    const user = JSON.parse(localStorage.getItem('userInfo'));
+    console.log("usario: ",user)
+    console.log("rol: ",user.role)
+
+    // if (!session) {
+    //   // If the user is on the /login or /signup page, do not redirect
+    //   if (window.location.pathname !== '/login' && window.location.pathname !== '/signup' && window.location.pathname !== '/form' ) {
+    //     navigate('/landing')
+    //   }
+    // } else {
+    //   if (window.location.pathname !== '/form') {
+    //     navigate('/')
+    //   }
+    // }
+
+    if (user === null) {
+      return ""
+    } else {
+      const role = user.role;
+
+
+      if (role === "user") {
+        if (window.location.pathname === '/admin') {
+          window.location.href = '/home';
+        }
+
+      } else if (role === "admin") {
+  
+      } else {
+  
+      }
+    }
+  }
 
 };
 

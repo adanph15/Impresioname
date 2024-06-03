@@ -28,7 +28,8 @@ function getCleanUser(user) {
     id: user.id,
     name: user.name,
     username: user.username,
-    password: user.password
+    password: user.password,
+    role: user.role,
   };
 }
  

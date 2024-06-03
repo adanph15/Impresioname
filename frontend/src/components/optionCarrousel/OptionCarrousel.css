@@ -1,0 +1,25 @@
+@import "~slick-carousel/slick/slick.css"; 
+@import "~slick-carousel/slick/slick-theme.css";
+
+.custom-content {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    position: static;
+    margin-top: 2em;
+}
+
+.custom-content-container {
+    display: block;
+    justify-content: center;
+    max-width: 60vw;
+}
+
+.custom-content-item {
+    color: white;
+    background-color: #3C3C3C;
+    text-align: center;
+    padding-bottom: 2em;
+    border-radius: 20px;
+}

@@ -8,8 +8,9 @@
 		.example-container {
 			overflow: hidden;
 			position: absolute;
-			width: 100%;
-			height: 100%;
+			border-radius: 20px;
+			width: 55%;
+			height: 70%;
 		}
 
 		.exit-button {
@@ -33,10 +34,16 @@
 		}
 
 		@media only screen and (max-width: 999px) {
-			.exit-button { top: 88%; left: 50%; width: 16vw; height: 8vh; }
+			.exit-button {
+				top: 88%;
+				left: 50%;
+				width: 16vw;
+				height: 8vh;
+			}
 		}
 	</style>
 </head>
+<!-- sd -->
 
 <body>
 	<div class="example-container">
@@ -45,24 +52,36 @@
 			<a-assets>
 				<a-asset-item id="headModel"
 					src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/examples/face-tracking/assets/sparkar/headOccluder.glb"></a-asset-item>
-				<a-asset-item id="glassesModel3" src="./assets/glasses-3/scene.gltf"></a-asset-item>
+				<a-asset-item id="frameModel"
+					src="https://localhost:443/assets/custom/frames/custom-frame-2.gltf"></a-asset-item>
+				<a-asset-item id="templeModel"
+					src="https://localhost:443/assets/custom/temples/custom-temple-2.gltf"></a-asset-item>
+				<a-asset-item id="templeTipsModel"
+					src="https://localhost:443/assets/custom/temples-tips/custom-temple-tips-3.gltf"></a-asset-item>
+				<a-asset-item id="lensesModel"
+					src="https://localhost:443/assets/custom/lenses/custom-lenses-2.gltf"></a-asset-item>
 			</a-assets>
 			<a-camera active="false" position="0 0 0"></a-camera>
-			<a-entity mindar-face-target="anchorIndex: 168">
-				<a-gltf-model mindar-face-occluder position="0 -0.3 0.15" rotation="0 0 0" scale="0.065 0.065 0.065"
-					src="#headModel">
-				</a-gltf-model>
+			<a-entity mindar-face-target="anchorIndex: 188">
+				<a-gltf-model rotation="0 0 0" position="0 0 0" scale="1 1 1" src="#frameModel"
+					visible="true"></a-gltf-model>
 			</a-entity>
 			<a-entity mindar-face-target="anchorIndex: 188">
-				<a-gltf-model rotation="0 0 0" position="-0.2 -0.09 0.22" scale="0.003 0.003 0.003" src="#glassesModel3"
-					class="glasses3-entity" visible="true">
-				</a-gltf-model>
+				<a-gltf-model rotation="0 0 0" position="0 0 0" scale="1 1 1" src="#templeModel"
+					visible="true"></a-gltf-model>
 			</a-entity>
-			<button id="exitButton" class="exit-button">Exit</button>
+			<a-entity mindar-face-target="anchorIndex: 188">
+				<a-gltf-model rotation="0 0 0" position="0 0 0" scale="1 1 1" src="#templeTipsModel"
+					visible="true"></a-gltf-model>
+			</a-entity>
+			<a-entity mindar-face-target="anchorIndex: 188">
+				<a-gltf-model rotation="0 0 0" position="0 0 0" scale="1 1 1" src="#lensesModel"
+					visible="true"></a-gltf-model>
+			</a-entity>
 		</a-scene>
 	</div>
 	<script>
-		document.addEventListener("DOMContentLoaded", function() {
+		document.addEventListener("DOMContentLoaded", function () {
 			function goToShop() {
 				window.location.href = "/shop-men";
 			}

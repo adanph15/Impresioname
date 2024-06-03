@@ -3,18 +3,24 @@ const app = express();
 const cors = require("cors");
 const path = require('path');
 const socketIo = require('socket.io');
-const https = require('https'); // Cambio de http a https
+const https = require('https'); 
 const fs = require("fs");
 
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
 
-app.use('/images', express.static(path.join(__dirname, 'server', 'public', 'images')));
-app.use('/assets', express.static(path.join(__dirname, 'server', 'public', 'assets')));
+var corsOptionsGLTF = {
+  origin: "*",
+  methods: "GET", // Permitir solo solicitudes GET para los archivos glTF
+  allowedHeaders: ["Content-Type", "Authorization"] // Permitir ciertos encabezados
+};
 
 var corsOptions = {
   origin: "*"
 };
+
+app.use('/images', express.static(path.join(__dirname, 'server', 'public', 'images')));
+app.use('/assets', cors(corsOptionsGLTF), express.static(path.join(__dirname, 'server', 'public', 'assets')));
 
 app.use(cors(corsOptions));
 
@@ -65,7 +71,7 @@ require("./server/routes/all.routes")(app);
 require("./server/routes/article.routes")(app);
 require("./server/routes/user.routes")(app);
 
-const USING_HTTPS = true; // Forzamos el uso de HTTPS
+const USING_HTTPS = true;
 const PORT = process.env.PORT || 443;
 
 if (USING_HTTPS) {
@@ -77,7 +83,7 @@ if (USING_HTTPS) {
       };
     } catch (err) {
       console.log("No certificates found: " + err);
-      return null; // Devolvemos null en caso de error
+      return null;
     }
   };
   

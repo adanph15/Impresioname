@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import useSocketService from '../../services/SocketService';
@@ -43,6 +43,10 @@ export default function Shop() {
     }
   };
 
+  const goToPreview = (id) => {
+    window.location.href = `/preview/${id}`;
+  }
+
   const articlesList = () => {
     return (
         <div className="w-85vw flex flex-row flex-wrap justify-around items-center text-white font-bold text-base">
@@ -52,7 +56,7 @@ export default function Shop() {
                 <img className="mt-0 mb-1 rounded-t-lg border-b-4 border-primary " src={`https://localhost/images/${article.filename}`} alt={article.name} />
                 <strong>{article.name}</strong>
                 <p>{getCategory(article.category)} - {article.price}€</p>
-                <button className="button-hover-r duration-[0.4s] w-40 h-10 mt-2 bg-primary text-white font-bold mb-2 rounded-md cursor-pointer text-sm ">
+                <button onClick={() => goToPreview(article.id)} className="button-hover-r duration-[0.4s] w-40 h-10 mt-2 bg-primary text-white font-bold mb-2 rounded-md cursor-pointer text-sm ">
                   Try me  
                 </button>
               </div>

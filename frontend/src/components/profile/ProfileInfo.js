@@ -11,10 +11,10 @@ const ProfileInfo = ({ user, onEditProfile }) => {
     };
 
     return (
-        <div className="flex flex-col justify-around items-center">
-            <h2 className="text-4xl font-bold text-terciary  mt-32">Profile</h2>
-            <form className="w-full max-w-3xl">
-                <div className="flex flex-wrap -mx-3 mb-6  mt-10">
+        <div className="flex flex-col justify-around items-center w-[80vw]">
+            <h2 className="text-3xl font-bold text-terciary mt-6 mb-10">Profile</h2>
+            <form className="w-full max-w-3xl bg-gray-50 rounded-lg p-6 shadow-md border">
+                <div className="flex flex-wrap -mx-3 mb-6 ">
                     <div className="w-full md:w-1/2 px-3 mb-6 md:mb-1">
                         <label className="block tracking-wide text-gray-600 text-lg font-bold mb-2" htmlFor="first-name">
                             First Name

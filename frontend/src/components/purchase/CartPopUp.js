@@ -5,6 +5,7 @@ import { Fragment, useState, useEffect } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { useNavigate } from 'react-router-dom';
+import { TrashIcon } from "@heroicons/react/24/solid";
 
 export default function CartPopUp({ isOpen, setOpen }) {
   const navigate = useNavigate();
@@ -69,7 +70,7 @@ export default function CartPopUp({ isOpen, setOpen }) {
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+          <div className="fixed inset-0 bg-gray-200 bg-opacity-75 transition-opacity" />
         </Transition.Child>
 
         <div className="fixed inset-0 overflow-hidden">
@@ -127,13 +128,7 @@ export default function CartPopUp({ isOpen, setOpen }) {
                                   <div className="flex flex-1 items-end justify-between text-sm">
                                     <p className="text-gray-500">Qty {article.quantity}</p>
                                     <div className="flex">
-                                      <button
-                                        type="button"
-                                        className="font-medium text-secundary hover:text-indigo-500"
-                                        onClick={() => removeFromCart(article.id)}
-                                      >
-                                        Remove
-                                      </button>
+                                    <button onClick={() => removeFromCart(article.id)} className="w-12 h-12 mt-2 px-4 py-2 bg-primary text-white rounded-lg delete"><TrashIcon className="w-6 delete-icon"/></button>
                                     </div>
                                   </div>
                                 </div>
@@ -150,14 +145,12 @@ export default function CartPopUp({ isOpen, setOpen }) {
                         <p>{calculateTotalPrice()}€</p>
                       </div>
                       <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
-                      <div className="mt-6" onClick={goToBasket}>
-                        <button
-                          className="flex items-center justify-center rounded-md border border-transparent bg-secundary px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
-                        >
+                      <div className="mt-6 flex items-center justify-center" onClick={goToBasket}>
+                        <button className="button-hover bg-primary text-white w-1/3 h-14 font-bold rounded-md cursor-pointer text-base hover:bg-white hover:text-terciary hover:border-primary hover:border-solid hover:border">
                           Checkout
                         </button>
                       </div>
-                      <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
+                      {/* <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                         <p>
                           or{' '}
                           <button
@@ -169,7 +162,7 @@ export default function CartPopUp({ isOpen, setOpen }) {
                             <span aria-hidden="true"> &rarr;</span>
                           </button>
                         </p>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                 </Dialog.Panel>

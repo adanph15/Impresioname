@@ -33,7 +33,6 @@ export default function Login() {
             });
         });
 
-        // Cleanup function to remove event listeners when component unmounts
         return () => {
             switchers.forEach(item => {
                 item.removeEventListener('click', () => { });
@@ -63,6 +62,8 @@ export default function Login() {
             try {
                 const response = await AuthService.login(username, password);
                 localStorage.setItem("userInfo", JSON.stringify(response.user));
+                console.log("response: ", response)
+                console.log("response.user: ", response.user)
                 goToHome();
             } catch (error) {
                 console.error('Login failed', error);
@@ -154,7 +155,7 @@ export default function Login() {
                     <h2 className="text-4xl font-bold text-terciary mt-10 mb-6">Login & Sign Up</h2>
                     <div className="forms">
                         <div className="form-wrapper is-active  ">
-                            <button type="button" className="switcher switcher-login text-xl text-terciary font-bold">
+                            <button type="button" className="switcher switcher-login text-2xl text-terciary font-bold">
                                 Login
                                 <span className="underline"></span>
                             </button>
@@ -179,7 +180,7 @@ export default function Login() {
                             </form>
                         </div>
                         <div className="form-wrapper  ">
-                            <button type="button" className="switcher switcher-signup">
+                            <button type="button" className="switcher switcher-signup text-2xl text-terciary font-bold">
                                 Sign Up
                                 <span className="underline"></span>
                             </button>
@@ -187,15 +188,15 @@ export default function Login() {
                                 <fieldset>
                                     <div className="flex flex-row" >
                                         <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                                            <label className="block tracking-wide text-gray-700 text-lg font-bold mb-2" for="grid-first-name">
+                                            <label className="block tracking-wide text-gray-700 text-lg font-bold mb-2" htmlFor="grid-first-name">
                                                 First Name
                                             </label>
                                             <input className="appearance-none block w-full bg-gray-200 text-primary border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary text-base" id="grid-first-name" type="text" placeholder="James" value={name}
                                                 onChange={(e) => handleInputChange(e, setName, setNameError)} />
                                             <p className="text-red-500 text-xs italic">{nameError}</p>
                                         </div>
-                                        <div class="w-full md:w-1/2 px-3">
-                                            <label className="block  tracking-wide text-primary text-lg font-bold mb-2" for="grid-last-name">
+                                        <div className="w-full md:w-1/2 px-3">
+                                            <label className="block  tracking-wide text-primary text-lg font-bold mb-2" htmlFor="grid-last-name">
                                                 Last Name
                                             </label>
                                             <input className="appearance-none block w-full bg-gray-200 text-primary border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary text-base" id="grid-last-name" type="text" placeholder="Doe" value={last_name}
@@ -203,8 +204,8 @@ export default function Login() {
                                             <p className="text-red-500 text-xs italic">{lastNameError}</p>
                                         </div>
                                     </div>
-                                    <div class="w-full px-3">
-                                        <label className="block  tracking-wide text-primary text-lg font-bold mb-2" for="grid-last-name">
+                                    <div className="w-full px-3">
+                                        <label className="block  tracking-wide text-primary text-lg font-bold mb-2" htmlFor="grid-last-name">
                                             Mail
                                         </label>
                                         <input className="appearance-none block w-full bg-gray-200 text-primary border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary text-base" id="grid-last-name" type="text" placeholder="Mail" value={mail}
@@ -213,15 +214,15 @@ export default function Login() {
                                     </div>
                                     <div className="flex flex-row" >
                                         <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                                            <label className="block tracking-wide text-gray-700 text-lg font-bold mb-2" for="grid-first-name">
+                                            <label className="block tracking-wide text-gray-700 text-lg font-bold mb-2" htmlFor="grid-first-name">
                                                 Username
                                             </label>
                                             <input className="appearance-none block w-full bg-gray-200 text-primary border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary text-base" id="grid-first-name" type="text" placeholder="Username" value={usernameNew}
                                                 onChange={(e) => handleInputChange(e, setUserNameNew, setUserNameErrorNew)} />
                                             <p className="text-red-500 text-xs italic">{usernameErroNew}</p>
                                         </div>
-                                        <div class="w-full md:w-1/2 px-3">
-                                            <label className="block  tracking-wide text-gray-700 text-lg font-bold mb-2" for="grid-password">
+                                        <div className="w-full md:w-1/2 px-3">
+                                            <label className="block  tracking-wide text-gray-700 text-lg font-bold mb-2" htmlFor="grid-password">
                                                 Password
                                             </label>
                                             <input className="appearance-none block w-full bg-gray-200 text-primary border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-primary text-base" id="grid-password" type="password" placeholder="******************" value={passwordNew}

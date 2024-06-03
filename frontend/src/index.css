@@ -41,9 +41,15 @@
     transform: rotateY(-180deg);
 }
 
+
+
+
+
+
+
+
 .info-home {
     box-shadow: 10px 10px 2px -1px #333333;
-    transition: all .2s;
 }
 
 .shop-card {
@@ -53,12 +59,6 @@
 .shop-card:hover {
     box-shadow: -12px 12px 2px -1px #333333;
 }
-
-.image-glasses {
-    box-shadow: 10px 10px 2px -1px #333333;
-    transition: all .2s;
-}
-
 
 .button-hover {
     cursor: pointer;
@@ -79,7 +79,6 @@
 }
 
 .button-hover-r {
-    cursor: pointer;
     box-shadow: 0 0 0 0 black;
 }
 
@@ -98,9 +97,6 @@
 }
 
    
-   /* #bottone1:hover {
-	box-shadow: 7px 5px 56px -14px ;
-   } */
 
 .button-cart {
     overflow: hidden;
@@ -197,10 +193,7 @@
 	margin-right: auto;
 	margin-left: auto;
 	padding: 0;
-	text-transform: uppercase;
-	font-size: 16px;
 	letter-spacing: .5px;
-	color: #222222;
 	background-color: transparent;
 	border: none;
 	outline: none;
@@ -357,11 +350,6 @@
 	transition: opacity .4s ease-in, transform .35s ease-in;
 }
 
-
-
-
-
-
 .form [type='submit'] {
 	opacity: 0;
 	display: block;
@@ -491,7 +479,7 @@
   }
   
   .delete:hover {
-	width: 120px;
+	width: 100px;
 	border-radius: 50px;
 	transition-duration: .3s;
 	background-color: rgb(255, 69, 69);
@@ -501,12 +489,12 @@
   .delete:hover .delete-icon {
 	width: 50px;
 	transition-duration: .3s;
-	transform: translateY(60%);
+	transform: translateY(50%);
   }
   
   .delete::before {
 	position: absolute;
-	top: -20px;
+	top: -25px;
 	content: "Delete";
 	color: white;
 	transition-duration: .3s;
@@ -638,7 +626,6 @@
   }
   
   .addAddress:hover {
-	border-radius: 50px;
 	transition-duration: .3s;
 	background-color: #428e61;
 	align-items: center;
@@ -656,7 +643,7 @@
 	50% {
 	  transform: translateY(40%) rotateZ(45deg);
 	}
-	100% {
+	0% {
 	  transform: translateY(40%) rotateZ(90deg);
 	}
   }

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { PencilIcon, TrashIcon, PlusIcon } from "@heroicons/react/24/solid";
-
+import { PencilIcon, TrashIcon, PlusIcon, ShoppingCartIcon } from "@heroicons/react/24/solid";
 
 const UserAddressesPage = () => {
   const userInfo = JSON.parse(localStorage.getItem('userInfo'));
@@ -32,7 +31,7 @@ const UserAddressesPage = () => {
   }, [user_id]);
 
   const handleInputChange = (e, setState, setError) => {
-    const value = e.target.value.trim();
+    const value = e.target.value;
     setState(value);
 
     if (!value) {
@@ -45,28 +44,28 @@ const UserAddressesPage = () => {
   const validateForm = () => {
     let isValid = true;
 
-    if (!direction.trim()) {
+    if (!direction) {
       setDirectionError('Direction is required');
       isValid = false;
     } else {
       setDirectionError('');
     }
 
-    if (!postCode.trim()) {
+    if (!postCode) {
       setPostCodeError('Post code is required');
       isValid = false;
     } else {
       setPostCodeError('');
     }
 
-    if (!location.trim()) {
+    if (!location) {
       setLocationError('Location is required');
       isValid = false;
     } else {
       setLocationError('');
     }
 
-    if (!province.trim()) {
+    if (!province) {
       setProvinceError('Province is required');
       isValid = false;
     } else {
@@ -109,9 +108,9 @@ const UserAddressesPage = () => {
   };
 
   return (
-    <div className='flex flex-row justify-around'>
-      <div className='w-1/3 items-center'>
-        <h2 className="text-xl text-center font-bold text-terciary mt-10 mb-6">Your addresses</h2>
+    <div className='flex flex-row justify-around w-[80vw]'>
+      <div className='w-1/2 items-center'>
+        <h2 className="text-xl text-center font-bold text-terciary mt-6 mb-6">Your addresses</h2>
         <div>
           {addresses.map((address) => (
             <div key={address.id} className='flex flex-row align-middle shadow-md border rounded-md cursor-pointer bg-gray-50 pt-4 pb-4 m-6'>
@@ -131,9 +130,9 @@ const UserAddressesPage = () => {
         </div>
       </div>
 
-      <div className="flex flex-col justify-around items-center w-1/2 mb-10">
-        <h2 className="text-xl font-bold text-terciary mt-10 mb-6">Add new Address</h2>
-        <form className="w-full max-w-3xl bg-gray-50 rounded-lg p-6">
+      <div className="flex flex-col justify-start items-center w-1/2 mb-10">
+        <h2 className="text-xl font-bold text-terciary mt-6 mb-6">Add new Address</h2>
+        <form className="w-full max-w-3xl bg-gray-50 rounded-lg p-6  shadow-md border">
           <div className="flex flex-wrap -mx-3 mb-6 mt-10">
             <div className="w-2/3 px-3 mb-6 md:mb-0">
               <label className="block tracking-wide text-gray-700 text-lg font-bold mb-2" htmlFor="direction">
@@ -167,9 +166,12 @@ const UserAddressesPage = () => {
             </div>
           </div>
           <div className="flex flex-row justify-center -mx-3 mb-6 mt-10">
-            <button className="addAddress bg-primary text-white w-48 h-14 font-bold rounded-md cursor-pointer text-base hover:w-40" onClick={addNewAddress}>
-              <PlusIcon className="w-10 addAddress-icon" />
-            </button>
+            <button onClick={addNewAddress} className="button-hover button-cart flex flex-row justify-around items-center bg-primary text-white w-48 h-14 font-bold rounded-md cursor-pointer text-base hover:bg-white hover:text-white hover:border-primary hover:border-solid hover:border">
+                  <p className='mr-10'>Add address</p>
+                  <div className="icon mr-2">
+                    <PlusIcon className='w-6' />
+                  </div>
+                </button>
           </div>
         </form>
       </div>

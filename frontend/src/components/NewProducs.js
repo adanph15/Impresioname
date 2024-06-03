@@ -45,7 +45,7 @@ const NewProducs = () => {
                 <div className="flex flex-row gap-10 justify-around">
                     {articles.map((article) => (
                         <Link to={`/glasses/${article.id}`} className='link' key={article.id}>
-                            <div className="scroll-card-item w-48 pb-8 text-black flex flex-col flex-nowrap justify-center items-center  rounded-lg  hover:scale-105">
+                            <div className=" w-48 pb-8 text-black flex flex-col flex-nowrap justify-center items-center  rounded-lg  hover:scale-105">
                                 <img src={`https://localhost/images/${article.filename}`} alt={article.name} className="mt-0 mb-1 rounded-lg border-primary" />
                                 <div className='h-full w-full pb-4 flex flex-col items-center justify-center  rounded-b-lg'>
                                     <strong className='mt-4'>{article.name}</strong>
@@ -61,7 +61,7 @@ const NewProducs = () => {
     };
 
     return (
-        <div className="w-full mt-24 bg-gray-200 p-4 pb-10 rounded-lg shadow-inner text-terciary info-home flex flex-row justify-between" data-direction="right" data-speed="slow">
+        <div className="w-full mt-20 bg-gray-200 p-4 pb-10 rounded-lg shadow-inner text-terciary info-home flex flex-row justify-between" data-direction="right" data-speed="slow">
             <div className="  " style={{ height: '304.5px' }}>
                 <img src="/s.jpg" className="h-80 rounded-lg" alt='model-iamge-right' />
             </div>

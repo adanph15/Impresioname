@@ -27,7 +27,7 @@ export default function Home() {
           <div className="hidden md:block bg-white w-4/5 mx-auto p-4 rounded-lg ">
             <HomeRender />
             <NewProducs />
-            <div className="flex bg-gray-200 p-4 pb-10 mt-20 rounded-lg shadow-inner text-terciary info-home ">
+            <div className="flex bg-gray-200 p-4 pb-10 mt-20 rounded-lg shadow-inner text-terciary" style={{ boxShadow: '10px 10px 2px -1px #333333' }}>
               <div className="w-1/4  " style={{ height: '304.5px' }}>
                 <img src="/izquierda.jpeg" className=" rounded-lg" alt='model-iamge-right' />
               </div>

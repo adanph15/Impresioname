@@ -68,9 +68,9 @@ const UserPageUpdate = ({ user, onClose }) => {
   };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-      <div className="bg-white p-10 rounded-lg max-w-3xl w-full">
-        <h2 className="text-4xl font-bold text-terciary mb-8 text-center">Edit Profile</h2>
+    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 ">
+      <div className="bg-gray-50 rounded-lg p-8 shadow-md border max-w-3xl w-full">
+        <h2 className="text-3xl font-bold text-terciary mb-10 text-center">Edit Profile</h2>
         <form className="w-full" onSubmit={handleUpdateProfile}>
           <div className="flex flex-wrap mb-6">
             <div className="w-full md:w-1/2 px-3 mb-6">
@@ -130,7 +130,7 @@ const UserPageUpdate = ({ user, onClose }) => {
           </div>
           <div className="flex flex-wrap mb-6">
             <div className="w-full px-3">
-              <label className="block tracking-wide text-primary text-lg font-bold mb-2" htmlFor="password">
+              <label className="block tracking-wide text-primary text-lg font-bold mb-2" htmlFor="password" >
                 Password
               </label>
               <input
@@ -140,6 +140,7 @@ const UserPageUpdate = ({ user, onClose }) => {
                 name="password"
                 value={password}
                 onChange={handlePasswordChange}
+                placeholder="**********"
               />
             </div>
           </div>

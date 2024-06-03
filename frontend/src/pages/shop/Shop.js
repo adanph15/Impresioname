@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Navigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
-import useSocketService from '../../services/SocketService';
 import ArticleService from '../../services/ArticleService';
 
-export default function Shop() {
-  useSocketService();
+const Shop = () =>  {
   const { category } = useParams();
 
   const [articles, setArticles] = useState([]);
@@ -138,3 +136,5 @@ function TabContent({ tabId, activeTab, children }) {
     </div>
   );
 }
+
+export default Shop;

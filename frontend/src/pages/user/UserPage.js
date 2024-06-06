@@ -5,7 +5,7 @@ import axios from 'axios';
 import { ToastContainer } from 'react-toastify';
 import Header from '../../components/header/Header';
 import ProfileInfo from '../../components/profile/ProfileInfo';
-import UserPageUpdate from './UserPageUpdate'; // Import the update component
+import UserPageUpdate from './UserPageUpdate';
 
 export default function UserPage() {
   const [user, setUser] = useState(null);
@@ -17,12 +17,14 @@ export default function UserPage() {
 
     const fetchData = async () => {
       if (!userInfo || !userInfo.id) {
+        localStorage.setItem('authError', 'Debes iniciar sesión para acceder a esta página.');
         navigate('/sign-in');
         return;
       }
 
       const token = AuthService.getToken();
       if (!token) {
+        localStorage.setItem('authError', 'Debes iniciar sesión para acceder a esta página.');
         navigate('/sign-in');
         return;
       }
@@ -37,6 +39,7 @@ export default function UserPage() {
       } catch (err) {
         console.log(err);
         navigate('/sign-in');
+        localStorage.setItem('authError', 'Debes iniciar sesión para acceder a esta página.');
       }
     };
 

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import PurchaseService from '../../services/PurcharseService';
 
 const CreditCardForm = ({cartItems}) => {
     const [cardNumber, setCardNumber] = useState('0000 0000 0000 0000');
@@ -35,6 +36,10 @@ const CreditCardForm = ({cartItems}) => {
 
     const calculateTotalPrice = () => {
         return cartItems.reduce((total, item) => total + item.price, 0);
+    };
+
+    const handlePurchase = () => {
+        PurchaseService.createPurchase(calculateTotalPrice());
     };
 
     return (
@@ -182,9 +187,8 @@ const CreditCardForm = ({cartItems}) => {
                         </div>
                     </div>
                 </form>
+                <button className='button-hover mt-10 rounded-md bg-secundary text-white hover:bg-white w-40 h-14 hover:text-black' onClick={() => handlePurchase()}>Do Purchase</button>
             </main>
-
-
         </div>
     );
 }

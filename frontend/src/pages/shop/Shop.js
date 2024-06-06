@@ -51,7 +51,7 @@ const Shop = () =>  {
           {articles.map((article) => (
             <Link to={`/glasses/${article.id}`} className='link' key={article.id}>
               <div className="w-48 min-h-60 text-black flex flex-col flex-nowrap justify-center items-center bg-gray-200 m-10  rounded-lg  hover:scale-105  shop-card duration-[0.3s]">
-                <img className="mt-0 mb-1 rounded-t-lg border-b-4 border-primary " src={`https://localhost/images/${article.filename}`} alt={article.name} />
+                <img className="mt-0 mb-1 rounded-t-lg border-b-4 border-primary " src={`${process.env.REACT_APP_SERVER_URL}images/${article.filename}`} alt={article.name} />
                 <strong>{article.name}</strong>
                 <p>{getCategory(article.category)} - {article.price}€</p>
                 <button onClick={() => goToPreview(article.id)} className="button-hover-r duration-[0.4s] w-40 h-10 mt-2 bg-primary text-white font-bold mb-2 rounded-md cursor-pointer text-sm ">

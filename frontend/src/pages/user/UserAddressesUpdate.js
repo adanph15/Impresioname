@@ -30,7 +30,7 @@ const UserAddressesUpdate = () => {
   useEffect(() => {
     const fetchAddress = async () => {
       try {
-        const response = await axios.get(`https://localhost/api/direction/${id}`);
+        const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}api/direction/${id}`);
         setAddress(response.data);
       } catch (error) {
         console.error('Error fetching address:', error);
@@ -90,7 +90,7 @@ const UserAddressesUpdate = () => {
 
     if (validateAddressForm()) {
       try {
-        await axios.put(`http://localhost:8000/api/direction/${id}`, address);
+        await axios.put(`${process.env.REACT_APP_SERVER_URL}api/direction/${id}`, address);
         console.log('Address updated successfully.');
         navigate('/direction');
       } catch (error) {

@@ -2,8 +2,7 @@ import axios from 'axios';
 import CartService from "./CartService";
 import ArticleService from './ArticleService';
 
-const BASE_URL = 'https://localhost/api';
-
+const userInfo = JSON.parse(localStorage.getItem('userInfo'));
 const status = "Purchase sent";
 
 const getCurrentDate = () => {
@@ -11,12 +10,11 @@ const getCurrentDate = () => {
     const formattedDate = currentDate.toISOString();
     return formattedDate;
 };
-const userInfo = JSON.parse(localStorage.getItem('userInfo'));
 
 const PurchaseService = {
     getAllPurchases: async function () {
         try {
-            const response = await axios.get('https://localhost/api/purchase');
+            const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}api/purchase`);
             return response.data;
         } catch (error) {
             console.error('Error fetching purchases:', error);
@@ -25,10 +23,19 @@ const PurchaseService = {
 
     getPurchaseById: async function (id) {
         try {
-            const response = await axios.get(`https://localhost/api/purchase/${id}`);
+            const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}api/purchase/${id}`);
             return response.data;
         } catch (error) {
             console.error(`Error fetching purchase with id ${id} :`, error);
+        }
+    },
+
+    getPurchaseByUserId: async function (userId) {
+        try {
+            const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}api/purchase/user/${userId}`);
+            return response.data;
+        } catch (error) {
+            console.error(`Error fetching purchase with userID ${userId} :`, error);
         }
     },
 
@@ -38,7 +45,7 @@ const PurchaseService = {
             const cart = CartService.getCart(user_id);
 
             const promises = cart.map(async (article) => {
-                const response = await axios.post(`${BASE_URL}/carry`, {
+                const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}api/carry`, {
                     article_id: article.id,
                     purchase_id: idPurchase,
                 });
@@ -57,23 +64,23 @@ const PurchaseService = {
         try {
             const user_id = userInfo.id;
             const date = getCurrentDate();
-            const response = await axios.post(`${BASE_URL}/purchase`, {
+            const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}api/purchase`, {
                 date: date,
                 total: total,
                 status: status,
                 user_id: user_id,
             });
             await PurchaseService.associateArticlesWithPurchase(response.data.id);
+            window.location.href = '/profile';
             return response.data;
         } catch (error) {
             throw error;
         }
     },
 
-
     getArticlesByPurchaseId: async (purchaseId) => {
         try {
-            const response = await axios.get(`${BASE_URL}/carry/purchase/${purchaseId}`);
+            const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}api/carry/purchase/${purchaseId}`);
             const articles = [];
             for (let t = 0; t < response.data.length; t++) {
                 const carry = response.data[t];
@@ -90,11 +97,9 @@ const PurchaseService = {
         }
     },
 
-
-
     getPurchasesByArticleId: async (articleId) => {
         try {
-            const response = await axios.get(`${BASE_URL}/carry/article/${articleId}`);
+            const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}api/carry/article/${articleId}`);
             let purchases = [];
             for (let t = 0; t < response.data.length; t++) {
                 const carry = response.data[t];
@@ -112,20 +117,16 @@ const PurchaseService = {
         }
     },
     
-
     getUserNameByPurchaseId: async (purchaseId) => {
         try {
-            const response = await axios.get(`${BASE_URL}/carry/purchase/${purchaseId}`);
+            const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}api/carry/purchase/${purchaseId}`);
             const userId = response.data.user_id;
-            const userResponse = await axios.get(`${BASE_URL}/users/${userId}`);
+            const userResponse = await axios.get(`${process.env.REACT_APP_SERVER_URL}api/users/${userId}`);
             return userResponse.data.name;
         } catch (error) {
             console.error(`Error fetching users with purchase id ${purchaseId} :`, error);
         }
     }
-
-    
-
 };
 
 export default PurchaseService;

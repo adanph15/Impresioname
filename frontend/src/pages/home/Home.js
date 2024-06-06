@@ -1,5 +1,5 @@
 import Header from "../../components/header/Header";
-import NewProducs from "../../components/NewProducs";
+import NewProducs from "../../components/purchase/NewProducs";
 import HomeRender from "../../components/HomeRender";
 import Shop from "../shop/Shop";
 import { ToastContainer } from 'react-toastify';
@@ -48,11 +48,8 @@ export default function Home() {
             <div id="shop" className='mt-20'>
               <Shop />
             </div>
-
           </div>
-
         </div>
-
         <ToastContainer />
       </div>
     </>

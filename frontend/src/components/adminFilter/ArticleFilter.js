@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import ArticleService from '../../services/ArticleService';
 import PurchaseService from '../../services/PurcharseService';
+import { format } from 'date-fns';
+
 
 const ArticleFilter = () => {
     const [articles, setArticles] = useState([]);
@@ -58,26 +60,26 @@ const ArticleFilter = () => {
         }
 
         return (
-            <div className="p-3">
-                <h5>Orders for {article.name}</h5>
-                <table>
+            <div className="p-3 w-full">
+                <h5 className='font-semibold'>Orders for {article.name}</h5>
+                <table className='w-full'>
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Date</th>
-                            <th>Amount</th>
-                            <th>Status</th>
+                            <th className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">ID</th>
+                            <th className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">UserName</th>
+                            <th className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">Date</th>
+                            <th className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">Amount</th>
+                            <th className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">Status</th>
                         </tr>
                     </thead>
                     <tbody>
                         {articlePurchases.map(purchase => (
-                            <tr key={purchase.id}>
-                                <td>{purchase.id}</td>
-                                <td>{purchase.username}</td>
-                                <td>{purchase.date}</td>
-                                <td>{formatCurrency(purchase.total)}</td>
-                                <td>{purchase.status}</td>
+                            <tr className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 dark:border-gray-700" key={purchase.id}>
+                                <td className="px-6 py-4">{purchase.id}</td>
+                                <td className="px-6 py-4">{purchase.username}</td>
+                                <td className="px-6 py-4">{format(new Date(purchase.date), 'dd-MM-yyyy')}</td>
+                                <td className="px-6 py-4">{formatCurrency(purchase.total)}</td>
+                                <td className="px-6 py-4">{purchase.status}</td>
                             </tr>
                         ))}
                     </tbody>
@@ -99,7 +101,7 @@ const ArticleFilter = () => {
     };
 
     const checkStock = (stock) => {
-        return stock === "true" ? "On Stock" : "Out of Stock";
+        return stock === "true" ? "Out of Stock" : "On Stock";
     }
 
     // Filter articles based on global filter value
@@ -110,7 +112,7 @@ const ArticleFilter = () => {
     });
 
     return (
-        <div className="flex flex-col justify-center items-center">
+        <div className="flex flex-col justify-center items-center mt-4">
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg w-4/5">
                 <SearchBar
                     globalFilterValue={globalFilterValue}
@@ -189,7 +191,7 @@ const SearchBar = ({ globalFilterValue, setGlobalFilterValue, expandAll, collaps
     };
 
     return (
-        <div className='flex justify-between'>
+        <div className='flex justify-between items-center'>
             <form className="w-1/2 ml-20 mt-24 mb-10 flex flex-row ">
                 <input
                     type="search"
@@ -210,9 +212,9 @@ const SearchBar = ({ globalFilterValue, setGlobalFilterValue, expandAll, collaps
                     <span className="sr-only">Search</span>
                 </button>
             </form>
-            <div className='flex justify-evenly w-1/2 ml-0 mb-10 '>
-                <button className="bg-secundary rounded-lg w-1/5 text-sm" onClick={expandAll}>Expand All</button>
-                <button className="bg-secundary rounded-lg w-1/5 text-sm " onClick={collapseAll}>Collapse All</button>
+            <div className='flex justify-evenly w-1/2 ml-0 mt-24 mb-10 text-white '>
+                <button className="bg-secundary rounded-lg w-1/5 h-12 text-sm" onClick={expandAll}>Expand All</button>
+                <button className="bg-secundary rounded-lg w-1/5 h-12 text-sm " onClick={collapseAll}>Collapse All</button>
             </div>
         </div>
     );

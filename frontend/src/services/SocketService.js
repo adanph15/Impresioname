@@ -3,7 +3,7 @@ import { io } from 'socket.io-client';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const socket = io("https://localhost", { transports: ["websocket"] });
+const socket = io(process.env.REACT_APP_SERVER_URL, { transports: ["websocket"] });
 
 const customButtonStyle = {
     background: '#ffcc00',

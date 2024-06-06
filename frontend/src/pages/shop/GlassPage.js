@@ -19,7 +19,7 @@ export default function GlassesPage() {
   useEffect(() => {
     const fetchArticle = async () => {
       try {
-        const response = await axios.get(`https://localhost/api/article/${id}`);
+        const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}api/article/${id}`);
         setArticle(response.data);
         if (userInfo) {
           const cart = CartService.getCart(userInfo.id);
@@ -38,7 +38,7 @@ export default function GlassesPage() {
       id: article.id,
       name: article.name,
       price: article.price,
-      filename: `https://localhost/images/${article.filename}`,
+      filename: `${process.env.REACT_APP_SERVER_URL}images/${article.filename}`,
       stock: article.stock,
     };
 
@@ -75,7 +75,7 @@ export default function GlassesPage() {
       <div className="flex flex-col justify-between items-center gap-y-5 mt-32">
         <div className='flex flex-col items-center'>
           <div className='flex flex-row justify-between'>
-            <img src={`https://localhost/images/${article.filename}`} className="w-4/12 rounded-lg mb-6 mt-5 image-glasses " alt={article.name} style={{ boxShadow: '10px 10px 2px -1px #333333' }}/>
+            <img src={`${process.env.REACT_APP_SERVER_URL}images/${article.filename}`} className="w-4/12 rounded-lg mb-6 mt-5 image-glasses " alt={article.name} style={{ boxShadow: '10px 10px 2px -1px #333333' }}/>
             <div className='flex flex-col items-start w-1/3 mb-6 mt-6 ml-5 '>
               <h2 className="text-2xl font-bold text-terciary ">{article.name}</h2>
               <p className='text-lg font-semibold mt-5'>{article.price}€ </p>

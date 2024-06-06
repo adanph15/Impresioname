@@ -40,12 +40,11 @@ const PurchaseStepper = () => {
 
     const Step4Content = () => <div>Contenido del Paso 4</div>;
 
-    const steps = ["Cart Overview", "Shipping Info", "Payment", "Step 4"];
+    const steps = ["Cart Overview", "Shipping Info", "Payment", "-"];
     const stepContents = [
         <CartOverView cartItems={cartItems} setCartItems={setCartItems} />,
         <UserAddressesPage setSelectedAddress={setSelectedAddress} />,
         <CreditCardForm cartItems={cartItems} />,
-        <Step4Content />
     ];
     const [currentStep, setCurrentStep] = useState(1);
     const [complete, setComplete] = useState(false);
@@ -73,7 +72,7 @@ const PurchaseStepper = () => {
     };
 
     return (
-        <div className="flex justify-center bg-gray-200">
+        <div className="flex justify-center bg-gray-200 h-[100vh]">
 
         <div className="w-4/5 flex flex-col ">
             <div className="flex justify-between mt-32 mb-10 ml-24 mr-24">

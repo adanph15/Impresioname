@@ -1,262 +1,265 @@
-import { useEffect, useState } from 'react';
-import 'aframe';
-import 'mind-ar/dist/mindar-face-aframe.prod.js';
-import Header from "../../components/header/Header";
+import React, { useState, Suspense, useRef } from 'react';
+import RenderOptions from '../../components/RenderOptions';
+import { Canvas, useLoader, useFrame } from '@react-three/fiber';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import Header from '../../components/header/Header';
 
-const CustomGlasses = () => {
-  const [frame, setFrame] = useState(0);
-  const [temple, setTemple] = useState(0);
-
-  const [templeTips, setTempleTips] = useState(0);
-  const [lenses, setLenses] = useState(0);
-
-  const [frameColor, setFrameColor] = useState('black');
-  const [templeColor, setTempleColor] = useState('black');
-
-  const [lensesColor, setLensesColor] = useState('black');
-  const [templeTipsColor, setTempleTipsColor] = useState('black');
-
-
-
-
-  useEffect(() => {
-    const list = [
-      'frame1',
-      'frame2',
-      'frame3',
-      'frame4', 
-      'frame5', 
-      'templeModel1', 
-      'templeModel2',
-      'templeTipsModel1'
-    
-    
-    
-    
-    ];
-    const visibles = [true, false, false, true, true];
-
-    const setVisible = (button, entities, visible) => {
-      if (visible) {
-        button.classList.add("selected");
-      } else {
-        button.classList.remove("selected");
-      }
-      entities.forEach((entity) => {
-        entity.setAttribute("visible", visible);
-      });
-    };
-
-    list.forEach((item, index) => {
-      const button = document.querySelector("#" + item);
-      const entities = document.querySelectorAll("." + item + "-entity");
-      setVisible(button, entities, visibles[index]);
-      button.addEventListener('click', () => {
-        visibles[index] = !visibles[index];
-        setVisible(button, entities, visibles[index]);
-      });
-    });
-  }, []);
-
-
-
-  const handleSubmit = () => {
-    alert(`Frame color: ${frameColor}, Temple color: ${templeColor}`);
+const RenderSelection = ({ part, folder, partID, setSelectedPart }) => {
+  const handleClick = () => {
+    setSelectedPart(part);
   };
 
-  useEffect(() => {
-    switch (frameColor) {
-      case "black":
-        setFrame(1);
-        break;
-      case "red":
-        setFrame(2);
-        break;
-      case "pink":
-        setFrame(3);
-        break;
-      case "orange":
-        setFrame(4);
-        break;
-      case "blue":
-        setFrame(5);
-        break;
-      default:
-        setFrame(1);
-    }
-  }, [frameColor]);
+  function GLTFModelFramesSelection({ url, scale }) {
+    const gltf = useLoader(GLTFLoader, url);
+    const group = useRef();
 
-  useEffect(() => {
-    switch (templeColor) {
-      case "black":
-        setTemple(1);
-        break;
-      case "red":
-        setTemple(2);
-        break;
-      case "pink":
-        setTemple(3);
-        break;
-      case "orange":
-        setTemple(4);
-        break;
-      case "blue":
-        setTemple(5);
-        break;
-      default:
-        setTemple(1);
-    }
-  }, [templeColor]);
+    return (
+      <group ref={group} position={[-0.75, 0, 0]} scale={scale}>
+        <mesh onPointerOver={() => null}>
+          <primitive object={gltf.scene} dispose={null} />
+        </mesh>
+      </group>
+    );
+  }
 
-  useEffect(() => {
-    switch (templeTipsColor) {
-      case "black":
-        setTempleTipsColor(1);
-        break;
-      case "silver":
-        setTempleTipsColor(2);
-        break;
-      default:
-        setTempleTipsColor(1);
-    }
-  }, [templeTipsColor]);
+  function GLTFModelLensesSelection({ url, scale }) {
+    const gltf = useLoader(GLTFLoader, url);
+    const group = useRef();
 
-  useEffect(() => {
-    switch (lensesColor) {
-      case "black":
-        setLensesColor(1);
-        break;
-      case "silver":
-        setLensesColor(2);
-        break;
-      default:
-        setLensesColor(1);
-    }
-  }, [templeTipsColor]);
+    return (
+      <group ref={group} position={[-0.75, 0, 0]} scale={scale}>
+        <mesh onPointerOver={() => null}>
+          <primitive object={gltf.scene} dispose={null} />
+        </mesh>
+      </group>
+    );
+  }
+
+  function GLTFModelRotateTipsSelection({ url, scale }) {
+    const gltf = useLoader(GLTFLoader, url);
+    const group = useRef();
+
+    return (
+      <group ref={group} position={[4, 0, 0]} scale={scale} rotation={[0, 90, 0]}>
+        <mesh onPointerOver={() => null}>
+          <primitive object={gltf.scene} dispose={null} />
+        </mesh>
+      </group>
+    );
+  }
+
+  function GLTFModelRotateTempleSelection({ url, scale }) {
+    const gltf = useLoader(GLTFLoader, url);
+    const group = useRef();
+
+    return (
+      <group ref={group} position={[0.8, 0, 0]} scale={scale} rotation={[0, 10, 0]}>
+        <mesh onPointerOver={() => null}>
+          <primitive object={gltf.scene} dispose={null} />
+        </mesh>
+      </group>
+    );
+  }
+
+  const FrameSelections = () => {
+    return (
+      <button className='h-32 w-96  border border-primary rounded-lg' onClick={handleClick}>
+        <Canvas camera={{ position: [0, 0, 12.25], fov: 20 }} >
+          <ambientLight intensity={1.25} />
+          <ambientLight intensity={0.1} />
+          <directionalLight intensity={0.4} />
+          <Suspense fallback={null}>
+            <GLTFModelFramesSelection
+              url={`${process.env.REACT_APP_SERVER_URL}assets/custom/${folder}/custom-frame-${partID}.gltf`}
+              scale={[12, 12, 12]} // Tamaño predeterminado, puede ser ajustado
+            />
+          </Suspense>
+        </Canvas>
+      </button>
+    );
+  }
+
+  const LensesSelections = () => {
+    return (
+      <button className='h-32 w-96  border border-primary rounded-lg ' onClick={handleClick}>
+        <Canvas camera={{ position: [0, 0, 12.25], fov: 20 }}>
+          <ambientLight intensity={1.25} />
+          <ambientLight intensity={0.1} />
+          <directionalLight intensity={0.4} />
+          <Suspense fallback={null}>
+            <GLTFModelLensesSelection
+              url={`${process.env.REACT_APP_SERVER_URL}assets/custom/${folder}/custom-lenses-${partID}.gltf`}
+              scale={[12, 12, 12]} // Tamaño predeterminado, puede ser ajustado
+            />
+          </Suspense>
+        </Canvas>
+      </button>
+    );
+  }
+
+  const TemplesSelections = () => {
+    return (
+      <button className='h-32 w-96  border border-primary rounded-lg ' onClick={handleClick}>
+        <Canvas camera={{ position: [0, 0, 12.25], fov: 20 }}>
+          <ambientLight intensity={1.25} />
+          <ambientLight intensity={0.1} />
+          <directionalLight intensity={0.4} />
+          <Suspense fallback={null}>
+            <GLTFModelRotateTempleSelection
+              url={`${process.env.REACT_APP_SERVER_URL}assets/custom/${folder}/custom-temple-${partID}.gltf`}
+              scale={[7, 7, 7]} // Tamaño predeterminado, puede ser ajustado
+            />
+          </Suspense>
+        </Canvas>
+      </button>
+    );
+  }
+
+  const TemplesTipsSelections = () => {
+    return (
+      <button className='h-32 w-96  border border-primary rounded-lg ' onClick={handleClick}>
+        <Canvas camera={{ position: [0, 0, 12.25], fov: 20 }}>
+          <ambientLight intensity={1.25} />
+          <ambientLight intensity={0.1} />
+          <directionalLight intensity={0.4} />
+          <Suspense fallback={null}>
+            <GLTFModelRotateTipsSelection
+              url={`${process.env.REACT_APP_SERVER_URL}assets/custom/${folder}/custom-temple-tips-${partID}.gltf`}
+              scale={[8, 8, 8]} // Tamaño predeterminado, puede ser ajustado
+            />
+          </Suspense>
+        </Canvas>
+      </button>
+    );
+  }
+
+  switch (part) {
+    case "frame":
+      return (
+        <>
+          <FrameSelections />
+        </>
+      );
+    case "lenses":
+      return (
+        <>
+          <LensesSelections />
+        </>
+      );
+    case "temple":
+      return (
+        <>
+          <TemplesSelections />
+        </>
+      );
+    case "temple-tips":
+      return (
+        <>
+          <TemplesTipsSelections />
+        </>
+      );
+    default:
+      return (
+        <>
+          <FrameSelections />
+        </>
+      );
+  }
+}
+
+
+const CustomGlasses = () => {
+  const [frame, setFrame] = useState(1);
+  const [temple, setTemple] = useState(1);
+  const [templeTips, setTempleTips] = useState(1);
+  const [lenses, setLenses] = useState(1);
+  const [selectedPart, setSelectedPart] = useState(null);
+
+  // Datos para la configuración de cada parte del modelo
+  const anchorIndex = 168;
+  const position = { x: 0, y: 0, z: 0 };
+  const rotation = { x: 0, y: 0, z: 0 };
+  const scale = { x: 1, y: 1, z: 1 };
+
+  const frameModelId = `frames-${frame}`;
+  const templeModelId = `temples-${temple}`;
+  const templeTipsModelId = `temples-tips-${templeTips}`;
+  const lensesModelId = `lenses-${lenses}`;
 
   return (
     <>
-      <Header />
-      <div className='preview' dangerouslySetInnerHTML={{
-        __html: `   
-            <div>
-              <a-scene mindar-face embedded color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
-                <a-assets>
-                  <a-asset-item id="headModel" src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/examples/face-tracking/assets/sparkar/headOccluder.glb"></a-asset-item>
-                  <a-asset-item id="frameModel" src="https://localhost:443/assets/custom/frames/custom-frame-2.gltf"></a-asset-item>
-                  <a-asset-item id="templeModel" src="https://localhost:443/assets/custom/temples/custom-temple-1.gltf"></a-asset-item>
-                  <a-asset-item id="templeTipsModel" src="https://localhost:443/assets/custom/temples-tips/custom-temple-tips-1.gltf"></a-asset-item>
-                  <a-asset-item id="lensesModel" src="https://localhost:443/assets/custom/lenses/custom-lenses-1.gltf"></a-asset-item>
-                </a-assets>
-                <a-camera active="false" position="0 0 0"></a-camera>
-                <a-entity mindar-face-target="anchorIndex: 188">
-                  <a-gltf-model rotation="0 0 0" position="0 0 0" scale="1 1 1" src="#frameModel" visible="true"></a-gltf-model>
-                </a-entity>
-                <a-entity mindar-face-target="anchorIndex: 188">
-                    <a-gltf-model rotation="0 0 0" position="0 0 0" scale="1 1 1" src="#templeModel" visible="true"></a-gltf-model>
-                </a-entity>
-                <a-entity mindar-face-target="anchorIndex: 188">
-                  <a-gltf-model rotation="0 0 0" position="0 0 0" scale="1 1 1" src="#templeTipsModel" visible="true"></a-gltf-model>
-                </a-entity>
-                <a-entity mindar-face-target="anchorIndex: 188">
-                  <a-gltf-model rotation="0 0 0" position="0 0 0" scale="1 1 1" src="#lensesModel" visible="true"></a-gltf-model>
-                </a-entity>
-              </a-scene>
-            </div>
-        ` }} />
+    <Header/>
+      <div className="w-[100vw] h-[100vh] flex flex-col justifify-around">
+        <div className='h-3/4 flex flex-row justify-around'>
+          <div className="w-2/3 h-[80vh] " dangerouslySetInnerHTML={{
+            __html: `
 
+            <div class="example-container">
+            <a-scene mindar-face embedded color-space="sRGB" renderer="colorManagement: true; physicallyCorrectLights: true;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+              <a-assets>
+                <a-asset-item id="headModel" src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/examples/face-tracking/assets/sparkar/headOccluder.glb"></a-asset-item>
+                <a-asset-item id="frameModel" src="${process.env.REACT_APP_SERVER_URL}assets/${frameModelId}/scene.gltf"></a-asset-item>
+                <a-asset-item id="templeModel" src="${process.env.REACT_APP_SERVER_URL}assets/${templeModelId}/scene.gltf"></a-asset-item>
+                <a-asset-item id="templeTipsModel" src="${process.env.REACT_APP_SERVER_URL}assets/${templeTipsModelId}/scene.gltf"></a-asset-item>
+                <a-asset-item id="lensesModel" src="${process.env.REACT_APP_SERVER_URL}assets/${lensesModelId}/scene.gltf"></a-asset-item>
+              </a-assets>
+              <a-camera active="false" position="0 0 0"></a-camera>
+              <a-entity mindar-face-target="anchorIndex: ${anchorIndex}">
+                <a-gltf-model position="${position.x} ${position.y} ${position.z}" rotation="${rotation.x} ${rotation.y} ${rotation.z}" scale="${scale.x} ${scale.y} ${scale.z}" src="#frameModel"
+                  class="glasses-entity" visible="true">
+                </a-gltf-model>
+                <a-gltf-model position="${position.x} ${position.y} ${position.z}" rotation="${rotation.x} ${rotation.y} ${rotation.z}" scale="${scale.x} ${scale.y} ${scale.z}" src="#templeModel"
+                  class="glasses-entity" visible="true">
+                </a-gltf-model>
+                <a-gltf-model position="${position.x} ${position.y} ${position.z}" rotation="${rotation.x} ${rotation.y} ${rotation.z}" scale="${scale.x} ${scale.y} ${scale.z}" src="#templeTipsModel"
+                  class="glasses-entity" visible="true">
+                </a-gltf-model>
+                <a-gltf-model position="${position.x} ${position.y} ${position.z}" rotation="${rotation.x} ${rotation.y} ${rotation.z}" scale="${scale.x} ${scale.y} ${scale.z}" src="#lensesModel"
+                  class="glasses-entity" visible="true">
+                </a-gltf-model>
+              </a-entity>
+            </a-scene>
+          </div>
+        `
+          }} />
+
+          <div className='w-1/3 bg-gray-100'>
+            <div className='flex flex-col max-w-96 mt-20 ml-16 '>
+              <div className="h-1/5 mt-[-8px] mb-10">
+                <RenderSelection part="frame" folder="frames" partID={frame} setSelectedPart={setSelectedPart} className="z-50" />
+              </div>
+
+              <div className="h-1/5 mb-10">
+                <RenderSelection part="lenses" folder="lenses" partID={lenses} setSelectedPart={setSelectedPart} className="z-50" />
+              </div>
+
+              <div className="h-1/5 mb-10">
+                <RenderSelection part="temple" folder="temples" partID={temple} setSelectedPart={setSelectedPart} className="z-50" />
+              </div>
+
+              <div className="h-1/5 mb-10">
+                <RenderSelection part="temple-tips" folder="temples-tips" partID={templeTips} setSelectedPart={setSelectedPart} className="z-50" />
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div className='h-1/4'>
+
+          <div className="p-4 rounded-lg flex flex-col bg-gray-100 pb-10 flex justify-center">
+            <RenderOptions part={selectedPart} setFrame={setFrame} setLenses={setLenses} setTemple={setTemple} setTempleTips={setTempleTips} />
+          </div>
+
+        </div>
+
+
+
+
+      </div>
     </>
   );
 }
 
-
 export default CustomGlasses;
 
 
-//   import React, { useEffect, useState } from 'react';
-//   import Header from "../../components/header/Header";
-//   import OptionCarrousel from '../../components/optionCarrousel/OptionCarrousel';
-  
-//   const CustomGlasses = () => {
-//     const [frameColor, setFrameColor] = useState('black');
-//     const [templeColor, setTempleColor] = useState('black');
-//     const [templeTipsColor, setTempleTipsColor] = useState('black');
-//     const [lensesColor, setLensesColor] = useState('black');
-  
-//     useEffect(() => {
-//       console.log('Frame color changed:', frameColor);
-//       // Aquí podrías realizar otras acciones según el cambio de color del marco
-//     }, [frameColor]);
-  
-//     useEffect(() => {
-//       console.log('Temple color changed:', templeColor);
-//       // Aquí podrías realizar otras acciones según el cambio de color del templo
-//     }, [templeColor]);
-  
-//     useEffect(() => {
-//       console.log('Temple tips color changed:', templeTipsColor);
-//       // Aquí podrías realizar otras acciones según el cambio de color de las puntas del templo
-//     }, [templeTipsColor]);
-  
-//     useEffect(() => {
-//       console.log('Lenses color changed:', lensesColor);
-//       // Aquí podrías realizar otras acciones según el cambio de color de las lentes
-//     }, [lensesColor]);
-  
-//     const handleColorChange = (colorType, color) => {
-//       switch (colorType) {
-//         case 'frame':
-//           setFrameColor(color);
-//           break;
-//         case 'temple':
-//           setTempleColor(color);
-//           break;
-//         case 'templeTips':
-//           setTempleTipsColor(color);
-//           break;
-//         case 'lenses':
-//           setLensesColor(color);
-//           break;
-//         default:
-//           break;
-//       }
-//     };
-
-//   return (
-//     <>
-//       <Header />
-
-//       <div className='preview' dangerouslySetInnerHTML={{
-//         __html: `   
-//             <div>
-//               <a-scene mindar-face embedded color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
-//                 <a-assets>
-//                   <a-asset-item id="headModel" src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/examples/face-tracking/assets/sparkar/headOccluder.glb"></a-asset-item>
-//                   <a-asset-item id="frameModel" src="https://localhost:443/assets/custom/frames/custom-frame-2.gltf"></a-asset-item>
-//                   <a-asset-item id="templeModel" src="https://localhost:443/assets/custom/temples/custom-temple-1.gltf"></a-asset-item>
-//                   <a-asset-item id="templeTipsModel" src="https://localhost:443/assets/custom/temples-tips/custom-temple-tips-1.gltf"></a-asset-item>
-//                   <a-asset-item id="lensesModel" src="https://localhost:443/assets/custom/lenses/custom-lenses-1.gltf"></a-asset-item>
-//                 </a-assets>
-//                 <a-camera active="false" position="0 0 0"></a-camera>
-//                 <a-entity mindar-face-target="anchorIndex: 188">
-//                   <a-gltf-model rotation="0 0 0" position="0 0 0" scale="1 1 1" src="#frameModel" visible="true"></a-gltf-model>
-//                 </a-entity>
-//                 <a-entity mindar-face-target="anchorIndex: 188">
-//                     <a-gltf-model rotation="0 0 0" position="0 0 0" scale="1 1 1" src="#templeModel" visible="true"></a-gltf-model>
-//                 </a-entity>
-//                 <a-entity mindar-face-target="anchorIndex: 188">
-//                   <a-gltf-model rotation="0 0 0" position="0 0 0" scale="1 1 1" src="#templeTipsModel" visible="true"></a-gltf-model>
-//                 </a-entity>
-//                 <a-entity mindar-face-target="anchorIndex: 188">
-//                   <a-gltf-model rotation="0 0 0" position="0 0 0" scale="1 1 1" src="#lensesModel" visible="true"></a-gltf-model>
-//                 </a-entity>
-//               </a-scene>
-//             </div>
-//         ` }} />
-
-// <OptionCarrousel handleColorChange={handleColorChange} />
-//     </>
-//   );
-// };
-
-// export default CustomGlasses;

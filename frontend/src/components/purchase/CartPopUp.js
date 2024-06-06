@@ -3,9 +3,8 @@ import CartService from '../../services/CartService';
 import AuthService from "../../services/AuthService";
 import { Fragment, useState, useEffect } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
-import { XMarkIcon } from '@heroicons/react/24/outline';
+import { XMarkIcon, TrashIcon } from '@heroicons/react/24/outline';
 import { useNavigate } from 'react-router-dom';
-import { TrashIcon } from "@heroicons/react/24/solid";
 
 export default function CartPopUp({ isOpen, setOpen }) {
   const navigate = useNavigate();
@@ -15,6 +14,10 @@ export default function CartPopUp({ isOpen, setOpen }) {
   useEffect(() => {
     const fetchData = async () => {
       const userInfo = getUser();
+      if (!userInfo) {
+        navigate('/sign-in');
+        return;
+      }
       const cart = getCart(userInfo.id);
       const token = AuthService.getToken();
       if (token) {
@@ -34,7 +37,7 @@ export default function CartPopUp({ isOpen, setOpen }) {
       }
     };
     fetchData();
-  }, []);
+  }, [navigate]);
 
   const calculateTotalPrice = () => {
     return cartItems.reduce((total, item) => total + item.price, 0);
@@ -128,7 +131,7 @@ export default function CartPopUp({ isOpen, setOpen }) {
                                   <div className="flex flex-1 items-end justify-between text-sm">
                                     <p className="text-gray-500">Qty {article.quantity}</p>
                                     <div className="flex">
-                                    <button onClick={() => removeFromCart(article.id)} className="w-12 h-12 mt-2 px-4 py-2 bg-primary text-white rounded-lg delete"><TrashIcon className="w-6 delete-icon"/></button>
+                                      <button onClick={() => removeFromCart(article.id)} className="w-12 h-12 mt-2 px-4 py-2 bg-primary text-white rounded-lg delete"><TrashIcon className="w-6 delete-icon" /></button>
                                     </div>
                                   </div>
                                 </div>
@@ -150,19 +153,6 @@ export default function CartPopUp({ isOpen, setOpen }) {
                           Checkout
                         </button>
                       </div>
-                      {/* <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
-                        <p>
-                          or{' '}
-                          <button
-                            type="button"
-                            className="font-medium text-secundary hover:text-indigo-500"
-                            onClick={() => setOpen(false)}
-                          >
-                            Continue Shopping
-                            <span aria-hidden="true"> &rarr;</span>
-                          </button>
-                        </p>
-                      </div> */}
                     </div>
                   </div>
                 </Dialog.Panel>

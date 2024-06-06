@@ -14,7 +14,7 @@ const AuthService = {
   },
 
   login: async (username, password) => {
-    const response = await axios.post('https://localhost/api/users/signin', {
+    const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}api/users/signin`, {
       username, password
     });
     const token = response.data.access_token;
@@ -24,7 +24,7 @@ const AuthService = {
   },
 
   register: async (username, name, last_name, mail, password) => {
-    const response = await axios.post('https://localhost/api/users/signup', {
+    const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}api/users/signup`, {
       username,
       name,
       last_name,
@@ -44,38 +44,30 @@ const AuthService = {
 
   verifyRole: () => {
     const user = JSON.parse(localStorage.getItem('userInfo'));
-    console.log("usario: ",user)
-    console.log("rol: ",user.role)
-
-    // if (!session) {
-    //   // If the user is on the /login or /signup page, do not redirect
-    //   if (window.location.pathname !== '/login' && window.location.pathname !== '/signup' && window.location.pathname !== '/form' ) {
-    //     navigate('/landing')
-    //   }
-    // } else {
-    //   if (window.location.pathname !== '/form') {
-    //     navigate('/')
-    //   }
-    // }
-
-    if (user === null) {
-      return ""
-    } else {
+    console.log("usuario: ", user);
+  
+    if (user) {
+      console.log("rol: ", user.role);
       const role = user.role;
-
-
+  
       if (role === "user") {
         if (window.location.pathname === '/admin') {
           window.location.href = '/home';
         }
-
-      } else if (role === "admin") {
-  
-      } else {
-  
+      } 
+    } else {
+      if (window.location.pathname === '/admin') {
+        window.location.href = '/home';
+      }
+      if (window.location.pathname === '/profile') {
+        window.location.href = '/sign-in';
+      }
+      if (window.location.pathname === '/cart') {
+        window.location.href = '/sign-in';
       }
     }
   }
+  
 
 };
 

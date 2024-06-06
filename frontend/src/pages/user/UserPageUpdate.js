@@ -47,7 +47,7 @@ const UserPageUpdate = ({ user, onClose }) => {
           userData.password = password;
         }
 
-        const response = await axios.put(`https://localhost/api/users/${userInfo.id}`, userData, {
+        const response = await axios.put(`${process.env.REACT_APP_SERVER_URL}api/users/${userInfo.id}`, userData, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

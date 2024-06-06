@@ -3,138 +3,158 @@
 @tailwind utilities;
 
 
-/* Specific Styles  */
+/* Stepper Styles  */
 .step-item {
-    @apply relative flex flex-col justify-center items-center w-36;
+	@apply relative flex flex-col justify-center items-center w-36;
 }
 
 .step-item:not(:first-child):before {
-    @apply content-[''] bg-primary absolute w-96 h-[3px] right-2/4 top-1/3;
+	@apply content-[''] bg-primary absolute w-96 h-[3px] right-2/4 top-1/3;
 }
 
 .step {
-    @apply w-10 h-10 flex items-center justify-center z-10 relative bg-primary rounded-full font-semibold text-white;
+	@apply w-10 h-10 flex items-center justify-center z-10 relative bg-primary rounded-full font-semibold text-white;
 }
 
 .active .step {
-    @apply bg-primary border-2 border-secundary;
+	@apply bg-primary border-2 border-secundary;
 }
 
 .complete .step {
-    @apply bg-secundary;
+	@apply bg-secundary;
 }
 
 .complete .step-item {
-    @apply bg-secundary;
+	@apply bg-secundary;
 }
 
 .complete p {
-    @apply text-primary;
+	@apply text-primary;
 }
 
 .complete:not(:first-child):before,
 .active:not(:first-child):before {
-    @apply bg-secundary;
+	@apply bg-secundary;
 }
 
 .crediCard.rearIsVsible {
-    transform: rotateY(-180deg);
+	transform: rotateY(-180deg);
 }
 
+/* Glasses preview */
 
+.example-container {
+	overflow: hidden;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
 
+.exit-button {
+	position: absolute;
+	top: 20%;
+	left: 10%;
+	transform: translate(-50%, -50%);
+	z-index: 9999;
+	background-color: #3C3C3C;
+	color: white;
+	border: 0;
+	border-radius: 6px;
+	width: 7vw;
+	height: 7vh;
+	font-size: 20px;
+}
 
+.exit-button:hover {
+	background-color: black;
+	color: white;
+}
 
+@media only screen and (max-width: 999px) {
+	.exit-button {
+		top: 88%;
+		left: 50%;
+		width: 16vw;
+		height: 8vh;
+	}
+}
 
-
+/* Buttons and info styles */
 
 .info-home {
-    box-shadow: 10px 10px 2px -1px #333333;
+	box-shadow: 10px 10px 2px -1px #333333;
 }
 
 .shop-card {
-    box-shadow: 10px 10px 2px -1px #333333;
+	box-shadow: 10px 10px 2px -1px #333333;
 }
 
 .shop-card:hover {
-    box-shadow: -12px 12px 2px -1px #333333;
+	box-shadow: -12px 12px 2px -1px #333333;
 }
 
 .button-hover {
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    box-shadow: 0 0 0 0 black;
+	cursor: pointer;
+	transition: all 0.3s ease-in-out;
+	box-shadow: 0 0 0 0 black;
 }
 
 .button-hover:hover {
-    transform: translateY(-4px) translateX(-2px);
-    box-shadow: 2px 5px 0 0 black;
+	transform: translateY(-4px) translateX(-2px);
+	box-shadow: 2px 5px 0 0 black;
 }
 
-
-
 .button-hover:active {
-    transform: translateY(2px) translateX(1px);
-    box-shadow: 0 0 0 0 black;
+	transform: translateY(2px) translateX(1px);
+	box-shadow: 0 0 0 0 black;
 }
 
 .button-hover-r {
-    box-shadow: 0 0 0 0 black;
+	box-shadow: 0 0 0 0 black;
 }
 
 .button-hover-r:hover {
-    transform: translateY(-4px) translateX(2px);
-    box-shadow: -5px 5px 0 0 black;
-    color: black;
-    background-color: white;
+	transform: translateY(-4px) translateX(2px);
+	box-shadow: -5px 5px 0 0 black;
+	color: black;
+	background-color: white;
 }
-
-
 
 .button-hover-r:active {
-    transform: translateY(2px) translateX(1px);
-    box-shadow: 0 0 0 0 black;
+	transform: translateY(2px) translateX(1px);
+	box-shadow: 0 0 0 0 black;
 }
-
-   
 
 .button-cart {
-    overflow: hidden;
-    position: relative;
+	overflow: hidden;
+	position: relative;
 }
 
 .button-cart .icon {
-    background: white;
-    color: #333333;
-    margin-left: 1em;
-    position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 2.2em;
-    width: 2.2em;
-    border-radius: 0.7em;
-    right: 0.3em;
-    transition: all 0.3s;
+	background: white;
+	color: #333333;
+	margin-left: 1em;
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 2.2em;
+	width: 2.2em;
+	border-radius: 0.7em;
+	right: 0.3em;
+	transition: all 0.3s;
 }
-
-
 
 .button-cart:hover .icon {
-    width: calc(100% - 0.6em);
-    margin-right: 0;
+	width: calc(100% - 0.6em);
+	margin-right: 0;
 }
-
-
 
 .button-cart .icon {
-    transform: scale(1);
+	transform: scale(1);
 }
 
-
-
-
-
+/* Login - SignUp Styles */
 
 *,
 *::before,
@@ -172,6 +192,7 @@
 	50% {
 		z-index: 1;
 	}
+
 	100% {
 		z-index: 1;
 	}
@@ -181,6 +202,7 @@
 	0% {
 		z-index: 1;
 	}
+
 	49.999% {
 		z-index: 1;
 	}
@@ -250,7 +272,7 @@
 	min-width: 260px;
 	margin-top: 50px;
 	padding: 30px 25px;
-  	border-radius: 5px;
+	border-radius: 5px;
 	transform-origin: top;
 }
 
@@ -267,9 +289,11 @@
 		background: #333333;
 		transform: translate(40%, 10px);
 	}
+
 	50% {
 		transform: translate(0, 0);
 	}
+
 	100% {
 		background-color: #fff;
 		transform: translate(35%, -20px);
@@ -281,13 +305,15 @@
 		background-color: #fff;
 		transform: translate(35%, -20px);
 	}
+
 	50% {
 		transform: translate(0, 0);
 	}
+
 	100% {
 		background: #333333;
 		transform: translate(40%, 10px);
-		
+
 	}
 }
 
@@ -304,9 +330,11 @@
 		background: #333333;
 		transform: translate(-40%, 10px) scaleY(.8);
 	}
+
 	50% {
 		transform: translate(0, 0) scaleY(.8);
 	}
+
 	100% {
 		background-color: #fff;
 		transform: translate(-35%, -20px) scaleY(1);
@@ -318,9 +346,11 @@
 		background-color: #fff;
 		transform: translate(-35%, -20px) scaleY(1);
 	}
+
 	50% {
 		transform: translate(0, 0) scaleY(.8);
 	}
+
 	100% {
 		background: #333333;
 		transform: translate(-40%, 10px) scaleY(.8);
@@ -383,85 +413,75 @@
 
 
 
+/* Custom CSS */
 
-
-
-/* Custom CSS */ 
-  
-  section.custom {
+section.custom {
 	perspective: 1000px;
 	transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  }
+}
 
-  .custom:hover {
+.custom:hover {
 	transform: scale(1.05);
 	box-shadow: 10px 10px 2px -1px #333333;
-  }
-  
-  .custom__content {
+}
+
+.custom__content {
 	transform: translateY(2000px);
 	transform: rotateX(-90deg);
 	transition: all 0.5s cubic-bezier(0.0175, 0.0885, 0.032, 1.275);
 	visibility: hidden;
-  }
-  
-  .custom:hover .custom__content {
+}
+
+.custom:hover .custom__content {
 	transform: rotateX(0deg);
 	transform: translateY(0);
 	visibility: visible;
 	transition: 1s;
-  }
+}
 
-
-  .btn:link,
+.btn:link,
 .btn:visited {
- text-transform: uppercase;
- text-decoration: none;
- color: rgb(27, 27, 27);
- padding: 10px 30px;
- border: 1px solid;
- border-radius: 1000px;
- display: inline-block;
- transition: all .2s;
- position: relative;
+	text-transform: uppercase;
+	text-decoration: none;
+	color: rgb(27, 27, 27);
+	padding: 10px 30px;
+	border: 1px solid;
+	border-radius: 1000px;
+	display: inline-block;
+	transition: all .2s;
+	position: relative;
 }
 
 .btn:hover {
- transform: translateY(-5px);
- box-shadow: 0 10px 20px rgba(27, 27, 27, .5);
+	transform: translateY(-5px);
+	box-shadow: 0 10px 20px rgba(27, 27, 27, .5);
 }
 
 .btn:active {
- transform: translateY(-3px);
+	transform: translateY(-3px);
 }
 
 .btn::after {
- content: "";
- display: inline-block;
- height: 100%;
- width: 100%;
- border-radius: 100px;
- top: 0;
- left: 0;
- position: absolute;
- z-index: -1;
- transition: all .3s;
+	content: "";
+	display: inline-block;
+	height: 100%;
+	width: 100%;
+	border-radius: 100px;
+	top: 0;
+	left: 0;
+	position: absolute;
+	z-index: -1;
+	transition: all .3s;
 }
 
 .btn:hover::after {
- background-color: rgb(0, 238, 255);
- transform: scaleX(1.4) scaleY(1.5);
- opacity: 0;
+	background-color: rgb(0, 238, 255);
+	transform: scaleX(1.4) scaleY(1.5);
+	opacity: 0;
 }
 
-  
-
-
-
 .delete {
-
 	border-radius: 50%;
-
 	border: none;
 	font-weight: 600;
 	display: flex;
@@ -472,45 +492,43 @@
 	transition-duration: .3s;
 	overflow: hidden;
 	position: relative;
-  }
-  
-  .delete-icon {
+}
+
+.delete-icon {
 	transition-duration: .3s;
-  }
-  
-  .delete:hover {
+}
+
+.delete:hover {
 	width: 100px;
 	border-radius: 50px;
 	transition-duration: .3s;
 	background-color: rgb(255, 69, 69);
 	align-items: center;
-  }
-  
-  .delete:hover .delete-icon {
+}
+
+.delete:hover .delete-icon {
 	width: 50px;
 	transition-duration: .3s;
 	transform: translateY(50%);
-  }
-  
-  .delete::before {
+}
+
+.delete::before {
 	position: absolute;
 	top: -25px;
 	content: "Delete";
 	color: white;
 	transition-duration: .3s;
 	font-size: 2px;
-  }
-  
-  .delete:hover::before {
+}
+
+.delete:hover::before {
 	font-size: 13px;
 	opacity: 1;
 	transform: translateY(30px);
 	transition-duration: .3s;
-  }
+}
 
-
-
-  .deleteAddress {
+.deleteAddress {
 
 	border-radius: 50%;
 
@@ -524,45 +542,43 @@
 	transition-duration: .3s;
 	overflow: hidden;
 	position: relative;
-  }
-  
-  .deleteAddress-icon {
+}
+
+.deleteAddress-icon {
 	transition-duration: .3s;
-  }
-  
-  .deleteAddress:hover {
+}
+
+.deleteAddress:hover {
 	width: 80px;
 	border-radius: 50px;
 	transition-duration: .3s;
 	background-color: rgb(255, 69, 69);
 	align-items: center;
-  }
-  
-  .deleteAddress:hover .deleteAddress-icon {
+}
+
+.deleteAddress:hover .deleteAddress-icon {
 	width: 60px;
 	transition-duration: .3s;
 	transform: translateY(50%);
-  }
-  
-  .deleteAddress::before {
+}
+
+.deleteAddress::before {
 	position: absolute;
 	top: -20px;
 	content: "Delete";
 	color: white;
 	transition-duration: .3s;
 	font-size: 2px;
-  }
-  
-  .deleteAddress:hover::before {
+}
+
+.deleteAddress:hover::before {
 	font-size: 13px;
 	opacity: 1;
 	transform: translateY(25px);
 	transition-duration: .3s;
-  }
+}
 
-
-
-  .updateAddress {
+.updateAddress {
 	border-radius: 50%;
 	border: none;
 	font-weight: 600;
@@ -574,43 +590,43 @@
 	transition-duration: .3s;
 	overflow: hidden;
 	position: relative;
-  }
-  
-  .updateAddress-icon {
+}
+
+.updateAddress-icon {
 	transition-duration: .3s;
-  }
-  
-  .updateAddress:hover {
+}
+
+.updateAddress:hover {
 	width: 80px;
 	border-radius: 50px;
 	transition-duration: .3s;
 	background-color: #428e61;
 	align-items: center;
-  }
-  
-  .updateAddress:hover .updateAddress-icon {
+}
+
+.updateAddress:hover .updateAddress-icon {
 	width: 40px;
 	transition-duration: .3s;
 	transform: translateY(20%) rotateZ(45deg);
-  }
-  
-  .updateAddress::before {
+}
+
+.updateAddress::before {
 	position: absolute;
 	top: -20px;
 	content: "Update";
 	color: white;
 	transition-duration: .3s;
 	font-size: 2px;
-  }
-  
-  .updateAddress:hover::before {
+}
+
+.updateAddress:hover::before {
 	font-size: 13px;
 	opacity: 1;
 	transform: translateY(25px);
 	transition-duration: .3s;
-  }
+}
 
-  .addAddress {
+.addAddress {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -619,48 +635,49 @@
 	transition-duration: .3s;
 	overflow: hidden;
 	position: relative;
-  }
-  
-  .addAddress-icon {
+}
+
+.addAddress-icon {
 	transition-duration: .3s;
-  }
-  
-  .addAddress:hover {
+}
+
+.addAddress:hover {
 	transition-duration: .3s;
 	background-color: #428e61;
 	align-items: center;
-  }
-  
-  .addAddress:hover .addAddress-icon {
+}
+
+.addAddress:hover .addAddress-icon {
 	width: 40px;
 	animation: rotateAnimation 0.2s ease;
-  }
-  
-  @keyframes rotateAnimation {
+}
+
+@keyframes rotateAnimation {
 	0% {
-	  transform: translateY(40%) rotateZ(0deg);
+		transform: translateY(40%) rotateZ(0deg);
 	}
+
 	50% {
-	  transform: translateY(40%) rotateZ(45deg);
+		transform: translateY(40%) rotateZ(45deg);
 	}
+
 	0% {
-	  transform: translateY(40%) rotateZ(90deg);
+		transform: translateY(40%) rotateZ(90deg);
 	}
-  }
-  
-  
-  .addAddress::before {
+}
+
+.addAddress::before {
 	position: absolute;
 	top: -20px;
 	content: "Add";
 	color: white;
 	transition-duration: .3s;
 	font-size: 2px;
-  }
-  
-  .addAddress:hover::before {
+}
+
+.addAddress:hover::before {
 	font-size: 13px;
 	opacity: 1;
 	transform: translateY(25px);
 	transition-duration: .3s;
-  }
+}

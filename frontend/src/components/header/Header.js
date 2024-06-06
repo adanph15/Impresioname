@@ -38,7 +38,7 @@ export default function Header() {
             <a href="/home#shop" className="block mt-4 lg:inline-block lg:mt-0  hover:text-white mr-4" style={{ scrollBehavior: 'smooth' }}>
               Shop
             </a>
-            <a href="#responsive-header" className="block mt-4 lg:inline-block lg:mt-0 cursor-not-allowed mr-4">
+            <a href="/custom" className="block mt-4 lg:inline-block lg:mt-0  mr-4">
               Custom Glasses
             </a>
             <a href="/sign-in" className="block mt-4 lg:inline-block lg:mt-0 hover:text-white">

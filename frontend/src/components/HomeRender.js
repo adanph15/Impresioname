@@ -10,7 +10,7 @@ function GLTFModel({ url, position, scale }) {
 	const group = useRef();
 
 	useFrame(() => {
-		group.current.rotation.y += 0.01; // Ajusta la velocidad de rotación según sea necesario
+		group.current.rotation.y += 0.01; 
 	});
 
 	return (
@@ -30,7 +30,7 @@ const HomeRender = () => {
 	const [templeTips, setTempleTips] = useState(1);
 	const [lenses, setLenses] = useState(1);
 
-	const [selectedPart, setSelectedPart] = useState(null);
+	const [selectedPart, setSelectedPart] = useState("frame");
 	
 	return (
 		<div className="justify-center flex flex-col p-4 mt-24 rounded-lg  text-terciary border-2  bg-gray-200 info-home">

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-// import ArticleService from '../../services/ArticleService';
 import PurchaseService from '../../services/PurcharseService';
+import { format } from 'date-fns';
 
 const PurchaseFilter = () => {
     const [articles, setArticles] = useState([]);
@@ -95,12 +95,7 @@ const PurchaseFilter = () => {
         return stock === "true" ? "On Stock" : "Out of Stock";
     }
 
-    // Filter articles based on global filter value
-    const filteredArticles = articles.filter(article => {
-        const matchesName = article.name.toLowerCase().includes(globalFilterValue.toLowerCase());
-        const matchesCategory = article.category.toLowerCase().includes(globalFilterValue.toLowerCase());
-        return matchesName || matchesCategory;
-    });
+
 
     return (
         <div className="flex flex-col justify-center items-center">
@@ -142,7 +137,7 @@ const PurchaseFilter = () => {
                     </thead>
                     <tbody>
                         {/* Render filtered articles */}
-                        {filteredArticles.map(purchase => (
+                        {purchases.map(purchase => (
                             <React.Fragment key={purchase.id}>
                                 <tr className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
                                     <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -200,9 +195,9 @@ const SearchBar = ({ globalFilterValue, setGlobalFilterValue, expandAll, collaps
                     <span className="sr-only">Search</span>
                 </button>
             </form>
-            <div className='flex justify-evenly w-1/2 ml-0 mb-10 '>
-                <button className="bg-secundary rounded-lg w-1/5 text-sm" onClick={expandAll}>Expand All</button>
-                <button className="bg-secundary rounded-lg w-1/5 text-sm " onClick={collapseAll}>Collapse All</button>
+            <div className='flex justify-evenly w-1/2 ml-0 mt-24 mb-10 text-white '>
+                <button className="bg-secundary rounded-lg w-1/5 h-12 text-sm" onClick={expandAll}>Expand All</button>
+                <button className="bg-secundary rounded-lg w-1/5 h-12 text-sm " onClick={collapseAll}>Collapse All</button>
             </div>
         </div>
     );

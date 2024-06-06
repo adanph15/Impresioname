@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { PencilIcon, TrashIcon, PlusIcon, ShoppingCartIcon } from "@heroicons/react/24/solid";
+import { PencilIcon, TrashIcon, PlusIcon } from "@heroicons/react/24/solid";
 
 const UserAddressesPage = () => {
   const userInfo = JSON.parse(localStorage.getItem('userInfo'));
@@ -20,7 +20,7 @@ const UserAddressesPage = () => {
   useEffect(() => {
     const fetchAddresses = async () => {
       try {
-        const response = await axios.get(`https://localhost/api/direction/user/${user_id}`);
+        const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}api/direction/user/${user_id}`);
         setAddresses(response.data);
       } catch (error) {
         console.error('Error fetching addresses:', error);
@@ -86,7 +86,7 @@ const UserAddressesPage = () => {
     };
     if (validateForm()) {
       try {
-        const response = await axios.post(`https://localhost/api/direction`, newAddress);
+        const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}api/direction`, newAddress);
         setAddresses((prevAddresses) => [...prevAddresses, response.data]);
       } catch (error) {
         console.error('Error adding new address:', error);
@@ -100,7 +100,7 @@ const UserAddressesPage = () => {
 
   const deleteAddress = async (id) => {
     try {
-      await axios.delete(`https://localhost/api/direction/${id}`);
+      await axios.delete(`${process.env.REACT_APP_SERVER_URL}api/direction/${id}`);
       setAddresses((prevAddresses) => prevAddresses.filter(address => address.id !== id));
     } catch (error) {
       console.error('Error deleting address:', error);
